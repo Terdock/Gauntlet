@@ -11,7 +11,7 @@ import Model.Creatures;
 
 
 
-public abstract class Monster extends Creatures {
+public abstract class Monster<WoldObject> extends Creatures {
  
     private int pos_move;
      
@@ -45,6 +45,7 @@ public abstract class Monster extends Creatures {
      */
         Where_is_Hero(HeroProche);//annonce si le monstre est dans le perimètre visible par l'utilisateur 
         if(isISeeHero()){
+        	/**
             if( Math.abs(getPos_x() - List_Hero.get(HeroProche).getPos_x()) < Math.abs(getPos_y() - List_Hero.get(HeroProche).getPos_y()))
                 if (getPos_y() - List_Hero.get(HeroProche).getPos_y() < 0)
                     if(isMoveValide(getPos_x(),getPos_y()+ getPas()))
@@ -59,6 +60,7 @@ public abstract class Monster extends Creatures {
                 else
                     if(isMoveValide(getPos_x()- getPas(),getPos_y()))
                         setPos_x(getPos_x()- getPas()); 
+        **/
         }
     }
      
@@ -130,4 +132,4 @@ public abstract class Monster extends Creatures {
 }
 
 
-}
+

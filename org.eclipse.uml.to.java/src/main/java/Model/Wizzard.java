@@ -8,11 +8,7 @@ import Model.Hero;
 
 // End of user code
 
-/**
- * Description of Wizzard.
- * 
- * @author Edith
- */
+
 public class Wizzard extends Hero {
 	// Start of user code (user defined attributes for Wizzard)
 
@@ -24,78 +20,22 @@ public class Wizzard extends Hero {
 		// End of user code
 	}
 
-	/**
-	 * Description of the method move.
-	 */
-	public void move() {
-		// Start of user code for method move
-		// End of user code
-	}
-
-	/**
-	 * Description of the method attack.
-	 */
+	@Override
 	public void attack() {
-		// Start of user code for method attack
-		// End of user code
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Description of the method Distanc_Attack.
-	 */
+	@Override
 	public void Distanc_Attack() {
-		// Start of user code for method Distanc_Attack
-		// End of user code
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * Description of the method Special_Attack.
-	 */
+	@Override
 	public void Special_Attack() {
-		// Start of user code for method Special_Attack
-		// End of user code
-	}
-
-	/**
-	 * Description of the method Distanc_Attack.
-	 */
-	public void Distanc_Attack() {
-		// Start of user code for method Distanc_Attack
-		// End of user code
-	}
-
-	/**
-	 * Description of the method Special_Attack.
-	 */
-	public void Special_Attack() {
-		// Start of user code for method Special_Attack
-		// End of user code
-	}
-
-	/**
-	 * Description of the method move.
-	 */
-	public void move() {
-		// Start of user code for method move
-		// End of user code
-	}
-
-	/**
-	 * Description of the method attack.
-	 */
-	public void attack() {
-		// Start of user code for method attack
-		// End of user code
-	}
-	/**
-	 * Description of the method getNameImage.
-	 * @return 
-	 */
-	public String getNameImage() {
-		// Start of user code for method getNameImage
-		String getNameImage = null;
-		return getNameImage;
-		// End of user code
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -104,8 +44,5 @@ public class Wizzard extends Hero {
 		return null;
 	}
 
-	// Start of user code (user defined methods for Wizzard)
-
-	// End of user code
 
 }
