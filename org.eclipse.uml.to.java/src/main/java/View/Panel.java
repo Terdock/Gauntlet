@@ -121,7 +121,9 @@ public class Panel extends JPanel{
 			heros[i-1].addItem("Sorcier");
 			heros[i-1].addItem("Nain");
 			heros[i-1].addItem("Elfe");
-			heros[i-1].setBounds(250, 60 + i*100, 200, 30);
+			heros[i-1].setBackground(Color.BLACK);
+  			heros[i-1].setBounds(250, 60 + i*100, 200, 30);
+  			heros[i-1].setOpaque(false);
 			this.add(heros[i-1]);
 		}
 	}
