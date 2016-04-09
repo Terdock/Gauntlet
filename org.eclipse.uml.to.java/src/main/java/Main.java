@@ -1,33 +1,19 @@
-/*******************************************************************************
- * 2016, All rights reserved.
- *******************************************************************************/
+import java.awt.EventQueue;
 
-// Start of user code (user defined imports)
+import View.Window;
 
-// End of user code
-
-
-import Controler.*;
-import Model.*;
-import View.*;
-
-
-/**
- * Description of Main.
- * 
- * @author Edith
- */
 public class Main {
 	
-	public static void main(String[] args){
-
-	    AbstractModel Game = new GauntletGame();
-
-	    AbstractControler control = new Controle(Game);
-
-	    Fenetre Fenetre = new Fenetre(control);
-
-	    Game.addObserver(Fenetre);
-
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
