@@ -14,7 +14,7 @@ import Model.WorldObject;
  * 
  * @author Edith
  */
-public class Potion extends WorldObject {
+public abstract class Potion extends WorldObject {
 	// Start of user code (user defined attributes for Potion)
 
 	// End of user code
@@ -22,61 +22,12 @@ public class Potion extends WorldObject {
 	/**
 	 * The constructor.
 	 */
-	public Potion() {
+	public Potion(int PosX,int PosY) {
 		// Start of user code constructor for Potion)
-		super();
+		super(PosX,PosY);
 		// End of user code
 	}
 
-	/**
-	 * Description of the method getNameImage.
-	 * @return 
-	 */
-	public EString getNameImage() {
-		// Start of user code for method getNameImage
-		EString getNameImage = null;
-		return getNameImage;
-		// End of user code
-	}
-
-	// Start of user code (user defined methods for Potion)
-
-	// End of user code
-
-	/**
-	 * Description of HealthPotion.
-	 * 
-	 * @author Edith
-	 */
-	public class HealthPotion extends Potion {
-		// Start of user code (user defined attributes for HealthPotion)
-
-		// End of user code
-
-		/**
-		 * The constructor.
-		 */
-		public HealthPotion() {
-			// Start of user code constructor for HealthPotion)
-			super();
-			// End of user code
-		}
-
-		/**
-		 * Description of the method getNameImage.
-		 * @return 
-		 */
-		public EString getNameImage() {
-			// Start of user code for method getNameImage
-			EString getNameImage = null;
-			return getNameImage;
-			// End of user code
-		}
-
-		// Start of user code (user defined methods for HealthPotion)
-
-		// End of user code
-
-	}
-
+	@Override
+	public abstract String nameImage();
 }

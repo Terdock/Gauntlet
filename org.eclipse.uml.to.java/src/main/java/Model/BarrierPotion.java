@@ -14,32 +14,18 @@ import Model.Potion;
  * @author Edith
  */
 public class BarrierPotion extends Potion {
-	// Start of user code (user defined attributes for BarrierPotion)
 
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public BarrierPotion() {
-		// Start of user code constructor for BarrierPotion)
-		super();
-		// End of user code
+	public BarrierPotion(int PosX, int PosY) {
+		super(PosX, PosY);
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Description of the method getNameImage.
-	 * @return 
-	 */
-	public EString getNameImage() {
-		// Start of user code for method getNameImage
-		EString getNameImage = null;
-		return getNameImage;
-		// End of user code
+	@Override
+	public String nameImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
-	// Start of user code (user defined methods for BarrierPotion)
-
-	// End of user code
 
 }

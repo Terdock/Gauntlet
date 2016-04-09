@@ -14,23 +14,17 @@ import Model.WorldObject;
  * @author Edith
  */
 public class KeyDoor extends WorldObject {
-	// Start of user code (user defined attributes for KeyDoor)
 
-	// End of user code
-
-	/**
-	 * Description of the method getNameImage.
-	 * @return 
-	 */
-	public EString getNameImage() {
-		// Start of user code for method getNameImage
-		EString getNameImage = null;
-		return getNameImage;
-		// End of user code
+	public KeyDoor(int pos_x, int pos_y) {
+		super(pos_x, pos_y);
+		// TODO Auto-generated constructor stub
 	}
 
-	// Start of user code (user defined methods for KeyDoor)
+	@Override
+	public String nameImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	// End of user code
 
 }

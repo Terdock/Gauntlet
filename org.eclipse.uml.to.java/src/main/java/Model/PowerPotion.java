@@ -14,32 +14,19 @@ import Model.Potion;
  * @author Edith
  */
 public class PowerPotion extends Potion {
-	// Start of user code (user defined attributes for PowerPotion)
+	
 
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public PowerPotion() {
-		// Start of user code constructor for PowerPotion)
-		super();
-		// End of user code
+	public PowerPotion(int PosX, int PosY) {
+		super(PosX, PosY);
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Description of the method getNameImage.
-	 * @return 
-	 */
-	public EString getNameImage() {
-		// Start of user code for method getNameImage
-		EString getNameImage = null;
-		return getNameImage;
-		// End of user code
+
+	@Override
+	public String nameImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	// Start of user code (user defined methods for PowerPotion)
-
-	// End of user code
 
 }

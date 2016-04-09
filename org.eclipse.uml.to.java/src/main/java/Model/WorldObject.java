@@ -27,8 +27,8 @@ public abstract class WorldObject extends WorldEntity {
 	 */
 	private static int Width = 15;
 	
-	public WorldObject(String nameImage, int pos_x, int pos_y) {
-		super(nameImage, pos_x, pos_y);
+	public WorldObject(int pos_x, int pos_y) {
+		super(pos_x, pos_y);
 		// TODO Auto-generated constructor stub
 	}
 
