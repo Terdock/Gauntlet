@@ -1,0 +1,6 @@
+WARNING - 19:25:21: Creating types 
+WARNING - 19:25:23: Initializing types
+WARNING - 19:25:32: Generic post-process : Creating usages and associations
+WARNING - 19:25:33: Generic post-process : Creating activities
+WARNING - 19:25:33: Saving .uml resource: 20160409_192533
+WARNING - 19:25:33: Finished saving .uml resource: 20160409_192533
