@@ -11,10 +11,12 @@ public class Controle extends AbstractControler{
 		Keyboard K  = new Keyboard();
 	}
 
-	
-	public void initComposant(String Mode, ArrayList<ArrayList<String>> PlayerRegister){
-		Game.createHero(PlayerRegister);
-		Game.createPlateau(Mode);		
+
+	@Override
+	public void initComposant(String mode, String[][] playerRegister) {
+		Game.createHero(playerRegister);
+		Game.createPlateau(mode);		// TODO Auto-generated method stub
+		
 	}
 
 

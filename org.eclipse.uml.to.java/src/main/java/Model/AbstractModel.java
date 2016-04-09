@@ -11,7 +11,7 @@ public abstract class AbstractModel implements Observable {
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 	
 	public abstract void createPlateau(String Mode);
-	public abstract void createHero(ArrayList<ArrayList<String>> playerRegister);
+	public abstract void createHero(String[][] playerRegister);
 	
 	public void addObserver(Observer obs){
 		 this.listObserver.add(obs);

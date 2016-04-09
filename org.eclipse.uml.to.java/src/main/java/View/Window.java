@@ -5,22 +5,31 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class Window extends JFrame{
+import Controler.*;
+import Model.*;
+import observer.Observer;
+
+public class Window extends JFrame implements Observer {
 	
 	private CardLayout card;
 	private Panel[] panel = new Panel[8];
 	private ImageIcon[] ImageIcons = new ImageIcon[10];
 	private String modeDeJeu;
+	private String[][] PlayerRegister;
     private Image welcomeImage, menuImage;
+    private AbstractControler controle;
+   
 	
 	
 	
-	public Window(){
+	public Window(AbstractControler controle){
+		this.controle = controle;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
         this.setSize(1000+16,600+39);
@@ -28,8 +37,10 @@ public class Window extends JFrame{
         setLocationRelativeTo(null);
         initialisation();
         this.getContentPane().add(panel[0], BorderLayout.CENTER);
+        setVisible(true);
 	}
 	
+
 	private void initialisation(){
 		try {
 		      this.welcomeImage = ImageIO.read(new File("welcome.jpg"));
@@ -48,19 +59,25 @@ public class Window extends JFrame{
 		this.card = panel[0].getCard();
 		
 		//Construction de l'acceuil
-      panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Home");
+		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Home");
       
-      //Construction du menu
-      panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Menu");
+      	//Construction du menu
+      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Menu");
       
-      //Construction du nombre de joueur
-      panel[3] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Player");
+      	//Construction du nombre de joueur
+      	panel[3] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Player");
       
-      //Construction des informations des joueurs
-      panel[4] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "1");
-      panel[5] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "2");
-      panel[6] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "3");
-      panel[7] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "4");
+      	//Construction des informations des joueurs
+      	panel[4] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "1");
+      	panel[5] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "2");
+      	panel[6] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "3");
+      	panel[7] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "4");
+	}
+
+	@Override
+	public void update(ArrayList<WorldEntity> List_Hero, ArrayList<WorldEntity> List_Monster) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

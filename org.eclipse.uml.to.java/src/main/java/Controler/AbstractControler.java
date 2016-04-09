@@ -11,6 +11,6 @@ public abstract class AbstractControler {
 		this.Game = Game;
 	}
 
-	public abstract void initComposant(String mode, ArrayList<ArrayList<String>> playerRegister);
+	public abstract void initComposant(String mode, String[][] playerRegister);
 
 }
