@@ -47,14 +47,14 @@ public class Window extends JFrame implements Observer {
 
 	private void initialisation(){
 		try {
-		      this.welcomeImage = ImageIO.read(new File("welcome.jpg"));
-		      this.ImageIcons[0] = new ImageIcon("arrow.gif");
-		      this.ImageIcons[1] = new ImageIcon("arrowLeft.gif");
-		      this.ImageIcons[2] = new ImageIcon("arrowRight.gif");
-		      this.ImageIcons[3] = new ImageIcon("arrowUp.gif");
-		      this.ImageIcons[4] = new ImageIcon("arrowDown.gif");
-		      this.ImageIcons[5] = new ImageIcon("menuSeparation.gif");
-		      this.menuImage = ImageIO.read(new File("home.jpg"));
+		      this.welcomeImage = ImageIO.read(new File("Images/welcome.jpg"));
+		      this.ImageIcons[0] = new ImageIcon("Images/arrow.gif");
+		      this.ImageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
+		      this.ImageIcons[2] = new ImageIcon("Images/arrowRight.gif");
+		      this.ImageIcons[3] = new ImageIcon("Images/arrowUp.gif");
+		      this.ImageIcons[4] = new ImageIcon("Images/arrowDown.gif");
+		      this.ImageIcons[5] = new ImageIcon("Images/menuSeparation.gif");
+		      this.menuImage = ImageIO.read(new File("Images/home.jpg"));
 		} catch (IOException e) {
 		      e.printStackTrace();}
 		
