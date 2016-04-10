@@ -40,6 +40,10 @@ public class Window extends JFrame implements Observer {
         setVisible(true);
 	}
 	
+	private void doit(){
+		
+	}
+	
 
 	private void initialisation(){
 		try {
