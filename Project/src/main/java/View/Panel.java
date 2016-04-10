@@ -105,7 +105,8 @@ public class Panel extends JPanel{
             		new Panel(img, panel, ImageIcons, card, info, modeDeJeu);
             		card.show(panel, info);
             	}else if (info.equals("Information")){
-            		for(Integer i = 0; i<=3; i++){
+            		for(Integer i = 0; i < name.length; i++){
+            			System.out.println(name.length);
             			Heros[i][0] = name[i].getText();
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
             		}
@@ -113,7 +114,7 @@ public class Panel extends JPanel{
 	}
 	
 	private void writeName(int playerNumber){
-		this.name = new JTextField[4];
+		this.name = new JTextField[playerNumber];
 		for(Integer i = 1; i<= playerNumber; i++){
 			nameLabels[i-1] = text("Joueur "+i.toString(), 450, 10 + i*100, 200, 30, Color.ORANGE);
 			name[i-1] = new JTextField();
