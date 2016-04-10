@@ -13,38 +13,32 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Panel extends JPanel{
-	private int x, y, width, height;
+	private int x = 0, y = 0, width = 1000, height = 600;
 	private String modeDeJeu;
 	private Panel panel;
 	private Button[] buttons = new Button[10];
 	private ImageIcon[] ImageIcons;
 	private Label[] labels = new Label[15], nameLabels = new Label[4];
-	private String[] nameHero = new String[4];
+	private String[][] Heros = new String[4][2];
 	private JTextField[] name;
+	private JComboBox[] typeHeros;
 	private String type;
 	private Image img;
 	private CardLayout card;
 	
-	public Panel(int x, int y, int width, int height){
+	public Panel(){
 		this.card = new CardLayout();
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
 		this.setBounds(x, y, width, height);
 		this.setLayout(card);
 	}
 	
-	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, int x, int y, int width, int height, String type) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu) {
 		this.img = img;
 		this.panel = panel;
 		this.ImageIcons = ImageIcons;
 		this.card = card;
 		this.type = type;
+		this.modeDeJeu = modeDeJeu;
 		this.setLayout(null);
 		initialisation();
 	}
@@ -74,12 +68,14 @@ public class Panel extends JPanel{
 			labels[12] = text("NOMBRE DE JOUEUR", 330, 150, 400, 35, Color.ORANGE);
 			for (Integer i = 1; i <= 4; i++){
 				buttons[i+3] = button(String.valueOf(i) + " Joueur", 405, 230 + (i-1)*50, 200, 35, Color.ORANGE);
-				actionPlayer(buttons[i+3], String.valueOf(i));
+				actionButton(buttons[i+3], String.valueOf(i));
 			}
 		}else if (type.equals("1")||type.equals("2")||type.equals("3")||type.equals("4")){
 			arrows();
-			name = writeName(Integer.valueOf(type));
-			buttons[8] = button("Commencer", 410, 510, 200, 35, Color.ORANGE);
+			writeName(Integer.valueOf(type));
+			comboBox(Integer.valueOf(type));
+			buttons[8] = button("Commencer", 410, 510, 200, 35, Color.green);
+			actionButton(buttons[8],"Information");
 		}
 	}
 
@@ -94,45 +90,49 @@ public class Panel extends JPanel{
         labels[9] = arrow(ImageIcons[4], 970, 300, 30, 198);
 	}
 
-	private void actionPlayer(Button button, String playerNumber){
+	private void actionButton(Button button, String info){
 		button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                card.show(panel, playerNumber);
-            }});
+            	if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            		
+            		//Construction du Panel pour obtenir le nombre de joueur
+            		new Panel(img, panel, ImageIcons, card, "Player", info);
+            		card.show(panel, "Player");
+            	
+            	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
+            		
+            		//Construction du Panel pour obtenir les information des joueurs
+            		new Panel(img, panel, ImageIcons, card, info, modeDeJeu);
+            		card.show(panel, info);
+            	}else if (info.equals("Information")){
+            		for(Integer i = 0; i<=3; i++){
+            			Heros[i][0] = name[i].getText();
+            			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
+            		}
+            	}}});
 	}
 	
-	private JTextField[] writeName(int playerNumber){
-		JTextField[] name = new JTextField[4];
+	private void writeName(int playerNumber){
+		this.name = new JTextField[4];
 		for(Integer i = 1; i<= playerNumber; i++){
 			nameLabels[i-1] = text("Joueur "+i.toString(), 450, 10 + i*100, 200, 30, Color.ORANGE);
 			name[i-1] = new JTextField();
 			name[i-1].setBounds(550, 60 + i*100, 200, 30);
 			this.add(name[i-1]);
 		}
-		comboBox(playerNumber);
-		return name;
 	}
 	
 	private void comboBox(int playerNumber){
-		JComboBox[] heros = new JComboBox[4];
+		this.typeHeros = new JComboBox[4];
 		for (Integer i = 1; i<= playerNumber; i++){
-			heros[i-1] = new JComboBox();
-			heros[i-1].addItem("Guerrier");
-			heros[i-1].addItem("Sorcier");
-			heros[i-1].addItem("Nain");
-			heros[i-1].addItem("Elfe");
-			heros[i-1].setBackground(Color.BLACK);
-  			heros[i-1].setBounds(250, 60 + i*100, 200, 30);
-  			heros[i-1].setOpaque(false);
-			this.add(heros[i-1]);
+			typeHeros[i-1] = new JComboBox();
+			typeHeros[i-1].addItem("Guerrier");
+			typeHeros[i-1].addItem("Sorcier");
+			typeHeros[i-1].addItem("Nain");
+			typeHeros[i-1].addItem("Elfe");
+  			typeHeros[i-1].setBounds(250, 60 + i*100, 200, 30);
+			this.add(typeHeros[i-1]);
 		}
-	}
-	
-	private void actionButton(Button button, String type){
-		button.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                card.show(panel, "Player");}});
-				modeDeJeu = type;
 	}
 	
 	public void paintComponent(Graphics g){

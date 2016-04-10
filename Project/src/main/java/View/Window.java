@@ -59,23 +59,15 @@ public class Window extends JFrame implements Observer {
 		      e.printStackTrace();}
 		
 		//Construction du panneau qui reprend tous les panneaux
-		panel[0] = new Panel(0, 0, 1000, 600);
+		panel[0] = new Panel();
 		this.card = panel[0].getCard();
 		
 		//Construction de l'acceuil
-		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Home");
+		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, "Home", null);
       
       	//Construction du menu
-      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Menu");
+      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, "Menu", null);
       
-      	//Construction du nombre de joueur
-      	panel[3] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "Player");
-      
-      	//Construction des informations des joueurs
-      	panel[4] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "1");
-      	panel[5] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "2");
-      	panel[6] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "3");
-      	panel[7] = new Panel(menuImage, panel[0], ImageIcons, card, 0, 0, 1000, 600, "4");
 	}
 
 	@Override
