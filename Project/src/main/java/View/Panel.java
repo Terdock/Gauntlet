@@ -12,6 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controler.*;
+
 public class Panel extends JPanel{
 	private int x = 0, y = 0, width = 1000, height = 600;
 	private String modeDeJeu;
@@ -25,6 +27,7 @@ public class Panel extends JPanel{
 	private String type;
 	private Image img;
 	private CardLayout card;
+	private AbstractControler controle;
 	
 	public Panel(){
 		this.card = new CardLayout();
@@ -32,13 +35,15 @@ public class Panel extends JPanel{
 		this.setLayout(card);
 	}
 	
-	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu) {
+	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle
+			) {
 		this.img = img;
 		this.panel = panel;
 		this.ImageIcons = ImageIcons;
 		this.card = card;
 		this.type = type;
 		this.modeDeJeu = modeDeJeu;
+		this.controle = controle;
 		this.setLayout(null);
 		initialisation();
 	}
@@ -96,21 +101,25 @@ public class Panel extends JPanel{
             	if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
             		
             		//Construction du Panel pour obtenir le nombre de joueur
-            		new Panel(img, panel, ImageIcons, card, "Player", info);
+            		new Panel(img, panel, ImageIcons, card, "Player", info,controle);
             		card.show(panel, "Player");
             	
             	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
             		
             		//Construction du Panel pour obtenir les information des joueurs
-            		new Panel(img, panel, ImageIcons, card, info, modeDeJeu);
+            		new Panel(img, panel, ImageIcons, card, info, modeDeJeu,controle);
             		card.show(panel, info);
             	}else if (info.equals("Information")){
             		for(Integer i = 0; i < name.length; i++){
             			System.out.println(name.length);
             			Heros[i][0] = name[i].getText();
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
+            			controle.initComposant(modeDeJeu, Heros);
             		}
-            	}}});
+            	}
+            	
+            }
+       });
 	}
 	
 	private void writeName(int playerNumber){
@@ -169,5 +178,5 @@ public class Panel extends JPanel{
 	public String getModeDeJeu() {
 		return modeDeJeu;
 	}
-	
+
 }

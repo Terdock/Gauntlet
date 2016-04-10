@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import Model.WorldEntity;
 
-public interface Observer {
-	public void update(ArrayList<WorldEntity> List_Hero,ArrayList<WorldEntity> List_Monster);
+public interface Observer{
+
+	public abstract void update(ArrayList<WorldEntity> entities);
 
 }

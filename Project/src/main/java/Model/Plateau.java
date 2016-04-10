@@ -67,15 +67,15 @@ public class Plateau implements IPlateau {
 		this.Nombre_ligne = nombre_ligne;
 		this.Nombre_colonne = nombre_colonne;
 		this.Numbermap = Numbermap;
-		if (Mode == "Quest"){
+		if (Mode == "Mode Quête"){
 			Initialisation(Nombre_ligne,Nombre_colonne,LIST_TERRAIN,Mode);
 			create_MAP();
 			Hole_replace_Wall();
 			Staircase_replace_Wall();
 			}
-		else if (Mode == "BattleMode")
+		else if (Mode == "Mode Arène")
 			Initialisation(Nombre_ligne,Nombre_colonne,LIST_TERRAIN,Mode);
-		else if (Mode == "Zombie")
+		else if (Mode == "Mode Survivor")
 			Initialisation(Nombre_ligne,Nombre_colonne,LIST_TERRAIN,Mode);
 			
 	}	
@@ -137,10 +137,12 @@ public class Plateau implements IPlateau {
 				if (Pos_x==0 || Pos_y == 0 || Pos_x == Nombre_colonne + 1|| Pos_y == Nombre_ligne + 1)
 				{
 					LIST_TERRAIN.add(new Wall(Pos_x, Pos_y, false, Numbermap));
+					System.out.println(LIST_TERRAIN.get((Pos_y)/30*(Nombre_colonne+2)+(Pos_x)/30).getClass().getName());
 				}
 				else 
 				{
 					LIST_TERRAIN.add(new Sol(Pos_x, Pos_y, true, Numbermap));
+					System.out.println(LIST_TERRAIN.get((Pos_y)/30*(Nombre_colonne+2)+(Pos_x)/30).getClass().getName());
 				}
 			}	
 		}

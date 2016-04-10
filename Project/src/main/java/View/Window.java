@@ -24,6 +24,7 @@ public class Window extends JFrame implements Observer {
 	private String[][] PlayerRegister;
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
+    private ArrayList<WorldEntity> entities;
    
 	
 	
@@ -63,16 +64,17 @@ public class Window extends JFrame implements Observer {
 		this.card = panel[0].getCard();
 		
 		//Construction de l'acceuil
-		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, "Home", null);
+		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, "Home", null,controle);
       
       	//Construction du menu
-      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, "Menu", null);
+      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, "Menu", null,controle);
+      	
       
 	}
 
 	@Override
-	public void update(ArrayList<WorldEntity> List_Hero, ArrayList<WorldEntity> List_Monster) {
-		// TODO Auto-generated method stub
+	public void update(ArrayList<WorldEntity> entities) {
+		this.entities = entities;
 		
 	}
 
