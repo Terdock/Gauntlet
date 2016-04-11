@@ -13,8 +13,8 @@ public class Plateau implements IPlateau {
 	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
 	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
 	private ArrayList<Door> listDoor = new ArrayList<Door>();
-	private Staircase staircaseMap;
-	private Hole holeMap;
+	private Staircase staircaseMap = new Staircase(true);
+	private Hole holeMap = new Hole(nombreLigne-60,nombreColonne-60,true);
 	private int numberMap;
 	
 	
@@ -30,15 +30,15 @@ public class Plateau implements IPlateau {
 			Staircase_replace_Wall();
 			}
 		else if (mode == "Mode Arène")
-			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
+			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
 		else if (mode == "Mode Survivor")
-			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
+			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
 			
 	}	
 	
 
 	private void Initialisation(int nombreLigne,int nombreColonne, ArrayList<PlateauObject> listTerrain,String mode){
-		if (mode == "Quête"){
+		if (mode == "Mode Quête"){
 			create_list_terrain(nombreLigne,nombreColonne,listTerrain);
 			Wall_replace_sol();
 			Door_replace_Wall();

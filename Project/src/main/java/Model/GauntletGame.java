@@ -11,10 +11,10 @@ public class GauntletGame extends AbstractModel {
 	IPlateau plateau;
 	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
-	private ArrayList<Monster> List_Monster;
-	private ArrayList<WorldEntity> listMonster;
-	private ArrayList<PlateauObject> List_Terrain;
-	private ArrayList<WorldEntity> listTerrain;
+	private ArrayList<Monster> List_Monster = new ArrayList<Monster>();
+	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
+	private ArrayList<PlateauObject> List_Terrain =  new ArrayList<PlateauObject>();
+	private ArrayList<WorldEntity> listTerrain =  new ArrayList<WorldEntity>();
 	private String mode; 
 	private int multiplayer;
 	

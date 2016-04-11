@@ -1,0 +1,206 @@
+WARNING - 03:53:39: Creating types 
+WARNING - 03:53:39: Initializing types
+WARNING - 03:53:40: Generic post-process : Creating usages and associations
+WARNING - 03:53:40: Generic post-process : Creating activities
+WARNING - 03:53:41: Saving .uml resource: 20160411_035341
+WARNING - 03:54:12: Finished saving .uml resource: 20160411_035412
+ERROR - 03:54:13: Multiple exceptions
+----- exceptions : ----------
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.services.EditorLifecycleManager'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.services.EditorLifecycleManager'
+org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService : No service registered under 'interface org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService : Bad state for service 'org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService'. Expected 'initialized' found 'error'.
+----------------------------- 
+
+WARNING - 03:54:13: Creating class diagrams
+WARNING - 03:54:13: Creating activity diagrams
+WARNING - 03:54:13: Saving .notation resource
+WARNING - 03:54:13: Finished saving .notation resource
+WARNING - 03:54:13: Saving .di resource
+WARNING - 03:54:14: Finished saving .di resource
+WARNING - 03:54:14:    class diagram for packageImports
+WARNING - 03:54:16:    class diagram for Project
+WARNING - 03:54:16:    class diagram for Controler
+WARNING - 03:54:16:    class diagram for Model
+WARNING - 03:54:16:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:17:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:18:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:19:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:20:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:21:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:22:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:23:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:24:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:25:    activity diagram for Project
+WARNING - 03:54:26:    activity diagram for Project
+WARNING - 03:54:26:    activity diagram for Project
+WARNING - 03:54:26:    activity diagram for Project
+WARNING - 03:54:27:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:29:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:30:    activity diagram for Project
+WARNING - 03:54:31:    activity diagram for Project
+WARNING - 03:54:31:    activity diagram for Project
+WARNING - 03:54:31:    activity diagram for Project
