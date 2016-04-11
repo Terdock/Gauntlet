@@ -1,14 +1,12 @@
 package Controler;
 
-import java.util.ArrayList;
-
 import Model.AbstractModel;
 
 public abstract class AbstractControler {
-	AbstractModel Game;
+	AbstractModel game;
 		
-	public AbstractControler(AbstractModel Game){
-		this.Game = Game;
+	public AbstractControler(AbstractModel game){
+		this.game = game;
 	}
 
 	public abstract void initComposant(String mode, String[][] playerRegister);

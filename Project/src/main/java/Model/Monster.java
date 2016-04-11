@@ -1,6 +1,3 @@
-/*******************************************************************************
- * 2016, All rights reserved.
- *******************************************************************************/
 package Model;
  
 import java.util.ArrayList;
@@ -12,38 +9,24 @@ import Model.Creatures;
 
 
 public abstract class Monster<WoldObject> extends Creatures {
- 
-    private int pos_move;
-     
-    private boolean ISeeHero;
-    
-    private static int Degat = 10;
-    
+    private int posMove;
+    private boolean iSeeHero;
+    private static int degat = 10;
     private int typeMonster = 1;
-
-
-    /**
-     * The constructor.
-     */
-    ArrayList<Hero> List_Hero;
-    WoldObject wObject; 
+    private ArrayList<Hero> listHeros;
+    private WoldObject wObject; 
      
-    public Monster(ArrayList<Hero> Hero,int Pos_x,int Pos_y,WoldObject w ) {
-        // Start of user code constructor for Monster)
-        super(Pos_x,Pos_y);
-        ISeeHero = false;
-        ArrayList<Hero> List_Hero = Hero;  
+    public Monster(ArrayList<Hero> listHeros,int posX,int posY,WoldObject wObject ){
+        super(posX,posY);
+        iSeeHero = false;
+        this.listHeros = listHeros;  
         setPas(30); //fixons le pas à 30 pour tout les mob
-        wObject = w;
+        this.wObject = wObject;
     }
     
     
-    public void move(int HeroProche){
-    	
-   	/**
-     * Description of the method move.
-     */
-        Where_is_Hero(HeroProche);//annonce si le monstre est dans le perimètre visible par l'utilisateur 
+    public void move(int herosProche){
+        Where_is_Hero(herosProche);//annonce si le monstre est dans le perimètre visible par l'utilisateur 
         if(isISeeHero()){
         	/**
             if( Math.abs(getPos_x() - List_Hero.get(HeroProche).getPos_x()) < Math.abs(getPos_y() - List_Hero.get(HeroProche).getPos_y()))
@@ -66,13 +49,13 @@ public abstract class Monster<WoldObject> extends Creatures {
      
     public void Where_is_Hero(int iHero){
             setISeeHero(false);
-            if(Math.abs(getPos_x()) < Math.abs(List_Hero.get(iHero).getPos_x()+50*getWidth()))
+            if(Math.abs(getPos_x()) < Math.abs(listHeros.get(iHero).getPos_x()+50*getWidth()))
                 setISeeHero(true);
-            else if(Math.abs(getPos_x()) < Math.abs(List_Hero.get(iHero).getPos_x()-50*getWidth()))
+            else if(Math.abs(getPos_x()) < Math.abs(listHeros.get(iHero).getPos_x()-50*getWidth()))
                 setISeeHero(true);
-            if(Math.abs(getPos_y()) < Math.abs(List_Hero.get(iHero).getPos_y()+50*getHeight()))
+            if(Math.abs(getPos_y()) < Math.abs(listHeros.get(iHero).getPos_y()+50*getHeight()))
                 setISeeHero(true);
-            else if(Math.abs(getPos_y()) < Math.abs(List_Hero.get(iHero).getPos_y()-50*getHeight()))
+            else if(Math.abs(getPos_y()) < Math.abs(listHeros.get(iHero).getPos_y()-50*getHeight()))
                 setISeeHero(true);
              
              
@@ -80,8 +63,8 @@ public abstract class Monster<WoldObject> extends Creatures {
     
     public int closestHero(ArrayList<Double> normList){
     	int HeroClose = 0; //attaquer le hero le plus proche
-        for (int i = 0; i < List_Hero.size(); i++)
-            for(int j = 0; j < List_Hero.size(); j++)
+        for (int i = 0; i < listHeros.size(); i++)
+            for(int j = 0; j < listHeros.size(); j++)
                 if(normList.get(i) < normList.get(j))
                     HeroClose = i;
     	return HeroClose; 
@@ -90,14 +73,12 @@ public abstract class Monster<WoldObject> extends Creatures {
     
      
     public boolean isISeeHero() {
-        return ISeeHero;
+        return iSeeHero;
     }
  
     public void setISeeHero(boolean iSeeHero) {
-        ISeeHero = iSeeHero;
+        this.iSeeHero = iSeeHero;
     }
- 
-
  
     public double norm(int vMonster,int wMonster,int xHero,int yHero){
         return Math.sqrt((vMonster-xHero)^2+(wMonster-yHero)^2);
@@ -105,18 +86,15 @@ public abstract class Monster<WoldObject> extends Creatures {
     
     
     
-    /**
-     * Description of the method attack.
-     */
     public void attack(){
     	ArrayList<Double> normList = null; //liste de la distance de chaque joueur avec le monstre
-        for (int i = 0; i < List_Hero.size(); i++)
-            normList.add(norm(getPos_x(),getPos_y(),List_Hero.get(i).getPos_x(),List_Hero.get(i).getPos_y()));
+        for (int i = 0; i < listHeros.size(); i++)
+            normList.add(norm(getPos_x(),getPos_y(),listHeros.get(i).getPos_x(),listHeros.get(i).getPos_y()));
     	int HeroProche = closestHero(normList);
     	if(normList.get(HeroProche) > Math.sqrt(getPas()^2+getPas()^2))
     		move();
     	else 
-    		List_Hero.get(HeroProche).setHP(getHP()-Degat*getLevel()*typeMonster);
+    		listHeros.get(HeroProche).setHp(getHp()-degat*getLevel()*typeMonster);
     }
  
 

@@ -1,6 +1,3 @@
-/*******************************************************************************
- * 2016, All rights reserved.
- *******************************************************************************/
 package Model;
 
 import java.util.ArrayList;
@@ -8,24 +5,21 @@ import observer.Observable;
 
 public class GauntletGame extends AbstractModel {
 	
-	private int Numbermap; 
-	private static int nombre_ligne = 1000;
-	private static int nombre_colonne = 1000;
-	IPlateau Plateau;
+	private int numberMap; 
+	private static int nombreLigne = 1000;
+	private static int nombreColonne = 1000;
+	IPlateau plateau;
 	private ArrayList<Hero> List_Hero;
 	private ArrayList<WorldEntity> listHero;
 	private ArrayList<Monster> List_Monster;
 	private ArrayList<WorldEntity> listMonster;
 	private ArrayList<PlateauObject> List_Terrain;
 	private ArrayList<WorldEntity> listTerrain;
+	private String mode; 
+	private int multiplayer;
 	
-	private String Mode; 
-	private int Multiplayer;
-	/**
-	 * The constructor.
-	 */
+	
 	public GauntletGame() {
-	
 		
 	}
 
@@ -36,24 +30,24 @@ public class GauntletGame extends AbstractModel {
 		System.out.println(List_Hero);
 		for(int i = 0; i < List_Hero.size();i++)
 			listHero.add(List_Hero.get(i));
-		Multiplayer = List_Hero.size(); 
+		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
 		
 	}
 
 	
 	public String getMode() {
-		return Mode;
+		return mode;
 	}
 	public void setMode(String mode) {
-		Mode = mode;
+		this.mode = mode;
 	}
 	
 	
 	public void createPlateau(String Mode){
 		setMode(Mode);
-		this.Plateau = new Plateau(nombre_ligne,nombre_colonne,0,Mode);
-		List_Terrain = this.Plateau.getLIST_TERRAIN();
+		this.plateau = new Plateau(nombreLigne,nombreColonne,0,Mode);
+		List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(int i = 0; i < List_Terrain.size();i++)
 			listTerrain.add(List_Terrain.get(i));
 		notifyObserver(listTerrain);
@@ -86,16 +80,5 @@ public class GauntletGame extends AbstractModel {
 			
 		
 	}
-
-	
-
-
-
-	
-	
-	
-	
-
-
 
 }

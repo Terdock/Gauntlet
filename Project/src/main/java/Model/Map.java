@@ -7,8 +7,6 @@ public class Map {
 	public Map(){
 		
 	}
-	
-
 
 
 	public ArrayList<Wall> create_MAP0(){
@@ -60,33 +58,27 @@ public class Map {
 
 
 
-	public Staircase create_Staircase0() {
-		// TODO Auto-generated method stub
+	public Staircase create_Staircase0(){
 		return new Staircase(true);
 	}
 
 
 
 
-	public Hole create_Hole0() {
-		// TODO Auto-generated method stub
+	public Hole create_Hole0(){
 		return new Hole(0, 0,true);
 	}
 	
 	public Hole create_Hole1() {
-		// TODO Auto-generated method stub
 		return new Hole(0, 0,true);
 	}
 	public Hole create_Hole2() {
-		// TODO Auto-generated method stub
 		return new Hole(0, 0,true);
 	}
 	public Hole create_Hole3() {
-		// TODO Auto-generated method stub
 		return new Hole(0, 0,true);
 	}
 	public Hole create_Hole4() {
-		// TODO Auto-generated method stub
 		return new Hole(0, 0,true);
 	}
 	

@@ -114,10 +114,8 @@ public class Panel extends JPanel{
             		card.show(panel, info);
             	}else if (info.equals("Information")){
             		for(Integer i = 0; i < name.length; i++){
-            			System.out.println(name.length);
             			Heros[i][0] = name[i].getText();
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
-            			
             		}
             		controle.initComposant(modeDeJeu, Heros);
             	}

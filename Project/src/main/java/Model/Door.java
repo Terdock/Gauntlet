@@ -1,43 +1,28 @@
-/*******************************************************************************
- * 2016, All rights reserved.
- *******************************************************************************/
 package Model;
 
-// Start of user code (user defined imports)
-
-// End of user code
-
-/**
- * Description of Porte.
- * 
- * @author Edith
- */
 public class Door extends PlateauObject {
 
-	private boolean Open = false;
+	private boolean open = false;
 	private int numberDoor;
 	
-	public Door(int pos_x, int pos_y,boolean passable,int numberDoor) {
-		super(pos_x, pos_y, passable);
+	public Door(int posX, int posY,boolean passable,int numberDoor){
+		super(posX, posY, passable);
 		this.numberDoor = numberDoor;
-		
-		// TODO Auto-generated constructor stub
 	}
 
-	public String nameImage()
-	{
-		return this.getClass().getName();
+	public String nameImage(){
+		return null;
 	}
 
-	public boolean isOpen() {
-		return Open;
+	public boolean isOpen(){
+		return open;
 	}
 
-	public void setOpen(boolean open) {
-		Open = open;
+	public void setOpen(boolean open){
+		this.open = open;
 	}
 
-	public int getNumberDoor() {
+	public int getNumberDoor(){
 		return numberDoor;
 	}
 

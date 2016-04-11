@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IPlateau {
 
-	int getNumbermap();
+	int getNumberMap();
 
 	ArrayList<PlateauObject> getLIST_TERRAIN();
 

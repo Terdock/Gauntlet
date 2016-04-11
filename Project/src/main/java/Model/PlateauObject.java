@@ -4,10 +4,9 @@ public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	
-	public PlateauObject(int pos_x, int pos_y, boolean passable) {
-		super(pos_x, pos_y);
+	public PlateauObject(int posX, int posY, boolean passable) {
+		super(posX, posY);
 		this.passable = passable;
-		// TODO Auto-generated constructor stub
 	}
 
  boolean isPassable() {

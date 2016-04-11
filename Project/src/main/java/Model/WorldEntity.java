@@ -1,85 +1,52 @@
-/*******************************************************************************
- * 2016, All rights reserved.
- *******************************************************************************/
 package Model;
 
 
 public abstract class WorldEntity {
+	private static int width = 30;
+	private static int height = 30;
+	private int posX;
+	private int posY;
 	
-	/**
-	 * Description of the property Width.
-	 */
-	private static int Width = 30;
-
-	/**
-	 * Description of the property Height.
-	 */
-	private static int Height = 30;
-
-	/**
-	 * Description of the property Life.
-	 */
-
-	
-	public WorldEntity(int pos_x, int pos_y) {
-		Pos_x = pos_x;
-		Pos_y = pos_y;
+	public WorldEntity(int posX, int posY) {
+		this.posX = posX;
+		this.posY = posY;
 	}
+	
+	public abstract String nameImage();
+	public abstract String nameType();
 
 
 	public static int getWidth() {
-		return Width;
+		return width;
 	}
 
-
-
-	public static void setWidth(int width) {
-		Width = width;
+	public void setWidth(int width) {
+		this.width = width;
 	}
-
-
 
 	public static int getHeight() {
-		return Height;
+		return height;
 	}
 
-
-
-	public static void setHeight(int height) {
-		Height = height;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
-
-	private int Pos_x;
-
-	private int Pos_y;
-
-	public abstract String nameImage();
-	
-	public abstract String nameType();
-	
-
-
-	public int getPos_x() {
-		return Pos_x;
+	public int getPosX() {
+		return posX;
 	}
 
-	public void setPos_x(int pos_x) {
-		Pos_x = pos_x;
+	public void setPosX(int posX) {
+		this.posX= posX;
 	}
 
-	public int getPos_y() {
-		return Pos_y;
+	public int getPosY() {
+		return posY;
 	}
 
-	public void setPos_y(int pos_y) {
-		Pos_y = pos_y;
+	public void setPosY(int posY) {
+		this.posY = posY;
 	}
-
-	// Start of user code (user defined attributes for WorldEntity)
-
-	// End of user code
-
 
 
 }

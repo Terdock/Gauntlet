@@ -8,13 +8,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		AbstractModel Game = new GauntletGame();
-		 
-		AbstractControler control = new Controle(Game);
-		
+		AbstractModel game = new GauntletGame();
+		AbstractControler control = new Controle(game);
 		Window window = new Window(control);
-		
-		Game.addObserver(window);
+		game.addObserver(window);
 		
 	}
 }
