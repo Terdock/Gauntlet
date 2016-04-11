@@ -127,6 +127,10 @@ public abstract class Monster<WoldObject> extends Creatures {
     public void Special_Attack(){
     	
     }
+    
+    public String nameType(){
+		return "Monster";
+	}
  
  
 }

@@ -56,6 +56,8 @@ public abstract class WorldEntity {
 
 	public abstract String nameImage();
 	
+	public abstract String nameType();
+	
 
 
 	public int getPos_x() {

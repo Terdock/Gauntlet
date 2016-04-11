@@ -20,11 +20,10 @@ public abstract class AbstractModel implements Observable {
 		listObserver = new ArrayList<Observer>();
 	}
 	public void notifyObserver(
-			ArrayList<WorldEntity> List_Hero,
-			ArrayList<WorldEntity> List_Monster){
+			ArrayList<WorldEntity> entities){
 		
 		for (Observer obs : listObserver)
-		obs.update(List_Hero,List_Monster);
+		obs.update(entities);
 		 
 	}
 

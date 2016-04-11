@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controler.*;
+import Model.*;
 
 public class Panel extends JPanel{
 	private int x = 0, y = 0, width = 1000, height = 600;
@@ -28,6 +30,7 @@ public class Panel extends JPanel{
 	private Image img;
 	private CardLayout card;
 	private AbstractControler controle;
+	
 	
 	public Panel(){
 		this.card = new CardLayout();
@@ -114,8 +117,9 @@ public class Panel extends JPanel{
             			System.out.println(name.length);
             			Heros[i][0] = name[i].getText();
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
-            			controle.initComposant(modeDeJeu, Heros);
+            			
             		}
+            		controle.initComposant(modeDeJeu, Heros);
             	}
             	
             }
@@ -132,6 +136,8 @@ public class Panel extends JPanel{
 		}
 	}
 	
+
+
 	private void comboBox(int playerNumber){
 		this.typeHeros = new JComboBox[4];
 		for (Integer i = 1; i<= playerNumber; i++){
@@ -178,5 +184,9 @@ public class Panel extends JPanel{
 	public String getModeDeJeu() {
 		return modeDeJeu;
 	}
+	
+//pattern observer : permet de changer la list des entities à adequat lorsqu'on fait la mise à jour d'une des listes
+	
+	
 
 }

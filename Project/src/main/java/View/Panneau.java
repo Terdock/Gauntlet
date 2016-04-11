@@ -20,34 +20,22 @@ import Model.WorldEntity;
  */
 public class Panneau extends JPanel {
 	
-	ArrayList<WorldEntity> list_Terrain;
-	ArrayList<WorldEntity> list_Terrain_arene;
-	ArrayList<WorldEntity> list_Hero;
-	ArrayList<WorldEntity> list_Monster;
-	public Panneau() {
+	private ArrayList<WorldEntity> listHero;
+	private ArrayList<WorldEntity> listMonster;
+	private ArrayList<WorldEntity> listTerrain;
+	private ArrayList<WorldEntity> listObject;
+	
 
-		
-		
-	}
-	public void setList_Terrain(ArrayList<WorldEntity> list_Terrain) {
-		this.list_Terrain = list_Terrain;
-	}
-	public void setList_Terrain_arene(ArrayList<WorldEntity> list_Terrain_arene) {
-		this.list_Terrain_arene = list_Terrain_arene;
-	}
-	public void setList_Hero(ArrayList<WorldEntity> list_Hero) {
-		this.list_Hero = list_Hero;
-	}
-	public void setList_Monster(ArrayList<WorldEntity> list_Monster) {
-		this.list_Monster = list_Monster;
+	public void setEntities(ArrayList<WorldEntity> entities) {
+		if(entities.get(0).nameType() == "Terrain")
+			this.listTerrain = entities;
+		else if(entities.get(0).nameType() == "Hero")
+			this.listHero = entities;
+		else if(entities.get(0).nameType() == "Monster")
+			this.listMonster= entities;
+		else if(entities.get(0).nameType() == "Object");
 	}
 	
 	
-	public void afficheEntities(ArrayList<WorldEntity> list_entity){
-		for (int i = 0; i < list_entity.size(); i++ )
-			afficheImage.image(list_entity.get(i).nameImage(),list_entity.get(i).getPos_x(),list_entity.get(i).getPos_y());
-		
-		
-	}
 
 }

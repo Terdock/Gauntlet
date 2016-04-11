@@ -30,4 +30,6 @@ public abstract class Potion extends WorldObject {
 
 	@Override
 	public abstract String nameImage();
+	
+
 }

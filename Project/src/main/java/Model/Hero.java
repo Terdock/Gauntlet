@@ -99,5 +99,9 @@ public abstract class Hero extends Creatures {
 	public void setPlayerName(String playerName) {
 		PlayerName = playerName;
 	}
+	
+	public String nameType(){
+		return "Hero";
+	}
 }
 	

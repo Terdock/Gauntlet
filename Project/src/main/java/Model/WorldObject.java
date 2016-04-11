@@ -27,6 +27,8 @@ public abstract class WorldObject extends WorldEntity {
 	 */
 	private static int Width = 15;
 	
+	private boolean visible = false;
+	
 	public WorldObject(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
 		// TODO Auto-generated constructor stub
@@ -40,12 +42,24 @@ public abstract class WorldObject extends WorldEntity {
 		Height = height;
 	}
 
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
 	public static int getWidth() {
 		return Width;
 	}
 
 	public static void setWidth(int width) {
 		Width = width;
+	}
+	
+	public String nameType(){
+		return "Object";
 	}
 
 	// Start of user code (user defined attributes for WorldObject)

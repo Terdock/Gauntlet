@@ -18,6 +18,10 @@ public abstract class PlateauObject extends WorldEntity {
 		this.passable = passable;
 	}
 	
+	public String nameType(){
+		return "Terrain";
+	}
+	
 	
 
 }
