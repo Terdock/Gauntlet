@@ -4,10 +4,6 @@ import java.util.ArrayList;
  
 import Model.Creatures;
 
-
-
-
-
 public abstract class Monster<WoldObject> extends Creatures {
     private int posMove;
     private boolean iSeeHero;
@@ -49,13 +45,13 @@ public abstract class Monster<WoldObject> extends Creatures {
      
     public void Where_is_Hero(int iHero){
             setISeeHero(false);
-            if(Math.abs(getPos_x()) < Math.abs(listHeros.get(iHero).getPos_x()+50*getWidth()))
+            if(Math.abs(getPosX()) < Math.abs(listHeros.get(iHero).getPosX()+50*getWidth()))
                 setISeeHero(true);
-            else if(Math.abs(getPos_x()) < Math.abs(listHeros.get(iHero).getPos_x()-50*getWidth()))
+            else if(Math.abs(getPosX()) < Math.abs(listHeros.get(iHero).getPosX()-50*getWidth()))
                 setISeeHero(true);
-            if(Math.abs(getPos_y()) < Math.abs(listHeros.get(iHero).getPos_y()+50*getHeight()))
+            if(Math.abs(getPosY()) < Math.abs(listHeros.get(iHero).getPosY()+50*getHeight()))
                 setISeeHero(true);
-            else if(Math.abs(getPos_y()) < Math.abs(listHeros.get(iHero).getPos_y()-50*getHeight()))
+            else if(Math.abs(getPosY()) < Math.abs(listHeros.get(iHero).getPosY()-50*getHeight()))
                 setISeeHero(true);
              
              
@@ -89,7 +85,7 @@ public abstract class Monster<WoldObject> extends Creatures {
     public void attack(){
     	ArrayList<Double> normList = null; //liste de la distance de chaque joueur avec le monstre
         for (int i = 0; i < listHeros.size(); i++)
-            normList.add(norm(getPos_x(),getPos_y(),listHeros.get(i).getPos_x(),listHeros.get(i).getPos_y()));
+            normList.add(norm(getPosX(),getPosY(),listHeros.get(i).getPosX(),listHeros.get(i).getPosY()));
     	int HeroProche = closestHero(normList);
     	if(normList.get(HeroProche) > Math.sqrt(getPas()^2+getPas()^2))
     		move();

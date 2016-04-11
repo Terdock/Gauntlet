@@ -23,7 +23,7 @@ public class Panel extends JPanel{
 	private Button[] buttons = new Button[10];
 	private ImageIcon[] ImageIcons;
 	private Label[] labels = new Label[15], nameLabels = new Label[4];
-	private String[][] Heros = new String[4][2];
+	private String[][] Heros = new String[5][2];
 	private JTextField[] name;
 	private JComboBox[] typeHeros;
 	private String type;
@@ -117,6 +117,7 @@ public class Panel extends JPanel{
             			Heros[i][0] = name[i].getText();
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
             		}
+            		Heros[4][0] = String.valueOf(name.length);
             		controle.initComposant(modeDeJeu, Heros);
             	}
             	

@@ -1,7 +1,5 @@
 package Model;
 
-import Model.WorldEntity;
-
 public abstract class Creatures extends WorldEntity {
 	private int pas = 30;
 	private boolean life = true;

@@ -9,8 +9,8 @@ public class GauntletGame extends AbstractModel {
 	private static int nombreLigne = 1000;
 	private static int nombreColonne = 1000;
 	IPlateau plateau;
-	private ArrayList<Hero> List_Hero;
-	private ArrayList<WorldEntity> listHero;
+	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
+	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
 	private ArrayList<Monster> List_Monster;
 	private ArrayList<WorldEntity> listMonster;
 	private ArrayList<PlateauObject> List_Terrain;
@@ -23,11 +23,9 @@ public class GauntletGame extends AbstractModel {
 		
 	}
 
-	@Override
+	
 	public void createHero(String[][] playerRegister) {
 		List_Hero = convertListHero(playerRegister);
-		System.out.println(playerRegister[0][1]);
-		System.out.println(List_Hero);
 		for(int i = 0; i < List_Hero.size();i++)
 			listHero.add(List_Hero.get(i));
 		multiplayer = List_Hero.size(); 
@@ -54,23 +52,20 @@ public class GauntletGame extends AbstractModel {
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){
-		for (int i = 0; i < playerRegister.length; i++ ){
-			if( playerRegister[i][1] == "Sorcier" ){
+		for (int i = 0; i < Integer.valueOf(playerRegister[4][0]); i++ ){
+			if(playerRegister[i][1].equals("Sorcier")){
 				Wizzard W = new Wizzard(1,1);
 				W.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(W);
-			}
-			else if( playerRegister[i][1] == "Guerrier" ){
+			}else if(playerRegister[i][1].equals("Guerrier")){
 				Knight K = new Knight(1,1);
 				K.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(K);
-			}
-			else if( playerRegister[i][1] == "Nain" ){
+			}else if( playerRegister[i][1].equals("Nain")){
 				Dwarf D = new Dwarf(1,1);
 				D.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(D);
-			}
-			else if( playerRegister[i][1] == "Elf" ){
+			}else if(playerRegister[i][1].equals("Elfe")){
 				Elf E = new Elf(1,1);
 				E.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(E);

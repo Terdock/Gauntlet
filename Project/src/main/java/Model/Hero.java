@@ -1,7 +1,5 @@
 package Model;
 
-import Model.Creatures;
-
 public abstract class Hero extends Creatures {
 	private String playerName;
 	private int force = 0;
