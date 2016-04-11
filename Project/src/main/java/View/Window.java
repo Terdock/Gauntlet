@@ -24,6 +24,7 @@ public class Window extends JFrame implements Observer {
 	private String[][] PlayerRegister;
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
+    private Panneau panini;
    
 	
 	
@@ -69,15 +70,14 @@ public class Window extends JFrame implements Observer {
       	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, "Menu", null,controle);
       	
       	//Contruction du panneau de jeu
-      	//panneau
+      	this.panini = new Panneau(); 
       	
       
 	}
 
 	@Override
 	public void update(ArrayList<WorldEntity> entities) {
-		System.out.println("Appelle au pattern observer ^^");
-		//panneau.setEntities(entities);
+		this.panini.setEntities(entities);
 		
 	}
 

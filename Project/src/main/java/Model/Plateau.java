@@ -58,12 +58,10 @@ public class Plateau implements IPlateau {
 				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1)
 				{
 					listTerrain.add(new Wall(posX, posY, false, numberMap));
-					System.out.println(listTerrain.get((posY)/30*(nombreColonne+2)+(posX)/30).getClass().getName());
 				}
 				else 
 				{
 					listTerrain.add(new Sol(posX, posY, true, numberMap));
-					System.out.println(listTerrain.get((posY)/30*(nombreColonne+2)+(posX)/30).getClass().getName());
 				}
 			}	
 		}

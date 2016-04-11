@@ -20,10 +20,10 @@ import Model.WorldEntity;
  */
 public class Panneau extends JPanel {
 	
-	private ArrayList<WorldEntity> listHero;
-	private ArrayList<WorldEntity> listMonster;
-	private ArrayList<WorldEntity> listTerrain;
-	private ArrayList<WorldEntity> listObject;
+	private ArrayList<WorldEntity> listHero =  new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
 	
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -34,6 +34,10 @@ public class Panneau extends JPanel {
 		else if(entities.get(0).nameType() == "Monster")
 			this.listMonster= entities;
 		else if(entities.get(0).nameType() == "Object");
+			this.listObject = entities;
+			
+		System.out.println(entities.get(0).nameImage());
+		
 	}
 	
 	

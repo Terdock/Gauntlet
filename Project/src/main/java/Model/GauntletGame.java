@@ -30,6 +30,7 @@ public class GauntletGame extends AbstractModel {
 			listHero.add(List_Hero.get(i));
 		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
+		System.out.println(listHero);
 		
 	}
 
@@ -49,6 +50,7 @@ public class GauntletGame extends AbstractModel {
 		for(int i = 0; i < List_Terrain.size();i++)
 			listTerrain.add(List_Terrain.get(i));
 		notifyObserver(listTerrain);
+		System.out.println(listTerrain);
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){
