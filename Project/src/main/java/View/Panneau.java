@@ -3,8 +3,13 @@
  *******************************************************************************/
 package View;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Model.WorldEntity;
@@ -35,10 +40,8 @@ public class Panneau extends JPanel {
 			this.listMonster= entities;
 		else if(entities.get(0).nameType() == "Object");
 			this.listObject = entities;
-			
-		System.out.println(entities.get(0).nameImage());
-		
 	}
+
 	
 	
 

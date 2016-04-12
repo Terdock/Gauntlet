@@ -30,7 +30,6 @@ public class GauntletGame extends AbstractModel {
 			listHero.add(List_Hero.get(i));
 		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
-		System.out.println(listHero);
 		
 	}
 
@@ -50,24 +49,23 @@ public class GauntletGame extends AbstractModel {
 		for(int i = 0; i < List_Terrain.size();i++)
 			listTerrain.add(List_Terrain.get(i));
 		notifyObserver(listTerrain);
-		System.out.println(listTerrain);
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){
-		for (int i = 0; i < Integer.valueOf(playerRegister[4][0]); i++ ){
-			if(playerRegister[i][1].equals("Sorcier")){
+		for (int i = 0; i < playerRegister.length; i++ ){
+			if(playerRegister[i][1] == "Sorcier"){
 				Wizzard W = new Wizzard(1,1);
 				W.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(W);
-			}else if(playerRegister[i][1].equals("Guerrier")){
+			}else if(playerRegister[i][1] == "Guerrier"){
 				Knight K = new Knight(1,1);
 				K.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(K);
-			}else if( playerRegister[i][1].equals("Nain")){
+			}else if( playerRegister[i][1] == "Nain"){
 				Dwarf D = new Dwarf(1,1);
 				D.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(D);
-			}else if(playerRegister[i][1].equals("Elfe")){
+			}else if(playerRegister[i][1] == "Elfe"){
 				Elf E = new Elf(1,1);
 				E.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(E);
