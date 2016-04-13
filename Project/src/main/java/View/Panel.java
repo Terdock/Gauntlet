@@ -3,6 +3,7 @@ package View;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -158,6 +159,9 @@ public class Panel extends JPanel{
 			typeHeros[i-1].addItem("Elfe");
   			typeHeros[i-1].setBounds(250, 60 + i*100, 200, 30);
   			typeHeros[i-1].setOpaque(false);
+  			Font font = new Font("Tempus Sans ITC",Font.BOLD,16);
+  			typeHeros[i-1].setFont(font);
+  			typeHeros[i-1].setForeground(Color.ORANGE);
   			typeHeros[i-1].setRenderer(new DefaultListCellRenderer(){
   			    @Override
   			    public Component getListCellRendererComponent(JList list, Object value,
