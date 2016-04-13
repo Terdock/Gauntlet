@@ -38,6 +38,10 @@ public class Panel extends JPanel{
 		this.setLayout(card);
 	}
 	
+	public Panel(CardLayout card){
+		
+	}
+	
 	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle
 			) {
 		this.img = img;
