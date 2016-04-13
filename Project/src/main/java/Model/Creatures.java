@@ -16,10 +16,14 @@ public abstract class Creatures extends WorldEntity {
 	public abstract void move();
 	public abstract void attack();
 
-	public boolean isMoveValide(int posX, int posY) {
-		return false;
+	public boolean isMoveValide(int posX, int posY,int direction) {
+		boolean res = false;
+		
+		
+		return res; 
 	}
 	
+	public int afterstep 
 	public boolean isLife() {
 		return life;
 	}
