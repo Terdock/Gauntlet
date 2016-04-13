@@ -56,3 +56,4 @@ public abstract class Creatures extends WorldEntity {
 		this.pas = pas;
 	}
 }
+
