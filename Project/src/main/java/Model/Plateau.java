@@ -40,6 +40,11 @@ public class Plateau implements IPlateau {
 	}	
 	
 
+	public Plateau() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	private void Initialisation(int nombreLigne,int nombreColonne, ArrayList<PlateauObject> listTerrain,String mode){
 		if (mode == "Mode Quête"){
 			create_list_terrain(nombreLigne,nombreColonne,listTerrain);
@@ -72,42 +77,41 @@ public class Plateau implements IPlateau {
 	
 	private void Wall_replace_sol(){
 		for (Wall wallMap : listWallMap){
-				int wallPosX = wallMap.getPosX();
-				int wallPosY = wallMap.getPosY();
-				int indiceTerrain = (wallPosY)/30*(nombreColonne+2)+(wallPosX)/30;
-				listTerrain.remove(indiceTerrain);
-				listTerrain.add(indiceTerrain,wallMap);
+				int posX = wallMap.getPosX();
+				int posY = wallMap.getPosY();
+				listTerrain.remove(indiceTerrain(posX,posY));
+				listTerrain.add(indiceTerrain(posX,posY),wallMap);
 			}
 		}
 		
 	private void Door_replace_Wall(){
 		for (Door door : listDoor){
-				int doorPosX = door.getPosX();
-				int doorPosY = door.getPosY();
-				int indiceTerrain = (doorPosY)/30*(nombreColonne+2)+(doorPosX)/30;
-				listTerrain.remove(indiceTerrain);
-				listTerrain.add(indiceTerrain,door);
+				int posX = door.getPosX();
+				int posY = door.getPosY();
+				listTerrain.remove(indiceTerrain(posX,posY));
+				listTerrain.add(indiceTerrain(posX,posY),door);
 			}
 		}
 	
 	private void Staircase_replace_Wall(){
-		int staircasePosX = staircaseMap.getPosX();
-		int staircasePosY = staircaseMap.getPosY();
-		int indiceTerrain = (staircasePosY)/30*(nombreColonne+2)+(staircasePosX)/30;
-		listTerrain.remove(indiceTerrain);
-		listTerrain.add(indiceTerrain,staircaseMap);
+		int posX = staircaseMap.getPosX();
+		int posY = staircaseMap.getPosY();
+		listTerrain.remove(indiceTerrain(posX,posY));
+		listTerrain.add(indiceTerrain(posX,posY),staircaseMap);
 	}
 	
 	
 	private void Hole_replace_Wall(){
-		int holePosX = holeMap.getPosX();
-		int holePosY = holeMap.getPosY();
-		int indiceTerrain = (holePosY)/30*(nombreColonne+2)+(holePosX)/30;
-		listTerrain.remove(indiceTerrain);
-		listTerrain.add(indiceTerrain,holeMap);
+		int posX = holeMap.getPosX();
+		int posY = holeMap.getPosY();
+		listTerrain.remove(indiceTerrain(posX,posY));
+		listTerrain.add(indiceTerrain(posX,posY),holeMap);
 		 
 	}
 	
+	public int indiceTerrain(int posX,int posY){
+		return (posY)/30*(nombreColonne+2)+(posX)/30;
+	}
 	
 	
 	
@@ -209,6 +213,12 @@ public class Plateau implements IPlateau {
 
 	public void setLIST_TERRAIN_Arene(ArrayList<PlateauObject> listTerrainArene) {
 		this.listTerrainArene = listTerrainArene;
+	}
+
+
+	public boolean isMoveValide(int posX, int posY) {
+		listTerrain.get(indiceTerrain(posX,posY)).isPassable();
+		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 	}
 
 

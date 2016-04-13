@@ -16,7 +16,6 @@ public class GauntletGame extends AbstractModel {
 	private ArrayList<PlateauObject> List_Terrain =  new ArrayList<PlateauObject>();
 	private ArrayList<WorldEntity> listTerrain =  new ArrayList<WorldEntity>();
 	private String mode; 
-	private int multiplayer;
 	
 	
 	public GauntletGame() {

@@ -16,13 +16,7 @@ public abstract class Creatures extends WorldEntity {
 	public abstract void move();
 	public abstract void attack();
 
-	public boolean isMoveValide(int posX, int posY,int direction) {
-		boolean res = false;
-		
-		
-		return res; 
-	}
-	
+
 	public boolean isLife() {
 		return life;
 	}
