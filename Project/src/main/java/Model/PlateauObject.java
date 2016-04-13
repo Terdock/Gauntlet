@@ -9,7 +9,7 @@ public abstract class PlateauObject extends WorldEntity {
 		this.passable = passable;
 	}
 
- boolean isPassable() {
+	boolean isPassable() {
 		return passable;
 	}
 

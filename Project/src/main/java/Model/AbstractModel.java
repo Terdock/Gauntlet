@@ -24,6 +24,7 @@ public abstract class AbstractModel implements Observable {
 		
 		for (Observer obs : listObserver)
 		obs.update(entities);
+		System.out.println(entities);
 		 
 	}
 

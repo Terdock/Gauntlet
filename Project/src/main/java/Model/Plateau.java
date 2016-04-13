@@ -29,11 +29,14 @@ public class Plateau implements IPlateau {
 			Hole_replace_Wall();
 			Staircase_replace_Wall();
 			}
-		else if (mode == "Mode Arène")
+		else if (mode == "Mode Arène"){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
-		else if (mode == "Mode Survivor")
+			listTerrain = listTerrainArene;
+		}
+		else if (mode == "Mode Survivor"){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
-			
+			listTerrain = listTerrainArene;
+		}
 	}	
 	
 

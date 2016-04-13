@@ -23,7 +23,6 @@ public abstract class Creatures extends WorldEntity {
 		return res; 
 	}
 	
- 
 	public boolean isLife() {
 		return life;
 	}

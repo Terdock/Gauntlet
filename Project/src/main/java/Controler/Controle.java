@@ -17,6 +17,11 @@ public class Controle extends AbstractControler{
 		game.createPlateau(mode);
 		
 	}
+	
+	
+	
+	
+	
 
 
 }
