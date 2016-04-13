@@ -2,19 +2,20 @@ package View;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import Controler.*;
-import Model.*;
+import Controler.AbstractControler;
 
 public class Panel extends JPanel{
 	private int x = 0, y = 0, width = 1000, height = 600;
@@ -24,7 +25,7 @@ public class Panel extends JPanel{
 	private ImageIcon[] ImageIcons;
 	private Label[] labels = new Label[15], nameLabels = new Label[4];
 	private String[][] Heros = new String[5][2];
-	private JTextField[] name;
+	private TextField[] name;
 	private JComboBox[] typeHeros;
 	private String type;
 	private Image img;
@@ -38,12 +39,15 @@ public class Panel extends JPanel{
 		this.setLayout(card);
 	}
 	
-	public Panel(CardLayout card){
-		
+	public Panel(Panel panel, String type, String modeDeJeu, AbstractControler controle){
+		this.panel = panel;
+		this.type = type;
+		this.modeDeJeu = modeDeJeu;
+		this.controle = controle;
+		chargeImage();
 	}
 	
-	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle
-			) {
+	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle) {
 		this.img = img;
 		this.panel = panel;
 		this.ImageIcons = ImageIcons;
@@ -101,6 +105,10 @@ public class Panel extends JPanel{
         labels[8] = arrow(ImageIcons[3], 970, 102, 30, 198);
         labels[9] = arrow(ImageIcons[4], 970, 300, 30, 198);
 	}
+	
+	private void chargeImage(){
+		
+	}
 
 	private void actionButton(Button button, String info){
 		button.addActionListener(new ActionListener(){
@@ -130,11 +138,10 @@ public class Panel extends JPanel{
 	}
 	
 	private void writeName(int playerNumber){
-		this.name = new JTextField[playerNumber];
+		this.name = new TextField[playerNumber];
 		for(Integer i = 1; i<= playerNumber; i++){
 			nameLabels[i-1] = text("Joueur "+i.toString(), 450, 10 + i*100, 200, 30, Color.ORANGE);
-			name[i-1] = new JTextField();
-			name[i-1].setBounds(550, 60 + i*100, 200, 30);
+			name[i-1] = new TextField("Nom", i);
 			this.add(name[i-1]);
 		}
 	}
@@ -142,7 +149,7 @@ public class Panel extends JPanel{
 
 
 	private void comboBox(int playerNumber){
-		this.typeHeros = new JComboBox[4];
+		this.typeHeros = new JComboBox[playerNumber];
 		for (Integer i = 1; i<= playerNumber; i++){
 			typeHeros[i-1] = new JComboBox();
 			typeHeros[i-1].addItem("Guerrier");
@@ -150,6 +157,15 @@ public class Panel extends JPanel{
 			typeHeros[i-1].addItem("Nain");
 			typeHeros[i-1].addItem("Elfe");
   			typeHeros[i-1].setBounds(250, 60 + i*100, 200, 30);
+  			typeHeros[i-1].setOpaque(false);
+  			typeHeros[i-1].setRenderer(new DefaultListCellRenderer(){
+  			    @Override
+  			    public Component getListCellRendererComponent(JList list, Object value,
+  			            int index, boolean isSelected, boolean cellHasFocus) {
+  			        JComponent result = (JComponent)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+  			        result.setOpaque(false);
+  			        return result;
+  			    }});
 			this.add(typeHeros[i-1]);
 		}
 	}
