@@ -4,17 +4,29 @@ import java.util.ArrayList;
 
 public class Map {
 	
-	ArrayList<Monster> listMonster = new ArrayList<Monster>();
-	ArrayList<PlateauObject> listWallHoleDoor = new ArrayList<PlateauObject>(); 
 	
-	public Map(){
-
+	
+	ArrayList<Monster> listMonster = new ArrayList<Monster>();
+	ArrayList<PlateauObject> listWallHoleDoor = new ArrayList<PlateauObject>();
+	private int nombrLigne;
+	private int nombreColonne; 
+	
+	public Map(int nombrLigne,int nombreColonne){
+		this.nombrLigne = nombrLigne;
+		this.nombreColonne = nombreColonne;
 	}
 
 
 	public ArrayList<Wall> create_MAP0(){
-		
-		
+		for(int h = 0; h < nombreColonne/5; h += nombreColonne/5 ){
+			for(int i = 4;i < nombreColonne; i++){
+				for(int j = 1; j < nombreColonne; j++){
+				
+				
+				
+				}
+			}
+		}
 		
 		return null;
 	}
