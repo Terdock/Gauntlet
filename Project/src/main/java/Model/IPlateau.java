@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public interface IPlateau {
 
-	int getNumberMap();
+	public int getNumberMap();
+	
+	public ArrayList<Monster> getListMonster();
 
-	ArrayList<PlateauObject> getLIST_TERRAIN();
+	public ArrayList<PlateauObject> getLIST_TERRAIN();
 
-	ArrayList<PlateauObject> getLIST_TERRAIN_Arene();
+	public ArrayList<PlateauObject> getLIST_TERRAIN_Arene();
 
 }

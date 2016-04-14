@@ -9,6 +9,7 @@ public class Plateau implements IPlateau {
 	private final static int nombreColonneArene = 50;
 	private static int width = 30;
 	private static int height = 30;
+	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
 	private ArrayList<PlateauObject> listTerrain = new ArrayList<PlateauObject>();
 	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
 	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
@@ -16,9 +17,15 @@ public class Plateau implements IPlateau {
 	private Staircase staircaseMap = new Staircase(true);
 	private Hole holeMap = new Hole(nombreLigne-60,nombreColonne-60,true);
 	private int numberMap;
+	private Map mapParLevel;
 	
 	
 	
+	public ArrayList<Monster> getListMonster() {
+		return listMonster;
+	}
+
+
 	public Plateau(int nombreLigne, int nombreColonne,int numberMap,String mode) {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
@@ -27,8 +34,8 @@ public class Plateau implements IPlateau {
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
 			Hole_replace_Wall();
-			Staircase_replace_Wall();
-			}
+			Staircase_replace_Wall();	
+		}
 		else if (mode == "Mode Arène"){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
 			listTerrain = listTerrainArene;
@@ -118,26 +125,36 @@ public class Plateau implements IPlateau {
 	private void create_MAP(){
 		Map map = new Map();
 		staircaseMap = map.create_Staircase0();
-		if(numberMap == 0)
-			listWallMap = map.create_MAP0();
-			listDoor = map.create_Door0();
-			holeMap = map.create_Hole0();
-		if(numberMap == 1)
-			listWallMap = map.create_MAP1();
-			listDoor = map.create_Door1();
-			holeMap = map.create_Hole1();
-		if(numberMap == 2)
-			listWallMap = map.create_MAP2();
-		 	listDoor = map.create_Door2();
-		 	holeMap = map.create_Hole2();
-		if(numberMap == 3)
+		if(numberMap == 0){
+			this.listWallMap = map.create_MAP0();
+			this.listDoor = map.create_Door0();
+			this.holeMap = map.create_Hole0();
+			this.listMonster = map.create_Monster0();
+		}
+		else if(numberMap == 1){
+			this.listWallMap = map.create_MAP1();
+			this.listDoor = map.create_Door1();
+			this.holeMap = map.create_Hole1();
+			this.listMonster = map.create_Monster1();
+		}
+		else if(numberMap == 2){
+			this.listWallMap = map.create_MAP2();
+		 	this.listDoor = map.create_Door2();
+		 	this.holeMap = map.create_Hole2();
+		 	this.listMonster = map.create_Monster2();
+		}
+		 else if(numberMap == 3){
 			listWallMap = map.create_MAP3();
 			listDoor = map.create_Door3();
 			holeMap = map.create_Hole3();
-		if(numberMap == 4)
+			this.listMonster = map.create_Monster3();
+		 }
+		else if(numberMap == 4){
 			listWallMap = map.create_MAP4();
 			listDoor = map.create_Door4();
 			holeMap = map.create_Hole4();
+			this.listMonster = map.create_Monster4();
+		}
 	}
 	
 	
