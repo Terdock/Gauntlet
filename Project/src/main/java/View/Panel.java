@@ -24,10 +24,10 @@ public class Panel extends JPanel{
 	private Panel panel;
 	private Button[] buttons = new Button[10];
 	private ImageIcon[] ImageIcons;
-	private Label[] labels = new Label[15], nameLabels = new Label[4];
+	private Label[] labels = new Label[16], nameLabels = new Label[4];
 	private String[][] Heros = new String[5][2];
 	private TextField[] name;
-	private JComboBox[] typeHeros;
+	private ComboBox[] typeHeros;
 	private String type;
 	private Image img;
 	private CardLayout card;
@@ -90,8 +90,8 @@ public class Panel extends JPanel{
 		}else if (type.equals("1")||type.equals("2")||type.equals("3")||type.equals("4")){
 			arrows();
 			writeName(Integer.valueOf(type));
-			comboBox(Integer.valueOf(type));
-			buttons[8] = button("Commencer", 410, 510, 200, 35, Color.green);
+			choiceHeros(Integer.valueOf(type));
+			buttons[8] = button("Commencer", 410, 510, 200, 35, Color.ORANGE);
 			actionButton(buttons[8],"Information");
 		}
 	}
@@ -147,29 +147,10 @@ public class Panel extends JPanel{
 		}
 	}
 	
-
-
-	private void comboBox(int playerNumber){
-		this.typeHeros = new JComboBox[playerNumber];
+	private void choiceHeros(int playerNumber){
+		this.typeHeros = new ComboBox[playerNumber];
 		for (Integer i = 1; i<= playerNumber; i++){
-			typeHeros[i-1] = new JComboBox();
-			typeHeros[i-1].addItem("Guerrier");
-			typeHeros[i-1].addItem("Sorcier");
-			typeHeros[i-1].addItem("Nain");
-			typeHeros[i-1].addItem("Elfe");
-  			typeHeros[i-1].setBounds(250, 60 + i*100, 200, 30);
-  			typeHeros[i-1].setOpaque(false);
-  			Font font = new Font("Tempus Sans ITC",Font.BOLD,16);
-  			typeHeros[i-1].setFont(font);
-  			typeHeros[i-1].setForeground(Color.ORANGE);
-  			typeHeros[i-1].setRenderer(new DefaultListCellRenderer(){
-  			    @Override
-  			    public Component getListCellRendererComponent(JList list, Object value,
-  			            int index, boolean isSelected, boolean cellHasFocus) {
-  			        JComponent result = (JComponent)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-  			        result.setOpaque(false);
-  			        return result;
-  			    }});
+			typeHeros[i-1] = new ComboBox(i);
 			this.add(typeHeros[i-1]);
 		}
 	}

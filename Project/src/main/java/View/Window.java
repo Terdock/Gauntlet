@@ -20,8 +20,6 @@ public class Window extends JFrame implements Observer {
 	private CardLayout card;
 	private Panel[] panel = new Panel[8];
 	private ImageIcon[] ImageIcons = new ImageIcon[10];
-	private String modeDeJeu;
-	private String[][] PlayerRegister;
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
     private Panneau panini;

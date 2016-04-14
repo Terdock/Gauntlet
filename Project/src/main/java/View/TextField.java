@@ -11,7 +11,7 @@ public class TextField extends JTextField{
 	
 	public TextField(String name, Integer i){
 		this.setForeground(Color.ORANGE);
-		this.setHorizontalAlignment(SwingConstants.CENTER);
+		//this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setText(name);
 		this.setFont(font);
 		this.setOpaque(false);
