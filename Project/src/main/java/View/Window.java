@@ -1,7 +1,7 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import Controler.*;
-import Model.*;
+import Controler.AbstractControler;
+import Model.WorldEntity;
 import observer.Observer;
 
 public class Window extends JFrame implements Observer {
@@ -23,26 +23,18 @@ public class Window extends JFrame implements Observer {
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
     private Panneau panini;
-   
-	
-	
 	
 	public Window(AbstractControler controle){
 		this.controle = controle;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
         this.setSize(1000+16,600+39);
-        this.setResizable(false);
+        this.setResizable(true);
         setLocationRelativeTo(null);
         initialisation();
-        this.getContentPane().add(panel[0], BorderLayout.CENTER);
+        this.getContentPane().add(panel[0]);
         setVisible(true);
 	}
-	
-	private void doit(){
-		
-	}
-	
 
 	private void initialisation(){
 		try {

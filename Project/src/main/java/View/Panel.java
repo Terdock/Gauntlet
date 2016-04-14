@@ -1,28 +1,23 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JList;
 import javax.swing.JPanel;
 
 import Controler.AbstractControler;
 
 public class Panel extends JPanel{
-	private int x = 0, y = 0, width = 1000, height = 600;
 	private String modeDeJeu;
 	private Panel panel;
 	private Button[] buttons = new Button[10];
+	private String[] buttonName = {"Mode Quête","Mode Arène","Mode Survivor"};
 	private ImageIcon[] ImageIcons;
 	private Label[] labels = new Label[16], nameLabels = new Label[4];
 	private String[][] Heros = new String[5][2];
@@ -36,16 +31,18 @@ public class Panel extends JPanel{
 	
 	public Panel(){
 		this.card = new CardLayout();
-		this.setBounds(x, y, width, height);
 		this.setLayout(card);
 	}
 	
-	public Panel(Panel panel, String type, String modeDeJeu, AbstractControler controle){
+	public Panel(Image img, Panel panel, String type, String modeDeJeu, AbstractControler controle){
 		this.panel = panel;
 		this.type = type;
+		this.img = img;
 		this.modeDeJeu = modeDeJeu;
 		this.controle = controle;
-		chargeImage();
+		//chargeImage();
+		this.setBounds(0, 0, 700, 600);
+		construction(0,700);
 	}
 	
 	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle) {
@@ -60,8 +57,16 @@ public class Panel extends JPanel{
 		initialisation();
 	}
 	
+	private void construction(int x, int width){
+		panel.add(this, type);
+		if (x < 300){
+			this.setBackground(Color.GREEN);
+		}else{
+			this.setBackground(Color.BLACK);
+		}
+	}
+	
 	private void initialisation(){
-		this.setBounds(x, y, width, height);
 		panel.add(this, type);
 		if (type.equals("Home")){
 			buttons[0] = button("Jouer", 450, 480, 100, 30, Color.ORANGE);
@@ -74,12 +79,10 @@ public class Panel extends JPanel{
 			arrows();
 			labels[10] = text("MODE DE JEU", 390, 150, 225, 35, Color.ORANGE);
 	        labels[11] = arrow(ImageIcons[5], 405, 190, 198, 30);
-	        buttons[1] = button("Mode Quête", 405, 230, 200, 35, Color.ORANGE);
-	        actionButton(buttons[1], "Mode Quête");
-	        buttons[2] = button("Mode Arène", 405, 280, 200, 35, Color.ORANGE);
-	        actionButton(buttons[2], "Mode Arène");
-	        buttons[3] = button("Mode Survivor", 405, 330, 200, 35, Color.ORANGE);
-	        actionButton(buttons[3], "Mode Survivor");
+	        for(Integer i = 0; i<3;i++){
+	        	buttons[i+1] = button(buttonName[i], 405, 230 + i*50, 200, 35, Color.ORANGE);
+	        	actionButton(buttons[i+1], buttonName[i]);
+	        }
 		}else if (type.equals("Player")){
 			arrows();
 			labels[12] = text("NOMBRE DE JOUEUR", 330, 150, 400, 35, Color.ORANGE);
@@ -131,7 +134,9 @@ public class Panel extends JPanel{
             			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
             		}
             		Heros[4][0] = String.valueOf(name.length);
-            		controle.initComposant(modeDeJeu, Heros);
+            		//controle.initComposant(modeDeJeu, Heros);
+            		new Panel(img, panel, "harr", modeDeJeu, controle);
+            		card.show(panel, "harr");
             	}
             	
             }
@@ -156,7 +161,12 @@ public class Panel extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g){
-		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);               
+		if(!type.equals("harr")){
+			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		}else{
+			g.drawImage(img, 0, 0, 700, this.getHeight(), this);
+		}
+		               
 	}
 	
 	private Button button(String name, int x, int y, int width, int height, Color color){
