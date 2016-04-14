@@ -4,7 +4,7 @@ import java.util.ArrayList;
  
 import Model.Creatures;
 
-public abstract class Monster<WoldObject> extends Creatures {
+public class Monster<WoldObject> extends Creatures {
     private int posMove;
     private boolean iSeeHero;
     private static int degat = 10;
@@ -12,10 +12,14 @@ public abstract class Monster<WoldObject> extends Creatures {
     private ArrayList<Hero> listHeros;
     private WoldObject wObject; 
      
-    public Monster(ArrayList<Hero> listHeros,int posX,int posY,WoldObject wObject ){
+    public void setListHeros(ArrayList<Hero> listHeros) {
+		this.listHeros = listHeros;
+	}
+
+
+	public Monster(int posX,int posY,WoldObject wObject ){
         super(posX,posY);
         iSeeHero = false;
-        this.listHeros = listHeros;  
         setPas(30); //fixons le pas à 30 pour tout les mob
         this.wObject = wObject;
     }
@@ -104,6 +108,20 @@ public abstract class Monster<WoldObject> extends Creatures {
     
     public String nameType(){
 		return "Monster";
+	}
+
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public String nameImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
  
  

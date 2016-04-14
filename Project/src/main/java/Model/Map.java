@@ -4,14 +4,19 @@ import java.util.ArrayList;
 
 public class Map {
 	
+	ArrayList<Monster> listMonster = new ArrayList<Monster>();
+	ArrayList<PlateauObject> listWallHoleDoor = new ArrayList<PlateauObject>(); 
+	
 	public Map(){
-		
+
 	}
 
 
 	public ArrayList<Wall> create_MAP0(){
+		
+		
+		
 		return null;
-		//LIST_Wall_MAP1.add(new Wall())
 	}
 
 
@@ -81,7 +86,88 @@ public class Map {
 	public Hole create_Hole4() {
 		return new Hole(0, 0,true);
 	}
+
+	public ArrayList<Monster> create_Monster0() {
+		ArrayList<Monster> list = new ArrayList<Monster>(); 
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		return list;
+	}
+	public ArrayList<Monster> create_Monster1() {
+		ArrayList<Monster> list  = new ArrayList<Monster>(); 
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		return list;
+	}
+	public ArrayList<Monster> create_Monster2() {
+		ArrayList<Monster> list  = new ArrayList<Monster>(); 
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		return list;
+	}
+	public ArrayList<Monster> create_Monster3() {
+		ArrayList<Monster> list  = new ArrayList<Monster>(); 
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		return list;
+	}
+	public ArrayList<Monster> create_Monster4() {
+		ArrayList<Monster> list  = new ArrayList<Monster>(); 
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		//list.addAll(createGroupeMonster(heros,posX,posY,n));
+		return list;
+	}
+
 	
+	private ArrayList<Monster> createGroupeMonster(int posX,int posY,int n){
+		ArrayList<Monster> list = new ArrayList<Monster>();
+		for( int i = -n; i < n ; i++)
+			list.add(new Monster(posX+n*new Plateau().getWidth(),posY+n*new Plateau().getHeight(), null));
+		return list;
+		
+	}
+
+
 
 
 }

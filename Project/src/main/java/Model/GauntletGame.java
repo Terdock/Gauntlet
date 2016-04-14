@@ -43,7 +43,10 @@ public class GauntletGame extends AbstractModel {
 		List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(int i = 0; i < List_Terrain.size();i++)
 			listTerrain.add(List_Terrain.get(i));
-		notifyObserver(listTerrain);
+		this.List_Monster = plateau.getListMonster();
+		for(int i = 0; i < List_Monster.size();i++)
+			listMonster.add(List_Monster.get(i));
+		notifyObserver(listMonster);
 	}
 	
 	public void createHero(String[][] playerRegister) {
