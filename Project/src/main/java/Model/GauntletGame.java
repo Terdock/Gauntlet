@@ -6,8 +6,8 @@ import observer.Observable;
 public class GauntletGame extends AbstractModel {
 	
 	private int numberMap; 
-	private static int nombreLigne = 1000;
-	private static int nombreColonne = 1000;
+	private static int nombreLigne = 1;
+	private static int nombreColonne = 1;
 	IPlateau plateau;
 	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
@@ -20,18 +20,13 @@ public class GauntletGame extends AbstractModel {
 	
 	
 	public GauntletGame() {
+	
 		
 	}
 
 	
-	public void createHero(String[][] playerRegister) {
-		List_Hero = convertListHero(playerRegister);
-		for(int i = 0; i < List_Hero.size();i++)
-			listHero.add(List_Hero.get(i));
-		multiplayer = List_Hero.size(); 
-		notifyObserver(listHero);
-		
-	}
+	
+
 
 	
 	public String getMode() {
@@ -49,6 +44,15 @@ public class GauntletGame extends AbstractModel {
 		for(int i = 0; i < List_Terrain.size();i++)
 			listTerrain.add(List_Terrain.get(i));
 		notifyObserver(listTerrain);
+	}
+	
+	public void createHero(String[][] playerRegister) {
+		List_Hero = convertListHero(playerRegister);
+		for(int i = 0; i < List_Hero.size();i++)
+			listHero.add(List_Hero.get(i));
+		multiplayer = List_Hero.size(); 
+		notifyObserver(listHero);
+		
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){

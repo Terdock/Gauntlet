@@ -24,22 +24,22 @@ public abstract class Monster<WoldObject> extends Creatures {
     public void move(int herosProche){
         Where_is_Hero(herosProche);//annonce si le monstre est dans le perimètre visible par l'utilisateur 
         if(isISeeHero()){
-        	/**
-            if( Math.abs(getPos_x() - List_Hero.get(HeroProche).getPos_x()) < Math.abs(getPos_y() - List_Hero.get(HeroProche).getPos_y()))
-                if (getPos_y() - List_Hero.get(HeroProche).getPos_y() < 0)
-                    if(isMoveValide(getPos_x(),getPos_y()+ getPas()))
-                        setPos_y(getPos_y()+ getPas());
+            if( Math.abs(getPosX() - listHeros.get(herosProche).getPosX()) < Math.abs(getPosY() - listHeros.get(herosProche).getPosY())){
+                if (getPosY() - listHeros.get(herosProche).getPosY() < 0)
+                    if(new Plateau().isMoveValide(getPosX(),getPosY()+ getPas()))
+                        setPosY(getPosY()+ getPas());
                 else
-                    if(isMoveValide(getPos_x(),getPos_y()- getPas()))
-                        setPos_y(getPos_y()- getPas());
-            else
-                if(getPos_x() - List_Hero.get(HeroProche).getPos_x() < 0)
-                    if(isMoveValide(getPos_x()+ getPas(),getPos_y()))
-                        setPos_x(getPos_x()+ getPas());
+                    if(new Plateau().isMoveValide(getPosX(),getPosY()- getPas()))
+                        setPosY(getPosY()- getPas());
+            }
+            else{
+                if(getPosX() - listHeros.get(herosProche).getPosX() < 0)
+                    if(new Plateau().isMoveValide(getPosX()+ getPas(),getPosY()))
+                        setPosX(getPosX()+ getPas());
                 else
-                    if(isMoveValide(getPos_x()- getPas(),getPos_y()))
-                        setPos_x(getPos_x()- getPas()); 
-        **/
+                    if(new Plateau().isMoveValide(getPosX()- getPas(),getPosY()))
+                        setPosX(getPosX()- getPas());
+            }
         }
     }
      
