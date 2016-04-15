@@ -174,9 +174,8 @@ public class Map {
 	private ArrayList<Monster> createGroupeMonster(int posX,int posY,int n){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( int i = -n; i < n ; i++)
-			list.add(new Monster(posX+n*new Plateau().getWidth(),posY+n*new Plateau().getHeight(), null));
+			list.add(new Monster(posX+n*new Plateau(),posY+n*new Plateau(), null));
 		return list;
-		
 	}
 
 

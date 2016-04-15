@@ -6,8 +6,8 @@ import observer.Observable;
 public class GauntletGame extends AbstractModel {
 	
 	private int numberMap; 
-	private static int nombreLigne = 1;
-	private static int nombreColonne = 1;
+	private static int nombreLigne = 10;
+	private static int nombreColonne = 10;
 	IPlateau plateau;
 	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
@@ -18,17 +18,15 @@ public class GauntletGame extends AbstractModel {
 	private String mode; 
 	private int multiplayer;
 	
-	
 	public GauntletGame() {
 	
 		
 	}
-
-
 	
 	public String getMode() {
 		return mode;
 	}
+	
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
@@ -37,22 +35,21 @@ public class GauntletGame extends AbstractModel {
 	public void createPlateau(String Mode){
 		setMode(Mode);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,0,Mode);
-		List_Terrain = this.plateau.getLIST_TERRAIN();
-		for(int i = 0; i < List_Terrain.size();i++)
-			listTerrain.add(List_Terrain.get(i));
+		this.List_Terrain = this.plateau.getLIST_TERRAIN();
+		for(PlateauObject obj : List_Terrain)
+			listTerrain.add(obj);
 		this.List_Monster = plateau.getListMonster();
-		for(int i = 0; i < List_Monster.size();i++)
-			listMonster.add(List_Monster.get(i));
+		for(Monster mob : List_Monster)
+			listMonster.add(mob);
 		//notifyObserver(listMonster);
 	}
 	
 	public void createHero(String[][] playerRegister) {
 		List_Hero = convertListHero(playerRegister);
-		for(int i = 0; i < List_Hero.size();i++)
-			listHero.add(List_Hero.get(i));
+		for(Hero hero : List_Hero)
+			listHero.add(hero);
 		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
-		
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){
@@ -76,8 +73,6 @@ public class GauntletGame extends AbstractModel {
 			}
 		}
 		return List_Hero;
-			
-		
 	}
 
 }
