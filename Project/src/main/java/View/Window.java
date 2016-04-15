@@ -33,7 +33,7 @@ public class Window extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
         this.setSize(1000+16,600+39);
-        this.setResizable(true);
+        this.setResizable(false);
         setLocationRelativeTo(null);
         initialisation();
         this.getContentPane().add(panel[0]);
@@ -102,6 +102,8 @@ public class Window extends JFrame implements Observer {
             			Heros[i][0] = panel[4].getPlayerName()[i].getText();
             			Heros[i][1] = (String)panel[4].getTypeHeros()[i].getSelectedItem();
             		}
+            		System.out.println(nombreDeJoueur);
+            		System.out.println(modeDeJeu);
             		//controle.initComposant(modeDeJeu, Heros);
             		new Panel(menuImage, panel[0], "harr");
             		card.show(panel[0], "harr");

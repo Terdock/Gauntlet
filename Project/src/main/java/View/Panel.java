@@ -1,17 +1,15 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import Controler.AbstractControler;
+import Model.WorldEntity;
 
 public class Panel extends JPanel{
 	private Panel panel;
@@ -24,6 +22,10 @@ public class Panel extends JPanel{
 	private String type;
 	private Image img;
 	private CardLayout card;
+	private ArrayList<WorldEntity> listHero =  new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
+	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
 	
 	
 	public Panel(){
@@ -121,7 +123,7 @@ public class Panel extends JPanel{
 		if(!type.equals("harr")){
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 		}else{
-			g.drawImage(img, 0, 0, 700, this.getHeight(), this);
+			g.drawImage(img, 100, 100, 50, 50, this);
 		}
 		               
 	}
@@ -142,6 +144,17 @@ public class Panel extends JPanel{
 		Label label = new Label(icon, x, y, width, height);
 		this.add(label);
 		return label;
+	}	
+
+	public void setEntities(ArrayList<WorldEntity> entities) {
+		if(entities.get(0).nameType() == "Terrain")
+			this.listTerrain = entities;
+		else if(entities.get(0).nameType() == "Hero")
+			this.listHero = entities;
+		else if(entities.get(0).nameType() == "Monster")
+			this.listMonster= entities;
+		else if(entities.get(0).nameType() == "Object");
+			this.listObject = entities;
 	}
 
 	public CardLayout getCard() {
