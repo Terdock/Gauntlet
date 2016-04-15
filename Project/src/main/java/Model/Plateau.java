@@ -70,12 +70,10 @@ public class Plateau implements IPlateau {
 	private void create_list_terrain(int nombreLigne, int nombreColonne,ArrayList<PlateauObject> listTerrain){
 		for (int posY = 0; posY <= nombreLigne + 1; posY++){
 			for (int posX = 0; posX<= nombreColonne + 1; posX++){
-				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1)
-				{
+				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1){
 					listTerrain.add(new Wall(posX, posY, false, numberMap));
 				}
-				else 
-				{
+				else {
 					listTerrain.add(new Sol(posX, posY, true, numberMap));
 				}
 			}	
@@ -200,13 +198,6 @@ public class Plateau implements IPlateau {
 		this.numberMap = numberMap;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 
 	public int getWidth() {
 		return width;
@@ -226,10 +217,6 @@ public class Plateau implements IPlateau {
 
 	public ArrayList<PlateauObject> getLIST_TERRAIN_Arene() {
 		return listTerrainArene;
-	}
-
-	public void setLIST_TERRAIN_Arene(ArrayList<PlateauObject> listTerrainArene) {
-		this.listTerrainArene = listTerrainArene;
 	}
 
 
