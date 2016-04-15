@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import java.awt.Graphics.*;
 
 import Controler.AbstractControler;
 import Model.WorldEntity;

@@ -15,7 +15,7 @@ public class Plateau implements IPlateau {
 	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
 	private ArrayList<Door> listDoor = new ArrayList<Door>();
 	private Staircase staircaseMap = new Staircase(true);
-	private Hole holeMap = new Hole(nombreLigne-5,nombreColonne-5,true);
+	private Hole holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
 	private int numberMap;
 	private Map mapParLevel;
 	
@@ -71,10 +71,10 @@ public class Plateau implements IPlateau {
 		for (int posY = 0; posY <= nombreLigne + 1; posY++){
 			for (int posX = 0; posX<= nombreColonne + 1; posX++){
 				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1){
-					listTerrain.add(new Wall(posX, posY, false, numberMap));
+					listTerrain.add(new Wall(posX*width, posY*height, false, numberMap));
 				}
 				else {
-					listTerrain.add(new Sol(posX, posY, true, numberMap));
+					listTerrain.add(new Sol(posX*width, posY*height, true, numberMap));
 				}
 			}	
 		}
@@ -115,7 +115,7 @@ public class Plateau implements IPlateau {
 	}
 	
 	public int indiceTerrain(int posX,int posY){
-		return (posY)*(nombreColonne+2)+(posX);
+		return ((posY)*(nombreColonne+2)+(posX))/height;
 	}
 	
 	

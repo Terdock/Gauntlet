@@ -12,15 +12,7 @@ import javax.swing.JPanel;
 
 import Model.WorldEntity;
 
-// Start of user code (user defined imports)
 
-// End of user code
-
-/**
- * Description of Panneau.
- * 
- * @author Edith
- */
 public class GamePanel extends Panel {
 	
 	private ArrayList<WorldEntity> listHero =  new ArrayList<WorldEntity>();
@@ -54,7 +46,8 @@ public class GamePanel extends Panel {
 		{
 			if(terre.getVisible()){
 				Image img = afficheImage.images(terre.nameImage());
-				g.drawImage(img, terre.getWidth(), terre.getHeight(),terre.getPosX()*terre.getWidth(), terre.getPosY()*terre.getHeight(), null);
+				System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());
+				g.drawImage(img,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 			}
 		}
 		
@@ -63,21 +56,21 @@ public class GamePanel extends Panel {
 		{
 			if(mob.getVisible()){
 				Image img = afficheImage.images(mob.nameImage());
-				g.drawImage(img, mob.getWidth(), mob.getHeight(),mob.getPosX()*mob.getWidth(), mob.getPosY()*mob.getHeight(), null);
+				g.drawImage(img,mob.getPosX(), mob.getPosY(), mob.getWidth(), mob.getHeight(), null);
 			}
 		}
 			
 		for (WorldEntity player : listHero )
 		{	if(player.getVisible()){
 				Image img = afficheImage.images(player.nameImage());
-				g.drawImage(img, player.getWidth(), player.getHeight(),player.getPosX()*player.getWidth(), player.getPosY()*player.getHeight(), null);
+				g.drawImage(img, player.getPosX(), player.getPosY(), player.getWidth(), player.getHeight(), null);
 			}
 		}
 		for (WorldEntity obj : listObject )
 		{
 			if(obj.getVisible()){
 				Image img = afficheImage.images(obj.nameImage());
-				g.drawImage(img, obj.getWidth(), obj.getHeight(),obj.getPosX()*obj.getWidth(), obj.getPosY()*obj.getHeight(), null);
+				g.drawImage(img,obj.getPosX(), obj.getPosY(), obj.getWidth(), obj.getHeight(), null);
 			}
 		}
 		**/
