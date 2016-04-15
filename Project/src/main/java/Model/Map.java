@@ -8,27 +8,26 @@ public class Map {
 	
 	ArrayList<Monster> listMonster = new ArrayList<Monster>();
 	ArrayList<PlateauObject> listWallHoleDoor = new ArrayList<PlateauObject>();
-	private int nombrLigne;
+	private int nombreLigne;
 	private int nombreColonne; 
 	
 	public Map(int nombrLigne,int nombreColonne){
-		this.nombrLigne = nombrLigne;
+		this.nombreLigne = nombrLigne;
 		this.nombreColonne = nombreColonne;
 	}
 
 
 	public ArrayList<Wall> create_MAP0(){
+		ArrayList<Wall> list  = new ArrayList<Wall>();
 		for(int h = 0; h < nombreColonne/5; h += nombreColonne/5 ){
-			for(int i = 4;i < nombreColonne; i++){
-				for(int j = 1; j < nombreColonne; j++){
-				
-				
-				
+			for(int y = 4; y < nombreColonne; y++){
+				for(int x = 4; x < nombreLigne; x++){
+					if(false)
+						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
 				}
 			}
 		}
-		
-		return null;
+		return list;
 	}
 
 
@@ -174,7 +173,7 @@ public class Map {
 	private ArrayList<Monster> createGroupeMonster(int posX,int posY,int n){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( int i = -n; i < n ; i++)
-			list.add(new Monster(posX+n*new Plateau().getWidth(),posY+n*new Plateau().getHeight(), null));
+			list.add(new Monster(posX+n*Plateau.getWidth(),posY+n*Plateau.getHeight(), null));
 		return list;
 		
 	}
