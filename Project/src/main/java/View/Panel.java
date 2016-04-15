@@ -14,19 +14,16 @@ import javax.swing.JPanel;
 import Controler.AbstractControler;
 
 public class Panel extends JPanel{
-	private String modeDeJeu;
 	private Panel panel;
 	private Button[] buttons = new Button[10];
 	private String[] buttonName = {"Mode Quête","Mode Arène","Mode Survivor"};
 	private ImageIcon[] ImageIcons;
 	private Label[] labels = new Label[16], nameLabels = new Label[4];
-	private String[][] Heros = new String[5][2];
-	private TextField[] name;
+	private TextField[] playerName;
 	private ComboBox[] typeHeros;
 	private String type;
 	private Image img;
 	private CardLayout card;
-	private AbstractControler controle;
 	
 	
 	public Panel(){
@@ -34,25 +31,20 @@ public class Panel extends JPanel{
 		this.setLayout(card);
 	}
 	
-	public Panel(Image img, Panel panel, String type, String modeDeJeu, AbstractControler controle){
+	public Panel(Image img, Panel panel, String type){
 		this.panel = panel;
 		this.type = type;
 		this.img = img;
-		this.modeDeJeu = modeDeJeu;
-		this.controle = controle;
 		//chargeImage();
 		this.setBounds(0, 0, 700, 600);
 		construction(0,700);
 	}
 	
-	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, CardLayout card, String type, String modeDeJeu, AbstractControler controle) {
+	public Panel(Image img, Panel panel, ImageIcon[] ImageIcons, String type){
 		this.img = img;
 		this.panel = panel;
 		this.ImageIcons = ImageIcons;
-		this.card = card;
 		this.type = type;
-		this.modeDeJeu = modeDeJeu;
-		this.controle = controle;
 		this.setLayout(null);
 		initialisation();
 	}
@@ -70,32 +62,26 @@ public class Panel extends JPanel{
 		panel.add(this, type);
 		if (type.equals("Home")){
 			buttons[0] = button("Jouer", 450, 480, 100, 30, Color.ORANGE);
-			buttons[0].addActionListener(new ActionListener(){
-	            public void actionPerformed(ActionEvent e){
-	            	card.show(panel, "Menu");}});
 			labels[0] = arrow(ImageIcons[0], 450, 450, 100, 30);
 	        labels[1] = arrow(ImageIcons[0], 450, 510, 100, 30);
-		}else if (type.equals("Menu")){
+		}else if (type.equals("ModeDeJeu")){
 			arrows();
 			labels[10] = text("MODE DE JEU", 390, 150, 225, 35, Color.ORANGE);
 	        labels[11] = arrow(ImageIcons[5], 405, 190, 198, 30);
 	        for(Integer i = 0; i<3;i++){
 	        	buttons[i+1] = button(buttonName[i], 405, 230 + i*50, 200, 35, Color.ORANGE);
-	        	actionButton(buttons[i+1], buttonName[i]);
 	        }
 		}else if (type.equals("Player")){
 			arrows();
 			labels[12] = text("NOMBRE DE JOUEUR", 330, 150, 400, 35, Color.ORANGE);
 			for (Integer i = 1; i <= 4; i++){
 				buttons[i+3] = button(String.valueOf(i) + " Joueur", 405, 230 + (i-1)*50, 200, 35, Color.ORANGE);
-				actionButton(buttons[i+3], String.valueOf(i));
 			}
 		}else if (type.equals("1")||type.equals("2")||type.equals("3")||type.equals("4")){
 			arrows();
 			writeName(Integer.valueOf(type));
 			choiceHeros(Integer.valueOf(type));
 			buttons[8] = button("Commencer", 410, 510, 200, 35, Color.ORANGE);
-			actionButton(buttons[8],"Information");
 		}
 	}
 
@@ -113,42 +99,13 @@ public class Panel extends JPanel{
 	private void chargeImage(){
 		
 	}
-
-	private void actionButton(Button button, String info){
-		button.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
-            		
-            		//Construction du Panel pour obtenir le nombre de joueur
-            		new Panel(img, panel, ImageIcons, card, "Player", info,controle);
-            		card.show(panel, "Player");
-            	
-            	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
-            		
-            		//Construction du Panel pour obtenir les information des joueurs
-            		new Panel(img, panel, ImageIcons, card, info, modeDeJeu,controle);
-            		card.show(panel, info);
-            	}else if (info.equals("Information")){
-            		for(Integer i = 0; i < name.length; i++){
-            			Heros[i][0] = name[i].getText();
-            			Heros[i][1] = (String)typeHeros[i].getSelectedItem();
-            		}
-            		Heros[4][0] = String.valueOf(name.length);
-            		//controle.initComposant(modeDeJeu, Heros);
-            		new Panel(img, panel, "harr", modeDeJeu, controle);
-            		card.show(panel, "harr");
-            	}
-            	
-            }
-       });
-	}
 	
 	private void writeName(int playerNumber){
-		this.name = new TextField[playerNumber];
+		this.playerName = new TextField[playerNumber];
 		for(Integer i = 1; i<= playerNumber; i++){
 			nameLabels[i-1] = text("Joueur "+i.toString(), 450, 10 + i*100, 200, 30, Color.ORANGE);
-			name[i-1] = new TextField("Nom", i);
-			this.add(name[i-1]);
+			playerName[i-1] = new TextField("Nom", i);
+			this.add(playerName[i-1]);
 		}
 	}
 	
@@ -195,9 +152,19 @@ public class Panel extends JPanel{
 		return buttons;
 	}
 
-	public String getModeDeJeu() {
-		return modeDeJeu;
+	public String[] getButtonName() {
+		return buttonName;
 	}
+
+	public ComboBox[] getTypeHeros() {
+		return typeHeros;
+	}
+
+	public TextField[] getPlayerName() {
+		return playerName;
+	}
+	
+	
 	
 //pattern observer : permet de changer la list des entities à adequat lorsqu'on fait la mise à jour d'une des listes
 	

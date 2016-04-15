@@ -1,8 +1,9 @@
 package View;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +19,14 @@ import observer.Observer;
 public class Window extends JFrame implements Observer {
 	
 	private CardLayout card;
+	private String modeDeJeu;
 	private Panel[] panel = new Panel[8];
 	private ImageIcon[] ImageIcons = new ImageIcon[10];
+	private String[][] Heros = new String[5][2];
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
     private Panneau panini;
+    private Integer nombreDeJoueur;
 	
 	public Window(AbstractControler controle){
 		this.controle = controle;
@@ -54,15 +58,57 @@ public class Window extends JFrame implements Observer {
 		this.card = panel[0].getCard();
 		
 		//Construction de l'acceuil
-		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, card, "Home", null,controle);
-      
-      	//Construction du menu
-      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, card, "Menu", null,controle);
+		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, "Home");
+		panel[1].getButtons()[0].addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	card.show(panel[0], "ModeDeJeu");}});
+		
+      	//Construction du mode de jeu
+      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, "ModeDeJeu");
+      	for (Integer i = 0; i < 3; i++){
+      		actionButton(panel[2].getButtons()[i+1], panel[2].getButtonName()[i]);
+      	}
+      	
       	
       	//Contruction du panneau de jeu
       	this.panini = new Panneau(); 
       	
       
+	}
+	
+	private void actionButton(Button button, String info){
+		button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            		modeDeJeu = info;
+            		
+            		//Construction du Panel pour obtenir le nombre de joueur
+            		panel[3] = new Panel(menuImage, panel[0], ImageIcons, "Player");
+            		card.show(panel[0], "Player");
+            		for (Integer i = 1; i <= 4; i++){
+        				actionButton(panel[3].getButtons()[i+3], String.valueOf(i));
+        			}
+            	
+            	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
+            		nombreDeJoueur = Integer.valueOf(info);
+            		
+            		//Construction du Panel pour obtenir les information des joueurs
+            		panel[4] = new Panel(menuImage, panel[0], ImageIcons, info);
+            		card.show(panel[0], info);
+            		actionButton(panel[4].getButtons()[8],"Information");
+            		
+            	}else if (info.equals("Information")){
+            		for(Integer i = 0; i < panel[4].getPlayerName().length; i++){
+            			Heros[i][0] = panel[4].getPlayerName()[i].getText();
+            			Heros[i][1] = (String)panel[4].getTypeHeros()[i].getSelectedItem();
+            		}
+            		//controle.initComposant(modeDeJeu, Heros);
+            		new Panel(menuImage, panel[0], "harr");
+            		card.show(panel[0], "harr");
+            	}
+            	
+            }
+       });
 	}
 
 	@Override
