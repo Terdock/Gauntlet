@@ -21,9 +21,13 @@ public class Window extends JFrame implements Observer {
 	
 	private CardLayout card;
 	private String modeDeJeu;
-	private Panel[] panel = new Panel[8];
-	private ImageIcon[] ImageIcons = new ImageIcon[10];
-	private String[][] Heros = new String[5][2];
+	private HomePanel homePanel;
+	private ModePanel modePanel;
+	private PlayerPanel playerPanel;
+	private IdentityPanel identityPanel;
+	private Panel principalPanel;
+	private ImageIcon[] imageIcons = new ImageIcon[10];
+	private String[][] heros = new String[5][2];
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
     private Integer nombreDeJoueur;
@@ -36,42 +40,40 @@ public class Window extends JFrame implements Observer {
         this.setResizable(false);
         setLocationRelativeTo(null);
         initialisation();
-        this.getContentPane().add(panel[0]);
+        this.getContentPane().add(principalPanel);
         setVisible(true);
 	}
 
 	private void initialisation(){
 		try {
 		      this.welcomeImage = ImageIO.read(new File("Images/welcome.jpg"));
-		      this.ImageIcons[0] = new ImageIcon("Images/arrow.gif");
-		      this.ImageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
-		      this.ImageIcons[2] = new ImageIcon("Images/arrowRight.gif");
-		      this.ImageIcons[3] = new ImageIcon("Images/arrowUp.gif");
-		      this.ImageIcons[4] = new ImageIcon("Images/arrowDown.gif");
-		      this.ImageIcons[5] = new ImageIcon("Images/menuSeparation.gif");
+		      this.imageIcons[0] = new ImageIcon("Images/arrow.gif");
+		      this.imageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
+		      this.imageIcons[2] = new ImageIcon("Images/arrowRight.gif");
+		      this.imageIcons[3] = new ImageIcon("Images/arrowUp.gif");
+		      this.imageIcons[4] = new ImageIcon("Images/arrowDown.gif");
+		      this.imageIcons[5] = new ImageIcon("Images/menuSeparation.gif");
 		      this.menuImage = ImageIO.read(new File("Images/home.jpg"));
 		} catch (IOException e) {
 		      e.printStackTrace();}
 		
 		//Construction du panneau qui reprend tous les panneaux
-		panel[0] = new Panel();
-		this.card = panel[0].getCard();
+		principalPanel = new Panel();
+		this.card = principalPanel.getCard();
 		
 		//Construction de l'acceuil
-		panel[1] = new Panel(welcomeImage, panel[0], ImageIcons, "Home");
-		panel[1].getButtons()[0].addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	card.show(panel[0], "ModeDeJeu");}});
+		homePanel = new HomePanel(welcomeImage, principalPanel, imageIcons, "Home");
+		actionButton(homePanel.getButton(), "ModeDeJeu");
 		
       	//Construction du mode de jeu
-      	panel[2] = new Panel(menuImage, panel[0], ImageIcons, "ModeDeJeu");
+      	modePanel = new ModePanel(menuImage, principalPanel, imageIcons, "ModeDeJeu");
       	for (Integer i = 0; i < 3; i++){
-      		actionButton(panel[2].getButtons()[i+1], panel[2].getButtonName()[i]);
+      		actionButton(modePanel.getButtons()[i], modePanel.getButtonName()[i]);
       	}
       	
       	
       	//Contruction du panneau de jeu
-      	panel[5] = new GamePanel(); 
+      	//panel[5] = new GamePanel(); 
       	
       
 	}
@@ -79,34 +81,36 @@ public class Window extends JFrame implements Observer {
 	private void actionButton(Button button, String info){
 		button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-            	if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            	if(info.equals("ModeDeJeu")){
+            		card.show(principalPanel, info);
+            	}else if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		
             		//Construction du Panel pour obtenir le nombre de joueur
-            		panel[3] = new Panel(menuImage, panel[0], ImageIcons, "Player");
-            		card.show(panel[0], "Player");
+            		playerPanel = new PlayerPanel(menuImage, principalPanel, imageIcons, "Player");
+            		card.show(principalPanel, "Player");
             		for (Integer i = 1; i <= 4; i++){
-        				actionButton(panel[3].getButtons()[i+3], String.valueOf(i));
+        				actionButton(playerPanel.getButtons()[i-1], String.valueOf(i));
         			}
             	
             	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
             		nombreDeJoueur = Integer.valueOf(info);
             		
             		//Construction du Panel pour obtenir les information des joueurs
-            		panel[4] = new Panel(menuImage, panel[0], ImageIcons, info);
-            		card.show(panel[0], info);
-            		actionButton(panel[4].getButtons()[8],"Information");
+            		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, info);
+            		card.show(principalPanel, info);
+            		actionButton(identityPanel.getButton(),"Information");
             		
             	}else if (info.equals("Information")){
-            		for(Integer i = 0; i < panel[4].getPlayerName().length; i++){
-            			Heros[i][0] = panel[4].getPlayerName()[i].getText();
-            			Heros[i][1] = (String)panel[4].getTypeHeros()[i].getSelectedItem();
+            		for(Integer i = 0; i < identityPanel.getPlayerName().length; i++){
+            			heros[i][0] = identityPanel.getPlayerName()[i].getText();
+            			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
             		}
             		System.out.println(nombreDeJoueur);
             		System.out.println(modeDeJeu);
-            		//controle.initComposant(modeDeJeu, Heros);
-            		new Panel(menuImage, panel[0], "harr");
-            		card.show(panel[0], "harr");
+            		//controle.initComposant(modeDeJeu, heros);
+            		new Panel(menuImage, principalPanel, "harr");
+            		card.show(principalPanel, "harr");
             	}
             	
             }
@@ -115,7 +119,7 @@ public class Window extends JFrame implements Observer {
 
 	@Override
 	public void update(ArrayList<WorldEntity> entities) {
-		this.panel[5].setEntities(entities);
+		//this.panel[5].setEntities(entities);
 		
 	}
 

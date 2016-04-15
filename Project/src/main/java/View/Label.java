@@ -11,6 +11,9 @@ public class Label extends JLabel{
 	private Font font = new Font("Monotype Corsiva",Font.BOLD,32);
 	private Color color;
 	
+	public Label(){
+		
+	}
 	
 	public Label(ImageIcon imageIcon, int x, int y, int width, int height){
 		super(imageIcon);

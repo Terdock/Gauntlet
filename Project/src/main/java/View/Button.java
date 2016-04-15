@@ -15,6 +15,9 @@ public class Button extends JButton {
 	private String type;
 	private Color color;
 	
+	public Button(){
+		
+	}
 	
 	public Button(ImageIcon imageIcon, int x, int y, int width, int height){
 		super(imageIcon);
