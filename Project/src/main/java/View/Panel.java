@@ -25,12 +25,11 @@ public class Panel extends JPanel{
 		this.setLayout(card);
 	}
 	
-	public Panel(Image img, Panel panel, String type){
+	public Panel(Panel panel, String type){
 		this.panel = panel;
 		this.type = type;
-		this.img = img;
-		//chargeImage();
-		this.setBounds(0, 0, 700, 600);
+		this.setLayout(null);
+		panel.add(this, type);
 	}
 	
 	public Panel(Image img, Panel panel, ImageIcon[] imageIcons, String type){

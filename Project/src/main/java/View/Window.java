@@ -25,6 +25,7 @@ public class Window extends JFrame implements Observer {
 	private ModePanel modePanel;
 	private PlayerPanel playerPanel;
 	private IdentityPanel identityPanel;
+	private GamePanel gamePanel;
 	private Panel principalPanel;
 	private ImageIcon[] imageIcons = new ImageIcon[10];
 	private String[][] heros = new String[5][2];
@@ -107,8 +108,8 @@ public class Window extends JFrame implements Observer {
             			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
             		}
             		//controle.initComposant(modeDeJeu, heros);
-            		new Panel(menuImage, principalPanel, "harr");
-            		card.show(principalPanel, "harr");
+            		gamePanel = new GamePanel(principalPanel, "GamePanel");
+            		card.show(principalPanel, "GamePanel");
             	}
             	
             }

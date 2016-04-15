@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -16,10 +17,13 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
-	private afficheImage ImageClasse = new afficheImage();
+	private afficheImage imageClasse = new afficheImage();
 	
-	
-	
+	public GamePanel(Panel panel, String type){
+		super(panel, type);
+		this.setBounds(0, 0, 700, 600);
+		this.setBackground(Color.BLACK);
+	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
 		if(entities.get(0).nameType() == "Terrain")
@@ -33,16 +37,11 @@ public class GamePanel extends Panel {
 			
 		
 	}
-
-	
-	
          
-	public void paintComponent(Graphics g)
-	{
-		for (WorldEntity terre : listTerrain )
-		{
+	public void paintComponent(Graphics g){
+		for (WorldEntity terre : listTerrain ){
 			if(terre.getVisible()){
-				Image img = afficheImage.images(terre.nameImage());
+				Image img = imageClasse.images(terre.nameImage());
 				System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());
 				g.drawImage(img,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 			}

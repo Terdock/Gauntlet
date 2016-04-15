@@ -21,7 +21,7 @@ public class afficheImage {
 		};
 		
 	}
-	
+		/**
 		public BufferedImage[] createSplit(BufferedImage image,int rows, int cols){
 			int sizeImage = rows * cols;
 	        int sizeImageWidth = image.getWidth() / cols; // determines the sizeImage width and height
@@ -42,6 +42,7 @@ public class afficheImage {
 	        
 	        return split;
 		}
+		**/
 		
 		public void chargerImage(String nameDossier,int max){
 			for(int i = 0; i < max; i++){
