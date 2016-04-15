@@ -24,9 +24,6 @@ public class GauntletGame extends AbstractModel {
 		
 	}
 
-	
-	
-
 
 	
 	public String getMode() {

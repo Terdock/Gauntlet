@@ -6,6 +6,7 @@ public abstract class WorldEntity {
 	private static int height = 30;
 	private int posX;
 	private int posY;
+	private boolean visible = true;
 	
 	public WorldEntity(int posX, int posY) {
 		this.posX = posX;
@@ -47,6 +48,15 @@ public abstract class WorldEntity {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+
+	public boolean getVisible(){
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
 
 
 }

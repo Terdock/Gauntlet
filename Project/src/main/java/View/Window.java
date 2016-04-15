@@ -25,7 +25,6 @@ public class Window extends JFrame implements Observer {
 	private String[][] Heros = new String[5][2];
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
-    private Panneau panini;
     private Integer nombreDeJoueur;
 	
 	public Window(AbstractControler controle){
@@ -71,7 +70,7 @@ public class Window extends JFrame implements Observer {
       	
       	
       	//Contruction du panneau de jeu
-      	this.panini = new Panneau(); 
+      	panel[5] = new GamePanel(); 
       	
       
 	}
@@ -115,7 +114,7 @@ public class Window extends JFrame implements Observer {
 
 	@Override
 	public void update(ArrayList<WorldEntity> entities) {
-		this.panini.setEntities(entities);
+		this.panel[5].setEntities(entities);
 		
 	}
 
