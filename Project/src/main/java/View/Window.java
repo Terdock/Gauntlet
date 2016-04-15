@@ -106,8 +106,6 @@ public class Window extends JFrame implements Observer {
             			heros[i][0] = identityPanel.getPlayerName()[i].getText();
             			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
             		}
-            		System.out.println(nombreDeJoueur);
-            		System.out.println(modeDeJeu);
             		//controle.initComposant(modeDeJeu, heros);
             		new Panel(menuImage, principalPanel, "harr");
             		card.show(principalPanel, "harr");
