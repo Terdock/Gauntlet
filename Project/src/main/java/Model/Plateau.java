@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private final static Integer nombreLigneArene = 19;
-	private final static Integer nombreColonneArene = 19;
+	private final static Integer nombreLigneArene = 20;
+	private final static Integer nombreColonneArene = 20;
 	private static Integer width = 30;
 	private static Integer height = 30;
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
