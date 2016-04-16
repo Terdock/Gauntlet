@@ -40,7 +40,7 @@ public class GamePanel extends Panel {
 		for (WorldEntity terre : listTerrain ){
 			if(terre.getVisible()){
 				Image img = imageClasse.images(terre.nameImage());
-				//System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());
+				//System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());				
 				g.drawImage(img,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 			}
 		}
