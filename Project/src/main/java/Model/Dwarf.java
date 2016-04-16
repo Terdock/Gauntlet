@@ -2,7 +2,7 @@ package Model;
 
 public class Dwarf extends Hero {
 	
-	public Dwarf(int posX, int posY) {
+	public Dwarf(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 

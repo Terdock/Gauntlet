@@ -5,7 +5,7 @@ import Model.Potion;
 public class PowerPotion extends Potion {
 	
 
-	public PowerPotion(int PosX, int PosY) {
+	public PowerPotion(Integer PosX, Integer PosY) {
 		super(PosX, PosY);
 	}
 

@@ -3,9 +3,9 @@ package Model;
 public class Door extends PlateauObject {
 
 	private boolean open = false;
-	private int numberDoor;
+	private Integer numberDoor;
 	
-	public Door(int posX, int posY,boolean passable,int numberDoor){
+	public Door(Integer posX, Integer posY,boolean passable,Integer numberDoor){
 		super(posX, posY, passable);
 		this.numberDoor = numberDoor;
 	}
@@ -22,7 +22,7 @@ public class Door extends PlateauObject {
 		this.open = open;
 	}
 
-	public int getNumberDoor(){
+	public Integer getNumberDoor(){
 		return numberDoor;
 	}
 

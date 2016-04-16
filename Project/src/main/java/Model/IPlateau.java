@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IPlateau {
 
-	public int getNumberMap();
+	public Integer getNumberMap();
 	
 	public ArrayList<Monster> getListMonster();
 

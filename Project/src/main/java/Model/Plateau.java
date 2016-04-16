@@ -3,12 +3,12 @@ package Model;
 import java.util.ArrayList;
 
 public class Plateau implements IPlateau {
-	private int nombreLigne;
-	private int nombreColonne;
-	private final static int nombreLigneArene = 20;
-	private final static int nombreColonneArene = 20;
-	private static int width = 30;
-	private static int height = 30;
+	private Integer nombreLigne;
+	private Integer nombreColonne;
+	private final static Integer nombreLigneArene = 20;
+	private final static Integer nombreColonneArene = 20;
+	private static Integer width = 30;
+	private static Integer height = 30;
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
 	private ArrayList<PlateauObject> listTerrain = new ArrayList<PlateauObject>();
 	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
@@ -16,7 +16,7 @@ public class Plateau implements IPlateau {
 	private ArrayList<Door> listDoor = new ArrayList<Door>();
 	private Staircase staircaseMap = new Staircase(true);
 	private Hole holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
-	private int numberMap;
+	private Integer numberMap;
 	private Map mapParLevel;
 	
 	
@@ -26,13 +26,15 @@ public class Plateau implements IPlateau {
 	}
 
 
-	public Plateau(int nombreLigne, int nombreColonne,int numberMap,String mode) {
+	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap,String mode) {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 		if (mode == "Mode Quête"){
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
+			Wall_replace_sol();
+			//Door_replace_Wall();
 			//Hole_replace_Wall();
 			//Staircase_replace_Wall();	
 		}
@@ -52,11 +54,9 @@ public class Plateau implements IPlateau {
 	}
 
 
-	private void Initialisation(int nombreLigne,int nombreColonne, ArrayList<PlateauObject> listTerrain,String mode){
+	private void Initialisation(Integer nombreLigne,Integer nombreColonne, ArrayList<PlateauObject> listTerrain,String mode){
 		if (mode == "Mode Quête"){
 			create_list_terrain(nombreLigne,nombreColonne,listTerrain);
-			Wall_replace_sol();
-			//Door_replace_Wall();
 		}
 		create_list_terrain(nombreLigneArene,nombreColonneArene,listTerrainArene);
 		
@@ -64,12 +64,12 @@ public class Plateau implements IPlateau {
 	}
 	
 	/**
-	 * Initialisation des types blocs incassables autour et terrain à l'intérieur du plateau
+	 * Initialisation des types blocs incassables autour et terrain à l'Integerérieur du plateau
 	 * Dans la LIST_TERRAIN
 	 */
-	private void create_list_terrain(int nombreLigne, int nombreColonne,ArrayList<PlateauObject> listTerrain){
-		for (int posY = 0; posY <= nombreLigne + 1; posY++){
-			for (int posX = 0; posX<= nombreColonne + 1; posX++){
+	private void create_list_terrain(Integer nombreLigne, Integer nombreColonne,ArrayList<PlateauObject> listTerrain){
+		for (Integer posY = 0; posY <= nombreLigne + 1; posY++){
+			for (Integer posX = 0; posX<= nombreColonne + 1; posX++){
 				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1){
 					listTerrain.add(new Wall(posX*width, posY*height, false, numberMap));
 				}
@@ -82,8 +82,9 @@ public class Plateau implements IPlateau {
 	
 	private void Wall_replace_sol(){
 		for (Wall wallMap : listWallMap){
-				int posX = wallMap.getPosX();
-				int posY = wallMap.getPosY();
+			System.out.println("alors ?");
+				Integer posX = wallMap.getPosX();
+				Integer posY = wallMap.getPosY();
 				listTerrain.remove(indiceTerrain(posX,posY));
 				listTerrain.add(indiceTerrain(posX,posY),wallMap);
 			}
@@ -91,30 +92,30 @@ public class Plateau implements IPlateau {
 		
 	private void Door_replace_Wall(){
 		for (Door door : listDoor){
-				int posX = door.getPosX();
-				int posY = door.getPosY();
+				Integer posX = door.getPosX();
+				Integer posY = door.getPosY();
 				listTerrain.remove(indiceTerrain(posX,posY));
 				listTerrain.add(indiceTerrain(posX,posY),door);
 			}
 		}
 	
 	private void Staircase_replace_Wall(){
-		int posX = staircaseMap.getPosX();
-		int posY = staircaseMap.getPosY();
+		Integer posX = staircaseMap.getPosX();
+		Integer posY = staircaseMap.getPosY();
 		listTerrain.remove(indiceTerrain(posX,posY));
 		listTerrain.add(indiceTerrain(posX,posY),staircaseMap);
 	}
 	
 	
 	private void Hole_replace_Wall(){
-		int posX = holeMap.getPosX();
-		int posY = holeMap.getPosY();
+		Integer posX = holeMap.getPosX();
+		Integer posY = holeMap.getPosY();
 		listTerrain.remove(indiceTerrain(posX,posY));
 		listTerrain.add(indiceTerrain(posX,posY),holeMap);
 		 
 	}
 	
-	public int indiceTerrain(int posX,int posY){
+	public Integer indiceTerrain(Integer posX,Integer posY){
 		return ((posY)*(nombreColonne+2)+(posX))/height;
 	}
 	
@@ -157,19 +158,19 @@ public class Plateau implements IPlateau {
 	
 	
 
-	public int getNombreLigne() {
+	public Integer getNombreLigne() {
 		return nombreLigne;
 	}
 
-	public void setNombreLigne(int nombreLigne) {
+	public void setNombreLigne(Integer nombreLigne) {
 		this.nombreLigne = nombreLigne;
 	}
 
-	public int getNombreColonne() {
+	public Integer getNombreColonne() {
 		return nombreColonne;
 	}
 
-	public void setNombreColonne(int nombreColonne) {
+	public void setNombreColonne(Integer nombreColonne) {
 		this.nombreColonne = nombreColonne;
 	}
 	
@@ -190,20 +191,20 @@ public class Plateau implements IPlateau {
 		this.listDoor = listDoor;
 	}
 
-	public int getNumberMap() {
+	public Integer getNumberMap() {
 		return numberMap;
 	}
 
-	public void setNumberMap(int numberMap) {
+	public void setNumberMap(Integer numberMap) {
 		this.numberMap = numberMap;
 	}
 
 
-	public static int getWidth() {
+	public static Integer getWidth() {
 		return width;
 	}
 
-	public static int getHeight() {
+	public static Integer getHeight() {
 		return height;
 	}
 
@@ -220,7 +221,7 @@ public class Plateau implements IPlateau {
 	}
 
 
-	public boolean isMoveValide(int posX, int posY) {
+	public boolean isMoveValide(Integer posX, Integer posY) {
 		listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 	}

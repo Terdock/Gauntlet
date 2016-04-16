@@ -2,13 +2,13 @@ package Model;
 
 
 public abstract class WorldEntity {
-	private static int width = 30;
-	private static int height = 30;
-	private int posX;
-	private int posY;
+	private static Integer width = 30;
+	private static Integer height = 30;
+	private Integer posX;
+	private Integer posY;
 	private boolean visible = true;
 	
-	public WorldEntity(int posX, int posY) {
+	public WorldEntity(Integer posX, Integer posY) {
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -17,35 +17,35 @@ public abstract class WorldEntity {
 	public abstract String nameType();
 
 
-	public static int getWidth() {
+	public static Integer getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(Integer width) {
 		this.width = width;
 	}
 
-	public static int getHeight() {
+	public static Integer getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(Integer height) {
 		this.height = height;
 	}
 
-	public int getPosX() {
+	public Integer getPosX() {
 		return posX;
 	}
 
-	public void setPosX(int posX) {
+	public void setPosX(Integer posX) {
 		this.posX= posX;
 	}
 
-	public int getPosY() {
+	public Integer getPosY() {
 		return posY;
 	}
 
-	public void setPosY(int posY) {
+	public void setPosY(Integer posY) {
 		this.posY = posY;
 	}
 

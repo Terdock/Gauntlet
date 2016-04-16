@@ -5,9 +5,9 @@ import observer.Observable;
 
 public class GauntletGame extends AbstractModel {
 	
-	private int numberMap; 
-	private static int nombreLigne = 50;
-	private static int nombreColonne = 50;
+	private Integer numberMap; 
+	private static Integer nombreLigne = 50;
+	private static Integer nombreColonne = 50;
 	IPlateau plateau;
 	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
@@ -16,7 +16,7 @@ public class GauntletGame extends AbstractModel {
 	private ArrayList<PlateauObject> List_Terrain =  new ArrayList<PlateauObject>();
 	private ArrayList<WorldEntity> listTerrain =  new ArrayList<WorldEntity>();
 	private String mode; 
-	private int multiplayer;
+	private Integer multiplayer;
 	
 	public GauntletGame() {
 	
@@ -54,7 +54,7 @@ public class GauntletGame extends AbstractModel {
 	}
 	
 	public ArrayList<Hero> convertListHero(String[][] playerRegister){
-		for (int i = 0; i < playerRegister.length; i++ ){
+		for (Integer i = 0; i < playerRegister.length; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
 				Wizzard W = new Wizzard(1,1);
 				W.setPlayerName(playerRegister[i][0]);

@@ -2,7 +2,7 @@ package Model;
 
 public class Knight extends Hero {
 
-	public Knight(int posX, int posY) {
+	public Knight(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 

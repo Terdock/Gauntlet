@@ -1,13 +1,13 @@
 package Model;
 
 public abstract class Creatures extends WorldEntity {
-	private int pas = 30;
+	private Integer pas = 30;
 	private boolean life = true;
-	private int hp;
-	private int level;
+	private Integer hp;
+	private Integer level;
 
 
-	public Creatures(int posX,int posY) {
+	public Creatures(Integer posX,Integer posY) {
 		super(posX,posY);
 	}
 	
@@ -25,27 +25,27 @@ public abstract class Creatures extends WorldEntity {
 		this.life = life;
 	}
 
-	public int getHp() {
+	public Integer getHp() {
 		return hp;
 	}
 
-	public void setHp(int hp) {
+	public void setHp(Integer hp) {
 		this.hp = hp;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
-	public int getPas() {
+	public Integer getPas() {
 		return pas;
 	}
 
-	public void setPas(int pas) {
+	public void setPas(Integer pas) {
 		this.pas = pas;
 	}
 }

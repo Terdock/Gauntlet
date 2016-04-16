@@ -5,7 +5,7 @@ import Model.Potion;
 public class SpeedPotion extends Potion {
 
 
-	public SpeedPotion(int PosX, int PosY) {
+	public SpeedPotion(Integer PosX, Integer PosY) {
 		super(PosX, PosY);
 	}
 

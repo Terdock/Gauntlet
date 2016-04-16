@@ -2,7 +2,7 @@ package Model;
 
 public class Hole extends PlateauObject {
 	
-	public Hole(int posX, int posY,boolean passable) {
+	public Hole(Integer posX, Integer posY,boolean passable) {
 		super(posX, posY, passable);
 	}
 	

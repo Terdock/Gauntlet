@@ -2,7 +2,7 @@ package Model;
 
 public class Elf extends Hero {
 	
-	public Elf(int posX, int posY) {
+	public Elf(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 

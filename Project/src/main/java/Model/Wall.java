@@ -1,10 +1,10 @@
 package Model;
 
 public class Wall extends PlateauObject  {
-	 int numberMap; 
+	 Integer numberMap; 
 	 
 	
-	public Wall(int posX, int posY, boolean passable,int numberMap) {
+	public Wall(Integer posX, Integer posY, boolean passable,Integer numberMap) {
 		super(posX, posY, passable);
 		this.numberMap = numberMap;
 	}

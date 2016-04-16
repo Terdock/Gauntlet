@@ -4,7 +4,7 @@ import Model.Potion;
 import Model.WorldObject;
 
 public abstract class Potion extends WorldObject {
-	public Potion(int PosX,int PosY) {
+	public Potion(Integer PosX,Integer PosY) {
 		super(PosX,PosY);
 	}
 

@@ -3,7 +3,7 @@ package Model;
 import Model.Hero;
 
 public class Wizzard extends Hero {
-	public Wizzard(int posX, int posY) {
+	public Wizzard(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 

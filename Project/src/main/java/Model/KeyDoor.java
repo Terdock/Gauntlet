@@ -4,7 +4,7 @@ import Model.WorldObject;
 
 public class KeyDoor extends WorldObject {
 
-	public KeyDoor(int posX, int posY) {
+	public KeyDoor(Integer posX, Integer posY) {
 		super(posX, posY);
 	}
 

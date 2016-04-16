@@ -2,15 +2,15 @@ package Model;
 
 public abstract class Hero extends Creatures {
 	private String playerName;
-	private int force = 0;
-	private int defense = 0;
-	private int direction = 0;
-	private int speed = 0;
-	private int magie = 0;
-	private int power = 0;
-	private int dexterity = 0;
+	private Integer force = 0;
+	private Integer defense = 0;
+	private Integer direction = 0;
+	private Integer speed = 0;
+	private Integer magie = 0;
+	private Integer power = 0;
+	private Integer dexterity = 0;
 
-	public Hero(int posX, int posY) {
+	public Hero(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 	

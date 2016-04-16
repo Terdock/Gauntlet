@@ -4,7 +4,7 @@ import Model.Potion;
 
 public class BarrierPotion extends Potion {
 
-	public BarrierPotion(int posX, int posY) {
+	public BarrierPotion(Integer posX, Integer posY) {
 		super(posX, posY);
 	}
 

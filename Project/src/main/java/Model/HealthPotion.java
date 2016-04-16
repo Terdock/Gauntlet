@@ -4,7 +4,7 @@ import Model.Potion;
 
 public class HealthPotion extends Potion {
 
-	public HealthPotion(int PosX, int PosY) {
+	public HealthPotion(Integer PosX, Integer PosY) {
 		super(PosX, PosY);
 	}
 

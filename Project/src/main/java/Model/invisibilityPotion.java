@@ -4,7 +4,7 @@ import Model.Potion;
 
 public class invisibilityPotion extends Potion {
 
-	public invisibilityPotion(int PosX, int PosY) {
+	public invisibilityPotion(Integer PosX, Integer PosY) {
 		super(PosX, PosY);
 	}
 
