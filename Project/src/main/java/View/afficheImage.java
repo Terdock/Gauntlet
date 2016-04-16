@@ -70,7 +70,6 @@ public class afficheImage {
 
 		public static Image images(String nameImage) {
 			Image img = Mur0;
-			System.out.println(nameImage);
 			if(nameImage.equals("Model.Sol0"))
 				img = Sol0;
 			else if (nameImage.equals("Model.Hole")){
