@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private final static Integer nombreLigneArene = 20;
-	private final static Integer nombreColonneArene = 20;
+	private final static Integer nombreLigneArene = 19;
+	private final static Integer nombreColonneArene = 19;
 	private static Integer width = 30;
 	private static Integer height = 30;
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
@@ -15,7 +15,7 @@ public class Plateau implements IPlateau {
 	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
 	private ArrayList<Door> listDoor = new ArrayList<Door>();
 	private Staircase staircaseMap = new Staircase(true);
-	private Hole holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
+	private Hole holeMap;
 	private Integer numberMap;
 	private Map mapParLevel;
 	
@@ -30,10 +30,12 @@ public class Plateau implements IPlateau {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
+		
 		if (mode == "Mode Quête"){
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
 			Wall_replace_sol();
+			holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
 			//Door_replace_Wall();
 			//Hole_replace_Wall();
 			//Staircase_replace_Wall();	
@@ -82,7 +84,6 @@ public class Plateau implements IPlateau {
 	
 	private void Wall_replace_sol(){
 		for (Wall wallMap : listWallMap){
-			System.out.println("alors ?");
 				Integer posX = wallMap.getPosX();
 				Integer posY = wallMap.getPosY();
 				listTerrain.remove(indiceTerrain(posX,posY));

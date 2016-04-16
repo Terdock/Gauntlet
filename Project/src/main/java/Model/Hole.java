@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Hole extends PlateauObject {
 	
 	public Hole(Integer posX, Integer posY,boolean passable) {
@@ -7,10 +9,16 @@ public class Hole extends PlateauObject {
 	}
 	
 	public String nameImage(){
-		return null;
+		return this.getClass().getName();
 	}
 
-	public void tomber(){
-		
+	public void tomber(AbstractModel game,ArrayList<Hero> listHero){
+		for( Hero player : listHero){
+			if(getPosX().equals(player.getPosX()) & getPosY().equals(player.getPosY())){
+				player.setPosX(getPosX());
+				player.setPosX(getPosX());
+			
+			}	
+		}
 	}
 }
