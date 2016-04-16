@@ -72,9 +72,11 @@ public class Window extends JFrame implements Observer {
       		actionButton(modePanel.getButtons()[i], modePanel.getButtonName()[i]);
       	}
       	
+      	//Construction du Panel pour obtenir le nombre de joueur
+		playerPanel = new PlayerPanel(menuImage, principalPanel, imageIcons, "Player");
       	
       	//Contruction du panneau de jeu
-      	//panel[5] = new GamePanel(); 
+		gamePanel = new GamePanel(principalPanel, "GamePanel");
       	
       
 	}
@@ -87,8 +89,6 @@ public class Window extends JFrame implements Observer {
             	}else if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		
-            		//Construction du Panel pour obtenir le nombre de joueur
-            		playerPanel = new PlayerPanel(menuImage, principalPanel, imageIcons, "Player");
             		card.show(principalPanel, "Player");
             		for (Integer i = 1; i <= 4; i++){
         				actionButton(playerPanel.getButtons()[i-1], String.valueOf(i));
@@ -107,8 +107,7 @@ public class Window extends JFrame implements Observer {
             			heros[i][0] = identityPanel.getPlayerName()[i].getText();
             			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
             		}
-            		//controle.initComposant(modeDeJeu, heros);
-            		gamePanel = new GamePanel(principalPanel, "GamePanel");
+            		controle.initComposant(modeDeJeu, heros);
             		card.show(principalPanel, "GamePanel");
             	}
             	
@@ -116,9 +115,8 @@ public class Window extends JFrame implements Observer {
        });
 	}
 
-	@Override
 	public void update(ArrayList<WorldEntity> entities) {
-		//this.panel[5].setEntities(entities);
+		gamePanel.setEntities(entities);
 		
 	}
 

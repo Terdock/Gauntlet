@@ -21,21 +21,17 @@ public class GamePanel extends Panel {
 	
 	public GamePanel(Panel panel, String type){
 		super(panel, type);
-		this.setBounds(0, 0, 700, 600);
-		this.setBackground(Color.BLACK);
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
-		if(entities.get(0).nameType() == "Terrain")
+		if(entities.get(0).nameType().equals("Terrain"))
 			this.listTerrain = entities;
-		else if(entities.get(0).nameType() == "Hero")
+		else if(entities.get(0).nameType().equals("Hero"))
 			this.listHero = entities;
-		else if(entities.get(0).nameType() == "Monster")
+		else if(entities.get(0).nameType().equals("Monster"))
 			this.listMonster= entities;
-		else if(entities.get(0).nameType() == "Object")
+		else if(entities.get(0).nameType().equals("Object"))
 			this.listObject = entities;
-			
-		
 	}
          
 	public void paintComponent(Graphics g){

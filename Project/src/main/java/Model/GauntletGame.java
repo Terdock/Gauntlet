@@ -38,6 +38,7 @@ public class GauntletGame extends AbstractModel {
 		this.List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(PlateauObject obj : List_Terrain)
 			listTerrain.add(obj);
+		notifyObserver(listTerrain);
 		this.List_Monster = plateau.getListMonster();
 		for(Monster mob : List_Monster)
 			listMonster.add(mob);
