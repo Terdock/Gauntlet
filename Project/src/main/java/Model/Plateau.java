@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Plateau implements IPlateau {
 	private int nombreLigne;
 	private int nombreColonne;
-	private final static int nombreLigneArene = 50;
-	private final static int nombreColonneArene = 50;
+	private final static int nombreLigneArene = 20;
+	private final static int nombreColonneArene = 20;
 	private static int width = 30;
 	private static int height = 30;
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
@@ -33,8 +33,8 @@ public class Plateau implements IPlateau {
 		if (mode == "Mode Quête"){
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
-			Hole_replace_Wall();
-			Staircase_replace_Wall();	
+			//Hole_replace_Wall();
+			//Staircase_replace_Wall();	
 		}
 		else if (mode == "Mode Arène"){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
@@ -56,7 +56,7 @@ public class Plateau implements IPlateau {
 		if (mode == "Mode Quête"){
 			create_list_terrain(nombreLigne,nombreColonne,listTerrain);
 			Wall_replace_sol();
-			Door_replace_Wall();
+			//Door_replace_Wall();
 		}
 		create_list_terrain(nombreLigneArene,nombreColonneArene,listTerrainArene);
 		
