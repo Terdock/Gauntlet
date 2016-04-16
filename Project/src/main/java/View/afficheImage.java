@@ -19,7 +19,7 @@ public class afficheImage {
 		//chargerImage(String nameDossier,int max);
 		try {
 		      this.Sol0 = ImageIO.read(new File("images/Plateaux/Sol0.png"));
-		      this.Mur0 = ImageIO.read(new File("images/Plateaux/Plateau10.png"));
+		      this.Mur0 = ImageIO.read(new File("images/Plateaux/Wall10.png"));
 		      this.trou = ImageIO.read(new File("images/Plateaux/trou.png"));
 		} catch (IOException e) {
 			  e.printStackTrace();
