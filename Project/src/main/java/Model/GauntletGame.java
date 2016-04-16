@@ -7,6 +7,8 @@ public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
 	private static Integer nombreLigne = 15;
+	
+
 	private static Integer nombreColonne = 15;
 	IPlateau plateau;
 	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
@@ -19,7 +21,7 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-	
+		this.numberMap = 0;
 		
 	}
 	
@@ -34,7 +36,7 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(String Mode){
 		setMode(Mode);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,0,Mode);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,Mode);
 		this.List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(PlateauObject obj : List_Terrain)
 			listTerrain.add(obj);
@@ -76,4 +78,11 @@ public class GauntletGame extends AbstractModel {
 		return List_Hero;
 	}
 
+	public Integer getNumberMap() {
+		return numberMap;
+	}
+
+	public void setNumberMap(Integer numberMap) {
+		this.numberMap = numberMap;
+	}
 }
