@@ -17,6 +17,7 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
+	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition;
 	private afficheImage imageClasse;
 	
 	public GamePanel(Panel panel, String type){
@@ -38,11 +39,51 @@ public class GamePanel extends Panel {
 	public void paintComponent(Graphics g){
 		for (WorldEntity terre : listTerrain ){
 			if(terre.getVisible()){
-				Image img = imageClasse.images(terre.nameImage());
-				g.drawImage(img,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
+				checkCondition(terre);
+				Image image = null;
+				if(upLeftCondition){
+					image = imageClasse.getImagesWall()[0][2];
+				}else if(upDownCondition){
+					image = imageClasse.getImagesWall()[0][1];
+				}else if (downLeftCondition){
+					image = imageClasse.getImagesWall()[0][5];
+				}else if(leftRightCondition){
+					image = imageClasse.getImagesWall()[0][0];
+				}else if(downRightCondition){
+					image = imageClasse.getImagesWall()[0][4];
+				}else if(upRightCondition){
+					image = imageClasse.getImagesWall()[0][3];
+				}else{
+					image = imageClasse.getImagesSol()[0];
+				}
+				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
+				//Image img = imageClasse.images(terre.nameImage());
 			}
 		}
-		
+		repaint();
+	}
+	
+	private void checkCondition(WorldEntity terre){
+		upLeftCondition = terre.getPosX().equals(0) && terre.getPosY().equals(0);
+		upDownCondition = (terre.getPosX().equals(0) && !terre.getPosY().equals(0)
+				&& !terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY())) 
+				|| (terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
+				&& !terre.getPosY().equals(0) && !terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()));
+		downLeftCondition = (terre.getPosX().equals(0) && terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()));
+		leftRightCondition = (terre.getPosY().equals(0) && !terre.getPosX().equals(0) && 
+				!terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX())) 
+				|| (terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()) 
+				&& !terre.getPosX().equals(0) && !terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()));
+		downRightCondition = terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
+				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
+		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
+	}
+	
+	
+	
+	
+	
+	
 		/**
 		for (WorldEntity mob : listMonster )
 		{
@@ -66,7 +107,5 @@ public class GamePanel extends Panel {
 			}
 		}
 		**/
-		repaint();
-	}
 
 }

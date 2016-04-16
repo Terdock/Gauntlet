@@ -7,23 +7,12 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class afficheImage {
-	private ArrayList<Image> imaged; //reading the image file
+	private ArrayList<Image> image; //reading the image file
 	private Image[][] imagesWall = new Image[5][8];
-	ArrayList<Image> image; //reading the image file
-	static Image Sol0;
-    static Image Mur0;
-    static Image trou; 
+	private Image[] imagesSol = new Image[5];
 	
 	public afficheImage(){
 		chargerImage();
-		//chargerImage(String nameDossier,int max);
-		try {
-		      this.Sol0 = ImageIO.read(new File("images/Plateaux/Sol0.png"));
-		      this.Mur0 = ImageIO.read(new File("images/Plateaux/Wall10.png"));
-		      this.trou = ImageIO.read(new File("images/Plateaux/trou.png"));
-		} catch (IOException e) {
-			  e.printStackTrace();
-		};
 	}
 		
 	private void chargerImage(){
@@ -35,8 +24,25 @@ public class afficheImage {
 					e.printStackTrace();
 				};
 			}
+			try {
+				imagesSol[i] = ImageIO.read(new File("images/Plateaux/Sol" +String.valueOf(i)+".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			};
 		}
 	}
+
+	public Image[][] getImagesWall() {
+		return imagesWall;
+	}
+
+	public Image[] getImagesSol() {
+		return imagesSol;
+	}
+	
+	
+	
+	
 	
 	/**
 	public BufferedImage[] createSplit(BufferedImage image,int rows, int cols){
@@ -58,17 +64,8 @@ public class afficheImage {
 	      }
 	     return split;
 	}
-	**/
-		
-		public void chargerImage(String nameDossier,int max){
-			for(int i = 0; i < max; i++){
-				//image.add(new ImageIO.read(new FileInputStream(new File(nameDossier)));
-				
-			}
-			
-		}
 
-		public static Image images(String nameImage) {
+		public Image images(String nameImage) {
 			Image img = Mur0;
 			if(nameImage.equals("Model.Sol0"))
 				img = Sol0;
@@ -77,5 +74,5 @@ public class afficheImage {
 			}
 			return img;
 		}
-        
+        **/
 }
