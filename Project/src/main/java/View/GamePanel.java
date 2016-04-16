@@ -17,10 +17,11 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
-	private afficheImage imageClasse = new afficheImage();
+	private afficheImage imageClasse;
 	
 	public GamePanel(Panel panel, String type){
 		super(panel, type);
+		imageClasse = new afficheImage();
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -35,10 +36,11 @@ public class GamePanel extends Panel {
 	}
          
 	public void paintComponent(Graphics g){
+		//System.out.println(listTerrain);
 		for (WorldEntity terre : listTerrain ){
 			if(terre.getVisible()){
 				Image img = imageClasse.images(terre.nameImage());
-				System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());
+				//System.out.println("PosX: " + terre.getPosX()+"PosY "+terre.getPosY()+"TailleX "+terre.getWidth()+"TailleY "+ terre.getHeight());
 				g.drawImage(img,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 			}
 		}
