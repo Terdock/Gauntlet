@@ -39,7 +39,7 @@ public class Window extends JFrame implements Observer {
 		this.controle = controle;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
-        this.setSize(1000+16,600+29);
+        this.setSize(1000,600+29);
         this.setResizable(false);
         setLocationRelativeTo(null);
         initialisation();
@@ -48,6 +48,7 @@ public class Window extends JFrame implements Observer {
 	}
 
 	private void initialisation(){
+		//Chargement d'images
 		imageIcons = loadImage.loadIconImage();
 		welcomeImage = loadImage.loadBackground()[0];
 		menuImage = loadImage.loadBackground()[1];

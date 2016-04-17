@@ -22,6 +22,7 @@ public class Panel extends JPanel{
 	
 	public Panel(){
 		this.card = new CardLayout();
+		this.setBounds(0, 0, 1000, 600);
 		this.setLayout(card);
 	}
 	
@@ -47,14 +48,18 @@ public class Panel extends JPanel{
 	}
 
 	protected void arrows(){
+		//Arrow from Up
 		labels[0] = arrow(imageIcons[1], 302, 0, 198, 30);
         labels[1] = arrow(imageIcons[2], 500, 0, 198, 30);
+        //Arrow from Down
         labels[2] = arrow(imageIcons[1], 302, 570, 198, 30);
         labels[3] = arrow(imageIcons[2], 500, 570, 198, 30);
+        //Arrow from Left
         labels[4] = arrow(imageIcons[3], 0, 102, 30, 198);
         labels[5] = arrow(imageIcons[4], 0, 300, 30, 198);
-        labels[6] = arrow(imageIcons[3], 980, 102, 30, 198);
-        labels[7] = arrow(imageIcons[4], 980, 300, 30, 198);
+        //Arrow from Right
+        labels[6] = arrow(imageIcons[3], 964, 102, 30, 198);
+        labels[7] = arrow(imageIcons[4], 964, 300, 30, 198);
 	}
 	
 	protected Button button(String name, int x, int y, int width, int height, Color color){

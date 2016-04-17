@@ -8,10 +8,11 @@ public class ScorePanel extends Panel{
 	public ScorePanel(Panel panel){
 		super(panel);
 		this.setBounds(700, 0, 300, 600);
+		this.setBackground(Color.BLACK);
 	}
 
-	public void paintComponent(Graphics g){
-		this.setBackground(Color.BLACK);
-		//g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-	}
+//	public void paintComponent(Graphics g){
+//		this.setBackground(Color.BLACK);
+//		//g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+//	}
 }
