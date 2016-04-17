@@ -22,8 +22,10 @@ public class Map {
 		for(Integer h = 0; h < nombreColonne/5; h += nombreColonne/5 ){
 			for(Integer y = 4; y < nombreColonne; y++){
 				for(Integer x = 4; x < nombreLigne; x++){
-					if( x == 4 + (h+1) || y == 4 + (h+1) || x == (h+1)+ (nombreColonne-5)/5 || y == (h+1)+ (nombreLigne-5)/5  ){
+					if( x == 4 + (h+1) || y == 4 + (h+1) || x == (h+1) + (nombreColonne-5)/5 || y == (h+1)+ (nombreLigne-5)/5  )
+					{
 						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+						System.out.println(x);
 					}
 				}
 			}

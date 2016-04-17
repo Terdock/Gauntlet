@@ -35,6 +35,7 @@ public class GauntletGame extends AbstractModel {
 	
 	
 	public void createPlateau(String Mode){
+		
 		setMode(Mode);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,Mode);
 		this.List_Terrain = this.plateau.getLIST_TERRAIN();
@@ -45,7 +46,7 @@ public class GauntletGame extends AbstractModel {
 		for(Monster mob : List_Monster)
 			listMonster.add(mob);
 		//notifyObserver(listMonster);
-	}
+		}
 	
 	public void createHero(String[][] playerRegister) {
 		List_Hero = convertListHero(playerRegister);
