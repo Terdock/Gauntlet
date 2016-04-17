@@ -31,9 +31,9 @@ public class Window extends JFrame implements Observer {
 	private LoadImage loadImage = new LoadImage();
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private String[][] heros = new String[5][2];
-    private Image welcomeImage, menuImage;
+    private Image welcomeImage, menuImage, scoreImage;
     private AbstractControler controle;
-    private Integer nombreDeJoueur;
+    private Integer playerNumber;
 	
 	public Window(AbstractControler controle){
 		this.controle = controle;
@@ -52,6 +52,7 @@ public class Window extends JFrame implements Observer {
 		imageIcons = loadImage.loadIconImage();
 		welcomeImage = loadImage.loadBackground()[0];
 		menuImage = loadImage.loadBackground()[1];
+		scoreImage = loadImage.loadBackground()[2];
 		
 		//Construction du panneau qui reprend tous les panneaux
 		principalPanel = new Panel();
@@ -73,7 +74,7 @@ public class Window extends JFrame implements Observer {
       	//Contruction du panneau de jeu et de score
 		gameContentPanel = new Panel(principalPanel, "GamePanel");
 		gamePanel = new GamePanel(gameContentPanel);
-		scorePanel = new ScorePanel(gameContentPanel);
+		scorePanel = new ScorePanel(gameContentPanel, scoreImage);
       	
       
 	}
@@ -92,7 +93,7 @@ public class Window extends JFrame implements Observer {
         			}
             	
             	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
-            		nombreDeJoueur = Integer.valueOf(info);
+            		playerNumber = Integer.valueOf(info);
             		
             		//Construction du Panel pour obtenir les information des joueurs
             		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, info);
@@ -100,10 +101,11 @@ public class Window extends JFrame implements Observer {
             		actionButton(identityPanel.getButton(),"Information");
             		
             	}else if (info.equals("Information")){
-            		for(Integer i = 0; i < identityPanel.getPlayerName().length; i++){
+            		for(Integer i = 0; i < playerNumber; i++){
             			heros[i][0] = identityPanel.getPlayerName()[i].getText();
             			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
             		}
+            		scorePanel.addName(heros, playerNumber);
             		controle.initComposant(modeDeJeu, heros);
             		card.show(principalPanel, "GamePanel");
             	}
