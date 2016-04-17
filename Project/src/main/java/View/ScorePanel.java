@@ -16,7 +16,7 @@ public class ScorePanel extends Panel{
 	
 	public void addName(String[][] heros, Integer playerNumber){
 		for (int i = 0; i < playerNumber; i++){
-			labels[i] = text(heros[i][0] + " " + heros[i][1], 
+			labels[i] = text(heros[i][0] + " : " + heros[i][1], 
 					60, 60 + i*130, 200, 30, Color.LIGHT_GRAY);
 		}
 	}

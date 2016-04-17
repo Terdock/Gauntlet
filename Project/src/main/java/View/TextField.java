@@ -11,11 +11,11 @@ public class TextField extends JTextField{
 	
 	public TextField(String name, Integer i){
 		this.setForeground(Color.ORANGE);
-		//this.setHorizontalAlignment(SwingConstants.CENTER);
+		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setText(name);
 		this.setFont(font);
 		this.setOpaque(false);
-		this.setBounds(550, 60 + i*100, 200, 30);
+		this.setBounds(550, 230 + (i-1)*100, 200, 30);
 	}
 
 }

@@ -88,11 +88,11 @@ public class Window extends JFrame implements Observer {
             		modeDeJeu = info;
             		
             		card.show(principalPanel, "Player");
-            		for (Integer i = 1; i <= 4; i++){
+            		for (Integer i = 1; i <= 2; i++){
         				actionButton(playerPanel.getButtons()[i-1], String.valueOf(i));
         			}
             	
-            	}else if (info.equals("1")||info.equals("2")||info.equals("3")||info.equals("4")){
+            	}else if (info.equals("1")||info.equals("2")){
             		playerNumber = Integer.valueOf(info);
             		
             		//Construction du Panel pour obtenir les information des joueurs

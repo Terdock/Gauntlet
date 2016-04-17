@@ -17,9 +17,9 @@ public class PlayerPanel extends Panel{
 	
 	private void initialisation(){
 		arrows();
-		label = text("NOMBRE DE JOUEUR", 330, 150, 400, 35, Color.ORANGE);
-		for (Integer i = 1; i <= 4; i++){
-			buttons[i-1] = button(String.valueOf(i) + " Joueur", 405, 230 + (i-1)*50, 200, 35, Color.ORANGE);
+		label = text("NOMBRE DE JOUEUR", 330, 190, 400, 35, Color.ORANGE);
+		for (Integer i = 1; i <= 2; i++){
+			buttons[i-1] = button(String.valueOf(i) + " Joueur", 405, 260 + (i-1)*85, 200, 35, Color.ORANGE);
 		}
 	}
 
