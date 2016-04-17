@@ -24,5 +24,9 @@ public class HomePanel extends Panel{
 	public Button getButton() {
 		return button;
 	}
+	
+	public void paintComponent(Graphics g){
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
 
 }

@@ -26,7 +26,8 @@ public class Window extends JFrame implements Observer {
 	private PlayerPanel playerPanel;
 	private IdentityPanel identityPanel;
 	private GamePanel gamePanel;
-	private Panel principalPanel;
+	private ScorePanel scorePanel;
+	private Panel principalPanel, gameContentPanel;
 	private ImageIcon[] imageIcons = new ImageIcon[10];
 	private String[][] heros = new String[5][2];
     private Image welcomeImage, menuImage;
@@ -37,7 +38,7 @@ public class Window extends JFrame implements Observer {
 		this.controle = controle;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
-        this.setSize(1000+16,600+39);
+        this.setSize(1000+16,600+29);
         this.setResizable(false);
         setLocationRelativeTo(null);
         initialisation();
@@ -75,8 +76,10 @@ public class Window extends JFrame implements Observer {
       	//Construction du Panel pour obtenir le nombre de joueur
 		playerPanel = new PlayerPanel(menuImage, principalPanel, imageIcons, "Player");
       	
-      	//Contruction du panneau de jeu
-		gamePanel = new GamePanel(principalPanel, "GamePanel");
+      	//Contruction du panneau de jeu et de score
+		gameContentPanel = new Panel(principalPanel, "GamePanel");
+		gamePanel = new GamePanel(gameContentPanel);
+		scorePanel = new ScorePanel(gameContentPanel);
       	
       
 	}

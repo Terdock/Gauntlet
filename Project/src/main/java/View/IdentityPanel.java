@@ -42,6 +42,10 @@ public class IdentityPanel extends Panel{
 		}
 	}
 	
+	public void paintComponent(Graphics g){
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
+	
 	public Button getButton() {
 		return button;
 	}

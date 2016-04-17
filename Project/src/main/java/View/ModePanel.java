@@ -25,6 +25,10 @@ public class ModePanel extends Panel{
         }
 	}
 	
+	public void paintComponent(Graphics g){
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
+	
 	public String[] getButtonName() {
 		return buttonName;
 	}

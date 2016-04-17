@@ -1,12 +1,9 @@
 package View;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
 import Model.WorldEntity;
 
@@ -20,8 +17,10 @@ public class GamePanel extends Panel {
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition;
 	private afficheImage imageClasse;
 	
-	public GamePanel(Panel panel, String type){
-		super(panel, type);
+	public GamePanel(Panel panel){
+		super(panel);
+		this.setBounds(0, 0, 700, 600);
+		this.setSize(new Dimension(700,600));
 		imageClasse = new afficheImage();
 	}
 
