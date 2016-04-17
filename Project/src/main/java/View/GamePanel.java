@@ -15,13 +15,13 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition;
-	private afficheImage imageClasse;
+	private LoadImage imageClasse;
 	
 	public GamePanel(Panel panel){
 		super(panel);
 		this.setBounds(0, 0, 700, 600);
 		this.setSize(new Dimension(700,600));
-		imageClasse = new afficheImage();
+		imageClasse = new LoadImage();
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -53,7 +53,7 @@ public class GamePanel extends Panel {
 				}else if(upRightCondition){
 					image = imageClasse.getImagesWall()[0][3];
 				}else{
-					image = imageClasse.getImagesSol()[0];
+					image = imageClasse.getImagesGround()[0];
 				}
 				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 				//Image img = imageClasse.images(terre.nameImage());

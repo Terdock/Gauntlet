@@ -1,20 +1,21 @@
 package View;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.awt.*;
 
-public class afficheImage {
+import javax.imageio.ImageIO;
+
+public class LoadImage {
 	private ArrayList<Image> image; //reading the image file
 	private Image[][] imagesWall = new Image[5][8];
-	private Image[] imagesSol = new Image[5];
+	private Image[] imagesGround = new Image[5];
 	
-	public afficheImage(){
+	public LoadImage(){
 		chargerImage();
 	}
-		
+	
 	private void chargerImage(){
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j <8; j++){
@@ -25,7 +26,7 @@ public class afficheImage {
 				};
 			}
 			try {
-				imagesSol[i] = ImageIO.read(new File("images/Plateaux/Sol" +String.valueOf(i)+".png"));
+				imagesGround[i] = ImageIO.read(new File("images/Plateaux/Ground" +String.valueOf(i)+".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			};
@@ -36,13 +37,11 @@ public class afficheImage {
 		return imagesWall;
 	}
 
-	public Image[] getImagesSol() {
-		return imagesSol;
+	public Image[] getImagesGround() {
+		return imagesGround;
 	}
 	
-	
-	
-	
+
 	
 	/**
 	public BufferedImage[] createSplit(BufferedImage image,int rows, int cols){
