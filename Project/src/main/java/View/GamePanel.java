@@ -22,6 +22,7 @@ public class GamePanel extends Panel {
 		this.setBounds(0, 0, 700, 600);
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
+		imageClasse.chargerImage();
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {

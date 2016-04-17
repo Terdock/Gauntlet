@@ -3,20 +3,32 @@ package View;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class LoadImage {
-	private ArrayList<Image> image; //reading the image file
 	private Image[][] imagesWall = new Image[5][8];
 	private Image[] imagesGround = new Image[5];
+	private Image[][][] imagesHeros = new Image[4][4][3];
+	private Image[][] imagesWeapons = new Image[4][8];
+	private Image[][][] imagesMonsters = new Image[3][4][3];
+	private ImageIcon[] imageIcons = new ImageIcon[6];
+	private Image[] imageBackground = new Image[2];
+	private Image imageDeathHeros, imageDeathMonsters;
 	
 	public LoadImage(){
-		chargerImage();
+		
 	}
 	
-	private void chargerImage(){
+	public void chargerImage(){
+		loadTerrain();
+		loadHeros();
+		loadWeapons();
+		loadMonsters();
+	}
+	
+	private void loadTerrain(){
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j <8; j++){
 				try {
@@ -32,6 +44,76 @@ public class LoadImage {
 			};
 		}
 	}
+	
+	private void loadHeros(){
+		for(int i = 0; i<4; i++){
+			for(int j = 0; j<4; j++){
+				for(int n = 0; n<3; n++){
+					try {
+						imagesHeros[i][j][n] = ImageIO.read(new File("images/Heros/heros" +String.valueOf(i)+ String.valueOf(j)+ String.valueOf(n) +".png"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					};
+				}
+			}
+		}
+		try {
+			imageDeathHeros = ImageIO.read(new File("images/Heros/herosDeath.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
+	}
+	
+	private void loadWeapons(){
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 8; j++){
+				try {
+					imagesWeapons[i][j] = ImageIO.read(new File("images/Heros/weapon" + String.valueOf(i) + String.valueOf(j) +".png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				};
+			}
+		}
+	}
+	
+	private void loadMonsters(){
+		for(int i = 0; i<3; i++){
+			for(int j = 0; j<4; j++){
+				for(int n = 0; n<3; n++){
+					try {
+						imagesMonsters[i][j][n] = ImageIO.read(new File("images/Monsters/monster" +String.valueOf(i)+ String.valueOf(j)+ String.valueOf(n) +".png"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					};
+				}
+			}
+		}
+		try {
+			imageDeathMonsters = ImageIO.read(new File("images/Monsters/monsterDeath.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
+	}
+	
+	public ImageIcon[] loadIconImage(){
+		imageIcons[0] = new ImageIcon("Images/arrow.gif");
+		imageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
+		imageIcons[2] = new ImageIcon("Images/arrowRight.gif");
+		imageIcons[3] = new ImageIcon("Images/arrowUp.gif");
+		imageIcons[4] = new ImageIcon("Images/arrowDown.gif");
+		imageIcons[5] = new ImageIcon("Images/menuSeparation.gif");
+		return imageIcons;
+	}
+	
+	public Image[] loadBackground(){
+		try {
+			imageBackground[0] = ImageIO.read(new File("Images/welcome.jpg"));   
+			imageBackground[1] = ImageIO.read(new File("Images/home.jpg"));
+		} catch (IOException e) {
+		      e.printStackTrace();
+		}
+		return imageBackground;
+	}
 
 	public Image[][] getImagesWall() {
 		return imagesWall;
@@ -40,8 +122,28 @@ public class LoadImage {
 	public Image[] getImagesGround() {
 		return imagesGround;
 	}
-	
 
+	public Image[][][] getImagesHeros() {
+		return imagesHeros;
+	}
+
+	public Image[][] getImagesWeapons() {
+		return imagesWeapons;
+	}
+
+	public Image[][][] getImagesMonsters() {
+		return imagesMonsters;
+	}
+
+	public Image getImageDeathHeros() {
+		return imageDeathHeros;
+	}
+
+	public Image getImageDeathMonsters() {
+		return imageDeathMonsters;
+	}
+	
+	
 	
 	/**
 	public BufferedImage[] createSplit(BufferedImage image,int rows, int cols){

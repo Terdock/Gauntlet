@@ -28,7 +28,8 @@ public class Window extends JFrame implements Observer {
 	private GamePanel gamePanel;
 	private ScorePanel scorePanel;
 	private Panel principalPanel, gameContentPanel;
-	private ImageIcon[] imageIcons = new ImageIcon[10];
+	private LoadImage loadImage = new LoadImage();
+	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private String[][] heros = new String[5][2];
     private Image welcomeImage, menuImage;
     private AbstractControler controle;
@@ -47,17 +48,9 @@ public class Window extends JFrame implements Observer {
 	}
 
 	private void initialisation(){
-		try {
-		      this.welcomeImage = ImageIO.read(new File("Images/welcome.jpg"));
-		      this.imageIcons[0] = new ImageIcon("Images/arrow.gif");
-		      this.imageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
-		      this.imageIcons[2] = new ImageIcon("Images/arrowRight.gif");
-		      this.imageIcons[3] = new ImageIcon("Images/arrowUp.gif");
-		      this.imageIcons[4] = new ImageIcon("Images/arrowDown.gif");
-		      this.imageIcons[5] = new ImageIcon("Images/menuSeparation.gif");
-		      this.menuImage = ImageIO.read(new File("Images/home.jpg"));
-		} catch (IOException e) {
-		      e.printStackTrace();}
+		imageIcons = loadImage.loadIconImage();
+		welcomeImage = loadImage.loadBackground()[0];
+		menuImage = loadImage.loadBackground()[1];
 		
 		//Construction du panneau qui reprend tous les panneaux
 		principalPanel = new Panel();
