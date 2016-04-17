@@ -1,8 +1,8 @@
 package Model;
 
-public class Knight extends Hero {
-
-	public Knight(Integer posX, Integer posY) {
+public class Warrior extends Heros{
+	
+	public Warrior(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 

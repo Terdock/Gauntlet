@@ -1,6 +1,6 @@
 package Model;
 
-public class Elf extends Hero {
+public class Elf extends Heros {
 	
 	public Elf(Integer posX, Integer posY) {
 		super(posX,posY);

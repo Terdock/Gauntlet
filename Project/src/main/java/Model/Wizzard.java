@@ -1,8 +1,7 @@
 package Model;
 
-import Model.Hero;
 
-public class Wizzard extends Hero {
+public class Wizzard extends Heros {
 	public Wizzard(Integer posX, Integer posY) {
 		super(posX,posY);
 	}

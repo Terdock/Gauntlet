@@ -11,7 +11,7 @@ public class GauntletGame extends AbstractModel {
 
 	private static Integer nombreColonne = 100;
 	IPlateau plateau;
-	private ArrayList<Hero> List_Hero = new ArrayList<Hero>();
+	private ArrayList<Heros> List_Hero = new ArrayList<Heros>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
 	private ArrayList<Monster> List_Monster = new ArrayList<Monster>();
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
@@ -49,20 +49,20 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createHero(String[][] playerRegister) {
 		List_Hero = convertListHero(playerRegister);
-		for(Hero hero : List_Hero)
+		for(Heros hero : List_Hero)
 			listHero.add(hero);
 		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
 	}
 	
-	public ArrayList<Hero> convertListHero(String[][] playerRegister){
+	public ArrayList<Heros> convertListHero(String[][] playerRegister){
 		for (Integer i = 0; i < playerRegister.length; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
 				Wizzard W = new Wizzard(1,1);
 				W.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(W);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				Knight K = new Knight(1,1);
+				Warrior K = new Warrior(1,1);
 				K.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(K);
 			}else if( playerRegister[i][1] == "Nain"){

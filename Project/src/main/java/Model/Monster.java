@@ -9,10 +9,10 @@ public class Monster<WoldObject> extends Creatures {
     private boolean iSeeHero;
     private static Integer degat = 10;
     private Integer typeMonster = 1;
-    private ArrayList<Hero> listHeros;
+    private ArrayList<Heros> listHeros;
     private WoldObject wObject; 
      
-    public void setListHeros(ArrayList<Hero> listHeros) {
+    public void setListHeros(ArrayList<Heros> listHeros) {
 		this.listHeros = listHeros;
 	}
 

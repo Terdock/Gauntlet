@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class Hero extends Creatures {
+public abstract class Heros extends Creatures{
 	private String playerName;
 	private Integer force = 0;
 	private Integer defense = 0;
@@ -10,7 +10,7 @@ public abstract class Hero extends Creatures {
 	private Integer power = 0;
 	private Integer dexterity = 0;
 
-	public Hero(Integer posX, Integer posY) {
+	public Heros(Integer posX, Integer posY) {
 		super(posX,posY);
 	}
 	
@@ -33,5 +33,5 @@ public abstract class Hero extends Creatures {
 	public String nameType(){
 		return "Hero";
 	}
+
 }
-	

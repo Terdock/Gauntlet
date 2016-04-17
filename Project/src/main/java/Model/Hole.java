@@ -12,8 +12,8 @@ public class Hole extends PlateauObject {
 		return this.getClass().getName();
 	}
 
-	public void tomber(AbstractModel game,ArrayList<Hero> listHero){
-		for( Hero player : listHero){
+	public void tomber(AbstractModel game,ArrayList<Heros> listHero){
+		for( Heros player : listHero){
 			if(getPosX().equals(player.getPosX()) & getPosY().equals(player.getPosY())){
 				player.setPosX(getPosX());
 				player.setPosX(getPosX());
