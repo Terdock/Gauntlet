@@ -19,8 +19,7 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-		this.numberMap = 1;
-		notifyObserver(numberMap);
+		this.numberMap = 2;
 		
 	}
 	
@@ -38,6 +37,7 @@ public class GauntletGame extends AbstractModel {
 	public void createPlateau(String Mode){
 		
 		setMode(Mode);
+		notifyObserver(numberMap);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,Mode);
 		this.List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(PlateauObject obj : List_Terrain)

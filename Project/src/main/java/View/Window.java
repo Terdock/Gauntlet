@@ -130,7 +130,6 @@ public class Window extends JFrame implements Observer {
 	}
 
 	public void update(Integer numberMap) {
-		System.out.println(numberMap);
 		gamePanel.setNumberMap(numberMap);
 	}
 
