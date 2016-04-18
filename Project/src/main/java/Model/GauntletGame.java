@@ -7,8 +7,6 @@ public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
 	private static Integer nombreLigne = 100;
-	
-
 	private static Integer nombreColonne = 100;
 	IPlateau plateau;
 	private ArrayList<Heros> List_Hero = new ArrayList<Heros>();
@@ -21,7 +19,7 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-		this.numberMap = 2;
+		this.numberMap = 1;
 		notifyObserver(numberMap);
 		
 	}
