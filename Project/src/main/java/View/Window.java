@@ -127,10 +127,9 @@ public class Window extends JFrame implements Observer {
 		
 	}
 
-	@Override
 	public void update(Integer numberMap) {
+		System.out.println(numberMap);
 		gamePanel.setNumberMap(numberMap);
-		
 	}
 
 }
