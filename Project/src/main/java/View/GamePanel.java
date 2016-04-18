@@ -54,8 +54,8 @@ public class GamePanel extends Panel {
 				}else if(upRightCondition){
 					image = imageClasse.getImagesWall()[0][3];
 				}else if(terre.getClass().getName().equals("Model.Wall")){
-					image = imageClasse.getImagesWall()[0][3];
-					System.out.println("alors ?");
+					image = imageClasse.getImagesWall()[0][7];
+					System.out.println(" Il est censé affiché un mur à : x=" +(terre.getPosX()/30) + " et y =" + (terre.getPosY()/30) );
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[0];
 				}else {

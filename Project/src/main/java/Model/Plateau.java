@@ -35,10 +35,10 @@ public class Plateau implements IPlateau {
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
 			Wall_replace_sol();
-			holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
-			Hole_replace_Wall();
-			staircaseMap = new Staircase(true);
-			Staircase_replace_Wall();
+			//holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
+			//Hole_replace_Wall();
+			//staircaseMap = new Staircase(true);
+			//Staircase_replace_Wall();
 			//Door_replace_Wall();
 				
 		}
@@ -88,8 +88,7 @@ public class Plateau implements IPlateau {
 		for (Wall wallMap : listWallMap){
 				Integer posX = wallMap.getPosX();
 				Integer posY = wallMap.getPosY();
-				listTerrain.remove(indiceTerrain(posX,posY));
-				listTerrain.add(indiceTerrain(posX,posY),wallMap);
+				listTerrain.set(indiceTerrain(posX,posY), wallMap);
 			}
 		}
 		
@@ -97,31 +96,26 @@ public class Plateau implements IPlateau {
 		for (Door door : listDoor){
 				Integer posX = door.getPosX();
 				Integer posY = door.getPosY();
-				listTerrain.remove(indiceTerrain(posX,posY));
-				listTerrain.add(indiceTerrain(posX,posY),door);
+				listTerrain.set(indiceTerrain(posX,posY), door);
 			}
-		}
+	}
 	
 	private void Staircase_replace_Wall(){
 		Integer posX = staircaseMap.getPosX();
 		Integer posY = staircaseMap.getPosY();
-		listTerrainArene.remove(indiceTerrain(posX,posY));
-		listTerrainArene.add(indiceTerrain(posX,posY),staircaseMap);
+		listTerrain.set(indiceTerrain(posX,posY),staircaseMap);
 	}
 	
 	
 	private void Hole_replace_Wall(){
 		Integer posX = holeMap.getPosX();
 		Integer posY = holeMap.getPosY();
-		listTerrain.remove(indiceTerrain(posX,posY));
-		listTerrain.add(indiceTerrain(posX,posY),holeMap);
-		 
+		listTerrain.set(indiceTerrain(posX,posY),holeMap);
 	}
 	
 	public Integer indiceTerrain(Integer posX,Integer posY){
 		return ((posY)*(nombreColonne+2)+(posX))/height;
 	}
-	
 	
 	
 	private void create_MAP(){
@@ -177,6 +171,16 @@ public class Plateau implements IPlateau {
 		this.nombreColonne = nombreColonne;
 	}
 	
+	public static Integer getNombrelignearene() {
+		return nombreLigneArene;
+	}
+
+
+	public static Integer getNombrecolonnearene() {
+		return nombreColonneArene;
+	}
+
+	
 
 	public ArrayList<Wall> getListWallMap() {
 		return listWallMap;
@@ -210,16 +214,6 @@ public class Plateau implements IPlateau {
 	public static Integer getHeight() {
 		return height;
 	}
-
-	public static Integer getNombrelignearene() {
-		return nombreLigneArene;
-	}
-
-
-	public static Integer getNombrecolonnearene() {
-		return nombreColonneArene;
-	}
-
 
 	public ArrayList<PlateauObject> getLIST_TERRAIN() {
 		return listTerrain;
