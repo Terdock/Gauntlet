@@ -15,7 +15,19 @@ public abstract class Heros extends Creatures{
 	}
 	
 	public  void move(){
-		
+		//From Keyboard move
+		//if(actionUp){
+		//		setPosY(getPosY + step);
+		//}
+		//else if(actionDown){
+		//		setPosY(getPosY - step);
+		//}
+		//else if(actionRight){
+		//		setPosX(getPosX + step);
+		//}
+		//else if(actionLeft){
+		//		setPosX(getPosX - step);
+		//}
 	}
 	
 	public abstract void attack();

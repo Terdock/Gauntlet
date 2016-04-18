@@ -14,7 +14,7 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
-	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition;
+	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
 	
 	public GamePanel(Panel panel){
@@ -53,7 +53,9 @@ public class GamePanel extends Panel {
 					image = imageClasse.getImagesWall()[0][4];
 				}else if(upRightCondition){
 					image = imageClasse.getImagesWall()[0][3];
-				}else{
+				}else if(allConditionEdge && terre.getClass().getName().equals("Model.Wall")){
+					image = imageClasse.getImagesWall()[0][3];
+				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[0];
 				}
 				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
@@ -77,6 +79,7 @@ public class GamePanel extends Panel {
 		downRightCondition = terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
 				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
 		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
+		allConditionEdge = !!upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
 	}
 	
 	
