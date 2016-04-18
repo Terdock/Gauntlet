@@ -84,7 +84,15 @@ public class Window extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e){
             	if(info.equals("ModeDeJeu")){
             		card.show(principalPanel, info);
-            	}else if (info.equals("Mode Quête")||info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            	}else if (info.equals("Mode Quête")){
+            		modeDeJeu = info;
+            		playerNumber = 1;
+            		
+            		//Construction du Panel pour obtenir les informations du joueur en Mode Quête
+            		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, "1");
+            		card.show(principalPanel, "1");
+            		actionButton(identityPanel.getButton(),"Information");
+            	}else if (info.equals("Mode Arène")||info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		
             		card.show(principalPanel, "Player");
@@ -95,7 +103,7 @@ public class Window extends JFrame implements Observer {
             	}else if (info.equals("1")||info.equals("2")){
             		playerNumber = Integer.valueOf(info);
             		
-            		//Construction du Panel pour obtenir les information des joueurs
+            		//Construction du Panel pour obtenir les informations des joueurs en Mode Arène et Mode Survivor
             		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, info);
             		card.show(principalPanel, info);
             		actionButton(identityPanel.getButton(),"Information");
