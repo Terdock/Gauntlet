@@ -44,8 +44,9 @@ public class GamePanel extends Panel {
 			if(terre.getVisible()){
 				checkCondition(terre);
 				Image image = null;
+				numberMap = 1;
 				if(upLeftCondition){
-					image = imageClasse.getImagesWall()[numberMap][2];
+					image = imageClasse.getImagesWall()[2][2];
 				}else if(upDownCondition){
 					image = imageClasse.getImagesWall()[numberMap][1];
 				}else if (downLeftCondition){
