@@ -3,11 +3,11 @@ package Model;
 
 public class Staircase extends PlateauObject {
 	
-	private final static Integer nombreLigne = 40;
-	private final static Integer nombreColonne = 40;
+	private static Integer nombreLigne = Plateau.getNombrelignearene();
+	private static Integer nombreColonne = Plateau.getNombrecolonnearene();
 	
 	public Staircase(boolean passable) {
-		super(nombreLigne, nombreColonne, passable);
+		super((nombreLigne-2)*getWidth(), (nombreColonne-2)*getHeight(), passable);
 	}
 	
 	public String nameImage(){

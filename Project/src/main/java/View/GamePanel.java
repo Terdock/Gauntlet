@@ -55,6 +55,7 @@ public class GamePanel extends Panel {
 					image = imageClasse.getImagesWall()[0][3];
 				}else if(allConditionEdge && terre.getClass().getName().equals("Model.Wall")){
 					image = imageClasse.getImagesWall()[0][3];
+					System.out.println("alors ?");
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[0];
 				}
@@ -79,7 +80,7 @@ public class GamePanel extends Panel {
 		downRightCondition = terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
 				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
 		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
-		allConditionEdge = !!upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
+		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
 	}
 	
 	

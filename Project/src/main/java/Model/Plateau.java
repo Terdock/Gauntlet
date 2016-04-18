@@ -14,7 +14,7 @@ public class Plateau implements IPlateau {
 	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
 	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
 	private ArrayList<Door> listDoor = new ArrayList<Door>();
-	private Staircase staircaseMap = new Staircase(true);
+	private Staircase staircaseMap;
 	private Hole holeMap;
 	private Integer numberMap;
 	private Map mapParLevel;
@@ -36,9 +36,11 @@ public class Plateau implements IPlateau {
 			create_MAP();
 			Wall_replace_sol();
 			holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
+			Hole_replace_Wall();
+			staircaseMap = new Staircase(true);
+			Staircase_replace_Wall();
 			//Door_replace_Wall();
-			//Hole_replace_Wall();
-			//Staircase_replace_Wall();	
+				
 		}
 		else if (mode == "Mode Arène"){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
@@ -103,8 +105,8 @@ public class Plateau implements IPlateau {
 	private void Staircase_replace_Wall(){
 		Integer posX = staircaseMap.getPosX();
 		Integer posY = staircaseMap.getPosY();
-		listTerrain.remove(indiceTerrain(posX,posY));
-		listTerrain.add(indiceTerrain(posX,posY),staircaseMap);
+		listTerrainArene.remove(indiceTerrain(posX,posY));
+		listTerrainArene.add(indiceTerrain(posX,posY),staircaseMap);
 	}
 	
 	
@@ -208,6 +210,16 @@ public class Plateau implements IPlateau {
 	public static Integer getHeight() {
 		return height;
 	}
+
+	public static Integer getNombrelignearene() {
+		return nombreLigneArene;
+	}
+
+
+	public static Integer getNombrecolonnearene() {
+		return nombreColonneArene;
+	}
+
 
 	public ArrayList<PlateauObject> getLIST_TERRAIN() {
 		return listTerrain;
