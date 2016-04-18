@@ -25,7 +25,6 @@ public class Map {
 					if( x == 4 + (h+1) || y == 4 + (h+1) || x == (h+1) + (nombreColonne-5)/5 || y == (h+1)+ (nombreLigne-5)/5  )
 					{
 						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
-						System.out.println(x);
 					}
 				}
 			}
