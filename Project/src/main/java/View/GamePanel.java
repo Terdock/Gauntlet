@@ -44,23 +44,23 @@ public class GamePanel extends Panel {
 				Image image = null;
 				System.out.println(numberMap);
 				if(upLeftCondition){
-					image = imageClasse.getImagesWall()[numberMap][2];
+					image = imageClasse.getImagesWall()[numberMap-1][2];
 				}else if(upDownCondition){
-					image = imageClasse.getImagesWall()[numberMap][1];
+					image = imageClasse.getImagesWall()[numberMap-1][1];
 				}else if (downLeftCondition){
-					image = imageClasse.getImagesWall()[numberMap][5];
+					image = imageClasse.getImagesWall()[numberMap-1][5];
 				}else if(leftRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][0];
+					image = imageClasse.getImagesWall()[numberMap-1][0];
 				}else if(downRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][4];
+					image = imageClasse.getImagesWall()[numberMap-1][4];
 				}else if(upRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][3];
+					image = imageClasse.getImagesWall()[numberMap-1][3];
 				}else if(terre.getClass().getName().equals("Model.Wall")){
-					image = imageClasse.getImagesWall()[numberMap][7];
+					image = imageClasse.getImagesWall()[numberMap-1][7];
 				}else if(terre.getClass().getName().equals("Model.Sol")){
-					image = imageClasse.getImagesGround()[numberMap];
+					image = imageClasse.getImagesGround()[numberMap-1];
 				}else {
-					image = imageClasse.getImagesWall()[numberMap][3];
+					image = imageClasse.getImagesWall()[numberMap-1][3];
 				}
 				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 			}
