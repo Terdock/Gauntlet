@@ -53,11 +53,13 @@ public class GamePanel extends Panel {
 					image = imageClasse.getImagesWall()[0][4];
 				}else if(upRightCondition){
 					image = imageClasse.getImagesWall()[0][3];
-				}else if(allConditionEdge && terre.getClass().getName().equals("Model.Wall")){
+				}else if(terre.getClass().getName().equals("Model.Wall")){
 					image = imageClasse.getImagesWall()[0][3];
 					System.out.println("alors ?");
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[0];
+				}else {
+					image = imageClasse.getImagesWall()[0][3];
 				}
 				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
 				//Image img = imageClasse.images(terre.nameImage());
