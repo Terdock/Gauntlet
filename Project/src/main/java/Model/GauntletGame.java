@@ -6,10 +6,10 @@ import observer.Observable;
 public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
-	private static Integer nombreLigne = 10;
+	private static Integer nombreLigne = 100;
 	
 
-	private static Integer nombreColonne = 10;
+	private static Integer nombreColonne = 100;
 	IPlateau plateau;
 	private ArrayList<Heros> List_Hero = new ArrayList<Heros>();
 	private ArrayList<WorldEntity> listHero = new ArrayList<WorldEntity>();
@@ -21,10 +21,13 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-		this.numberMap = 0;
+		this.numberMap = 2;
+		notifyObserver(numberMap);
 		
 	}
 	
+
+
 	public String getMode() {
 		return mode;
 	}

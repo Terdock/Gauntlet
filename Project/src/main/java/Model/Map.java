@@ -19,10 +19,10 @@ public class Map {
 
 	public ArrayList<Wall> create_MAP0(){
 		ArrayList<Wall> list  = new ArrayList<Wall>();
-		for(Integer h = 0; h < nombreColonne/5; h += nombreColonne/5 ){
-			for(Integer y = 4; y < nombreColonne; y++){
-				for(Integer x = 4; x < nombreLigne; x++){
-					if( x == 4 + (h+1) || y == 4 + (h+1) || x == (h+1) + (nombreColonne-5)/5 || y == (h+1)+ (nombreLigne-5)/5  )
+		for(Integer h = 0; h < 5; h++){
+			for(Integer y = 0; y < nombreColonne+1; y++){
+				for(Integer x = 0; x < nombreLigne+1; x++){
+					if( x == h*20 || y == h*20)
 					{
 						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
 					}
@@ -34,20 +34,60 @@ public class Map {
 
 
 	public ArrayList<Wall> create_MAP1(){
-		return null;
-		//LIST_Wall_MAP1.add(new Wall())
+		ArrayList<Wall> list  = new ArrayList<Wall>();
+		for(Integer h = 0; h < 5; h++){
+			for(Integer y = 0; y < nombreColonne+1; y++){
+				for(Integer x = 0; x < nombreLigne+1; x++){
+					if( x == h*20 || y == h*20)
+					{
+						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+					}
+				}
+			}
+		}
+		return list;
 	}
 	public ArrayList<Wall> create_MAP2(){
-		return null;
-		//LIST_Wall_MAP2.add(new Wall())
+		ArrayList<Wall> list  = new ArrayList<Wall>();
+		for(Integer h = 0; h < 5; h++){
+			for(Integer y = 0; y < nombreColonne+1; y++){
+				for(Integer x = 0; x < nombreLigne+1; x++){
+					if( x == h*20 || y == h*20)
+					{
+						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+					}
+				}
+			}
+		}
+		return list;
 	}
 	public ArrayList<Wall> create_MAP3(){
-		return null;
-		//LIST_Wall_MAP3.add(new Wall())
+		ArrayList<Wall> list  = new ArrayList<Wall>();
+		for(Integer h = 0; h < 5; h++){
+			for(Integer y = 0; y < nombreColonne+1; y++){
+				for(Integer x = 0; x < nombreLigne+1; x++){
+					if( x == h*20 || y == h*20)
+					{
+						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+					}
+				}
+			}
+		}
+		return list;
 	}
 	public ArrayList<Wall> create_MAP4(){
-		return null;
-		//LIST_Wall_MAP4.add(new Wall())
+		ArrayList<Wall> list  = new ArrayList<Wall>();
+		for(Integer h = 0; h < 5; h++){
+			for(Integer y = 0; y < nombreColonne+1; y++){
+				for(Integer x = 0; x < nombreLigne+1; x++){
+					if( x == h*20 || y == h*20)
+					{
+						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+					}
+				}
+			}
+		}
+		return list;
 	}
 	
 

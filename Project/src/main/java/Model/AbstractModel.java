@@ -26,6 +26,11 @@ public abstract class AbstractModel implements Observable {
 		obs.update(entities);
 		 
 	}
+	public void notifyObserver(Integer numberMap) {
+		for(Observer obs: listObserver)
+			obs.update(numberMap);
+		
+	}
 
 
 	

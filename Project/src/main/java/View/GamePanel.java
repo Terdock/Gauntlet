@@ -16,6 +16,7 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
+	private Integer numberMap;
 	
 	public GamePanel(Panel panel){
 		super(panel);
@@ -41,28 +42,27 @@ public class GamePanel extends Panel {
 			if(terre.getVisible()){
 				checkCondition(terre);
 				Image image = null;
+				System.out.println(numberMap);
 				if(upLeftCondition){
-					image = imageClasse.getImagesWall()[0][2];
+					image = imageClasse.getImagesWall()[numberMap][2];
 				}else if(upDownCondition){
-					image = imageClasse.getImagesWall()[0][1];
+					image = imageClasse.getImagesWall()[numberMap][1];
 				}else if (downLeftCondition){
-					image = imageClasse.getImagesWall()[0][5];
+					image = imageClasse.getImagesWall()[numberMap][5];
 				}else if(leftRightCondition){
-					image = imageClasse.getImagesWall()[0][0];
+					image = imageClasse.getImagesWall()[numberMap][0];
 				}else if(downRightCondition){
-					image = imageClasse.getImagesWall()[0][4];
+					image = imageClasse.getImagesWall()[numberMap][4];
 				}else if(upRightCondition){
-					image = imageClasse.getImagesWall()[0][3];
+					image = imageClasse.getImagesWall()[numberMap][3];
 				}else if(terre.getClass().getName().equals("Model.Wall")){
-					image = imageClasse.getImagesWall()[0][7];
-					System.out.println(" Il est censé affiché un mur à : x=" +(terre.getPosX()/30) + " et y =" + (terre.getPosY()/30) );
+					image = imageClasse.getImagesWall()[numberMap][7];
 				}else if(terre.getClass().getName().equals("Model.Sol")){
-					image = imageClasse.getImagesGround()[0];
+					image = imageClasse.getImagesGround()[numberMap];
 				}else {
-					image = imageClasse.getImagesWall()[0][3];
+					image = imageClasse.getImagesWall()[numberMap][3];
 				}
 				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
-				//Image img = imageClasse.images(terre.nameImage());
 			}
 		}
 		repaint();
@@ -83,6 +83,10 @@ public class GamePanel extends Panel {
 				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
 		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
 		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
+	}
+
+	public void setNumberMap(int numberMap) {
+		this.numberMap = numberMap;
 	}
 	
 	
