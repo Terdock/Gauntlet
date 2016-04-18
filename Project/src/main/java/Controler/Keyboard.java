@@ -18,6 +18,7 @@ public class Keyboard implements KeyListener{
 		panel.addKeyListener(this);
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
+		Keys = new Boolean[playerNumber][5];
 		for(int i = 0; i<playerNumber;i++){
 			for(int j = 0; j<5; j++){
 				Keys[i][j] = false;
@@ -42,6 +43,7 @@ public class Keyboard implements KeyListener{
 		switch (e.getKeyCode()){
 		case 38:
 			Keys[0][0] = bool;
+			System.out.println("UP, YES !!!!" + String.valueOf(bool));
 			break;
 		case 39:
 			Keys[0][1] = bool;

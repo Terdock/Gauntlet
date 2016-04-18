@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import Controler.Keyboard;
 import Model.WorldEntity;
 
 
@@ -14,9 +15,10 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
+	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
-	private Integer numberMap;
+	private Integer numberMap, playerNumber;
 	
 	public GamePanel(Panel panel){
 		super(panel);
@@ -42,7 +44,7 @@ public class GamePanel extends Panel {
 			if(terre.getVisible()){
 				checkCondition(terre);
 				Image image = null;
-				System.out.println(numberMap);
+				numberMap = 1;
 				if(upLeftCondition){
 					image = imageClasse.getImagesWall()[numberMap-1][2];
 				}else if(upDownCondition){
@@ -84,10 +86,20 @@ public class GamePanel extends Panel {
 		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
 		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
 	}
+	
+	public void addKeyboard(){
+		listener = new Keyboard(playerNumber, this);
+	}
 
 	public void setNumberMap(int numberMap) {
 		this.numberMap = numberMap;
 	}
+
+	public void setPlayerNumber(Integer playerNumber) {
+		this.playerNumber = playerNumber;
+	}
+	
+	
 	
 	
 	
