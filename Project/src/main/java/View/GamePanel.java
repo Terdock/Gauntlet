@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import Controler.Keyboard;
+import Model.Monster;
 import Model.WorldEntity;
 
 
@@ -69,6 +70,24 @@ public class GamePanel extends Panel {
 				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeight()/divided, null);
 			}
 		}
+		for (WorldEntity mob : listMonster ){
+			if(mob.getVisible()){
+					
+				if(numberMap.equals(3)){
+				Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
+				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+5)/divided, (mob.getHeight()+5)/divided, null);
+				}
+				else if (numberMap.equals(4)){
+					Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
+					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+10)/divided, (mob.getHeight()+10)/divided, null);
+				}
+				else{
+					Image image = imageClasse.getImagesMonsters()[numberMap][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
+					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, mob.getWidth()/divided, mob.getHeight()/divided, null);
+				
+				}
+			}
+		}
 		repaint();
 	}
 	
@@ -109,13 +128,6 @@ public class GamePanel extends Panel {
 	
 	
 		/**
-		for (WorldEntity mob : listMonster )
-		{
-			if(mob.getVisible()){
-				Image img = afficheImage.images(mob.nameImage());
-				g.drawImage(img,mob.getPosX(), mob.getPosY(), mob.getWidth(), mob.getHeight(), null);
-			}
-		}
 			
 		for (WorldEntity player : listHero )
 		{	if(player.getVisible()){

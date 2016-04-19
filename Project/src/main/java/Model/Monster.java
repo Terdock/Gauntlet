@@ -11,6 +11,8 @@ public class Monster<WoldObject> extends Creatures {
     private Integer typeMonster = 1;
     private ArrayList<Heros> listHeros;
     private WoldObject wObject; 
+    private Integer direction = 0;
+    private Integer moveContinue = 0;
      
     public void setListHeros(ArrayList<Heros> listHeros) {
 		this.listHeros = listHeros;
@@ -29,25 +31,93 @@ public class Monster<WoldObject> extends Creatures {
         Where_is_Hero(herosProche);//annonce si le monstre est dans le perimètre visible par l'utilisateur 
         if(isISeeHero()){
             if( Math.abs(getPosX() - listHeros.get(herosProche).getPosX()) < Math.abs(getPosY() - listHeros.get(herosProche).getPosY())){
-                if (getPosY() - listHeros.get(herosProche).getPosY() < 0)
-                    if(new Plateau().isMoveValide(getPosX(),getPosY()+ getPas()))
+                if (getPosY() - listHeros.get(herosProche).getPosY() < 0){
+                    if(new Plateau().isMoveValide(getPosX(),getPosY()+ getPas())){
                         setPosY(getPosY()+ getPas());
+                		if(direction == 0)
+                			if(moveContinue == 2){
+                				moveContinue = 0;
+                			}
+                			else{
+                				moveContinue++;
+                			}
+                		else{
+                			setDirection(0);
+                		}
+                    }
+            }
+                
                 else
-                    if(new Plateau().isMoveValide(getPosX(),getPosY()- getPas()))
+                    if(new Plateau().isMoveValide(getPosX(),getPosY()- getPas())){
                         setPosY(getPosY()- getPas());
+                		if(direction == 2)
+                			if(moveContinue == 2){
+                				moveContinue = 0;
+                			}
+                			else{
+                				moveContinue++;
+                			}
+                		else{
+                			setDirection(2);
+                		}
+                    }
             }
             else{
-                if(getPosX() - listHeros.get(herosProche).getPosX() < 0)
-                    if(new Plateau().isMoveValide(getPosX()+ getPas(),getPosY()))
+                if(getPosX() - listHeros.get(herosProche).getPosX() < 0){
+                    if(new Plateau().isMoveValide(getPosX()+ getPas(),getPosY())){
                         setPosX(getPosX()+ getPas());
-                else
-                    if(new Plateau().isMoveValide(getPosX()- getPas(),getPosY()))
+                        if(direction == 1)
+                        	if(moveContinue == 2){
+                        		moveContinue = 0;
+                        	}
+                        	else{
+                        		moveContinue++;
+                        	}
+                        else{
+                        	setDirection(1);
+                        }
+                    }
+                }
+                else{
+                    if(new Plateau().isMoveValide(getPosX()- getPas(),getPosY())){
                         setPosX(getPosX()- getPas());
+                        if(direction == 4)
+                        	if(moveContinue == 2){
+                        		moveContinue = 0;
+                        	}
+                        	else{
+                        		moveContinue++;
+                        	}
+                        else{
+                        	setDirection(4);
+                        }
+                    }
+                }
             }
         }
     }
      
-    public void Where_is_Hero(Integer iHero){
+    public Integer getMoveContinue() {
+		return moveContinue;
+	}
+
+
+	public void setMoveContinue(Integer moveContinue) {
+		this.moveContinue = moveContinue;
+	}
+
+
+	public Integer getDirection() {
+		return direction;
+	}
+
+
+	public void setDirection(Integer direction) {
+		this.direction = direction;
+	}
+
+
+	public void Where_is_Hero(Integer iHero){
             setISeeHero(false);
             if(Math.abs(getPosX()) < Math.abs(listHeros.get(iHero).getPosX()+50*getWidth()))
                 setISeeHero(true);

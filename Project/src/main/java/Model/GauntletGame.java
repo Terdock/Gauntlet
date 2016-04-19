@@ -46,7 +46,7 @@ public class GauntletGame extends AbstractModel {
 		this.List_Monster = plateau.getListMonster();
 		for(Monster mob : List_Monster)
 			listMonster.add(mob);
-		//notifyObserver(listMonster);
+		notifyObserver(listMonster);
 		}
 	
 	public void createHero(String[][] playerRegister) {

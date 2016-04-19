@@ -56,6 +56,7 @@ public abstract class WorldEntity {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+
 	
 
 
