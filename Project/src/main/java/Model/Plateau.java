@@ -34,12 +34,12 @@ public class Plateau implements IPlateau {
 		if (mode == "Mode Quête"){
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
-			Wall_replace_sol();
+			wallReplaceGround();
+			doorReplaceGround();
 			//holeMap = new Hole((nombreLigne-5)*width,(nombreColonne-5)*height,true);
 			//Hole_replace_Wall();
 			//staircaseMap = new Staircase(true);
 			//Staircase_replace_Wall();
-			//Door_replace_Wall();
 				
 		}
 		else if (mode == "Mode Arène"){
@@ -84,7 +84,7 @@ public class Plateau implements IPlateau {
 		}
 	}
 	
-	private void Wall_replace_sol(){
+	private void wallReplaceGround(){
 		for (Wall wallMap : listWallMap){
 				Integer posX = wallMap.getPosX();
 				Integer posY = wallMap.getPosY();
@@ -92,7 +92,7 @@ public class Plateau implements IPlateau {
 			}
 		}
 		
-	private void Door_replace_Wall(){
+	private void doorReplaceGround(){
 		for (Door door : listDoor){
 				Integer posX = door.getPosX();
 				Integer posY = door.getPosY();

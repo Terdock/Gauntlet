@@ -50,7 +50,6 @@ public class Map {
 				}
 			}
 		}
-		System.out.println(listDoor);
 		return list;
 	}
 
