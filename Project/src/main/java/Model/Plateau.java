@@ -123,34 +123,30 @@ public class Plateau implements IPlateau {
 		staircaseMap = map.create_Staircase0();
 		if(numberMap == 0){
 			this.listWallMap = map.create_MAP0();
-			this.listDoor = map.create_Door0();
 			this.holeMap = map.create_Hole0();
 			this.listMonster = map.create_Monster0();
 		}
 		else if(numberMap == 1){
 			this.listWallMap = map.create_MAP1();
-			this.listDoor = map.create_Door1();
 			this.holeMap = map.create_Hole1();
 			this.listMonster = map.create_Monster1();
 		}
 		else if(numberMap == 2){
 			this.listWallMap = map.create_MAP2();
-		 	this.listDoor = map.create_Door2();
 		 	this.holeMap = map.create_Hole2();
 		 	this.listMonster = map.create_Monster2();
 		}
 		 else if(numberMap == 3){
 			listWallMap = map.create_MAP3();
-			listDoor = map.create_Door3();
 			holeMap = map.create_Hole3();
 			this.listMonster = map.create_Monster3();
 		 }
 		else if(numberMap == 4){
 			listWallMap = map.create_MAP4();
-			listDoor = map.create_Door4();
 			holeMap = map.create_Hole4();
 			this.listMonster = map.create_Monster4();
 		}
+		listDoor = map.create_Door();
 	}
 	
 	

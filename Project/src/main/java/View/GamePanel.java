@@ -26,7 +26,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 5;
+		divided = 1;
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -46,7 +46,7 @@ public class GamePanel extends Panel {
 				checkCondition(terre);
 				Image image = null;
 				if(upLeftCondition){
-					image = imageClasse.getImagesWall()[2][2];
+					image = imageClasse.getImagesWall()[numberMap][2];
 				}else if(upDownCondition){
 					image = imageClasse.getImagesWall()[numberMap][1];
 				}else if (downLeftCondition){
