@@ -9,7 +9,8 @@ public class Map {
 	ArrayList<Monster> listMonster = new ArrayList<Monster>();
 	ArrayList<PlateauObject> listWallHoleDoor = new ArrayList<PlateauObject>();
 	private Integer nombreLigne;
-	private Integer nombreColonne; 
+	private Integer nombreColonne;
+	private ArrayList<Door> listDoor;
 	
 	public Map(Integer nombrLigne,Integer nombreColonne){
 		this.nombreLigne = nombrLigne;
@@ -18,18 +19,49 @@ public class Map {
 
 
 	public ArrayList<Wall> create_MAP0(){
+		listDoor = new ArrayList<Door>(); 
 		ArrayList<Wall> list  = new ArrayList<Wall>();
+		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
 				for(Integer x = 0; x < nombreLigne+1; x++){
-					if( x == h*20 || y == h*20)
-					{
+					
+					
+					if (x == h*20 + 10 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 +30 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 +50 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 +70 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 +10 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 +30 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 +50 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 +70 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 -10 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 -30 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 -50 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (x == h*20 -70 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 -10 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 -30 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 -50 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					else if (y == h*20 -70 ){listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
+					
+					else if( x == h*20 || y == h*20 ){
 						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
 					}
 				}
 			}
 		}
+		System.out.println(listDoor);
 		return list;
+	}
+
+
+	public ArrayList<Door> getListDoor() {
+		return listDoor;
+	}
+
+
+	public void setListDoor(ArrayList<Door> listDoor) {
+		this.listDoor = listDoor;
 	}
 
 
@@ -92,8 +124,7 @@ public class Map {
 	
 
 	public ArrayList<Door> create_Door0(){
-		return null;
-		//LIST_Door0.add(new Door())
+		return listDoor ;
 	}
 	
 	public ArrayList<Door> create_Door1(){

@@ -18,7 +18,7 @@ public class GamePanel extends Panel {
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
-	private Integer numberMap, playerNumber;
+	private Integer numberMap, playerNumber,divided;
 	
 	public GamePanel(Panel panel){
 		super(panel);
@@ -26,6 +26,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
+		divided = 5;
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -63,7 +64,7 @@ public class GamePanel extends Panel {
 				}else {
 					image = imageClasse.getImagesWall()[numberMap][3];
 				}
-				g.drawImage(image,terre.getPosX(), terre.getPosY(), terre.getWidth(), terre.getHeight(), null);
+				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeight()/divided, null);
 			}
 		}
 		repaint();

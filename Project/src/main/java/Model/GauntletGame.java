@@ -19,7 +19,7 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-		this.numberMap = 2;
+		this.numberMap = 0;
 		
 	}
 	
