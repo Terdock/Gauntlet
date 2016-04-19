@@ -12,7 +12,7 @@ public class LoadImage {
 	private Image[] imagesGround = new Image[5], imageBackground = new Image[3];
 	private Image[][][] imagesHeros = new Image[4][4][3], imagesMonsters = new Image[3][4][3];;
 	private ImageIcon[] imageIcons = new ImageIcon[6];
-	private Image imageDeathHeros, imageDeathMonsters;
+	private Image imageDeathHeros, imageDeathMonsters, imageDoor;
 	
 	public LoadImage(){
 		
@@ -23,6 +23,7 @@ public class LoadImage {
 		loadHeros();
 		loadWeapons();
 		loadMonsters();
+		loadDoor();
 	}
 	
 	private void loadTerrain(){
@@ -92,6 +93,14 @@ public class LoadImage {
 		};
 	}
 	
+	private void loadDoor(){
+		try {
+			imageDoor = ImageIO.read(new File("images/Door.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
+	}
+	
 	public ImageIcon[] loadIconImage(){
 		imageIcons[0] = new ImageIcon("Images/arrow.gif");
 		imageIcons[1] = new ImageIcon("Images/arrowLeft.gif");
@@ -140,6 +149,12 @@ public class LoadImage {
 	public Image getImageDeathMonsters() {
 		return imageDeathMonsters;
 	}
+
+	public Image getImageDoor() {
+		return imageDoor;
+	}
+	
+	
 	
 	
 	

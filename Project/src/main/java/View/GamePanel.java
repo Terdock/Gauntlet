@@ -61,6 +61,8 @@ public class GamePanel extends Panel {
 					image = imageClasse.getImagesWall()[numberMap][7];
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[numberMap];
+				}else if (terre.getClass().getName().equals("Model.Door")){
+					image = imageClasse.getImageDoor();
 				}else {
 					image = imageClasse.getImagesWall()[numberMap][3];
 				}
