@@ -12,5 +12,7 @@ public class Wall extends PlateauObject  {
 	public String nameImage(){
 		return this.getClass().getName()+Integer.toString(numberMap);
 	}
+	
+	
 
 }

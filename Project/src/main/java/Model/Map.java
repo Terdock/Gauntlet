@@ -46,14 +46,20 @@ public class Map {
 			for(Integer y = 0; y < nombreColonne+1; y++){
 				for(Integer x = 0; x < nombreLigne+1; x++){
 					if (checkInDoor( x, y, h)){
-						listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;}
-					
-					else if( x == h*20 || y == h*20 ){
-						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
+						listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;						
 					}
 					else if( x == h*20 || y == h*20 ){
 						list.add(new Wall(x*Plateau.getWidth(),y*Plateau.getHeight(),false, 0));
-					}
+						if(checkInWall( x, y, h)){
+							list.get(list.size()-1).setForm(6);
+						}
+						else if (x.equals(h*20)){
+							list.get(list.size()-1).setForm(1);
+						}
+						else{
+							list.get(list.size()-1).setForm(0);	
+						}
+					}	
 				}
 			}
 		}
@@ -188,6 +194,18 @@ public class Map {
 				(y == h*20 +30 && x == h*20)||(y == h*20 +50 && x == h*20)||(y == h*20 +70 && x == h*20)||
 				(y == h*20 -10 && x == h*20 )||(y == h*20 -30 && x == h*20)||(y == h*20 -50 && x == h*20)||
 				(y == h*20 -70 && x == h*20))
+					res = true;
+		return res;
+	}
+	
+	private boolean checkInWall(Integer x, Integer y, Integer h){
+		boolean res = false;
+		if ((x == h*20 + 20 && y == h*20 )  ||(x == h*20 +40 && y == h*20)||(x == h*20 + 60 && y == h*20)||
+				(x == h*20 +80 && y == h*20)||(x == h*20 -20 && y == h*20 )||(x == h*20 -40 && y == h*20)||
+				(x == h*20 -60 && y == h*20)||(x == h*20 -80 && y == h*20)||(y == h*20 + 20 && x == h*20 )||
+				(y == h*20 +40 && x == h*20)||(y == h*20 +60 && x == h*20)||(y == h*20 +80 && x == h*20)||
+				(y == h*20 -20 && x == h*20 )||(y == h*20 -40 && x == h*20)||(y == h*20 -60 && x == h*20)||
+				(y == h*20 -80 && x == h*20) || (x == y))
 					res = true;
 		return res;
 	}

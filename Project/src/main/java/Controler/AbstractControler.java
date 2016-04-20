@@ -11,4 +11,5 @@ public abstract class AbstractControler {
 
 	public abstract void initComposant(String mode, String[][] playerRegister);
 
+
 }

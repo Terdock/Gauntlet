@@ -27,7 +27,8 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 5;
+		divided = 3;
+		addKeyboard();
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -59,13 +60,13 @@ public class GamePanel extends Panel {
 				}else if(upRightCondition){
 					image = imageClasse.getImagesWall()[numberMap][3];
 				}else if(terre.getClass().getName().equals("Model.Wall")){
-					image = imageClasse.getImagesWall()[numberMap][3];
+					image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[numberMap];
 				}else if (terre.getClass().getName().equals("Model.Door")){
 					image = imageClasse.getImageDoor();
 				}else {
-					image = imageClasse.getImagesWall()[numberMap][3];
+					image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
 				}
 				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeight()/divided, null);
 			}
@@ -91,6 +92,10 @@ public class GamePanel extends Panel {
 		repaint();
 	}
 	
+	public boolean alors() {
+		return true;
+	}
+
 	private void checkCondition(WorldEntity terre){
 		upLeftCondition = terre.getPosX().equals(0) && terre.getPosY().equals(0);
 		upDownCondition = (terre.getPosX().equals(0) && !terre.getPosY().equals(0)

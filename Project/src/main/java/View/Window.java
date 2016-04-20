@@ -115,7 +115,6 @@ public class Window extends JFrame implements Observer {
             		controle.initComposant(modeDeJeu, heros);
             		card.show(principalPanel, "GamePanel");
             	}
-            	
             }
        });
 	}
@@ -124,6 +123,7 @@ public class Window extends JFrame implements Observer {
 		gamePanel.setEntities(entities);
 		
 	}
+
 
 	public void update(Integer numberMap) {
 		gamePanel.setNumberMap(numberMap);

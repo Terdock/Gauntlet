@@ -19,7 +19,7 @@ public class GauntletGame extends AbstractModel {
 	private Integer multiplayer;
 	
 	public GauntletGame() {
-		this.numberMap = 4;
+		this.numberMap = 0;
 		
 	}
 	
@@ -79,6 +79,64 @@ public class GauntletGame extends AbstractModel {
 		}
 		return List_Hero;
 	}
+	
+	
+    public Integer closestHero(ArrayList<Double> normList){
+    	Integer HeroClose = 0; //attaquer le hero le plus proche
+        for (Integer i = 0; i < listHero.size(); i++)
+            for(Integer j = 0; j < listHero.size(); j++)
+                if(normList.get(i) < normList.get(j))
+                    HeroClose = i;
+    	return HeroClose; 
+    }
+     
+
+	public void Where_is_Hero(Monster Mob,Integer iHero){
+            setISeeHero(false);
+            if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()+50*listHero.get(iHero).getWidth()))
+                setISeeHero(true);
+            else if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()-50*listHero.get(iHero).getWidth()))
+                setISeeHero(true);
+            if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()+50*listHero.get(iHero).getHeight()))
+                setISeeHero(true);
+            else if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()-50*listHero.get(iHero).getHeight()))
+                setISeeHero(true);             
+    }
+	
+	public void checkAttackMonster(){
+		ArrayList<Double> normList = new ArrayList<Double>();
+	 	for (Heros player : List_Hero){
+	 		for (Monster mob : List_Monster){	
+	 				normList.add(norm(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
+	 				Where_is_Hero(mob,closestHero(normList));
+	 				if(normList.get(closestHero(normList)) > Math.sqrt(mob.getPas()^2+mob.getPas()^2)){
+	 					mob.setiSeeHero(true);
+	 					mob.attack();
+		    		 
+		    	}
+	 		}
+	 	
+	 	}
+	}
+    
+
+ 
+    public double norm(Integer vMonster,Integer wMonster,Integer xHero,Integer yHero){
+        return Math.sqrt((vMonster-xHero)^2+(wMonster-yHero)^2);
+    }
+
+    
+     
+    public boolean isISeeHero() {
+        return iSeeHero;
+    }
+ 
+    public void setISeeHero(boolean iSeeHero) {
+        this.iSeeHero = iSeeHero;
+    }
+	
+	
+	
 
 	public Integer getNumberMap() {
 		return numberMap;

@@ -7,6 +7,7 @@ public abstract class WorldEntity {
 	private Integer posX;
 	private Integer posY;
 	private boolean visible = true;
+	private Integer Form;
 	
 	public WorldEntity(Integer posX, Integer posY) {
 		this.posX = posX;
@@ -55,6 +56,14 @@ public abstract class WorldEntity {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public Integer getForm() {
+		return Form;
+		
+	}
+	public void setForm(Integer form) {
+		Form = form;
 	}
 
 	
