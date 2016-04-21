@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import Controler.Keyboard;
+import View.Keyboard;
 import Model.Monster;
 import Model.WorldEntity;
 
@@ -19,7 +19,7 @@ public class GamePanel extends Panel {
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
-	private Integer numberMap, playerNumber,divided;
+	private Integer numberMap, divided;
 	
 	public GamePanel(Panel panel){
 		super(panel);
@@ -27,19 +27,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 3;
-		addKeyboard();
-	}
-
-	public void setEntities(ArrayList<WorldEntity> entities) {
-		if(entities.get(0).nameType().equals("Terrain"))
-			this.listTerrain = entities;
-		else if(entities.get(0).nameType().equals("Hero"))
-			this.listHero = entities;
-		else if(entities.get(0).nameType().equals("Monster"))
-			this.listMonster= entities;
-		else if(entities.get(0).nameType().equals("Object"))
-			this.listObject = entities;
+		divided = 1;
 	}
          
 	public void paintComponent(Graphics g){
@@ -89,11 +77,16 @@ public class GamePanel extends Panel {
 				}
 			}
 		}
+		for (WorldEntity heros : listHero){
+			if(heros.getVisible()){
+				if (heros.nameImage().equals("Warrior")){
+					Image image = imageClasse.getImagesHeros()[0][0][0];
+					g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, heros.getWidth()/divided, heros.getHeight()/divided, null);
+				}
+			}
+		}
+		setPosHeros();
 		repaint();
-	}
-	
-	public boolean alors() {
-		return true;
 	}
 
 	private void checkCondition(WorldEntity terre){
@@ -113,19 +106,31 @@ public class GamePanel extends Panel {
 		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
 	}
 	
-	public void addKeyboard(){
+	public void addKeyboard(Integer playerNumber){
 		listener = new Keyboard(playerNumber, this);
 	}
+	
+	public void setPosHeros(){
+		Integer action = listener.state(0);
+		
+		//Integer action2 = listener.state(2);
+	}
+	
 
 	public void setNumberMap(int numberMap) {
 		this.numberMap = numberMap;
 	}
 
-	public void setPlayerNumber(Integer playerNumber) {
-		this.playerNumber = playerNumber;
+	public void setEntities(ArrayList<WorldEntity> entities) {
+		if(entities.get(0).nameType().equals("Terrain"))
+			this.listTerrain = entities;
+		else if(entities.get(0).nameType().equals("Hero"))
+			this.listHero = entities;
+		else if(entities.get(0).nameType().equals("Monster"))
+			this.listMonster= entities;
+		else if(entities.get(0).nameType().equals("Object"))
+			this.listObject = entities;
 	}
-	
-	
 	
 	
 	

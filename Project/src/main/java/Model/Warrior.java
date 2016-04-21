@@ -20,7 +20,7 @@ public class Warrior extends Heros{
 	}
 
 	public String nameImage() {
-		return null;
+		return "Warrior";
 	}
 
 }

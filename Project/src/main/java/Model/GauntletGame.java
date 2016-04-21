@@ -15,30 +15,18 @@ public class GauntletGame extends AbstractModel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<PlateauObject> List_Terrain =  new ArrayList<PlateauObject>();
 	private ArrayList<WorldEntity> listTerrain =  new ArrayList<WorldEntity>();
-	private String mode; 
-	private Integer multiplayer;
+	private String gameMode; 
+	private Integer playerNumber;
 	
 	public GauntletGame() {
 		this.numberMap = 0;
 		
 	}
 	
-
-
-	public String getMode() {
-		return mode;
-	}
 	
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
-	
-	
-	public void createPlateau(String Mode){
-		
-		setMode(Mode);
+	public void createPlateau(){
 		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,Mode);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode);
 		this.List_Terrain = this.plateau.getLIST_TERRAIN();
 		for(PlateauObject obj : List_Terrain)
 			listTerrain.add(obj);
@@ -53,7 +41,6 @@ public class GauntletGame extends AbstractModel {
 		List_Hero = convertListHero(playerRegister);
 		for(Heros hero : List_Hero)
 			listHero.add(hero);
-		multiplayer = List_Hero.size(); 
 		notifyObserver(listHero);
 	}
 	
@@ -64,9 +51,9 @@ public class GauntletGame extends AbstractModel {
 				W.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(W);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				Warrior K = new Warrior(1,1);
-				K.setPlayerName(playerRegister[i][0]);
-				List_Hero.add(K);
+				Warrior W = new Warrior(60,60);
+				W.setPlayerName(playerRegister[i][0]);
+				List_Hero.add(W);
 			}else if( playerRegister[i][1] == "Nain"){
 				Dwarf D = new Dwarf(1,1);
 				D.setPlayerName(playerRegister[i][0]);
@@ -131,6 +118,16 @@ public class GauntletGame extends AbstractModel {
     
 	
 	
+
+	public void setPlayerNumber(Integer playerNumber) {
+		this.playerNumber = playerNumber;
+	}
+
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
 
 	public Integer getNumberMap() {
 		return numberMap;

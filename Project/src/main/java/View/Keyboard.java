@@ -1,4 +1,4 @@
-package Controler;
+package View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,19 +7,17 @@ import View.Panel;
 
 public class Keyboard implements KeyListener{
 	private Boolean[][] Keys;
-	private Integer playerNumber;
-	
-	public Keyboard(){
-		
-	}
+	private Integer playerNumber, stateValue;
+	private Panel panel;
 
 	public Keyboard(Integer playerNumber, Panel panel) {
 		this.playerNumber = playerNumber;
-		panel.addKeyListener(this);
-		panel.setFocusable(true);
-		panel.requestFocusInWindow();
-		Keys = new Boolean[playerNumber][5];
-		for(int i = 0; i<playerNumber;i++){
+		this.panel = panel;
+		this.panel.addKeyListener(this);
+		this.panel.setFocusable(true);
+		this.panel.requestFocusInWindow();
+		Keys = new Boolean[this.playerNumber][5];
+		for(int i = 0; i<this.playerNumber;i++){
 			for(int j = 0; j<5; j++){
 				Keys[i][j] = false;
 			}
@@ -43,7 +41,6 @@ public class Keyboard implements KeyListener{
 		switch (e.getKeyCode()){
 		case 38:
 			Keys[0][0] = bool;
-			System.out.println("UP, YES !!!!" + String.valueOf(bool));
 			break;
 		case 39:
 			Keys[0][1] = bool;
@@ -86,6 +83,15 @@ public class Keyboard implements KeyListener{
 			Keys[1][i] = bool;
 		}
 	}
-
+	
+	public Integer state(Integer player){
+		stateValue = 10;
+		for(Integer i = 0; i<4; i++){
+			if(Keys[player][i]){
+				stateValue = i;
+			}
+		}
+		return stateValue;
+	}
 }
 

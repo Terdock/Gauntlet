@@ -9,68 +9,61 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import Controler.AbstractControler;
+import Controller.AbstractController;
 import Model.WorldEntity;
 import observer.Observer;
 
 public class Window extends JFrame implements Observer {
 	
 	private CardLayout card;
-	private String modeDeJeu;
-	private HomePanel homePanel;
-	private ModePanel modePanel;
-	private PlayerPanel playerPanel;
-	private IdentityPanel identityPanel;
-	private GamePanel gamePanel;
-	private ScorePanel scorePanel;
-	private Panel principalPanel, gameContentPanel;
+	private Panel[] panel = new Panel[8];
 	private LoadImage loadImage = new LoadImage();
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private String[][] heros = new String[5][2];
-    private Image welcomeImage, menuImage, scoreImage;
-    private AbstractControler controle;
+	private Image[] backgroundImages = new Image[3];
     private Integer playerNumber;
+    private AbstractController controller;
 	
-	public Window(AbstractControler controle){
-		this.controle = controle;
+	public Window(AbstractController controller){
+		this.controller = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Gauntlet");
         this.setSize(1000,600+29);
         this.setResizable(false);
         setLocationRelativeTo(null);
         initialisation();
-        this.getContentPane().add(principalPanel);
+        this.getContentPane().add(panel[0]);
         setVisible(true);
 	}
 
 	private void initialisation(){
 		//Chargement d'images
 		imageIcons = loadImage.loadIconImage();
-		welcomeImage = loadImage.loadBackground()[0];
-		menuImage = loadImage.loadBackground()[1];
-		scoreImage = loadImage.loadBackground()[2];
+		for(int i = 0; i < 3; i++){
+			backgroundImages[i] = loadImage.loadBackground()[i];
+		}
 		
 		//Construction du panneau qui reprend tous les panneaux
-		principalPanel = new Panel();
-		this.card = principalPanel.getCard();
+		panel[0] = new Panel();
+		this.card = panel[0].getCard();
 		
 		//Construction de l'acceuil
-		homePanel = new HomePanel(welcomeImage, principalPanel, imageIcons, "Home");
-		actionButton(homePanel.getButton(), "ModeDeJeu");
+		panel[1] = new HomePanel(backgroundImages[0], panel[0], imageIcons, "Home");
+		actionButton(((HomePanel) panel[1]).getButton(), "ModeDeJeu");
 		
       	//Construction du mode de jeu
-      	modePanel = new ModePanel(menuImage, principalPanel, imageIcons, "ModeDeJeu");
+		panel[2] = new ModePanel(backgroundImages[1], panel[0], imageIcons, "ModeDeJeu");
       	for (Integer i = 0; i < 3; i++){
-      		actionButton(modePanel.getButtons()[i], modePanel.getButtonName()[i]);
+      		actionButton(((ModePanel) panel[2]).getButtons()[i], ((ModePanel) panel[2]).getButtonName()[i]);
       	}
       	
       	//Construction du Panel pour obtenir le nombre de joueur
-		playerPanel = new PlayerPanel(menuImage, principalPanel, imageIcons, "Player");
+		panel[3] = new PlayerPanel(backgroundImages[1], panel[0], imageIcons, "Player");
       	
       	//Contruction du panneau de jeu et de score
-		gameContentPanel = new Panel(principalPanel, "GamePanel");
-		gamePanel = new GamePanel(gameContentPanel);
-		scorePanel = new ScorePanel(gameContentPanel, scoreImage);
+		panel[5] = new Panel(panel[0], "GamePanel");
+		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
+		panel[7] = new GamePanel(panel[5]);
       	
       
 	}
@@ -79,54 +72,56 @@ public class Window extends JFrame implements Observer {
 		button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
             	if(info.equals("ModeDeJeu")){
-            		card.show(principalPanel, info);
+            		card.show(panel[0], info);
             	}else if (info.equals("Mode Quête")){
-            		modeDeJeu = info;
             		playerNumber = 1;
+            		controller.setGameMode(info);
+            		controller.setGamePlayerNumber(playerNumber);
+            		
             		
             		//Construction du Panel pour obtenir les informations du joueur en Mode Quête
-            		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, "1");
-            		card.show(principalPanel, "1");
-            		actionButton(identityPanel.getButton(),"Information");
+            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, "1");
+            		card.show(panel[0], "1");
+            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             	}else if (info.equals("Mode Arène")||info.equals("Mode Survivor")){
-            		modeDeJeu = info;
+            		controller.setGameMode(info);
             		
-            		card.show(principalPanel, "Player");
+            		card.show(panel[0], "Player");
             		for (Integer i = 1; i <= 2; i++){
-        				actionButton(playerPanel.getButtons()[i-1], String.valueOf(i));
+        				actionButton(((PlayerPanel)panel[3]).getButtons()[i-1], String.valueOf(i));
         			}
             	
             	}else if (info.equals("1")||info.equals("2")){
             		playerNumber = Integer.valueOf(info);
+            		controller.setGamePlayerNumber(playerNumber);
             		
             		//Construction du Panel pour obtenir les informations des joueurs en Mode Arène et Mode Survivor
-            		identityPanel = new IdentityPanel(menuImage, principalPanel, imageIcons, info);
-            		card.show(principalPanel, info);
-            		actionButton(identityPanel.getButton(),"Information");
+            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, info);
+            		card.show(panel[0], info);
+            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             		
             	}else if (info.equals("Information")){
             		for(Integer i = 0; i < playerNumber; i++){
-            			heros[i][0] = identityPanel.getPlayerName()[i].getText();
-            			heros[i][1] = (String)identityPanel.getTypeHeros()[i].getSelectedItem();
+            			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
+            			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
-            		gamePanel.setPlayerNumber(playerNumber);
-            		gamePanel.addKeyboard();
-            		scorePanel.addName(heros, playerNumber);
-            		controle.initComposant(modeDeJeu, heros);
-            		card.show(principalPanel, "GamePanel");
+            		((ScorePanel)panel[6]).addName(heros, playerNumber);
+            		((GamePanel)panel[7]).addKeyboard(playerNumber);
+            		controller.initComposant(heros);
+            		card.show(panel[0], "GamePanel");
             	}
             }
        });
 	}
 
 	public void update(ArrayList<WorldEntity> entities) {
-		gamePanel.setEntities(entities);
+		((GamePanel)panel[7]).setEntities(entities);
 		
 	}
 
 
 	public void update(Integer numberMap) {
-		gamePanel.setNumberMap(numberMap);
+		((GamePanel)panel[7]).setNumberMap(numberMap);
 	}
 
 }
