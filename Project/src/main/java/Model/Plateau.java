@@ -231,7 +231,7 @@ public class Plateau implements IPlateau {
 	}
 
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
-		boolean passable = false;
+		boolean passable = true;
 		if (action.equals("Action Up")){
 			passable = listTerrain.get(indiceTerrain(posX,posY+1)).isPassable();
 		}else if(action.equals("Action Down")){
