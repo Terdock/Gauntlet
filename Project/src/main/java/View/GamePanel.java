@@ -112,6 +112,7 @@ public class GamePanel extends Panel {
 	
 	public void setPosHeros(){
 		String action = listener.state(0);
+		System.out.println(action);
 		//Integer action2 = listener.state(2);
 	}
 	
