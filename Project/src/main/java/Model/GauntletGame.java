@@ -91,28 +91,34 @@ public class GauntletGame extends AbstractModel {
     }
      
 
-	public void Where_is_Hero(Monster Mob,Integer iHero){
-            setISeeHero(false);
+	public boolean Where_is_Hero(Monster Mob,Integer iHero){
+            boolean res = false;
             if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()+50*listHero.get(iHero).getWidth()))
-                setISeeHero(true);
+                res = true;
             else if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()-50*listHero.get(iHero).getWidth()))
-                setISeeHero(true);
+            	res = true;
             if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()+50*listHero.get(iHero).getHeight()))
-                setISeeHero(true);
+            	res = true;
             else if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()-50*listHero.get(iHero).getHeight()))
-                setISeeHero(true);             
+            	res = true;
+            return res;
     }
 	
+
+
+
+
 	public void checkAttackMonster(){
 		ArrayList<Double> normList = new ArrayList<Double>();
 	 	for (Heros player : List_Hero){
 	 		for (Monster mob : List_Monster){	
 	 				normList.add(norm(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
-	 				Where_is_Hero(mob,closestHero(normList));
-	 				if(normList.get(closestHero(normList)) > Math.sqrt(mob.getPas()^2+mob.getPas()^2)){
-	 					mob.setiSeeHero(true);
-	 					mob.attack();
-		    		 
+	 				if(Where_is_Hero(mob,closestHero(normList))){
+	 					if(normList.get(closestHero(normList)) > Math.sqrt(mob.getPas()^2+mob.getPas()^2)){
+	 						if(((Monster) mob).iSeeHero(player.getPosX(),player.getPosY())){
+	 							player.setHp(mob.attack());
+	 						}
+	 				}
 		    	}
 	 		}
 	 	
@@ -126,15 +132,6 @@ public class GauntletGame extends AbstractModel {
     }
 
     
-     
-    public boolean isISeeHero() {
-        return iSeeHero;
-    }
- 
-    public void setISeeHero(boolean iSeeHero) {
-        this.iSeeHero = iSeeHero;
-    }
-	
 	
 	
 

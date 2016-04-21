@@ -7,9 +7,10 @@ public class Wizzard extends Heros {
 	}
 
 
-	public void attack() {
-		
+	public Integer attack() {
+		return 0;
 	}
+
 
 	public void Distanc_Attack() {
 		

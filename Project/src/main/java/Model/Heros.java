@@ -30,10 +30,14 @@ public abstract class Heros extends Creatures{
 		}
 	}
 	
-	public abstract void attack();
+	public abstract Integer attack();
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
 	
+	
+	public void setHp(Integer dommage){
+			this.hp = hp - (dommage-defense);
+	}
 	public String getPlayerName() {
 		return playerName;
 	}

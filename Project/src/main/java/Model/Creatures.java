@@ -3,7 +3,7 @@ package Model;
 public abstract class Creatures extends WorldEntity {
 	private Integer pas = 30;
 	private boolean life = true;
-	private Integer hp;
+	protected Integer hp;
 	private Integer level;
 
 
@@ -13,8 +13,7 @@ public abstract class Creatures extends WorldEntity {
 	
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
-	public abstract void move();
-	public abstract void attack();
+	public abstract Integer attack();
 
 
 	public boolean isLife() {
@@ -29,9 +28,7 @@ public abstract class Creatures extends WorldEntity {
 		return hp;
 	}
 
-	public void setHp(Integer hp) {
-		this.hp = hp;
-	}
+	public abstract void setHp(Integer dommage) ;
 
 	public Integer getLevel() {
 		return level;
@@ -48,5 +45,7 @@ public abstract class Creatures extends WorldEntity {
 	public void setPas(Integer pas) {
 		this.pas = pas;
 	}
+
+
 }
 

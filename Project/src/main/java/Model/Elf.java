@@ -6,9 +6,10 @@ public class Elf extends Heros {
 		super(posX,posY);
 	}
 
-	public void attack() {
-		
+	public Integer attack() {
+		return 0;
 	}
+
 
 	public void Distanc_Attack() {
 		
