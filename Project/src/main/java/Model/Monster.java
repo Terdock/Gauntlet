@@ -127,6 +127,8 @@ public class Monster extends Creatures {
 	
 	public String doAction(Integer xPosPlayer, Integer yPosPlayer){
 		String move;
+		System.out.println(Math.abs(getPosX() -  xPosPlayer)); 
+		System.out.println(Math.abs(getPosY() -  yPosPlayer)); 
 		if( Math.abs(getPosX() -  xPosPlayer) < Math.abs(getPosY() - yPosPlayer)){
 			if (getPosY() - yPosPlayer < 0){
 				move = "Action Up";
@@ -160,7 +162,7 @@ public class Monster extends Creatures {
 
 
     public double distance(Integer v,Integer w,Integer x,Integer y){
-        return Math.sqrt((v-x)^2+(w-y)^2);
+        return Math.sqrt((v-x)*(v-x)+(w-y)*(w-y));
     }
 
     

@@ -80,12 +80,11 @@ public class GauntletGame extends AbstractModel {
 
 	public boolean isHeroVisibleByMonster(Monster Mob,Integer iHero){
             boolean res = false;
-            if(distance(Mob.getPosX(),Mob.getPosY(),listHero.get(iHero).getPosX(), listHero.get(iHero).getPosY())
-            		< Math.sqrt(20*listHero.get(iHero).getWidth()^2+20*listHero.get(iHero).getHeigth()^2)){
+            double distance = distance(Mob.getPosX(),Mob.getPosY(),listHero.get(iHero).getPosX(), listHero.get(iHero).getPosY());
+            System.out.println(distance);
+            if(distance < 1){
             	 res = true;
             }
-               
-            
             return res;
     }
 	
@@ -98,10 +97,11 @@ public class GauntletGame extends AbstractModel {
 			ArrayList<Double> distanceList = new ArrayList<Double>();
 			for (Heros player : List_Hero){
 	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
-	 			if(isHeroVisibleByMonster(mob,closestHero(distanceList))){
-	 				if(((Monster) mob).iSeeHero(player.getPosX(),player.getPosY())){
-	 					//player.setHp(mob.attack());
-	 				}
+			}
+			Integer proche = closestHero(distanceList);
+	 		if(isHeroVisibleByMonster(mob,proche)){
+	 			if(((Monster) mob).iSeeHero(List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY())){
+	 				//player.setHp(mob.attack());
 	 			}
 	 		}
 	 	}
@@ -110,12 +110,20 @@ public class GauntletGame extends AbstractModel {
 
  
     public double distance(Integer vMonster,Integer wMonster,Integer xHero,Integer yHero){
-        return Math.sqrt((vMonster-xHero)^2+(wMonster-yHero)^2);
+        return Math.sqrt((vMonster-xHero)*(wMonster-yHero)+(wMonster-yHero)*(wMonster-yHero));
     }
 
     public void doActionHeros(String action, Integer player) {
 		Heros hero = List_Hero.get(player);
+<<<<<<< HEAD
 		if(plateau.isMoveValide(hero.getPosX(),hero.getPosY(), action)){
+=======
+<<<<<<< HEAD
+		if(!plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
+=======
+		if(plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
+>>>>>>> refs/remotes/origin/master
+>>>>>>> branch 'master' of https://github.com/Terdock/Gauntlet.git
 			hero.move(action);
 		}
 		checkAttackMonster();
