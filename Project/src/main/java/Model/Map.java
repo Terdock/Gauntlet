@@ -9,7 +9,7 @@ public class Map {
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>();
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private ArrayList<Door> listDoor;
+	private ArrayList<PlateauObject> listDoor;
 	private Integer NumberOfDoor;
 	
 	public Map(Integer nombrLigne,Integer nombreColonne){
@@ -29,18 +29,18 @@ public class Map {
 	}
 
 
-	public ArrayList<Door> getListDoor() {
+	public ArrayList<PlateauObject> getListDoor() {
 		return listDoor;
 	}
 
 
-	public void setListDoor(ArrayList<Door> listDoor) {
+	public void setListDoor(ArrayList<PlateauObject> listDoor) {
 		this.listDoor = listDoor;
 	}
 
-	public ArrayList<Wall> create_MAP0(){
-		listDoor = new ArrayList<Door>(); 
-		ArrayList<Wall> list  = new ArrayList<Wall>();
+	public ArrayList<PlateauObject> create_MAP0(){
+		listDoor = new ArrayList<PlateauObject>(); 
+		ArrayList<PlateauObject> list  = new ArrayList<PlateauObject>();
 		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
@@ -67,9 +67,9 @@ public class Map {
 		return list;
 	}
 	
-	public ArrayList<Wall> create_MAP1(){
-		listDoor = new ArrayList<Door>(); 
-		ArrayList<Wall> list  = new ArrayList<Wall>();
+	public ArrayList<PlateauObject> create_MAP1(){
+		listDoor = new ArrayList<PlateauObject>(); 
+		ArrayList<PlateauObject> list  = new ArrayList<PlateauObject>();
 		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
@@ -89,9 +89,9 @@ public class Map {
 		this.NumberOfDoor = i;
 		return list;
 	}
-	public ArrayList<Wall> create_MAP2(){
-		listDoor = new ArrayList<Door>(); 
-		ArrayList<Wall> list  = new ArrayList<Wall>();
+	public ArrayList<PlateauObject> create_MAP2(){
+		listDoor = new ArrayList<PlateauObject>(); 
+		ArrayList<PlateauObject> list  = new ArrayList<PlateauObject>();
 		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
@@ -112,9 +112,9 @@ public class Map {
 		this.NumberOfDoor = i;
 		return list;
 	}
-	public ArrayList<Wall> create_MAP3(){
-		listDoor = new ArrayList<Door>(); 
-		ArrayList<Wall> list  = new ArrayList<Wall>();
+	public ArrayList<PlateauObject> create_MAP3(){
+		listDoor = new ArrayList<PlateauObject>(); 
+		ArrayList<PlateauObject> list  = new ArrayList<PlateauObject>();
 		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
@@ -135,9 +135,9 @@ public class Map {
 		return list;
 		}
 	
-	public ArrayList<Wall> create_MAP4(){
-		listDoor = new ArrayList<Door>(); 
-		ArrayList<Wall> list  = new ArrayList<Wall>();
+	public ArrayList<PlateauObject> create_MAP4(){
+		listDoor = new ArrayList<PlateauObject>(); 
+		ArrayList<PlateauObject> list  = new ArrayList<PlateauObject>();
 		Integer i= 0;
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
@@ -157,7 +157,7 @@ public class Map {
 		}
 	
 
-	public ArrayList<Door> create_Door(){
+	public ArrayList<PlateauObject> create_Door(){
 		return listDoor ;
 	}
 
@@ -168,20 +168,20 @@ public class Map {
 
 
 
-	public Hole create_Hole0(){
+	public PlateauObject create_Hole0(){
 		return new Hole(0, 0,true);
 	}
 	
-	public Hole create_Hole1() {
+	public PlateauObject create_Hole1() {
 		return new Hole(0, 0,true);
 	}
-	public Hole create_Hole2() {
+	public PlateauObject create_Hole2() {
 		return new Hole(0, 0,true);
 	}
-	public Hole create_Hole3() {
+	public PlateauObject create_Hole3() {
 		return new Hole(0, 0,true);
 	}
-	public Hole create_Hole4() {
+	public PlateauObject create_Hole4() {
 		return new Hole(0, 0,true);
 	}
 

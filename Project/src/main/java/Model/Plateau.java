@@ -12,10 +12,10 @@ public class Plateau implements IPlateau {
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>(); 
 	private ArrayList<PlateauObject> listTerrain = new ArrayList<PlateauObject>();
 	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
-	private ArrayList<Wall> listWallMap = new ArrayList<Wall>();
-	private ArrayList<Door> listDoor = new ArrayList<Door>();
-	private Staircase staircaseMap;
-	private Hole holeMap;
+	private ArrayList<PlateauObject> listWallMap = new ArrayList<PlateauObject>();
+	private ArrayList<PlateauObject> listDoor = new ArrayList<PlateauObject>();
+	private PlateauObject staircaseMap;
+	private PlateauObject holeMap;
 	private Integer numberMap;
 	private Map mapParLevel;
 	
@@ -85,7 +85,7 @@ public class Plateau implements IPlateau {
 	}
 	
 	private void wallReplaceGround(){
-		for (Wall wallMap : listWallMap){
+		for (PlateauObject wallMap : listWallMap){
 				Integer posX = wallMap.getPosX();
 				Integer posY = wallMap.getPosY();
 				listTerrain.set(indiceTerrain(posX,posY), wallMap);
@@ -93,7 +93,7 @@ public class Plateau implements IPlateau {
 		}
 		
 	private void doorReplaceGround(){
-		for (Door door : listDoor){
+		for (PlateauObject door : listDoor){
 				Integer posX = door.getPosX();
 				Integer posY = door.getPosY();
 				listTerrain.set(indiceTerrain(posX,posY), door);
@@ -114,6 +114,7 @@ public class Plateau implements IPlateau {
 	}
 	
 	public Integer indiceTerrain(Integer posX,Integer posY){
+		System.out.println(nombreColonne);
 		return ((posY)*(nombreColonne+2)+(posX))/height;
 	}
 	
@@ -178,19 +179,19 @@ public class Plateau implements IPlateau {
 
 	
 
-	public ArrayList<Wall> getListWallMap() {
+	public ArrayList<PlateauObject> getListWallMap() {
 		return listWallMap;
 	}
 
-	public void setListWallMap(ArrayList<Wall> listWallMap) {
+	public void setListWallMap(ArrayList<PlateauObject> listWallMap) {
 		this.listWallMap = listWallMap;
 	}
 
-	public ArrayList<Door> getListDoor() {
+	public ArrayList<PlateauObject> getListDoor() {
 		return listDoor;
 	}
 
-	public void setListDoor(ArrayList<Door> listDoor) {
+	public void setListDoor(ArrayList<PlateauObject> listDoor) {
 		this.listDoor = listDoor;
 	}
 
@@ -223,11 +224,14 @@ public class Plateau implements IPlateau {
 		return listTerrainArene;
 	}
 
-
+	@Override
 	public boolean isMoveValide(Integer posX, Integer posY) {
 		listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 	}
+
+
+
 
 
 }
