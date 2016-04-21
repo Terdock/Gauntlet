@@ -230,8 +230,17 @@ public class Plateau implements IPlateau {
 		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 	}
 
-
-
-
-
+	public boolean isMoveValide(Integer posX, Integer posY, String action) {
+		boolean passable = false;
+		if (action.equals("Action Up")){
+			passable = listTerrain.get(indiceTerrain(posX,posY+1)).isPassable();
+		}else if(action.equals("Action Down")){
+			passable = listTerrain.get(indiceTerrain(posX,posY-1)).isPassable();
+		}else if(action.equals("Action Right")){
+			passable = listTerrain.get(indiceTerrain(posX+1,posY)).isPassable();
+		}else if(action.equals("Action Left")){
+			passable = listTerrain.get(indiceTerrain(posX-1,posY)).isPassable();
+		}
+		return passable;
+	}
 }

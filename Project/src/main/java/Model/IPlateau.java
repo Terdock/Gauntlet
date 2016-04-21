@@ -13,6 +13,8 @@ public interface IPlateau {
 	public ArrayList<PlateauObject> getLIST_TERRAIN_Arene();
 
 	public boolean isMoveValide(Integer i, Integer j);
+	
+	public boolean isMoveValide(Integer posX, Integer posY, String action);
 
 
 }

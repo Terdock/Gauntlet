@@ -20,7 +20,7 @@ public class GamePanel extends Panel {
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
-	private Integer numberMap, divided;
+	private Integer numberMap, divided, playerNumber;
 	
 	public GamePanel(Panel panel, AbstractController controller){
 		super(panel);
@@ -58,7 +58,7 @@ public class GamePanel extends Panel {
 				}else {
 					image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
 				}
-				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeight()/divided, null);
+				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeigth()/divided, null);
 			}
 		}
 		for (WorldEntity mob : listMonster ){
@@ -66,15 +66,15 @@ public class GamePanel extends Panel {
 					
 				if(numberMap.equals(3)){
 				Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+5)/divided, (mob.getHeight()+5)/divided, null);
+				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+5)/divided, (mob.getHeigth()+5)/divided, null);
 				}
 				else if (numberMap.equals(4)){
 					Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+10)/divided, (mob.getHeight()+10)/divided, null);
+					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+10)/divided, (mob.getHeigth()+10)/divided, null);
 				}
 				else{
 					Image image = imageClasse.getImagesMonsters()[numberMap][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, mob.getWidth()/divided, mob.getHeight()/divided, null);
+					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, mob.getWidth()/divided, mob.getHeigth()/divided, null);
 				
 				}
 			}
@@ -83,11 +83,12 @@ public class GamePanel extends Panel {
 			if(heros.getVisible()){
 				if (heros.nameImage().equals("Warrior")){
 					Image image = imageClasse.getImagesHeros()[0][0][0];
-					g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, heros.getWidth()/divided, heros.getHeight()/divided, null);
+					g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, heros.getWidth()/divided, heros.getHeigth()/divided, null);
 				}
 			}
 		}
 		setPosHeros();
+		setPosMonsters();
 		repaint();
 	}
 
@@ -109,13 +110,19 @@ public class GamePanel extends Panel {
 	}
 	
 	public void addKeyboard(Integer playerNumber){
+		this.playerNumber = playerNumber;
 		listener = new Keyboard(playerNumber, this);
 	}
 	
-	public void setPosHeros(){
-		String action = listener.state(0);
-		controller.doAction(action, 0);
-		//Integer action2 = listener.state(2);
+	private void setPosMonsters(){
+		//controller.
+	}
+	
+	private void setPosHeros(){
+		for(Integer i = 0; i < playerNumber; i++){
+			String action = listener.state(i);
+			controller.doActionHeros(action, i);
+		}
 	}
 	
 

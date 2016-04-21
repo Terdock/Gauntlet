@@ -2,7 +2,7 @@ package Model;
 
 public abstract class Heros extends Creatures{
 	private String playerName;
-	private Integer step = 15;
+	private Integer step = 30;
 	private Integer force = 0;
 	private Integer defense = 0;
 	private Integer direction = 0;
@@ -20,9 +20,9 @@ public abstract class Heros extends Creatures{
 	
 	public  void move(String action){
 		if(action.equals("Action Up")){
-			setPosY(getPosY() + step);
-		}else if(action.equals("Action Down")){
 			setPosY(getPosY() - step);
+		}else if(action.equals("Action Down")){
+			setPosY(getPosY() + step);
 		}else if(action.equals("Action Right")){
 			setPosX(getPosX() + step);
 		}else if(action.equals("Action Left")){

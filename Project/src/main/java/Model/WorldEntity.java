@@ -3,7 +3,7 @@ package Model;
 
 public abstract class WorldEntity {
 	private static Integer width = 30;
-	private static Integer height = 30;
+	private static Integer heigth = 30;
 	private Integer posX;
 	private Integer posY;
 	private boolean visible = true;
@@ -26,12 +26,12 @@ public abstract class WorldEntity {
 		this.width = width;
 	}
 
-	public static Integer getHeight() {
-		return height;
+	public static Integer getHeigth() {
+		return heigth;
 	}
 
-	public void setHeight(Integer height) {
-		this.height = height;
+	public void setHeigth(Integer heigth) {
+		this.heigth = heigth;
 	}
 
 	public Integer getPosX() {

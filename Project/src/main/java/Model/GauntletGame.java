@@ -80,14 +80,12 @@ public class GauntletGame extends AbstractModel {
 
 	public boolean isHeroVisibleByMonster(Monster Mob,Integer iHero){
             boolean res = false;
-            if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()+15*listHero.get(iHero).getWidth()))
-                res = true;
-            else if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()-15*listHero.get(iHero).getWidth()))
-            	res = true;
-            if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()+15*listHero.get(iHero).getHeight()))
-            	res = true;
-            else if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()-15*listHero.get(iHero).getHeight()))
-            	res = true;
+            if(distance(Mob.getPosX(),Mob.getPosY(),listHero.get(iHero).getPosX(), listHero.get(iHero).getPosY())
+            		< Math.sqrt(20*listHero.get(iHero).getWidth()^2+20*listHero.get(iHero).getHeigth()^2)){
+            	 res = true;
+            }
+               
+            
             return res;
     }
 	
@@ -102,7 +100,7 @@ public class GauntletGame extends AbstractModel {
 	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
 	 			if(isHeroVisibleByMonster(mob,closestHero(distanceList))){
 	 				if(((Monster) mob).iSeeHero(player.getPosX(),player.getPosY())){
-	 					player.setHp(mob.attack());
+	 					//player.setHp(mob.attack());
 	 				}
 	 			}
 	 		}
@@ -115,9 +113,15 @@ public class GauntletGame extends AbstractModel {
         return Math.sqrt((vMonster-xHero)^2+(wMonster-yHero)^2);
     }
 
-    
-	
-	
+    public void doActionHeros(String action, Integer player) {
+		Heros hero = List_Hero.get(player);
+		System.out.println("AA");
+		if(!plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
+			System.out.println("BB");
+			hero.move(action);
+		}
+		checkAttackMonster();
+	}
 
 	public void setPlayerNumber(Integer playerNumber) {
 		this.playerNumber = playerNumber;
@@ -135,14 +139,5 @@ public class GauntletGame extends AbstractModel {
 
 	public void setNumberMap(Integer numberMap) {
 		this.numberMap = numberMap;
-	}
-
-
-	@Override
-	public void doAction(String action, Integer player) {
-		if(plateau.isMoveValide(List_Hero.get(player).getPosX()/List_Hero.get(player).getWidth(),List_Hero.get(player).getPosY()/List_Hero.get(player).getHeight())){
-			List_Hero.get(0).move(action);
-		}
-		checkAttackMonster();
 	}
 }

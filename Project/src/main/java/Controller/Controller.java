@@ -22,8 +22,13 @@ public class Controller extends AbstractController{
 		game.createPlateau();
 	}
 	
-	public void doAction(String action, Integer player){
-		game.doAction(action, player);
+	public void doActionHeros(String action, Integer player){
+		game.doActionHeros(action, player);
+	}
+	
+	public void setPosMonsters(){
+		game.checkAttackMonster();
+		
 	}
 
 
