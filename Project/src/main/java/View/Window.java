@@ -62,8 +62,8 @@ public class Window extends JFrame implements Observer {
       	
       	//Contruction du panneau de jeu et de score
 		panel[5] = new Panel(panel[0], "GamePanel");
-		panel[6] = new GamePanel(panel[5]);
-		panel[7] = new ScorePanel(panel[5], backgroundImages[2]);
+		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
+		panel[7] = new GamePanel(panel[5]);
       	
       
 	}
@@ -105,8 +105,8 @@ public class Window extends JFrame implements Observer {
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
             			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
-            		((GamePanel)panel[6]).addKeyboard(playerNumber);
-            		((ScorePanel)panel[7]).addName(heros, playerNumber);
+            		((ScorePanel)panel[6]).addName(heros, playerNumber);
+            		((GamePanel)panel[7]).addKeyboard(playerNumber);
             		controller.initComposant(heros);
             		card.show(panel[0], "GamePanel");
             	}
@@ -115,13 +115,13 @@ public class Window extends JFrame implements Observer {
 	}
 
 	public void update(ArrayList<WorldEntity> entities) {
-		((GamePanel)panel[6]).setEntities(entities);
+		((GamePanel)panel[7]).setEntities(entities);
 		
 	}
 
 
 	public void update(Integer numberMap) {
-		((GamePanel)panel[6]).setNumberMap(numberMap);
+		((GamePanel)panel[7]).setNumberMap(numberMap);
 	}
 
 }

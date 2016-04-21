@@ -51,9 +51,9 @@ public class GauntletGame extends AbstractModel {
 				W.setPlayerName(playerRegister[i][0]);
 				List_Hero.add(W);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				Warrior K = new Warrior(1,1);
-				K.setPlayerName(playerRegister[i][0]);
-				List_Hero.add(K);
+				Warrior W = new Warrior(60,60);
+				W.setPlayerName(playerRegister[i][0]);
+				List_Hero.add(W);
 			}else if( playerRegister[i][1] == "Nain"){
 				Dwarf D = new Dwarf(1,1);
 				D.setPlayerName(playerRegister[i][0]);
