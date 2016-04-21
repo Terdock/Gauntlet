@@ -159,7 +159,8 @@ public class Monster extends Creatures {
 		
   
 
-    public double norm(Integer v,Integer w,Integer x,Integer y){
+
+    public double distance(Integer v,Integer w,Integer x,Integer y){
         return Math.sqrt((v-x)^2+(w-y)^2);
     }
 
@@ -167,7 +168,7 @@ public class Monster extends Creatures {
 
 	public boolean iSeeHero(Integer xPosPlayer, Integer yPosPlayer) {
 		boolean res = false;
-		if(norm(getPosX(),getPosY(),xPosPlayer,yPosPlayer) >= norm(getPas(),getPas(),0,0)){
+		if(distance(getPosX(),getPosY(),xPosPlayer,yPosPlayer) >= distance(getPas(),getPas(),0,0)){
 			move(xPosPlayer,yPosPlayer) ;
 		}
 		else{

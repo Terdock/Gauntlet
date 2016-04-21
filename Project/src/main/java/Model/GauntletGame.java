@@ -91,15 +91,15 @@ public class GauntletGame extends AbstractModel {
     }
      
 
-	public boolean Where_is_Hero(Monster Mob,Integer iHero){
+	public boolean isHeroVisibleByMonster(Monster Mob,Integer iHero){
             boolean res = false;
-            if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()+50*listHero.get(iHero).getWidth()))
+            if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()+15*listHero.get(iHero).getWidth()))
                 res = true;
-            else if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()-50*listHero.get(iHero).getWidth()))
+            else if(Math.abs(Mob.getPosX()) < Math.abs(listHero.get(iHero).getPosX()-15*listHero.get(iHero).getWidth()))
             	res = true;
-            if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()+50*listHero.get(iHero).getHeight()))
+            if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()+15*listHero.get(iHero).getHeight()))
             	res = true;
-            else if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()-50*listHero.get(iHero).getHeight()))
+            else if(Math.abs(Mob.getPosY()) < Math.abs(listHero.get(iHero).getPosY()-15*listHero.get(iHero).getHeight()))
             	res = true;
             return res;
     }
@@ -109,25 +109,22 @@ public class GauntletGame extends AbstractModel {
 
 
 	public void checkAttackMonster(){
-		ArrayList<Double> normList = new ArrayList<Double>();
-	 	for (Heros player : List_Hero){
-	 		for (Monster mob : List_Monster){	
-	 				normList.add(norm(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
-	 				if(Where_is_Hero(mob,closestHero(normList))){
-	 					if(normList.get(closestHero(normList)) > Math.sqrt(mob.getPas()^2+mob.getPas()^2)){
-	 						if(((Monster) mob).iSeeHero(player.getPosX(),player.getPosY())){
-	 							player.setHp(mob.attack());
-	 						}
+		for (Monster mob : List_Monster){	
+			ArrayList<Double> distanceList = new ArrayList<Double>();
+			for (Heros player : List_Hero){
+	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
+	 			if(isHeroVisibleByMonster(mob,closestHero(distanceList))){
+	 				if(((Monster) mob).iSeeHero(player.getPosX(),player.getPosY())){
+	 					player.setHp(mob.attack());
 	 				}
-		    	}
+	 			}
 	 		}
-	 	
 	 	}
 	}
     
 
  
-    public double norm(Integer vMonster,Integer wMonster,Integer xHero,Integer yHero){
+    public double distance(Integer vMonster,Integer wMonster,Integer xHero,Integer yHero){
         return Math.sqrt((vMonster-xHero)^2+(wMonster-yHero)^2);
     }
 
