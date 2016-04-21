@@ -115,15 +115,7 @@ public class GauntletGame extends AbstractModel {
 
     public void doActionHeros(String action, Integer player) {
 		Heros hero = List_Hero.get(player);
-<<<<<<< HEAD
 		if(plateau.isMoveValide(hero.getPosX(),hero.getPosY(), action)){
-=======
-<<<<<<< HEAD
-		if(!plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
-=======
-		if(plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
->>>>>>> refs/remotes/origin/master
->>>>>>> branch 'master' of https://github.com/Terdock/Gauntlet.git
 			hero.move(action);
 		}
 		checkAttackMonster();
