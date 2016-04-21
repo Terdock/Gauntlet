@@ -115,7 +115,11 @@ public class GauntletGame extends AbstractModel {
 
     public void doActionHeros(String action, Integer player) {
 		Heros hero = List_Hero.get(player);
+<<<<<<< HEAD
 		if(!plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
+=======
+		if(plateau.isMoveValide(hero.getPosX()/hero.getWidth(),hero.getPosY()/hero.getHeigth(), action)){
+>>>>>>> refs/remotes/origin/master
 			hero.move(action);
 		}
 		checkAttackMonster();
