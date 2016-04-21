@@ -27,7 +27,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 1;
+		divided = 5;
 	}
          
 	public void paintComponent(Graphics g){
@@ -111,8 +111,7 @@ public class GamePanel extends Panel {
 	}
 	
 	public void setPosHeros(){
-		Integer action = listener.state(0);
-		
+		String action = listener.state(0);
 		//Integer action2 = listener.state(2);
 	}
 	

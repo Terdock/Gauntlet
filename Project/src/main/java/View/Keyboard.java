@@ -7,6 +7,7 @@ import View.Panel;
 
 public class Keyboard implements KeyListener{
 	private Boolean[][] Keys;
+	private String[] Values = {};
 	private Integer playerNumber, stateValue;
 	private Panel panel;
 
@@ -84,7 +85,7 @@ public class Keyboard implements KeyListener{
 		}
 	}
 	
-	public Integer state(Integer player){
+	public String state(Integer player){
 		stateValue = 10;
 		for(Integer i = 0; i<4; i++){
 			if(Keys[player][i]){
