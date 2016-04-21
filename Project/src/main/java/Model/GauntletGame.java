@@ -81,7 +81,6 @@ public class GauntletGame extends AbstractModel {
 	public boolean isHeroVisibleByMonster(Monster Mob,Integer iHero){
             boolean res = false;
             double distance = distance(Mob.getPosX(),Mob.getPosY(),listHero.get(iHero).getPosX(), listHero.get(iHero).getPosY());
-            System.out.println(distance);
             if(distance < 1){
             	 res = true;
             }

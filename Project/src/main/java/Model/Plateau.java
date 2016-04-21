@@ -114,7 +114,9 @@ public class Plateau implements IPlateau {
 	}
 	
 	public Integer indiceTerrain(Integer posX,Integer posY){
-		return ((posY)*(nombreColonne+2)+(posX))/height;
+		System.out.println(((20)*(100+2)+(20)));
+		System.out.println((posY)*(nombreColonne+2)+(posX));
+		return ((posY/height)*(nombreColonne+2)+(posX)/height);
 	}
 	
 	
@@ -231,21 +233,13 @@ public class Plateau implements IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			System.out.println(indiceTerrain(posX,posY-1));
-			System.out.println(listTerrain.get(indiceTerrain(posX,posY-1)));
-			passable = listTerrain.get(indiceTerrain(posX,posY-1)).isPassable();
+			passable = listTerrain.get(indiceTerrain(posX,posY-30)).isPassable();
 		}else if(action.equals("Action Down")){
-			System.out.println(indiceTerrain(posX,posY+1));
-			System.out.println(listTerrain.get(indiceTerrain(posX,posY+1)));
-			passable = listTerrain.get(indiceTerrain(posX,posY+1)).isPassable();
+			passable = listTerrain.get(indiceTerrain(posX,posY+30)).isPassable();
 		}else if(action.equals("Action Right")){
-			System.out.println(indiceTerrain(posX+1,posY));
-			System.out.println(listTerrain.get(indiceTerrain(posX+1,posY)));
-			passable = listTerrain.get(indiceTerrain(posX+1,posY)).isPassable();
+			passable = listTerrain.get(indiceTerrain(posX+30,posY)).isPassable();
 		}else if(action.equals("Action Left")){
-			System.out.println(indiceTerrain(posX-1,posY));
-			System.out.println(listTerrain.get(indiceTerrain(posX-1,posY)));
-			passable = listTerrain.get(indiceTerrain(posX-1,posY)).isPassable();
+			passable = listTerrain.get(indiceTerrain(posX-30,posY)).isPassable();
 		}
 		return passable;
 	}
