@@ -31,7 +31,7 @@ public class Plateau implements IPlateau {
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 		
-		if (mode == "Mode Quête"){
+		if (mode.equals("Mode Quête")){
 			Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
 			create_MAP();
 			wallReplaceGround();
@@ -42,11 +42,11 @@ public class Plateau implements IPlateau {
 			//Staircase_replace_Wall();
 				
 		}
-		else if (mode == "Mode Arène"){
+		else if (mode.equals("Mode Arène")){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
 			listTerrain = listTerrainArene;
 		}
-		else if (mode == "Mode Survivor"){
+		else if (mode.equals("Mode Survivor")){
 			Initialisation(nombreLigne,nombreColonne,listTerrainArene,mode);
 			listTerrain = listTerrainArene;
 		}
@@ -59,7 +59,7 @@ public class Plateau implements IPlateau {
 
 
 	private void Initialisation(Integer nombreLigne,Integer nombreColonne, ArrayList<PlateauObject> listTerrain,String mode){
-		if (mode == "Mode Quête"){
+		if (mode.equals("Mode Quête")){
 			create_list_terrain(nombreLigne,nombreColonne,listTerrain);
 		}
 		create_list_terrain(nombreLigneArene,nombreColonneArene,listTerrainArene);
@@ -74,7 +74,7 @@ public class Plateau implements IPlateau {
 	private void create_list_terrain(Integer nombreLigne, Integer nombreColonne,ArrayList<PlateauObject> listTerrain){
 		for (Integer posY = 0; posY <= nombreLigne + 1; posY++){
 			for (Integer posX = 0; posX<= nombreColonne + 1; posX++){
-				if (posX==0 || posY == 0 || posX == nombreColonne + 1|| posY == nombreLigne + 1){
+				if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne + 1) || posY.equals(nombreLigne + 1)){
 					listTerrain.add(new Wall(posX*width, posY*height, false, numberMap));
 				}
 				else {
@@ -114,7 +114,6 @@ public class Plateau implements IPlateau {
 	}
 	
 	public Integer indiceTerrain(Integer posX,Integer posY){
-		System.out.println(nombreColonne);
 		return ((posY)*(nombreColonne+2)+(posX))/height;
 	}
 	
@@ -224,7 +223,6 @@ public class Plateau implements IPlateau {
 		return listTerrainArene;
 	}
 
-	@Override
 	public boolean isMoveValide(Integer posX, Integer posY) {
 		listTerrain.get(indiceTerrain(posX,posY)).isPassable();
 		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
@@ -233,12 +231,20 @@ public class Plateau implements IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			passable = listTerrain.get(indiceTerrain(posX,posY+1)).isPassable();
-		}else if(action.equals("Action Down")){
+			System.out.println(indiceTerrain(posX,posY-1));
+			System.out.println(listTerrain.get(indiceTerrain(posX,posY-1)));
 			passable = listTerrain.get(indiceTerrain(posX,posY-1)).isPassable();
+		}else if(action.equals("Action Down")){
+			System.out.println(indiceTerrain(posX,posY+1));
+			System.out.println(listTerrain.get(indiceTerrain(posX,posY+1)));
+			passable = listTerrain.get(indiceTerrain(posX,posY+1)).isPassable();
 		}else if(action.equals("Action Right")){
+			System.out.println(indiceTerrain(posX+1,posY));
+			System.out.println(listTerrain.get(indiceTerrain(posX+1,posY)));
 			passable = listTerrain.get(indiceTerrain(posX+1,posY)).isPassable();
 		}else if(action.equals("Action Left")){
+			System.out.println(indiceTerrain(posX-1,posY));
+			System.out.println(listTerrain.get(indiceTerrain(posX-1,posY)));
 			passable = listTerrain.get(indiceTerrain(posX-1,posY)).isPassable();
 		}
 		return passable;

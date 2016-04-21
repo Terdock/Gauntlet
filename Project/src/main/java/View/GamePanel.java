@@ -121,7 +121,9 @@ public class GamePanel extends Panel {
 	private void setPosHeros(){
 		for(Integer i = 0; i < playerNumber; i++){
 			String action = listener.state(i);
-			controller.doActionHeros(action, i);
+			if (!action.equals("Action Stop")){
+				controller.doActionHeros(action, i);
+			}
 		}
 	}
 	
