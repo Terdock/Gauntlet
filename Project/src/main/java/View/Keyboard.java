@@ -1,4 +1,4 @@
-package Controler;
+package View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -7,19 +7,21 @@ import View.Panel;
 
 public class Keyboard implements KeyListener{
 	private Boolean[][] Keys;
-	private Integer playerNumber;
+	private Integer playerNumber = 0;
+	private Panel panel;
 	
 	public Keyboard(){
 		
 	}
 
 	public Keyboard(Integer playerNumber, Panel panel) {
-		this.playerNumber = playerNumber;
-		panel.addKeyListener(this);
-		panel.setFocusable(true);
-		panel.requestFocusInWindow();
-		Keys = new Boolean[playerNumber][5];
-		for(int i = 0; i<playerNumber;i++){
+		/**this.playerNumber = playerNumber;
+		this.panel.addKeyListener(this);
+		this.panel.setFocusable(true);
+		this.panel.requestFocusInWindow();
+		*/
+		Keys = new Boolean[this.playerNumber][5];
+		for(int i = 0; i<this.playerNumber;i++){
 			for(int j = 0; j<5; j++){
 				Keys[i][j] = false;
 			}

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import Controler.Keyboard;
+import View.Keyboard;
 import Model.Monster;
 import Model.WorldEntity;
 
@@ -19,7 +19,7 @@ public class GamePanel extends Panel {
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
-	private Integer numberMap, playerNumber,divided;
+	private Integer numberMap, divided;
 	
 	public GamePanel(Panel panel){
 		super(panel);
@@ -28,7 +28,6 @@ public class GamePanel extends Panel {
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
 		divided = 3;
-		addKeyboard();
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
@@ -113,16 +112,12 @@ public class GamePanel extends Panel {
 		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
 	}
 	
-	public void addKeyboard(){
+	public void addKeyboard(Integer playerNumber){
 		listener = new Keyboard(playerNumber, this);
 	}
 
 	public void setNumberMap(int numberMap) {
 		this.numberMap = numberMap;
-	}
-
-	public void setPlayerNumber(Integer playerNumber) {
-		this.playerNumber = playerNumber;
 	}
 	
 	
