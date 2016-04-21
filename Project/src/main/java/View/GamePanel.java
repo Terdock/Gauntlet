@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import View.Keyboard;
+import Controller.AbstractController;
 import Model.Monster;
 import Model.WorldEntity;
 
@@ -16,13 +16,15 @@ public class GamePanel extends Panel {
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
+	private AbstractController controller;
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
 	private Integer numberMap, divided;
 	
-	public GamePanel(Panel panel){
+	public GamePanel(Panel panel, AbstractController controller){
 		super(panel);
+		this.controller = controller;
 		this.setBounds(0, 0, 700, 600);
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
@@ -112,7 +114,7 @@ public class GamePanel extends Panel {
 	
 	public void setPosHeros(){
 		String action = listener.state(0);
-		System.out.println(action);
+		controller.doAction(action, 0);
 		//Integer action2 = listener.state(2);
 	}
 	

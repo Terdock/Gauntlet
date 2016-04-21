@@ -116,7 +116,10 @@ public class GauntletGame extends AbstractModel {
     }
 
     
-	
+	public void doAction(String action, Integer player){
+		List_Hero.get(player).move(action);
+		//checkAttackMonster();
+	}
 	
 
 	public void setPlayerNumber(Integer playerNumber) {

@@ -12,6 +12,7 @@ public abstract class AbstractController {
 	public abstract void setGameMode(String modeDeJeu);
 	public abstract void setGamePlayerNumber(Integer playerNumber);
 	public abstract void initComposant(String[][] playerRegister);
+	public abstract void doAction(String action, Integer player);
 
 
 }

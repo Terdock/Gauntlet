@@ -63,7 +63,7 @@ public class Window extends JFrame implements Observer {
       	//Contruction du panneau de jeu et de score
 		panel[5] = new Panel(panel[0], "GamePanel");
 		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
-		panel[7] = new GamePanel(panel[5]);
+		panel[7] = new GamePanel(panel[5], controller);
       	
       
 	}
