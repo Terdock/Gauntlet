@@ -18,18 +18,6 @@ public abstract class Heros extends Creatures{
 		
 	}
 	
-	public  void move(String action){
-		if(action.equals("Action Up")){
-			setPosY(getPosY() - step);
-		}else if(action.equals("Action Down")){
-			setPosY(getPosY() + step);
-		}else if(action.equals("Action Right")){
-			setPosX(getPosX() + step);
-		}else if(action.equals("Action Left")){
-			setPosX(getPosX() - step);
-		}
-	}
-	
 	public abstract Integer attack();
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();

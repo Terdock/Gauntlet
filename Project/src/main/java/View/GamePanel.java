@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import Controller.AbstractController;
+import Model.Creatures;
 import Model.Monster;
 import Model.WorldEntity;
 
@@ -75,7 +76,7 @@ public class GamePanel extends Panel {
 					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+10)/divided, (mob.getHeigth()+10)/divided, null);
 				}
 				else{
-					Image image = imageClasse.getImagesMonsters()[numberMap][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
+					Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) mob).getDirection()][((Creatures) mob).getMoveContinue()];
 					g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, mob.getWidth()/divided, mob.getHeigth()/divided, null);
 				
 				}
@@ -84,7 +85,7 @@ public class GamePanel extends Panel {
 		for (WorldEntity heros : listHero){
 			if(heros.getVisible()){
 				if (heros.nameImage().equals("Warrior")){
-					Image image = imageClasse.getImagesHeros()[0][0][0];
+					Image image = imageClasse.getImagesHeros()[0][((Creatures) heros).getDirection()][((Creatures) heros).getMoveContinue()];
 					g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, heros.getWidth()/divided, heros.getHeigth()/divided, null);
 				}
 			}
