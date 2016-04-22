@@ -4,6 +4,7 @@ public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	private Integer Form;
+	private Creatures creature;
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable) {
 		super(posX, posY);
@@ -21,5 +22,16 @@ public abstract class PlateauObject extends WorldEntity {
 	public String nameType(){
 		return "Terrain";
 	}
+
+	public Creatures getCreature() {
+		return creature;
+	}
+
+	public void setCreature(Creatures creature) {
+		this.creature = creature;
+	}
+
+	
+
 	
 }
