@@ -114,8 +114,6 @@ public class Plateau implements IPlateau {
 	}
 	
 	public Integer indiceTerrain(Integer posX,Integer posY){
-		System.out.println(((20)*(100+2)+(20)));
-		System.out.println((posY)*(nombreColonne+2)+(posX));
 		return ((posY/height)*(nombreColonne+2)+(posX)/height);
 	}
 	

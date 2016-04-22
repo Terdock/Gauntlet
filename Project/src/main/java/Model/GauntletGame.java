@@ -76,31 +76,29 @@ public class GauntletGame extends AbstractModel {
                     HeroClose = i;
     	return HeroClose; 
     }
-     
-
-	public boolean isHeroVisibleByMonster(Monster Mob,Integer iHero){
-            boolean res = false;
-            double distance = distance(Mob.getPosX(),Mob.getPosY(),listHero.get(iHero).getPosX(), listHero.get(iHero).getPosY());
-            if(distance < 1){
-            	 res = true;
-            }
-            return res;
-    }
+ 
 	
 
 
 
 
-	public void checkAttackMonster(){
+	public final void checkAttackMonster(){
 		for (Monster mob : List_Monster){	
 			ArrayList<Double> distanceList = new ArrayList<Double>();
 			for (Heros player : List_Hero){
 	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
 			}
 			Integer proche = closestHero(distanceList);
-	 		if(isHeroVisibleByMonster(mob,proche)){
-	 			if(((Monster) mob).iSeeHero(List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY())){
-	 				//player.setHp(mob.attack());
+			boolean isHeroVisibleByMonster = Math.abs(mob.getPosX()-listHero.get(proche).getPosX())<20*Plateau.getWidth() 
+	 				&& mob.getPosY()-listHero.get(proche).getPosY() < 20*Plateau.getHeight();
+	 		if(isHeroVisibleByMonster){
+	 			if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY()))){
+	 				if(mob.getPosX() -  List_Hero.get(proche).getPosX() >= 30 || mob.getPosY()-List_Hero.get(proche).getPosY() > 30 ){
+	 					mob.move(mob.doAction( List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY()));
+	 				}
+	 				else{
+	 					//player.setHp(mob.attack());
+	 				}
 	 			}
 	 		}
 	 	}

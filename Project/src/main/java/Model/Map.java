@@ -279,8 +279,7 @@ public class Map {
 					if(x == 10 && y == 10){
 						
 					}
-					else if (checkInMonster( x, y, h))
-					{
+					else if (checkInMonster( x, y, h)){
 						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),4,0,0,0,0));
 					}
 		

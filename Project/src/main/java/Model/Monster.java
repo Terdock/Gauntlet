@@ -7,7 +7,7 @@ import Model.Creatures;
 public class Monster extends Creatures {
     private Integer posMove;
     private boolean iSeeHero;
-    private Integer step = 15;
+    private Integer step = 30;
     private static Integer degat = 10;
     public static Integer getDegat() {
 		return degat;
@@ -111,10 +111,10 @@ public class Monster extends Creatures {
 	
 	public  void move(String action){
 		if(action.equals("Action Up")){
-			setPosY(getPosY() + step);
+			setPosY(getPosY() - step);
 			gestionImage(0);
 		}else if(action.equals("Action Down")){
-			setPosY(getPosY() - step);
+			setPosY(getPosY() + step);
 			gestionImage(2);
 		}else if(action.equals("Action Right")){
 			setPosX(getPosX() + step);
@@ -126,19 +126,17 @@ public class Monster extends Creatures {
 	}
 	
 	public String doAction(Integer xPosPlayer, Integer yPosPlayer){
-		String move;
-		System.out.println(Math.abs(getPosX() -  xPosPlayer)); 
-		System.out.println(Math.abs(getPosY() -  yPosPlayer)); 
-		if( Math.abs(getPosX() -  xPosPlayer) < Math.abs(getPosY() - yPosPlayer)){
+		String move=  "Action Stop";
+		if( Math.abs(getPosX() -  xPosPlayer) <= Math.abs(getPosY() - yPosPlayer)){
 			if (getPosY() - yPosPlayer < 0){
-				move = "Action Up";
-			}else{
-            	move = "Action Down";
+				move = "Action Down";
+			}else if(getPosY() - yPosPlayer >= 0){
+            	move = "Action Up";
             }
-		}else{
+		}else if(Math.abs(getPosX() -  xPosPlayer) > Math.abs(getPosY() - yPosPlayer)){
             if(getPosX() - xPosPlayer < 0){
             	move = "Action Right";
-            }else{
+            }else if(getPosY() - yPosPlayer >= 0){
                 move = "Action Left";
             }
 		}
@@ -166,17 +164,6 @@ public class Monster extends Creatures {
     }
 
     
-
-	public boolean iSeeHero(Integer xPosPlayer, Integer yPosPlayer) {
-		boolean res = false;
-		if(distance(getPosX(),getPosY(),xPosPlayer,yPosPlayer) >= distance(step,step,0,0)){
-			move(doAction(xPosPlayer,yPosPlayer));
-		}
-		else{
-			res = true;
-		}
-		return res; 
-	}
 	
 	
 	@Override

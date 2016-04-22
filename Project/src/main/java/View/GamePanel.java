@@ -31,6 +31,8 @@ public class GamePanel extends Panel {
 		imageClasse.chargerImage();
 		divided = 5;
 	}
+	
+	
          
 	public void paintComponent(Graphics g){
 		for (WorldEntity terre : listTerrain ){
@@ -88,7 +90,6 @@ public class GamePanel extends Panel {
 			}
 		}
 		setPosHeros();
-		setPosMonsters();
 		repaint();
 	}
 
