@@ -119,7 +119,7 @@ public class Plateau implements IPlateau {
 	
 	
 	private void create_MAP(){
-		Map map = new Map(nombreLigne, nombreColonne);
+		Map map = new Map(nombreLigne, nombreColonne,numberMap);
 		staircaseMap = map.create_Staircase0();
 		if(numberMap == 0){
 			this.listWallMap = map.create_MAP0();

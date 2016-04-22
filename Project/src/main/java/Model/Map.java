@@ -11,10 +11,12 @@ public class Map {
 	private Integer nombreColonne;
 	private ArrayList<PlateauObject> listDoor;
 	private Integer NumberOfDoor;
+	private Integer numberMap;
 	
-	public Map(Integer nombrLigne,Integer nombreColonne){
+	public Map(Integer nombrLigne,Integer nombreColonne,Integer numberMap){
 		this.nombreLigne = nombrLigne;
 		this.nombreColonne = nombreColonne;
+		this.numberMap = numberMap;
 	}
 
 
@@ -45,7 +47,10 @@ public class Map {
 		for(Integer h = 0; h < 5; h++){
 			for(Integer y = 0; y < nombreColonne+1; y++){
 				for(Integer x = 0; x < nombreLigne+1; x++){
-					if (checkInDoor( x, y, h)){
+					if(x.equals(20) && y.equals(10)){
+						
+					}
+					else if (checkInDoor( x, y, h)){
 						listDoor.add(new Door(x*Plateau.getWidth(),y*Plateau.getHeight(),false,i));i++;						
 					}
 					else if( x == h*20 || y == h*20 ){
@@ -333,7 +338,7 @@ public class Map {
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n+a; i <= n+b ; i++){
 			for ( Integer j = -n+c; j<= n+d;j++) {
-				list.add(new Monster(posX+i*Plateau.getWidth(),posY+j*Plateau.getHeight(), null));
+				list.add(new Monster(posX+i*Plateau.getWidth(),posY+j*Plateau.getHeight(), null, numberMap));
 			}
 		}	
 		return list;

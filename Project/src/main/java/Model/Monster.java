@@ -9,16 +9,7 @@ public class Monster extends Creatures {
     private boolean iSeeHero;
     private Integer step = 30;
     private static Integer degat = 10;
-    public static Integer getDegat() {
-		return degat;
-	}
-
-
-
-
-	public static void setDegat(Integer degat) {
-		Monster.degat = degat;
-	}
+    
 
 	private Integer typeMonster = 1;
     private WorldObject wObject; 
@@ -31,15 +22,27 @@ public class Monster extends Creatures {
 
  
 
-	public Monster(Integer posX,Integer posY,WorldObject wObject ){
+	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
         super(posX,posY);
         iSeeHero = false;
         setPas(30); //fixons le pas à 30 pour tout les mob
         this.wObject = wObject;
+        setLevel(numberMap);
     }
     
 
-                    
+    
+    public static Integer getDegat() {
+		return degat;
+	}
+
+
+
+
+	public static void setDegat(Integer degat) {
+		Monster.degat = degat;
+	}
+ 
      
     public Integer getMoveContinue() {
 		return moveContinue;

@@ -9,6 +9,7 @@ public abstract class Creatures extends WorldEntity {
 
 	public Creatures(Integer posX,Integer posY) {
 		super(posX,posY);
+		hp = 100;
 	}
 	
 	public abstract void Distanc_Attack();
@@ -22,6 +23,9 @@ public abstract class Creatures extends WorldEntity {
 
 	public void setLife(boolean life) {
 		this.life = life;
+		if(!life){
+			setVisible(false);
+		}
 	}
 
 	public Integer getHp() {

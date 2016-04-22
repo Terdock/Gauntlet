@@ -89,15 +89,16 @@ public class GauntletGame extends AbstractModel {
 	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
 			}
 			Integer proche = closestHero(distanceList);
-			boolean isHeroVisibleByMonster = Math.abs(mob.getPosX()-listHero.get(proche).getPosX())<20*Plateau.getWidth() 
-	 				&& mob.getPosY()-listHero.get(proche).getPosY() < 20*Plateau.getHeight();
-	 		if(isHeroVisibleByMonster){
-	 			if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY()))){
-	 				if(mob.getPosX() -  List_Hero.get(proche).getPosX() >= 30 || mob.getPosY()-List_Hero.get(proche).getPosY() > 30 ){
-	 					mob.move(mob.doAction( List_Hero.get(proche).getPosX(),List_Hero.get(proche).getPosY()));
+			WorldEntity player = listHero.get(proche);
+			boolean isHeroVisible = Math.abs(mob.getPosX()-player.getPosX())<20*Plateau.getWidth() 
+	 				&& Math.abs(mob.getPosY()-player.getPosY()) < 20*Plateau.getHeight();
+	 		if(isHeroVisible){
+	 			if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( player.getPosX(),player.getPosY()))){
+	 				if(mob.getPosX() -  player.getPosX() >= 30 || mob.getPosY()-player.getPosY() > 30 ){
+	 					mob.move(mob.doAction( player.getPosX(),player.getPosY()));
 	 				}
 	 				else{
-	 					//player.setHp(mob.attack());
+	 					List_Hero.get(proche).setHp(mob.attack());
 	 				}
 	 			}
 	 		}
