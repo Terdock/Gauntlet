@@ -27,7 +27,7 @@ public class Monster extends Creatures {
         iSeeHero = false;
         setPas(30); //fixons le pas à 30 pour tout les mob
         this.wObject = wObject;
-        setLevel(numberMap);
+        setLevel(numberMap+1);
     }
     
 
@@ -162,12 +162,7 @@ public class Monster extends Creatures {
   
 
 
-    public double distance(Integer v,Integer w,Integer x,Integer y){
-        return Math.sqrt((v-x)*(v-x)+(w-y)*(w-y));
-    }
 
-    
-	
 	
 	@Override
 	public Integer attack() {

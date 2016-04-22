@@ -94,7 +94,7 @@ public class GauntletGame extends AbstractModel {
 	 				&& Math.abs(mob.getPosY()-player.getPosY()) < 20*Plateau.getHeight();
 	 		if(isHeroVisible){
 	 			if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( player.getPosX(),player.getPosY()))){
-	 				if(mob.getPosX() -  player.getPosX() >= 30 || mob.getPosY()-player.getPosY() > 30 ){
+	 				if(Math.abs(mob.getPosX() -  player.getPosX()) > 30 || Math.abs(mob.getPosY()-player.getPosY())> 30 ){
 	 					mob.move(mob.doAction( player.getPosX(),player.getPosY()));
 	 				}
 	 				else{
