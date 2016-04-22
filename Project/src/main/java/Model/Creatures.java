@@ -3,7 +3,7 @@ package Model;
 public abstract class Creatures extends WorldEntity {
 	private Integer pas = 30;
 	private boolean life = true;
-	protected Integer hp;
+	private Integer hp;
 	private Integer level;
 	private Integer direction = 0;
     private Integer moveContinue = 0;
@@ -14,6 +14,8 @@ public abstract class Creatures extends WorldEntity {
 		super(posX,posY);
 		hp = 100;
 	}
+	
+	
 	
 	public  void move(String action){
 		if(action.equals("Action Up")){
@@ -43,6 +45,7 @@ public abstract class Creatures extends WorldEntity {
 			setDirection(action);
 		}
 	}
+	
 		
 
     
@@ -85,7 +88,9 @@ public abstract class Creatures extends WorldEntity {
 		return hp;
 	}
 
-	public abstract void setHp(Integer dommage) ;
+	public void setHp(Integer dommage) {
+		this.hp = hp - dommage;
+	}
 
 	public Integer getLevel() {
 		return level;

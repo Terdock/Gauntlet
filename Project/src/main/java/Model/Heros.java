@@ -4,7 +4,7 @@ public abstract class Heros extends Creatures{
 	private String playerName;
 	private Integer step = 30;
 	private Integer force = 0;
-	private Integer defense = 0;
+	private Integer defense = 5;
 	private Integer direction = 0;
 	private Integer speed = 0;
 	private Integer power = 0;
@@ -22,13 +22,7 @@ public abstract class Heros extends Creatures{
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
 	
-	public void setHp(Integer dommage){
-		this.hp = hp - (dommage-defense);
-		if(hp <= 0){
-			hp = 0;
-			setLife(false);
-		}
-}
+
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -39,6 +33,11 @@ public abstract class Heros extends Creatures{
 	
 	public String nameType(){
 		return "Hero";
+	}
+
+	public void receiveAttack(Integer attack) {
+		setHp(attack-defense);
+		
 	}
 	
 	

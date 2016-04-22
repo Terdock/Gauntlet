@@ -120,7 +120,7 @@ public class GauntletGame extends AbstractModel {
 								mob.move(mob.doAction( player.getPosX(),player.getPosY()));
 							}
 							else{
-								List_Hero.get(proche).setHp(mob.attack());
+								List_Hero.get(proche).receiveAttack(mob.attack());
 							}
 						}
 					}
