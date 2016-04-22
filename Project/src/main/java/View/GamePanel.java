@@ -29,7 +29,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 5;
+		divided = 2;
 	}
 	
 	
@@ -91,6 +91,12 @@ public class GamePanel extends Panel {
 		}
 		setPosHeros();
 		repaint();
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void checkCondition(WorldEntity terre){

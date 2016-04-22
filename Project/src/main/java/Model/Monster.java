@@ -143,16 +143,16 @@ public class Monster extends Creatures {
 		return move;
 	}
 	
-	public void gestionImage(Integer a){
-		if(direction == a)
+	public void gestionImage(Integer action){
+		if(direction == action)
 			if(moveContinue == 2){
-				moveContinue = 0;
+				moveContinue = 1;
 			}
 			else{
 				moveContinue++;
 			}
 		else{
-			setDirection(a);
+			setDirection(action);
 		}
 	}
 		

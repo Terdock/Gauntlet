@@ -115,7 +115,6 @@ public class GauntletGame extends AbstractModel {
 		if(plateau.isMoveValide(hero.getPosX(),hero.getPosY(), action)){
 			hero.move(action);
 		}
-		checkAttackMonster();
 	}
 
 	public void setPlayerNumber(Integer playerNumber) {
