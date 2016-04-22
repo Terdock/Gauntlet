@@ -70,8 +70,7 @@ public abstract class Creatures extends WorldEntity {
 	
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
-	public abstract Integer attack();
-
+	public abstract void attack(Creatures creature);
 
 	public boolean isLife() {
 		return life;
@@ -90,6 +89,10 @@ public abstract class Creatures extends WorldEntity {
 
 	public void setHp(Integer dommage) {
 		this.hp = hp - dommage;
+		if(hp <= 0){
+			hp = 0;
+			setLife(false);
+		}
 	}
 
 	public Integer getLevel() {
@@ -107,6 +110,10 @@ public abstract class Creatures extends WorldEntity {
 	public void setPas(Integer pas) {
 		this.pas = pas;
 	}
+
+
+
+		
 
 
 }

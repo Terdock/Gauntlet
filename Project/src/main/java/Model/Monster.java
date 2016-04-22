@@ -115,8 +115,8 @@ public class Monster extends Creatures {
 
 	
 	@Override
-	public Integer attack() {
-		return degat*getLevel();
+	public void attack(Creatures creature) {
+		((Heros)creature).receiveAttack(degat*getLevel());
 	}
 
 	@Override

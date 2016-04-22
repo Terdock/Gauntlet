@@ -8,11 +8,7 @@ public class Boss extends Monster {
 		this.Height = 60;
 		this.Width = 60;
 	}
-	
-	@Override
-	public Integer attack() {
-		return getDegat()*getLevel();
-	}
+
 
 
 }

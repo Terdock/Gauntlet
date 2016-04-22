@@ -6,9 +6,6 @@ public class Dwarf extends Heros {
 		super(posX,posY);
 	}
 
-	public Integer attack() {
-		return 0;
-	}
 
 	public void Distanc_Attack() {
 		
@@ -20,6 +17,12 @@ public class Dwarf extends Heros {
 
 	public String nameImage() {
 		return null;
+	}
+
+	@Override
+	public void attack(Creatures creature) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

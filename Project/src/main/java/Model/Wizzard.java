@@ -7,9 +7,6 @@ public class Wizzard extends Heros {
 	}
 
 
-	public Integer attack() {
-		return 0;
-	}
 
 
 	public void Distanc_Attack() {
@@ -22,6 +19,15 @@ public class Wizzard extends Heros {
 
 	public String nameImage() {
 		return null;
+	}
+
+
+
+
+	@Override
+	public void attack(Creatures creature) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
