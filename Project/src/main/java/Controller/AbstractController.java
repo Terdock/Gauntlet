@@ -13,6 +13,7 @@ public abstract class AbstractController {
 	public abstract void setGamePlayerNumber(Integer playerNumber);
 	public abstract void initComposant(String[][] playerRegister);
 	public abstract void doActionHeros(String action, Integer player);
+	public abstract void doActionMonsters();
 
 
 }

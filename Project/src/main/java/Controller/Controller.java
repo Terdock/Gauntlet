@@ -24,6 +24,9 @@ public class Controller extends AbstractController{
 	
 	public void doActionHeros(String action, Integer player){
 		game.doActionHeros(action, player);
+	}
+	
+	public void doActionMonsters(){
 		game.checkAttackMonster();
 	}
 

@@ -89,6 +89,7 @@ public class GamePanel extends Panel {
 				}
 			}
 		}
+		setPosMonster();
 		setPosHeros();
 		repaint();
 		try {
@@ -121,8 +122,8 @@ public class GamePanel extends Panel {
 		listener = new Keyboard(playerNumber, this);
 	}
 	
-	private void setPosMonsters(){
-		//controller.
+	private void setPosMonster(){
+		controller.doActionMonsters();
 	}
 	
 	private void setPosHeros(){
