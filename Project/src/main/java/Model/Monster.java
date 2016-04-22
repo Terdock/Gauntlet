@@ -133,13 +133,13 @@ public class Monster extends Creatures {
 		if( Math.abs(getPosX() -  xPosPlayer) <= Math.abs(getPosY() - yPosPlayer)){
 			if (getPosY() - yPosPlayer < 0){
 				move = "Action Down";
-			}else if(getPosY() - yPosPlayer >= 0){
+			}else{
             	move = "Action Up";
             }
 		}else if(Math.abs(getPosX() -  xPosPlayer) > Math.abs(getPosY() - yPosPlayer)){
             if(getPosX() - xPosPlayer < 0){
             	move = "Action Right";
-            }else if(getPosY() - yPosPlayer >= 0){
+            }else{
                 move = "Action Left";
             }
 		}

@@ -80,29 +80,56 @@ public class GauntletGame extends AbstractModel {
 	
 
 
+    public void removeCreature(Heros player){
+		this.List_Hero.remove(player);
+		ArrayList<WorldEntity> list = new ArrayList<WorldEntity>();
+		for (Heros hero : List_Hero){
+			list.add(hero);
+		}
+		notifyObserver(list);
+			
+    }
+    public void removeCreature(Monster mob){
+		this.List_Monster.remove(mob);
+		ArrayList<WorldEntity> list = new ArrayList<WorldEntity>();
+		for (Monster monster : List_Monster){
+			list.add(monster);
+		}
+		notifyObserver(list);
+			
+    }
 
-
+    
 	public final void checkAttackMonster(){
 		for (Monster mob : List_Monster){	
-			ArrayList<Double> distanceList = new ArrayList<Double>();
-			for (Heros player : List_Hero){
-	 			distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
+			if(mob.isLife()){
+				ArrayList<Double> distanceList = new ArrayList<Double>();
+				for (Heros player : List_Hero){
+					if(player.isLife()){
+						distanceList.add(distance(mob.getPosX(),mob.getPosY(),player.getPosX(),player.getPosY()));
+					}
+				}
+				if(distanceList.size() > 0){
+					Integer proche = closestHero(distanceList);
+					WorldEntity player = listHero.get(proche);
+					boolean isHeroVisible = Math.abs(mob.getPosX()-player.getPosX())<20*Plateau.getWidth() 
+							&& Math.abs(mob.getPosY()-player.getPosY()) < 20*Plateau.getHeight();
+					if(isHeroVisible){
+						if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( player.getPosX(),player.getPosY()))){
+							if(Math.abs(mob.getPosX() -  player.getPosX()) > 30 || Math.abs(mob.getPosY()-player.getPosY())> 30 ){
+								mob.move(mob.doAction( player.getPosX(),player.getPosY()));
+							}
+							else{
+								List_Hero.get(proche).setHp(mob.attack());
+							}
+						}
+					}
+				}
+				else{
+					System.out.println("Game Over");
+				}
 			}
-			Integer proche = closestHero(distanceList);
-			WorldEntity player = listHero.get(proche);
-			boolean isHeroVisible = Math.abs(mob.getPosX()-player.getPosX())<20*Plateau.getWidth() 
-	 				&& Math.abs(mob.getPosY()-player.getPosY()) < 20*Plateau.getHeight();
-	 		if(isHeroVisible){
-	 			if(plateau.isMoveValide(mob.getPosX(),mob.getPosY(), mob.doAction( player.getPosX(),player.getPosY()))){
-	 				if(Math.abs(mob.getPosX() -  player.getPosX()) > 30 || Math.abs(mob.getPosY()-player.getPosY())> 30 ){
-	 					mob.move(mob.doAction( player.getPosX(),player.getPosY()));
-	 				}
-	 				else{
-	 					List_Hero.get(proche).setHp(mob.attack());
-	 				}
-	 			}
-	 		}
-	 	}
+		}
 	}
     
 
