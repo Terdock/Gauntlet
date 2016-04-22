@@ -35,8 +35,8 @@ public abstract class Heros extends Creatures{
 	}
 
 	public void receiveAttack(Integer attack) {
-		setHp(attack-defense);
-		
+		if(attack-defense>0)
+			setHp(attack-defense);
 	}
 	
 	
