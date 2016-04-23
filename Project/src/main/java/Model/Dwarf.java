@@ -19,9 +19,7 @@ public class Dwarf extends Heros {
 		return null;
 	}
 
-	@Override
 	public void attack(Creatures creature) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -16,6 +16,7 @@ public abstract class Heros extends Creatures{
 		super(posX,posY);
 	}
 	
+<<<<<<< HEAD
 	public void createHero(String[][] playerRegister) {
 		List_Hero = convertListHero(playerRegister);
 		for(Heros hero : List_Hero)
@@ -53,6 +54,8 @@ public abstract class Heros extends Creatures{
 		
 	}
 	
+=======
+>>>>>>> refs/remotes/origin/master
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
 	

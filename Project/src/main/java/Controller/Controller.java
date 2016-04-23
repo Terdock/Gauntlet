@@ -16,6 +16,9 @@ public class Controller extends AbstractController{
 		game.setPlayerNumber(playerNumber);
 	}
 
+	public void attackMonster(){
+		
+	}
 
 	public void initComposant(String[][] playerRegister) {
 		game.createPlateau();

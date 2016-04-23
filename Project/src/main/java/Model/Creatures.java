@@ -3,7 +3,7 @@ package Model;
 public abstract class Creatures extends WorldEntity {
 	private Integer pas = 30;
 	private boolean life = true;
-	private Integer hp;
+	private Integer hp = 100;
 	private Integer level;
 	private Integer direction = 0;
     private Integer moveContinue = 0;
@@ -12,7 +12,6 @@ public abstract class Creatures extends WorldEntity {
 
 	public Creatures(Integer posX,Integer posY) {
 		super(posX,posY);
-		hp = 100;
 	}
 	
 	
