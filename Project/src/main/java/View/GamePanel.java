@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import Controller.AbstractController;
 import Model.Creatures;
 import Model.Monster;
+import Model.PlateauObject;
 import Model.WorldEntity;
 
 
@@ -38,28 +39,15 @@ public class GamePanel extends Panel {
 	public void paintComponent(Graphics g){
 		for (WorldEntity terre : listTerrain ){
 			if(terre.getVisible()){
-				checkCondition(terre);
 				Image image = null;
-				if(upLeftCondition){
-					image = imageClasse.getImagesWall()[numberMap][2];
-				}else if(upDownCondition){
-					image = imageClasse.getImagesWall()[numberMap][1];
-				}else if (downLeftCondition){
-					image = imageClasse.getImagesWall()[numberMap][5];
-				}else if(leftRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][0];
-				}else if(downRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][4];
-				}else if(upRightCondition){
-					image = imageClasse.getImagesWall()[numberMap][3];
-				}else if(terre.getClass().getName().equals("Model.Wall")){
+				image = edgeImage(terre);
+				if(terre.getClass().getName().equals("Model.Wall")){
 					image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
 				}else if(terre.getClass().getName().equals("Model.Sol")){
 					image = imageClasse.getImagesGround()[numberMap];
+					Creatures creature = ((PlateauObject) terre).getCreature();
 				}else if (terre.getClass().getName().equals("Model.Door")){
 					image = imageClasse.getImageDoor();
-				}else {
-					image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
 				}
 				g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeigth()/divided, null);
 			}
@@ -101,7 +89,26 @@ public class GamePanel extends Panel {
 		}
 	}
 
-	private void checkCondition(WorldEntity terre){
+	private Image edgeImage(WorldEntity terre){
+		Image image = null;
+		checkEdgeCondition(terre);
+		if(upLeftCondition){
+			image = imageClasse.getImagesWall()[numberMap][2];
+		}else if(upDownCondition){
+			image = imageClasse.getImagesWall()[numberMap][1];
+		}else if (downLeftCondition){
+			image = imageClasse.getImagesWall()[numberMap][5];
+		}else if(leftRightCondition){
+			image = imageClasse.getImagesWall()[numberMap][0];
+		}else if(downRightCondition){
+			image = imageClasse.getImagesWall()[numberMap][4];
+		}else if(upRightCondition){
+			image = imageClasse.getImagesWall()[numberMap][3];
+		}
+		return image;
+	}
+	
+	private void checkEdgeCondition(WorldEntity terre){
 		upLeftCondition = terre.getPosX().equals(0) && terre.getPosY().equals(0);
 		upDownCondition = (terre.getPosX().equals(0) && !terre.getPosY().equals(0)
 				&& !terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY())) 
@@ -115,7 +122,8 @@ public class GamePanel extends Panel {
 		downRightCondition = terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
 				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
 		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
-		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && !downRightCondition && !upRightCondition;
+		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && 
+				!downRightCondition && !upRightCondition;
 	}
 	
 	public void addKeyboard(Integer playerNumber){
@@ -130,8 +138,10 @@ public class GamePanel extends Panel {
 	private void setPosHeros(){
 		for(Integer i = 0; i < playerNumber; i++){
 			String action = listener.state(i);
-			if (!action.equals("Action Stop")){
+			if (!action.equals("Action Stop") && !action.equals("Action Attack")){
 				controller.doActionHeros(action, i);
+			}else if(action.equals("Action Attack")){
+				controller.attackMonster();
 			}
 		}
 	}

@@ -14,10 +14,6 @@ public abstract class Heros extends Creatures{
 		super(posX,posY);
 	}
 	
-	public void move(){
-		
-	}
-	
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
 	
