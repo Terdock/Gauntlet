@@ -6,8 +6,7 @@ public interface IPlateau {
 
 	public Integer getNumberMap();
 	
-
-	public void setListTerrain(ArrayList<PlateauObject> listTerrain) ;
+	public void setListTerrain(WorldEntity[][] listTerrain) ;
 
 	public boolean isMoveValide(Integer i, Integer j);
 	

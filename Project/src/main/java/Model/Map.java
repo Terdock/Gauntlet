@@ -2,11 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Map {
+public class Map implements IMap {
 	
-	
-	
-	private ArrayList<Monster> listMonster = new ArrayList<Monster>();
+
 	private Integer nombreLigne;
 	private Integer nombreColonne;
 	private Integer NumberOfDoor;
@@ -16,20 +14,32 @@ public class Map {
 	private ArrayList<PlateauObject> listWallMap = new ArrayList<PlateauObject>();
 	private PlateauObject staircaseMap;
 	private PlateauObject holeMap;
+	private Creatures[] listMonster;
 	
+	
+
+
 	public Map(Integer nombrLigne,Integer nombreColonne,Integer numberMap){
 		this.nombreLigne = nombrLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 	}
 
+	public Creatures[] getListMonster() {
+		return listMonster;
+	}
 
+	public void setListMonster(Creatures[] listMonster) {
+		this.listMonster = listMonster;
+	}
 
+	
+	@Override
 	public Integer getNumberOfDoor() {
 		return NumberOfDoor;
 	}
 
-
+	@Override
 	public void setNumberOfDoor(Integer numberOfDoor) {
 		NumberOfDoor = numberOfDoor;
 	}
@@ -47,6 +57,10 @@ public class Map {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see Model.IMap#createListTerrain(java.lang.Integer, java.lang.Integer, Model.PlateauObject[][])
+	 */
+	@Override
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		for (Integer posY = 0; posY <= nombreLigne + 1; posY++){
 			for (Integer posX = 0; posX<= nombreColonne + 1; posX++){
@@ -364,7 +378,92 @@ public class Map {
 		}	
 		return list;
 	}
+	
 
+	public ArrayList<PlateauObject> getListWallMap() {
+		return listWallMap;
+	}
+
+	public void setListWallMap(ArrayList<PlateauObject> listWallMap) {
+		this.listWallMap = listWallMap;
+	}
+
+	public ArrayList<PlateauObject> getListDoor() {
+		return listDoor;
+	}
+
+	public void setListDoor(ArrayList<PlateauObject> listDoor) {
+		this.listDoor = listDoor;
+	}
+	
+	
+	
+	private void create_MAP(){
+		staircaseMap = mapParLevel.create_Staircase0();
+		if(numberMap == 0){
+			this.listWallMap = mapParLevel.create_MAP0();
+			this.holeMap = mapParLevel.create_Hole0();
+			this.listMonster = mapParLevel.create_Monster0();
+		}
+		else if(numberMap == 1){
+			this.listWallMap = mapParLevel.create_MAP1();
+			this.holeMap = mapParLevel.create_Hole1();
+			this.listMonster = mapParLevel.create_Monster1();
+		}
+		else if(numberMap == 2){
+			this.listWallMap = mapParLevel.create_MAP2();
+		 	this.holeMap = mapParLevel.create_Hole2();
+		 	this.listMonster = mapParLevel.create_Monster2();
+		}
+		 else if(numberMap == 3){
+			listWallMap = mapParLevel.create_MAP3();
+			holeMap = mapParLevel.create_Hole3();
+			this.listMonster = mapParLevel.create_Monster3();
+		 }
+		else if(numberMap == 4){
+			listWallMap = mapParLevel.create_MAP4();
+			holeMap = mapParLevel.create_Hole4();
+			this.listMonster = mapParLevel.create_Monster4();
+		}
+		listDoor = mapParLevel.create_Door();
+	}
+
+	
+	/**
+	 * Initialisation des types blocs incassables autour et terrain à l'Integerérieur du plateau
+	 * Dans la LIST_TERRAIN
+	 */
+	
+	
+	private void wallReplaceGround(){
+		for (PlateauObject wallMap : listWallMap){
+				Integer posX = wallMap.getPosX();
+				Integer posY = wallMap.getPosY();
+				listTerrain.set(indiceTerrain(posX,posY), wallMap);
+			}
+		}
+		
+	private void doorReplaceGround(){
+		for (PlateauObject door : listDoor){
+				Integer posX = door.getPosX();
+				Integer posY = door.getPosY();
+				listTerrain.set(indiceTerrain(posX,posY), door);
+			}
+	}
+	
+	private void Staircase_replace_Wall(){
+		Integer posX = staircaseMap.getPosX();
+		Integer posY = staircaseMap.getPosY();
+		listTerrain.set(indiceTerrain(posX,posY),staircaseMap);
+	}
+	
+	
+	private void Hole_replace_Wall(){
+		Integer posX = holeMap.getPosX();
+		Integer posY = holeMap.getPosY();
+		listTerrain.set(indiceTerrain(posX,posY),holeMap);
+	}
+	
 
 
 

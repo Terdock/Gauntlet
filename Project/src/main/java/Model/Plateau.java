@@ -10,111 +10,46 @@ public class Plateau implements IPlateau {
 	private static Integer width = 30;
 	private static Integer height = 30;
 	private Integer numberMap;
-	private Map mapParLevel;
-	private PlateauObject[][] listTerrain;
-	private PlateauObject[][] listTerrain2;
-
+	private IMap map;
+	private PlateauObject[][] listTerrain = new PlateauObject[nombreColonne][nombreLigne];
+	private PlateauObject[][] listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
+	private Creatures[] listHero = new Creatures[4]  ;
+	private Creatures[] listMonster = new Creatures[0];
+	
+	
 	public void setListTerrain(PlateauObject[][] listTerrain) {
 		this.listTerrain = listTerrain;
 	}
 
-	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap,String mode) {
+	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap,String mode,String[][] playerResiter) {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
-		this.mapParLevel = new Map(nombreLigne, nombreColonne,numberMap);
+		this.map = new Map(nombreLigne, nombreColonne,numberMap);
 		this.listTerrain = new PlateauObject[nombreLigne][nombreColonne];
 		this.listTerrain2 = new PlateauObject[nombreLigne][nombreColonne];
-		Initialisation(nombreLigne,nombreColonne,listTerrain,mode);
+		Initialisation(nombreLigne,nombreColonne,listTerrain,mode, playerResiter);
+		
 	}	
 	
 
 
-	private void Initialisation(Integer nombreLigne,Integer nombreColonne, PlateauObject[][] listTerrain,String mode){
-		listTerrain2 = mapParLevel.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
+	private void Initialisation(Integer nombreLigne,Integer nombreColonne, PlateauObject[][] listTerrain,String mode,String[][] playerRegister){
+		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
-			listTerrain = mapParLevel.createListTerrain(nombreLigne,nombreColonne,listTerrain);
+			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 		}
 		else{
-			listTerrain = listTerrain2;
+			this.listTerrain = listTerrain2;
 		}
-		
-		//listHero =  
-		//listMonster = 
-	}
-	
-	
-	
-
-	
-	/**
-	 * Initialisation des types blocs incassables autour et terrain à l'Integerérieur du plateau
-	 * Dans la LIST_TERRAIN
-	 */
-	
-	
-	private void wallReplaceGround(){
-		for (PlateauObject wallMap : listWallMap){
-				Integer posX = wallMap.getPosX();
-				Integer posY = wallMap.getPosY();
-				listTerrain.set(indiceTerrain(posX,posY), wallMap);
-			}
+		createHero(playerRegister);
+		listMonster = map.getListMonster();
+		for (Creatures player : listHero ){
+			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
-		
-	private void doorReplaceGround(){
-		for (PlateauObject door : listDoor){
-				Integer posX = door.getPosX();
-				Integer posY = door.getPosY();
-				listTerrain.set(indiceTerrain(posX,posY), door);
-			}
-	}
-	
-	private void Staircase_replace_Wall(){
-		Integer posX = staircaseMap.getPosX();
-		Integer posY = staircaseMap.getPosY();
-		listTerrain.set(indiceTerrain(posX,posY),staircaseMap);
-	}
-	
-	
-	private void Hole_replace_Wall(){
-		Integer posX = holeMap.getPosX();
-		Integer posY = holeMap.getPosY();
-		listTerrain.set(indiceTerrain(posX,posY),holeMap);
-	}
-	
-	public Integer indiceTerrain(Integer posX,Integer posY){
-		return ((posY/height)*(nombreColonne+2)+(posX)/height);
-	}
-	
-	
-	private void create_MAP(){
-		staircaseMap = mapParLevel.create_Staircase0();
-		if(numberMap == 0){
-			this.listWallMap = mapParLevel.create_MAP0();
-			this.holeMap = mapParLevel.create_Hole0();
-			this.listMonster = mapParLevel.create_Monster0();
+		for (Creatures mob: listMonster){
+			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 		}
-		else if(numberMap == 1){
-			this.listWallMap = mapParLevel.create_MAP1();
-			this.holeMap = mapParLevel.create_Hole1();
-			this.listMonster = mapParLevel.create_Monster1();
-		}
-		else if(numberMap == 2){
-			this.listWallMap = mapParLevel.create_MAP2();
-		 	this.holeMap = mapParLevel.create_Hole2();
-		 	this.listMonster = mapParLevel.create_Monster2();
-		}
-		 else if(numberMap == 3){
-			listWallMap = mapParLevel.create_MAP3();
-			holeMap = mapParLevel.create_Hole3();
-			this.listMonster = mapParLevel.create_Monster3();
-		 }
-		else if(numberMap == 4){
-			listWallMap = mapParLevel.create_MAP4();
-			holeMap = mapParLevel.create_Hole4();
-			this.listMonster = mapParLevel.create_Monster4();
-		}
-		listDoor = mapParLevel.create_Door();
 	}
 	
 	
@@ -144,24 +79,6 @@ public class Plateau implements IPlateau {
 		return nombreColonneArene;
 	}
 
-	
-
-	public ArrayList<PlateauObject> getListWallMap() {
-		return listWallMap;
-	}
-
-	public void setListWallMap(ArrayList<PlateauObject> listWallMap) {
-		this.listWallMap = listWallMap;
-	}
-
-	public ArrayList<PlateauObject> getListDoor() {
-		return listDoor;
-	}
-
-	public void setListDoor(ArrayList<PlateauObject> listDoor) {
-		this.listDoor = listDoor;
-	}
-
 	public Integer getNumberMap() {
 		return numberMap;
 	}
@@ -179,35 +96,44 @@ public class Plateau implements IPlateau {
 		return height;
 	}
 
-	public ArrayList<PlateauObject> getLIST_TERRAIN() {
-		return listTerrain;
-	}
-
-	public void setLIST_TERRAIN(ArrayList<PlateauObject> listTerrain) {
-		this.listTerrain = listTerrain;
-	}
-
-	public ArrayList<PlateauObject> getLIST_TERRAIN_Arene() {
-		return listTerrainArene;
-	}
-
 	public boolean isMoveValide(Integer posX, Integer posY) {
-		listTerrain.get(indiceTerrain(posX,posY)).isPassable();
-		return listTerrain.get(indiceTerrain(posX,posY)).isPassable();
+		listTerrain[posX][posY].isPassable();
+		return listTerrain[posX][posY].isPassable();
 	}
 
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			passable = listTerrain.get(indiceTerrain(posX,posY-30)).isPassable();
+			passable = listTerrain[posX][posY-30].isPassable();
 		}else if(action.equals("Action Down")){
-			passable = listTerrain.get(indiceTerrain(posX,posY+30)).isPassable();
+			passable = listTerrain[posX][posY+30].isPassable();
 		}else if(action.equals("Action Right")){
-			passable = listTerrain.get(indiceTerrain(posX+30,posY)).isPassable();
+			passable = listTerrain[posX+30][posY].isPassable();
 		}else if(action.equals("Action Left")){
-			passable = listTerrain.get(indiceTerrain(posX-30,posY)).isPassable();
+			passable = listTerrain[posX-30][posY].isPassable();
 		}
 		return passable;
+	}
+
+	
+
+	
+	public void createHero(String[][] playerRegister){
+		for (Integer i = 0; i < playerRegister.length; i++ ){
+			if(playerRegister[i][1] == "Sorcier"){
+				listHero[i] = new Wizzard(60,60);
+				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+			}else if(playerRegister[i][1] == "Guerrier"){
+				listHero[i] = new Warrior(60,60);
+				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+			}else if( playerRegister[i][1] == "Nain"){
+				listHero[i] = new Dwarf(60,60);
+				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+			}else if(playerRegister[i][1] == "Elfe"){
+				listHero[i] = new Elf(60,60);
+				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+			}
+		}
 	}
 
 
@@ -215,5 +141,11 @@ public class Plateau implements IPlateau {
 	public WorldEntity[][] getListTerrain() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setListTerrain(WorldEntity[][] listTerrain) {
+		// TODO Auto-generated method stub
+		
 	}
 }
