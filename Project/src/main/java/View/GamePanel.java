@@ -24,6 +24,7 @@ public class GamePanel extends Panel {
 	private LoadImage imageClasse;
 	private Integer numberMap, divided, playerNumber;
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
+	private Integer size = 30;
 	
 	public GamePanel(Panel panel, AbstractController controller){
 		super(panel);
@@ -46,36 +47,38 @@ public class GamePanel extends Panel {
 			}else if(terre.getClass().getName().equals("Model.Sol")){
 				image = imageClasse.getImagesGround()[numberMap];
 				Creatures creature = ((PlateauObject) terre).getCreature();
-				if (creature.isLife()){
-					for (Integer i = 0; i<4; i++){
-						if(creature.nameImage().equals(typeHeros[i])){
-							
+				if (!creature.equals(null)){
+					if (creature.isLife()){
+						for (Integer i = 0; i<4; i++){
+							if(creature.nameImage().equals(typeHeros[i])){
+								
+							}
 						}
+						if(creature.nameImage())
 					}
 				}
-				
 			}else if (terre.getClass().getName().equals("Model.Door")){
 				image = imageClasse.getImageDoor();
 			}
-			g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, terre.getWidth()/divided, terre.getHeigth()/divided, null);
+			g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, size/divided, size/divided, null);
 			
 		}
 		for (WorldEntity mob : listMonster ){
 			if(numberMap.equals(3)){
 				Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+5)/divided, (mob.getHeigth()+5)/divided, null);
+				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (size+5)/divided, (size+5)/divided, null);
 			}else if (numberMap.equals(4)){
 				Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (mob.getWidth()+10)/divided, (mob.getHeigth()+10)/divided, null);
+				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
 			}else{
 				Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) mob).getDirection()][((Creatures) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, mob.getWidth()/divided, mob.getHeigth()/divided, null);
+				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, size/divided, size/divided, null);
 			}
 		}
 		for (WorldEntity heros : listHero){
 			if (heros.nameImage().equals("Warrior")){
 				Image image = imageClasse.getImagesHeros()[0][((Creatures) heros).getDirection()][((Creatures) heros).getMoveContinue()];
-				g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, heros.getWidth()/divided, heros.getHeigth()/divided, null);
+				g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, size/divided, size/divided, null);
 			}
 		}
 		setPosMonster();

@@ -11,7 +11,7 @@ public class Sol extends PlateauObject {
 	}
 
 	
-	public String nameImage() {
+	public String name() {
 
 		return this.getClass().getName()+ Integer.toString(numberMap);
 	}

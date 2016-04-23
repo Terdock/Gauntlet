@@ -8,7 +8,6 @@ public abstract class WorldObject extends WorldEntity {
 	
 	public WorldObject(Integer posX, Integer posY) {
 		super(posX, posY);
-		 setVisible(false);
 	}
 
 	public static Integer getHeight() {

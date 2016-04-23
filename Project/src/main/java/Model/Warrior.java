@@ -15,7 +15,7 @@ public class Warrior extends Heros{
 		
 	}
 
-	public String nameImage() {
+	public String name() {
 		return "Warrior";
 	}
 

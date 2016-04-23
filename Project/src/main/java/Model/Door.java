@@ -10,7 +10,7 @@ public class Door extends PlateauObject {
 		this.numberDoor = numberDoor;
 	}
 
-	public String nameImage(){
+	public String name(){
 		return this.getClass().getName();
 	}
 
