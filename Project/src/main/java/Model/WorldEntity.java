@@ -6,7 +6,6 @@ public abstract class WorldEntity {
 	private static Integer heigth = 30;
 	private Integer posX;
 	private Integer posY;
-	private boolean visible = true;
 	private Integer Form;
 	
 	public WorldEntity(Integer posX, Integer posY) {
@@ -48,14 +47,6 @@ public abstract class WorldEntity {
 
 	public void setPosY(Integer posY) {
 		this.posY = posY;
-	}
-
-	public boolean getVisible(){
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
 	}
 
 	public Integer getForm() {
