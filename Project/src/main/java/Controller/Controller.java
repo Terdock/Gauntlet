@@ -21,7 +21,7 @@ public class Controller extends AbstractController{
 	}
 
 	public void initComposant(String[][] playerRegister) {
-		game.createPlateau();
+		game.createPlateau(playerRegister);
 	}
 	
 	public void doActionHeros(String action, Integer player){

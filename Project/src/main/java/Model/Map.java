@@ -141,7 +141,7 @@ public class Map implements IMap {
 		return res;
 	}
 	
-	public ArrayList<Monster> create_Monster0() {
+	public ArrayList<Monster> createMonster() {
 		ArrayList<Monster> list = new ArrayList<Monster>(); 
 		Integer i = 0;
 		for(Integer h = 0; h < 5; h++){
@@ -164,85 +164,9 @@ public class Map implements IMap {
 		}
 		return list;
 	}
+
 	
-	
-	
-	public ArrayList<Monster> create_Monster1() {
-		ArrayList<Monster> list = new ArrayList<Monster>(); 
-		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne+1; y++){
-				for(Integer x = 0; x < nombreLigne+1; x++){
-					if(x == 10 && y == 10){
-						
-					}
-					else if (checkInMonster( x, y, h))
-					{
-						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),2,0,0,0,0));
-					}
-		
-				}
-			}
-		}
-		return list;
-	}
-	public ArrayList<Monster> create_Monster2() {
-		ArrayList<Monster> list = new ArrayList<Monster>(); 
-		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne+1; y++){
-				for(Integer x = 0; x < nombreLigne+1; x++){
-					if(x == 10 && y == 10){
-						
-					}
-					else if (checkInMonster( x, y, h)){
-						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),4,0,0,0,0));
-					}
-		
-				}
-			}
-		}
-		return list;
-	}
-	public ArrayList<Monster> create_Monster3() {
-		ArrayList<Monster> list = new ArrayList<Monster>(); 
-		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne+1; y++){
-				for(Integer x = 0; x < nombreLigne+1; x++){
-					if(x == 10 && y == 10){
-						
-					}
-					else if (checkInMonster( x, y, h)){
-						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),6,0,0,0,0));
-					}
-		
-				}
-			}
-		}
-		return list;
-	}
-	
-	public ArrayList<Monster> create_Monster4() {
-		ArrayList<Monster> list = new ArrayList<Monster>(); 
-		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne+1; y++){
-				for(Integer x = 0; x < nombreLigne+1; x++){
-					if(x == 10 && y == 10){
-						
-					}
-					
-					else if (checkInMonster( x, y, h))
-					{
-						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),8,0,0,0,0));
-					}
-		
-				}
-			}
-		}
-		return list;
-	}
+
 
 	
 	private ArrayList<Monster> createGroupeMonster(Integer posX,Integer posY,Integer n,Integer a,Integer b,Integer c,Integer d){
@@ -254,33 +178,6 @@ public class Map implements IMap {
 		}	
 		return list;
 	}
-	
-
-	public ArrayList<PlateauObject> getListWallMap() {
-		return listWallMap;
-	}
-
-	public void setListWallMap(ArrayList<PlateauObject> listWallMap) {
-		this.listWallMap = listWallMap;
-	}
-
-	public ArrayList<PlateauObject> getListDoor() {
-		return listDoor;
-	}
-
-	public void setListDoor(ArrayList<PlateauObject> listDoor) {
-		this.listDoor = listDoor;
-	}
-	
-	
-
-	
-	/**
-	 * Initialisation des types blocs incassables autour et terrain à l'Integerérieur du plateau
-	 * Dans la LIST_TERRAIN
-	 */
-	
-	
 
 
 }
