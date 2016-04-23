@@ -8,6 +8,17 @@ public abstract class Creatures extends WorldEntity {
 	private Integer direction = 0;
     private Integer moveContinue = 0;
     private Integer step = 30;
+    public boolean isVisible() {
+		return Visible;
+	}
+
+
+
+	public void setVisible(boolean visible) {
+		Visible = visible;
+	}
+
+	private boolean Visible;
 
 
 	public Creatures(Integer posX,Integer posY) {
@@ -81,6 +92,9 @@ public abstract class Creatures extends WorldEntity {
 			setVisible(false);
 		}
 	}
+
+
+
 
 	public Integer getHp() {
 		return hp;

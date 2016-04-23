@@ -20,7 +20,7 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(String[][] playerRegister){
 		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister,playerNumber);
 		this.listTerrain = plateau.getListTerrain();
 		notifyObserver(listTerrain);
 		}
