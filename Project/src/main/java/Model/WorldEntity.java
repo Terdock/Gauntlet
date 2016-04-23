@@ -13,11 +13,6 @@ public abstract class WorldEntity {
 	
 	public abstract String name();
 	public abstract String nameType();
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
-
 	public Integer getPosX() {
 		return posX;
 	}
