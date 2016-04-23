@@ -11,8 +11,8 @@ public class Plateau implements IPlateau {
 	private static Integer height = 30;
 	private Integer numberMap;
 	private IMap map;
-	private PlateauObject[][] listTerrain = new PlateauObject[nombreColonne][nombreLigne];
-	private PlateauObject[][] listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
+	private PlateauObject[][] listTerrain;
+	private PlateauObject[][] listTerrain2;
 	private Creatures[] listHero = new Creatures[4]  ;
 	private Creatures[] listMonster = new Creatures[0];
 	
@@ -27,14 +27,14 @@ public class Plateau implements IPlateau {
 		this.numberMap = numberMap;
 		this.map = new Map(nombreLigne, nombreColonne,numberMap);
 		this.listTerrain = new PlateauObject[nombreLigne][nombreColonne];
-		this.listTerrain2 = new PlateauObject[nombreLigne][nombreColonne];
-		Initialisation(nombreLigne,nombreColonne,listTerrain,mode, playerResiter);
+		this.listTerrain2 = new PlateauObject[nombreLigneArene][nombreColonneArene];
+		Initialisation(nombreLigne,nombreColonne,mode, playerResiter);
 		
 	}	
 	
 
 
-	private void Initialisation(Integer nombreLigne,Integer nombreColonne, PlateauObject[][] listTerrain,String mode,String[][] playerRegister){
+	private void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
 		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
@@ -42,14 +42,15 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 		}
+		System.out.println(listTerrain2);
 		createHero(playerRegister);
 		listMonster = map.getListMonster();
 		for (Creatures player : listHero ){
 			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
-		for (Creatures mob: listMonster){
-			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
-		}
+		//for (Creatures mob: listMonster){
+			//listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+		//}
 	}
 	
 	
@@ -139,8 +140,7 @@ public class Plateau implements IPlateau {
 
 	@Override
 	public WorldEntity[][] getListTerrain() {
-		// TODO Auto-generated method stub
-		return null;
+		return listTerrain;
 	}
 
 	@Override

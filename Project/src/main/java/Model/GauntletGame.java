@@ -22,8 +22,8 @@ public class GauntletGame extends AbstractModel {
 	public void createPlateau(String[][] playerRegister){
 		notifyObserver(numberMap);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister);
-		this.listTerrain = plateau.getListTerrain();
-		notifyObserver(listTerrain);
+		//this.listTerrain = plateau.getListTerrain();
+		//notifyObserver(listTerrain);
 		/**
 		this.List_Monster = plateau.getListMonster();
 		for(Monster mob : List_Monster)
