@@ -50,11 +50,13 @@ public class GamePanel extends Panel {
 				if (!creature.equals(null)){
 					if (creature.isLife()){
 						for (Integer i = 0; i<4; i++){
-							if(creature.nameImage().equals(typeHeros[i])){
+							if(creature.name().equals(typeHeros[i])){
 								
 							}
 						}
-						if(creature.nameImage())
+						if(creature.name().equals("Monster")){
+							
+						}
 					}
 				}
 			}else if (terre.getClass().getName().equals("Model.Door")){
@@ -76,7 +78,7 @@ public class GamePanel extends Panel {
 			}
 		}
 		for (WorldEntity heros : listHero){
-			if (heros.nameImage().equals("Warrior")){
+			if (heros.name().equals("Warrior")){
 				Image image = imageClasse.getImagesHeros()[0][((Creatures) heros).getDirection()][((Creatures) heros).getMoveContinue()];
 				g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, size/divided, size/divided, null);
 			}

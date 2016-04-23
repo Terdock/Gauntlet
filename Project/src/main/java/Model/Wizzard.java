@@ -18,7 +18,7 @@ public class Wizzard extends Heros {
 	}
 
 	public String name() {
-		return null;
+		return "Wizzard";
 	}
 
 

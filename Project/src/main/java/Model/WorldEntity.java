@@ -12,7 +12,12 @@ public abstract class WorldEntity {
 	}
 	
 	public abstract String name();
+<<<<<<< HEAD
 	public abstract String nameType();
+=======
+	public abstract String nameType();
+
+>>>>>>> branch 'master' of https://github.com/Terdock/Gauntlet
 	public Integer getPosX() {
 		return posX;
 	}

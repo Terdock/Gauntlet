@@ -16,7 +16,7 @@ public class Dwarf extends Heros {
 	}
 
 	public String name() {
-		return null;
+		return "Dwarf";
 	}
 
 	public void attack(Creatures creature) {
