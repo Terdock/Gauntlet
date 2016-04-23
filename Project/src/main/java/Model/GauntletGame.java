@@ -6,8 +6,8 @@ import observer.Observable;
 public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
-	private static Integer nombreLigne = 100;
-	private static Integer nombreColonne = 100;
+	private static Integer nombreLigne = 101;
+	private static Integer nombreColonne = 101;
 	IPlateau plateau;
 	private WorldEntity[][] listTerrain = new WorldEntity[nombreLigne][nombreColonne];
 	private String gameMode;
@@ -15,21 +15,14 @@ public class GauntletGame extends AbstractModel {
 	
 	public GauntletGame() {
 		this.numberMap = 0;
-		
 	}
 	
 	
 	public void createPlateau(String[][] playerRegister){
 		notifyObserver(numberMap);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister);
-		//this.listTerrain = plateau.getListTerrain();
-		//notifyObserver(listTerrain);
-		/**
-		this.List_Monster = plateau.getListMonster();
-		for(Monster mob : List_Monster)
-			listMonster.add(mob);
-		notifyObserver(listMonster);
-		**/
+		this.listTerrain = plateau.getListTerrain();
+		notifyObserver(listTerrain);
 		}
 	
 

@@ -114,14 +114,16 @@ public class Window extends JFrame implements Observer {
        });
 	}
 
-	public void update(ArrayList<WorldEntity> entities) {
-		((GamePanel)panel[7]).setEntities(entities);
-		
-	}
 
 
 	public void update(Integer numberMap) {
 		((GamePanel)panel[7]).setNumberMap(numberMap);
+	}
+
+	@Override
+	public void update(WorldEntity[][] listTerrain) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

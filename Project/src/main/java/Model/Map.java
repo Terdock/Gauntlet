@@ -11,7 +11,6 @@ public class Map implements IMap {
 	private Integer numberMap;
 	private ArrayList<PlateauObject> listDoor;
 	private ArrayList<PlateauObject> listWallMap = new ArrayList<PlateauObject>();
-	private PlateauObject staircaseMap;
 	private PlateauObject holeMap;
 	private Creatures[] listMonster;
 	
@@ -48,22 +47,22 @@ public class Map implements IMap {
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		Integer i = 0;
 		for(Integer h = 0; h < 5; h++){
-			for (Integer posY = 0; posY <= nombreLigne + 1; posY++){
-				for (Integer posX = 0; posX <= nombreColonne + 1; posX++){
-					listTerrain[posX][posY] = new Sol(posX*Plateau.getWidth(), posY*Plateau.getWidth(), true, numberMap);
-					/*if (checkInDoor( posX, posY, h)){
-						listTerrain[posX][posY] = new Door(posX*Plateau.getWidth(),posY*Plateau.getHeight(),false,i);
+			for (Integer posY = 0; posY <= nombreLigne ; posY++){
+				for (Integer posX = 0; posX <= nombreColonne ; posX++){
+					listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
+					if (checkInDoor( posX, posY, h)){
+						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
 					else if (checkInWall(posX, posY, h)){
 						
 					}
 					else if( posX == h*20 || posY == h*20 ){
-						listTerrain[posX][posY] = new Wall(posX*Plateau.getWidth(),posY*Plateau.getHeight(),false, 0);
+						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
-					else if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne + 1) || posY.equals(nombreLigne + 1)){
-						listTerrain[posX][posY] = new Wall(posX*Plateau.getWidth(), posY*Plateau.getWidth(), false, numberMap);
-					}*/
+					else if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne) || posY.equals(nombreLigne)){
+						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
+					}
 				}	
 			}	
 		}
@@ -75,12 +74,6 @@ public class Map implements IMap {
 	public ArrayList<PlateauObject> create_Door(){
 		return listDoor ;
 	}
-
-	public Staircase create_Staircase0(){
-		return new Staircase(true);
-	}
-
-
 
 
 	public PlateauObject create_Hole0(){
@@ -144,8 +137,8 @@ public class Map implements IMap {
 		ArrayList<Monster> list = new ArrayList<Monster>(); 
 		Integer i = 0;
 		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne+1; y++){
-				for(Integer x = 0; x < nombreLigne+1; x++){
+			for(Integer y = 0; y < nombreColonne; y++){
+				for(Integer x = 0; x < nombreLigne; x++){
 					if(x == 10 && y == 10){
 						
 					}
@@ -155,7 +148,7 @@ public class Map implements IMap {
 					}
 					else if (checkInMonster( x, y, h))
 					{
-						list.addAll(createGroupeMonster(x*Plateau.getWidth(),y*Plateau.getHeight(),1,0,0,0,0));
+						list.addAll(createGroupeMonster(x,y,1,0,0,0,0));
 					}
 		
 				}
@@ -172,7 +165,7 @@ public class Map implements IMap {
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n+a; i <= n+b ; i++){
 			for ( Integer j = -n+c; j<= n+d;j++) {
-				list.add(new Monster(posX+i*Plateau.getWidth(),posY+j*Plateau.getHeight(), null, numberMap));
+				list.add(new Monster(posX+i,posY+j, null, numberMap));
 			}
 		}	
 		return list;

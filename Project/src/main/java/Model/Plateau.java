@@ -7,8 +7,6 @@ public class Plateau implements IPlateau {
 	private Integer nombreColonne;
 	private final static Integer nombreLigneArene = 23;
 	private final static Integer nombreColonneArene = 19;
-	private static Integer width = 30;
-	private static Integer height = 30;
 	private Integer numberMap;
 	private IMap map;
 	private PlateauObject[][] listTerrain;
@@ -88,15 +86,6 @@ public class Plateau implements IPlateau {
 		this.numberMap = numberMap;
 	}
 
-
-	public static Integer getWidth() {
-		return width;
-	}
-
-	public static Integer getHeight() {
-		return height;
-	}
-
 	public boolean isMoveValide(Integer posX, Integer posY) {
 		listTerrain[posX][posY].isPassable();
 		return listTerrain[posX][posY].isPassable();
@@ -105,13 +94,13 @@ public class Plateau implements IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			passable = listTerrain[posX][posY-30].isPassable();
+			passable = listTerrain[posX][posY-1].isPassable();
 		}else if(action.equals("Action Down")){
-			passable = listTerrain[posX][posY+30].isPassable();
+			passable = listTerrain[posX][posY+1].isPassable();
 		}else if(action.equals("Action Right")){
-			passable = listTerrain[posX+30][posY].isPassable();
+			passable = listTerrain[posX+1][posY].isPassable();
 		}else if(action.equals("Action Left")){
-			passable = listTerrain[posX-30][posY].isPassable();
+			passable = listTerrain[posX-1][posY].isPassable();
 		}
 		return passable;
 	}
