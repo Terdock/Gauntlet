@@ -8,7 +8,7 @@ public abstract class Potion extends WorldObject {
 		super(PosX,PosY);
 	}
 
-	public abstract String nameImage();
+	public abstract String name();
 	
 
 }

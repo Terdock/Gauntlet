@@ -9,7 +9,7 @@ public class BarrierPotion extends Potion {
 	}
 
 	
-	public String nameImage() {
+	public String name() {
 		return null;
 	}
 	

@@ -10,7 +10,7 @@ public class Staircase extends WorldObject {
 		super(posX, posY);
 	}
 	
-	public String nameImage(){
+	public String name(){
 		return null;
 	}
 	

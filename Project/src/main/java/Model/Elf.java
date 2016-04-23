@@ -15,7 +15,7 @@ public class Elf extends Heros {
 		
 	}
 
-	public String nameImage() {
+	public String name() {
 		return null;
 	}
 

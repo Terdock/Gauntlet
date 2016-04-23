@@ -9,7 +9,7 @@ public class SpeedPotion extends Potion {
 		super(PosX, PosY);
 	}
 
-	public String nameImage() {
+	public String name() {
 		return null;
 	}
 

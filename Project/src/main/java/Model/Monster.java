@@ -82,9 +82,7 @@ public class Monster extends Creatures {
 
 
 
-	@Override
-	public String nameImage() {
-		// TODO Auto-generated method stub
+	public String name() {
 		return null;
 	}
 

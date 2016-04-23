@@ -10,7 +10,7 @@ public class PowerPotion extends Potion {
 	}
 
 
-	public String nameImage() {
+	public String name() {
 		return null;
 	}
 

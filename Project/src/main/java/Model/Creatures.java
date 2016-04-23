@@ -89,7 +89,7 @@ public abstract class Creatures extends WorldEntity {
 	public void setLife(boolean life) {
 		this.life = life;
 		if(!life){
-			setVisible(false);
+			
 		}
 	}
 

@@ -8,7 +8,7 @@ public class Hole extends PlateauObject {
 		super(posX, posY, passable);
 	}
 	
-	public String nameImage(){
+	public String name(){
 		return this.getClass().getName();
 	}
 

@@ -8,7 +8,7 @@ public class invisibilityPotion extends Potion {
 		super(PosX, PosY);
 	}
 
-	public String nameImage() {
+	public String name() {
 		return null;
 	}
 
