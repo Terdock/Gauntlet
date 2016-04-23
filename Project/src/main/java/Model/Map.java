@@ -49,7 +49,7 @@ public class Map implements IMap {
 		for(Integer h = 0; h < 5; h++){
 			for (Integer posY = 0; posY < nombreColonne; posY++){
 				for (Integer posX = 0; posX < nombreLigne ; posX++){
-					/*listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
+					listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
 					if (checkInDoor( posX, posY, h)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
@@ -62,7 +62,7 @@ public class Map implements IMap {
 					}
 					else if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne) || posY.equals(nombreLigne)){
 						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
-					}*/
+					}
 				}	
 			}	
 		}

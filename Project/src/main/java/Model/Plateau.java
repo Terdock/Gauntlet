@@ -44,7 +44,6 @@ public class Plateau implements IPlateau {
 		createHero(playerRegister);
 		listMonster = map.getListMonster();
 		for (Creatures player : listHero ){
-			System.out.println(listTerrain[player.getPosX()][player.getPosY()]);
 			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
 		//for (Creatures mob: listMonster){

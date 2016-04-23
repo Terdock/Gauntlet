@@ -1,13 +1,12 @@
 package Model;
 
 public abstract class Creatures extends WorldEntity {
-	private Integer pas = 30;
 	private boolean life = true;
 	private Integer hp = 100;
 	private Integer level;
 	private Integer direction = 0;
     private Integer moveContinue = 0;
-    private Integer step = 30;
+    private Integer step =1;
     public boolean isVisible() {
 		return Visible;
 	}
@@ -116,12 +115,12 @@ public abstract class Creatures extends WorldEntity {
 		this.level = level;
 	}
 
-	public Integer getPas() {
-		return pas;
+	public Integer getStep() {
+		return step;
 	}
 
-	public void setPas(Integer pas) {
-		this.pas = pas;
+	public void setStep(Integer step) {
+		this.step = step;
 	}
 
 
