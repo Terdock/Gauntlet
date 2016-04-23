@@ -9,9 +9,13 @@ public class Map {
 	private ArrayList<Monster> listMonster = new ArrayList<Monster>();
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private ArrayList<PlateauObject> listDoor;
 	private Integer NumberOfDoor;
 	private Integer numberMap;
+	private ArrayList<PlateauObject> listDoor;
+	private ArrayList<PlateauObject> listTerrainArene = new ArrayList<PlateauObject>();
+	private ArrayList<PlateauObject> listWallMap = new ArrayList<PlateauObject>();
+	private PlateauObject staircaseMap;
+	private PlateauObject holeMap;
 	
 	public Map(Integer nombrLigne,Integer nombreColonne,Integer numberMap){
 		this.nombreLigne = nombrLigne;
@@ -38,6 +42,23 @@ public class Map {
 
 	public void setListDoor(ArrayList<PlateauObject> listDoor) {
 		this.listDoor = listDoor;
+	}
+	
+	
+	
+	
+	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
+		for (Integer posY = 0; posY <= nombreLigne + 1; posY++){
+			for (Integer posX = 0; posX<= nombreColonne + 1; posX++){
+				if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne + 1) || posY.equals(nombreLigne + 1)){
+					//listTerrain.add(new Wall(posX*width, posY*height, false, numberMap));
+				}
+				else {
+					//listTerrain.add(new Sol(posX*width, posY*height, true, numberMap));
+				}
+			}	
+		}
+		return listTerrain;
 	}
 
 	public ArrayList<PlateauObject> create_MAP0(){

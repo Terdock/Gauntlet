@@ -109,7 +109,15 @@ public class Monster extends Creatures {
 	}
 	
 	
-  
+	 public boolean creatureIsntInPlace(ArrayList<WorldEntity> list) {
+		 boolean res = true;
+	    	for( WorldEntity monster : list){
+	    		if(monster.getPosX() == getPosX() && monster.getPosX() == getPosY()){
+	    			res = false;
+	    		}
+	    	}	
+			return res;
+		}
 
 
 

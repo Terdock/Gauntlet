@@ -18,7 +18,6 @@ public class Controller extends AbstractController{
 
 
 	public void initComposant(String[][] playerRegister) {
-		game.createHero(playerRegister);
 		game.createPlateau();
 	}
 	

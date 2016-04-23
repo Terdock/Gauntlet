@@ -11,7 +11,6 @@ public abstract class AbstractModel implements Observable {
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 	
 	public abstract void createPlateau();
-	public abstract void createHero(String[][] playerRegister);
 	public abstract void setGameMode(String gameMode);
 	public abstract void setPlayerNumber(Integer playerNumber);
 	public abstract void doActionHeros(String action, Integer player);
@@ -24,10 +23,10 @@ public abstract class AbstractModel implements Observable {
 		listObserver = new ArrayList<Observer>();
 	}
 	public void notifyObserver(
-			ArrayList<WorldEntity> entities){
+			WorldEntity[][] listTerrain){
 		
 		for (Observer obs : listObserver)
-		obs.update(entities);
+		obs.update(listTerrain);
 		 
 	}
 	public void notifyObserver(Integer numberMap) {
@@ -35,8 +34,5 @@ public abstract class AbstractModel implements Observable {
 			obs.update(numberMap);
 		
 	}
-
-
-	
 
 }
