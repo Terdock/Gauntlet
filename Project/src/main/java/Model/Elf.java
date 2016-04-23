@@ -16,7 +16,7 @@ public class Elf extends Heros {
 	}
 
 	public String name() {
-		return null;
+		return "Elf";
 	}
 
 	@Override

@@ -83,7 +83,7 @@ public class Monster extends Creatures {
 
 
 	public String name() {
-		return null;
+		return "Monster";
 	}
 
 	
