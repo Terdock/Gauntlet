@@ -168,10 +168,7 @@ public class GamePanel extends Panel {
 	}
 
 	public void setEntities(ArrayList<WorldEntity> entities) {
-		if(entities.get(0).nameType().equals("Terrain"))
-			this.listTerrain = entities;
-		else if(entities.get(0).nameType().equals("Monster"))
-			this.listMonster= entities;
+		this.listTerrain = entities;
 	}
 	
 	

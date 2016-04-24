@@ -13,6 +13,10 @@ public interface IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action);
 
 	public WorldEntity[][] getListTerrain();
+	
+	public abstract Creatures[] getListHero();
+	
+	public abstract void checkAttackMonster();
 
 
 }
