@@ -14,10 +14,8 @@ import Model.WorldEntity;
 
 public class GamePanel extends Panel {
 	
-	private ArrayList<WorldEntity> listHero =  new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
 	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
-	private ArrayList<WorldEntity> listObject = new ArrayList<WorldEntity>();
 	private AbstractController controller;
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
@@ -39,30 +37,26 @@ public class GamePanel extends Panel {
 	
          
 	public void paintComponent(Graphics g){
-		for (WorldEntity terre : listTerrain ){
-			Image image = null;
-			image = edgeImage(terre);
-			if(terre.getClass().getName().equals("Model.Wall")){
-				image = imageClasse.getImagesWall()[numberMap][terre.getForm()];
-			}else if(terre.getClass().getName().equals("Model.Sol")){
-				image = imageClasse.getImagesGround()[numberMap];
-				Creatures creature = ((PlateauObject) terre).getCreature();
+		for (WorldEntity ground : listTerrain ){
+			Image imageGround = null;
+			imageGround = edgeImage(ground);
+			if(ground.getClass().getName().equals("Model.Wall")){
+				imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
+			}else if(ground.getClass().getName().equals("Model.Sol")){
+				imageGround = imageClasse.getImagesGround()[numberMap];
+				Creatures creature = ((PlateauObject) ground).getCreature();
 				if (!creature.equals(null)){
 					if (creature.isLife()){
-						for (Integer i = 0; i<4; i++){
-							if(creature.name().equals(typeHeros[i])){
-								
-							}
-						}
+						isHeros(creature, g);
 						if(creature.name().equals("Monster")){
 							
 						}
 					}
 				}
-			}else if (terre.getClass().getName().equals("Model.Door")){
-				image = imageClasse.getImageDoor();
+			}else if (ground.getClass().getName().equals("Model.Door")){
+				imageGround = imageClasse.getImageDoor();
 			}
-			g.drawImage(image,terre.getPosX()/divided, terre.getPosY()/divided, size/divided, size/divided, null);
+			g.drawImage(imageGround,ground.getPosX()/divided, ground.getPosY()/divided, size/divided, size/divided, null);
 			
 		}
 		for (WorldEntity mob : listMonster ){
@@ -75,12 +69,6 @@ public class GamePanel extends Panel {
 			}else{
 				Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) mob).getDirection()][((Creatures) mob).getMoveContinue()];
 				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, size/divided, size/divided, null);
-			}
-		}
-		for (WorldEntity heros : listHero){
-			if (heros.name().equals("Warrior")){
-				Image image = imageClasse.getImagesHeros()[0][((Creatures) heros).getDirection()][((Creatures) heros).getMoveContinue()];
-				g.drawImage(image,heros.getPosX()/divided, heros.getPosY()/divided, size/divided, size/divided, null);
 			}
 		}
 		setPosMonster();
@@ -131,6 +119,29 @@ public class GamePanel extends Panel {
 				!downRightCondition && !upRightCondition;
 	}
 	
+	private void isHeros(Creatures creature, Graphics g){
+		for (Integer i = 0; i<4; i++){
+			if(creature.name().equals(typeHeros[i])){
+				Image imageHeros = imageClasse.getImagesHeros()[i][creature.getDirection()][creature.getMoveContinue()];
+				g.drawImage(imageHeros,creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+			}
+		}
+	}
+	
+	private void isMonster(Creatures creature, Graphics g){
+		
+		if(numberMap.equals(3)){
+			Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, (size+5)/divided, (size+5)/divided, null);
+		}else if (numberMap.equals(4)){
+			Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
+		}else{
+			Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
+			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+		}
+	}
+	
 	public void addKeyboard(Integer playerNumber){
 		this.playerNumber = playerNumber;
 		listener = new Keyboard(playerNumber, this);
@@ -159,12 +170,8 @@ public class GamePanel extends Panel {
 	public void setEntities(ArrayList<WorldEntity> entities) {
 		if(entities.get(0).nameType().equals("Terrain"))
 			this.listTerrain = entities;
-		else if(entities.get(0).nameType().equals("Hero"))
-			this.listHero = entities;
 		else if(entities.get(0).nameType().equals("Monster"))
 			this.listMonster= entities;
-		else if(entities.get(0).nameType().equals("Object"))
-			this.listObject = entities;
 	}
 	
 	
