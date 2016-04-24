@@ -43,13 +43,15 @@ public abstract class Creatures extends WorldEntity {
 	}
 	
 	public void gestionImage(Integer action){
-		if(direction == action)
-			if(moveContinue == 2){
+		if(direction.equals(action)){
+			if(moveContinue.equals(2)){
 				moveContinue = 1;
 			}
 			else{
 				moveContinue++;
 			}
+		}
+			
 		else{
 			setDirection(action);
 		}

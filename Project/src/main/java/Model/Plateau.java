@@ -116,16 +116,16 @@ public class Plateau implements IPlateau {
 		this.listHero = new Creatures[playerNumber];
 		for (Integer i = 0; i < playerNumber; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
-				listHero[i] = new Wizzard(1,1);
+				listHero[i] = new Wizzard(3,4);
 				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				listHero[i] = new Warrior(1,1);
+				listHero[i] = new Warrior(3,3);
 				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
 			}else if( playerRegister[i][1] == "Nain"){
-				listHero[i] = new Dwarf(1,1);
+				listHero[i] = new Dwarf(4,3);
 				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Elfe"){
-				listHero[i] = new Elf(1,1);
+				listHero[i] = new Elf(4,4);
 				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
 			}
 		}
