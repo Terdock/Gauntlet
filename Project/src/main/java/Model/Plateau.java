@@ -94,16 +94,16 @@ public class Plateau implements IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			if(listTerrain[posX][posY-1].getCreature().equals(null))
+			if(listTerrain[posX][posY-1].getCreature() == null)
 				passable = listTerrain[posX][posY-1].isPassable();
 		}else if(action.equals("Action Down")){
-			if(listTerrain[posX][posY-1].getCreature().equals(null))
+			if(listTerrain[posX][posY-1].getCreature() == null)
 				passable = listTerrain[posX][posY+1].isPassable();
 		}else if(action.equals("Action Right")){
-			if(listTerrain[posX][posY-1].getCreature().equals(null))
+			if(listTerrain[posX][posY-1].getCreature() == null)
 				passable = listTerrain[posX+1][posY].isPassable();
 		}else if(action.equals("Action Left")){
-			if(listTerrain[posX][posY-1].getCreature().equals(null))
+			if(listTerrain[posX][posY-1].getCreature() == null)
 				passable = listTerrain[posX-1][posY].isPassable();
 		}
 		return passable;
