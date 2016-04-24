@@ -48,28 +48,13 @@ public class GamePanel extends Panel {
 				if (!creature.equals(null)){
 					if (creature.isLife()){
 						isHeros(creature, g);
-						if(creature.name().equals("Monster")){
-							
-						}
+						isMonster(creature, g);
 					}
 				}
 			}else if (ground.getClass().getName().equals("Model.Door")){
 				imageGround = imageClasse.getImageDoor();
 			}
-			g.drawImage(imageGround,ground.getPosX()/divided, ground.getPosY()/divided, size/divided, size/divided, null);
-			
-		}
-		for (WorldEntity mob : listMonster ){
-			if(numberMap.equals(3)){
-				Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (size+5)/divided, (size+5)/divided, null);
-			}else if (numberMap.equals(4)){
-				Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) mob).getDirection()][((Monster) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
-			}else{
-				Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) mob).getDirection()][((Creatures) mob).getMoveContinue()];
-				g.drawImage(image,mob.getPosX()/divided, mob.getPosY()/divided, size/divided, size/divided, null);
-			}
+			g.drawImage(imageGround,ground.getPosX()/divided, ground.getPosY()/divided, size/divided, size/divided, null);	
 		}
 		setPosMonster();
 		setPosHeros();
@@ -129,16 +114,14 @@ public class GamePanel extends Panel {
 	}
 	
 	private void isMonster(Creatures creature, Graphics g){
-		
-		if(numberMap.equals(3)){
-			Image image = imageClasse.getImagesMonsters()[numberMap-2][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
-			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, (size+5)/divided, (size+5)/divided, null);
-		}else if (numberMap.equals(4)){
-			Image image = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
-			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
-		}else{
-			Image image = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
-			g.drawImage(image, creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+		if(creature.name().equals("Monster")){
+			Image imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
+			if (numberMap.equals(4)){
+				imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+				g.drawImage(imageMonster, creature.getPosX()/divided, creature.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
+			}else{
+				g.drawImage(imageMonster, creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+			}
 		}
 	}
 	
