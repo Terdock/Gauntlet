@@ -24,7 +24,6 @@ public class GauntletGame extends AbstractModel {
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister,playerNumber);
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHero();
-		notifyObserver(listTerrain);
 		}
 	
 
@@ -37,7 +36,13 @@ public class GauntletGame extends AbstractModel {
 
     public void doActionHeros(String action, Integer player) {
 		if(plateau.isMoveValide(listHeros[player].getPosX(),listHeros[player].getPosY(), action)){
+			Integer previousPosX = listHeros[player].getPosX();Integer previousPosY = listHeros[player].getPosY();
 			listHeros[player].move(action);
+			Integer nextPosX = listHeros[player].getPosX();Integer nextPosY = listHeros[player].getPosY();
+			((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
+			((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
+			notifyObserver(listTerrain);
+			
 		}
 	}
 

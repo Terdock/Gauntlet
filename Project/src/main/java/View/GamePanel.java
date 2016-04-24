@@ -35,8 +35,8 @@ public class GamePanel extends Panel {
 	
          
 	public void paintComponent(Graphics g){
-		for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
 			for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+				for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround = edgeImage(numberColumn, numberLine);
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
