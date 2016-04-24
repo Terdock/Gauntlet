@@ -46,9 +46,9 @@ public class Plateau implements IPlateau {
 		for (Creatures player : listHero ){
 			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
-		for (Creatures mob: listMonster){
-			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
-		}
+		//for (Creatures mob: listMonster){
+			//listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+		//}
 	}
 	
 	

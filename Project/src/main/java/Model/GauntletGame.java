@@ -32,7 +32,7 @@ public class GauntletGame extends AbstractModel {
   
     
 	public final void checkAttackMonster(){	
-		checkAttackMonster();
+		//checkAttackMonster();
 	}
 
     public void doActionHeros(String action, Integer player) {
