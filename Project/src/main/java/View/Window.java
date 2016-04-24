@@ -120,10 +120,8 @@ public class Window extends JFrame implements Observer {
 		((GamePanel)panel[7]).setNumberMap(numberMap);
 	}
 
-	@Override
 	public void update(WorldEntity[][] listTerrain) {
-		// TODO Auto-generated method stub
-		
+		((GamePanel)panel[7]).setTerrain(listTerrain);
 	}
 
 }

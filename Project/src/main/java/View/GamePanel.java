@@ -13,9 +13,7 @@ import Model.WorldEntity;
 
 
 public class GamePanel extends Panel {
-	
-	private ArrayList<WorldEntity> listMonster = new ArrayList<WorldEntity>();
-	private ArrayList<WorldEntity> listTerrain = new ArrayList<WorldEntity>();
+	private WorldEntity[][] listTerrain;
 	private AbstractController controller;
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
@@ -31,30 +29,37 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 2;
+		divided = 1;
 	}
 	
 	
          
 	public void paintComponent(Graphics g){
-		for (WorldEntity ground : listTerrain ){
-			Image imageGround = null;
-			imageGround = edgeImage(ground);
-			if(ground.getClass().getName().equals("Model.Wall")){
-				imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
-			}else if(ground.getClass().getName().equals("Model.Sol")){
-				imageGround = imageClasse.getImagesGround()[numberMap];
-				Creatures creature = ((PlateauObject) ground).getCreature();
-				if (!creature.equals(null)){
-					if (creature.isLife()){
-						isHeros(creature, g);
-						isMonster(creature, g);
+		for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
+			for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+				WorldEntity ground = listTerrain[numberColumn][numberLine];
+				Image imageGround = edgeImage(numberColumn, numberLine);
+				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				if (allConditionEdge){
+					if(ground.getClass().getName().equals("Model.Wall")){
+						imageGround = imageClasse.getImagesWall()[numberMap][7];
+						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+					}else if(ground.getClass().getName().equals("Model.Sol")){
+						imageGround = imageClasse.getImagesGround()[numberMap];
+						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+						Creatures creature = ((PlateauObject) ground).getCreature();
+						if (!(creature == null)){
+							if (creature.isLife()){
+								isHeros(creature, g);
+								isMonster(creature, g);
+							}
+						}
+					}else if (ground.getClass().getName().equals("Model.Door")){
+						imageGround = imageClasse.getImageDoor();
+						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 					}
 				}
-			}else if (ground.getClass().getName().equals("Model.Door")){
-				imageGround = imageClasse.getImageDoor();
 			}
-			g.drawImage(imageGround,ground.getPosX()/divided, ground.getPosY()/divided, size/divided, size/divided, null);	
 		}
 		setPosMonster();
 		setPosHeros();
@@ -67,39 +72,34 @@ public class GamePanel extends Panel {
 		}
 	}
 
-	private Image edgeImage(WorldEntity terre){
-		Image image = null;
-		checkEdgeCondition(terre);
+	private Image edgeImage(Integer numberColumn, Integer numberLine){
+		Image imageGround = null;
+		checkEdgeCondition(numberColumn, numberLine);
 		if(upLeftCondition){
-			image = imageClasse.getImagesWall()[numberMap][2];
+			imageGround = imageClasse.getImagesWall()[numberMap][2];
 		}else if(upDownCondition){
-			image = imageClasse.getImagesWall()[numberMap][1];
+			imageGround = imageClasse.getImagesWall()[numberMap][0];
 		}else if (downLeftCondition){
-			image = imageClasse.getImagesWall()[numberMap][5];
+			imageGround = imageClasse.getImagesWall()[numberMap][5];
 		}else if(leftRightCondition){
-			image = imageClasse.getImagesWall()[numberMap][0];
+			imageGround = imageClasse.getImagesWall()[numberMap][1];
 		}else if(downRightCondition){
-			image = imageClasse.getImagesWall()[numberMap][4];
+			imageGround = imageClasse.getImagesWall()[numberMap][4];
 		}else if(upRightCondition){
-			image = imageClasse.getImagesWall()[numberMap][3];
+			imageGround = imageClasse.getImagesWall()[numberMap][3];
 		}
-		return image;
+		return imageGround;
 	}
 	
-	private void checkEdgeCondition(WorldEntity terre){
-		upLeftCondition = terre.getPosX().equals(0) && terre.getPosY().equals(0);
-		upDownCondition = (terre.getPosX().equals(0) && !terre.getPosY().equals(0)
-				&& !terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY())) 
-				|| (terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
-				&& !terre.getPosY().equals(0) && !terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()));
-		downLeftCondition = (terre.getPosX().equals(0) && terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()));
-		leftRightCondition = (terre.getPosY().equals(0) && !terre.getPosX().equals(0) && 
-				!terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX())) 
-				|| (terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY()) 
-				&& !terre.getPosX().equals(0) && !terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()));
-		downRightCondition = terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX()) 
-				&& terre.getPosY().equals(listTerrain.get(listTerrain.size()-1).getPosY());
-		upRightCondition = terre.getPosY().equals(0) && terre.getPosX().equals(listTerrain.get(listTerrain.size()-1).getPosX());
+	private void checkEdgeCondition(Integer numberColumn, Integer numberLine){
+		upLeftCondition = numberColumn.equals(0) && numberLine.equals(0);
+		upRightCondition = numberColumn.equals(listTerrain.length-1) && numberLine.equals(0);
+		downLeftCondition = numberColumn.equals(0) && numberLine.equals(listTerrain.length-1);
+		downRightCondition = numberColumn.equals(listTerrain.length-1) && numberLine.equals(listTerrain.length-1);
+		upDownCondition = (!numberColumn.equals(0) && !numberColumn.equals(listTerrain.length-1) 
+				&& (numberLine.equals(0) || numberLine.equals(listTerrain.length-1)));
+		leftRightCondition = (!numberLine.equals(0) && !numberLine.equals(listTerrain.length-1) 
+				&& (numberColumn.equals(0) || numberColumn.equals(listTerrain.length-1)));
 		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && 
 				!downRightCondition && !upRightCondition;
 	}
@@ -108,7 +108,7 @@ public class GamePanel extends Panel {
 		for (Integer i = 0; i<4; i++){
 			if(creature.name().equals(typeHeros[i])){
 				Image imageHeros = imageClasse.getImagesHeros()[i][creature.getDirection()][creature.getMoveContinue()];
-				g.drawImage(imageHeros,creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+				g.drawImage(imageHeros,creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
 			}
 		}
 	}
@@ -118,9 +118,9 @@ public class GamePanel extends Panel {
 			Image imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
 			if (numberMap.equals(4)){
 				imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
-				g.drawImage(imageMonster, creature.getPosX()/divided, creature.getPosY()/divided, (size+10)/divided, (size+10)/divided, null);
+				g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
 			}else{
-				g.drawImage(imageMonster, creature.getPosX()/divided, creature.getPosY()/divided, size/divided, size/divided, null);
+				g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
 			}
 		}
 	}
@@ -150,11 +150,8 @@ public class GamePanel extends Panel {
 		this.numberMap = numberMap;
 	}
 
-	public void setEntities(ArrayList<WorldEntity> entities) {
-		if(entities.get(0).nameType().equals("Terrain"))
-			this.listTerrain = entities;
-		else if(entities.get(0).nameType().equals("Monster"))
-			this.listMonster= entities;
+	public void setTerrain(WorldEntity[][] entities) {
+		this.listTerrain = entities;
 	}
 	
 	

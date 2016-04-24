@@ -6,8 +6,8 @@ import observer.Observable;
 public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
-	private static Integer nombreLigne = 102;
-	private static Integer nombreColonne = 102;
+	private static Integer nombreLigne = 22;
+	private static Integer nombreColonne = 22;
 	IPlateau plateau;
 	private WorldEntity[][] listTerrain = new WorldEntity[nombreLigne][nombreColonne];
 	private String gameMode;
