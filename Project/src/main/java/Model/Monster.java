@@ -21,7 +21,6 @@ public class Monster extends Creatures {
 	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
         super(posX,posY);
         iSeeHero = false;
-        setPas(30); //fixons le pas à 30 pour tout les mob
         this.wObject = wObject;
         setLevel(numberMap+1);
     }

@@ -47,8 +47,9 @@ public class Map implements IMap {
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		Integer i = 0;
 		for(Integer h = 0; h < 5; h++){
-			for (Integer posY = 0; posY < nombreColonne; posY++){
-				for (Integer posX = 0; posX < nombreLigne ; posX++){
+			for (Integer posY = 0; posY < nombreLigne; posY++){
+				for (Integer posX = 0; posX < nombreColonne; posX++){
+					System.out.println( posX );
 					listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
 					if (checkInDoor( posX, posY, h)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
