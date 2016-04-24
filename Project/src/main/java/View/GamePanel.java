@@ -39,35 +39,27 @@ public class GamePanel extends Panel {
 			for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround = edgeImage(numberColumn, numberLine);
-				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				Creatures creature = null;
 				if (allConditionEdge){
 					if(ground.getClass().getName().equals("Model.Wall")){
 						imageGround = imageClasse.getImagesWall()[numberMap][7];
-						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 					}else if(ground.getClass().getName().equals("Model.Sol")){
 						imageGround = imageClasse.getImagesGround()[numberMap];
-						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-						Creatures creature = ((PlateauObject) ground).getCreature();
-						if (!(creature == null)){
-							if (creature.isLife()){
-								isHeros(creature, g);
-								isMonster(creature, g);
-							}
-						}
+						creature = ((PlateauObject) ground).getCreature();
 					}else if (ground.getClass().getName().equals("Model.Door")){
 						imageGround = imageClasse.getImageDoor();
-						g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 					}
 				}
+				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				showCreatures(creature, g);
 			}
 		}
-		setPosMonster();
-		setPosHeros();
+		actionMonster();
+		actionHeros();
 		repaint();
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -104,18 +96,29 @@ public class GamePanel extends Panel {
 				!downRightCondition && !upRightCondition;
 	}
 	
+	private void showCreatures(Creatures creature, Graphics g){
+		if (!(creature == null)){
+			if (creature.isLife()){
+				isHeros(creature, g);
+				isMonster(creature, g);
+			}
+		}
+	}
+	
 	private void isHeros(Creatures creature, Graphics g){
+		Image imageHeros = null;
 		for (Integer i = 0; i<4; i++){
 			if(creature.name().equals(typeHeros[i])){
-				Image imageHeros = imageClasse.getImagesHeros()[i][creature.getDirection()][creature.getMoveContinue()];
-				g.drawImage(imageHeros,creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
+				imageHeros = imageClasse.getImagesHeros()[i][creature.getDirection()][creature.getMoveContinue()];
+				g.drawImage(imageHeros, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
 			}
 		}
 	}
 	
 	private void isMonster(Creatures creature, Graphics g){
+		Image imageMonster = null;
 		if(creature.name().equals("Monster")){
-			Image imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
+			imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
 			if (numberMap.equals(4)){
 				imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
 				g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
@@ -130,11 +133,11 @@ public class GamePanel extends Panel {
 		listener = new Keyboard(playerNumber, this);
 	}
 	
-	private void setPosMonster(){
+	private void actionMonster(){
 		controller.doActionMonsters();
 	}
 	
-	private void setPosHeros(){
+	private void actionHeros(){
 		for(Integer i = 0; i < playerNumber; i++){
 			String action = listener.state(i);
 			if (!action.equals("Action Stop") && !action.equals("Action Attack")){
