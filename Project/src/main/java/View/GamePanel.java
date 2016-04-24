@@ -149,11 +149,10 @@ public class GamePanel extends Panel {
 	public void setNumberMap(int numberMap) {
 		this.numberMap = numberMap;
 	}
-
-	public void setTerrain(WorldEntity[][] entities) {
+	
+	public void setTerrain(WorldEntity[][] entities){
 		this.listTerrain = entities;
 	}
-	
 	
 	
 	

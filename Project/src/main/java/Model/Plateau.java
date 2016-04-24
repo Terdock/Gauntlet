@@ -94,13 +94,17 @@ public class Plateau implements IPlateau {
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = true;
 		if (action.equals("Action Up")){
-			passable = listTerrain[posX][posY-1].isPassable();
+			if(listTerrain[posX][posY-1].getCreature().equals(null))
+				passable = listTerrain[posX][posY-1].isPassable();
 		}else if(action.equals("Action Down")){
-			passable = listTerrain[posX][posY+1].isPassable();
+			if(listTerrain[posX][posY-1].getCreature().equals(null))
+				passable = listTerrain[posX][posY+1].isPassable();
 		}else if(action.equals("Action Right")){
-			passable = listTerrain[posX+1][posY].isPassable();
+			if(listTerrain[posX][posY-1].getCreature().equals(null))
+				passable = listTerrain[posX+1][posY].isPassable();
 		}else if(action.equals("Action Left")){
-			passable = listTerrain[posX-1][posY].isPassable();
+			if(listTerrain[posX][posY-1].getCreature().equals(null))
+				passable = listTerrain[posX-1][posY].isPassable();
 		}
 		return passable;
 	}
@@ -126,11 +130,39 @@ public class Plateau implements IPlateau {
 			}
 		}
 	}
+	
+
+	public final void checkAttackMonster(){	
+		for(Creatures hero : listHero){
+			for (Integer j =  hero.getPosY()-10; j < hero.getPosY() + 10; j++){
+				for(Integer i = hero.getPosX()-10; i < hero.getPosY() + 10;i++){
+					Creatures mob = ((PlateauObject) listTerrain[i][j]).getCreature();
+					if(mob.getClass().equals(hero.getClass())){
+						if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
+							if(Math.abs(mob.getPosX() -  hero.getPosX()) > 30 || Math.abs(mob.getPosY()-hero.getPosY())> 30 ){
+									mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
+									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
+									listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
+									listTerrain[i][j].setCreature(null);
+							}
+							else{
+									mob.attack(hero);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 
 	@Override
 	public WorldEntity[][] getListTerrain() {
 		return listTerrain;
+	}
+
+	public Creatures[] getListHero() {
+		return listHero;
 	}
 
 	@Override
