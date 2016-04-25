@@ -11,8 +11,6 @@ public abstract class Creatures extends WorldEntity {
 		return Visible;
 	}
 
-
-
 	public void setVisible(boolean visible) {
 		Visible = visible;
 	}
@@ -89,14 +87,7 @@ public abstract class Creatures extends WorldEntity {
 
 	public void setLife(boolean life) {
 		this.life = life;
-		if(!life){
-			
-		}
 	}
-
-
-
-
 	public Integer getHp() {
 		return hp;
 	}

@@ -19,6 +19,7 @@ public abstract class AbstractModel implements Observable {
 	public void addObserver(Observer obs){
 		 this.listObserver.add(obs);
 	}
+	
 	public void removeObserver(){
 		listObserver = new ArrayList<Observer>();
 	}
