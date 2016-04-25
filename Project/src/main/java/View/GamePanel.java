@@ -147,7 +147,6 @@ public class GamePanel extends Panel {
 			}
 		}
 	}
-	
 
 	public void setNumberMap(int numberMap) {
 		this.numberMap = numberMap;
