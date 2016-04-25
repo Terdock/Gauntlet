@@ -65,7 +65,6 @@ public class Window extends JFrame implements Observer {
 		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
 		panel[7] = new GamePanel(panel[5], controller);
       	
-      
 	}
 	
 	private void actionButton(Button button, String info){

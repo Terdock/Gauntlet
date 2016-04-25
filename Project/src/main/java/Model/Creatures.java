@@ -125,10 +125,5 @@ public abstract class Creatures extends WorldEntity {
 		this.step = step;
 	}
 
-
-
-		
-
-
 }
 

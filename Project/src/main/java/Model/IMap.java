@@ -10,4 +10,5 @@ public interface IMap {
 
 	Creatures[] getListMonster();
 
+
 }

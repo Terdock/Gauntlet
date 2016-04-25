@@ -24,15 +24,12 @@ public class GauntletGame extends AbstractModel {
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister,playerNumber);
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHero();
+		notifyObserver(listTerrain);
 		}
-	
-
-
-  
     
 	public final void checkAttackMonster(){	
-		//checkAttackMonster();
-	}
+		plateau.checkAttackMonster();
+	};
 
     public void doActionHeros(String action, Integer player) {
 		if(plateau.isMoveValide(listHeros[player].getPosX(),listHeros[player].getPosY(), action)){
@@ -41,7 +38,6 @@ public class GauntletGame extends AbstractModel {
 			Integer nextPosX = listHeros[player].getPosX();Integer nextPosY = listHeros[player].getPosY();
 			((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
 			((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
-			notifyObserver(listTerrain);
 			
 		}
 	}

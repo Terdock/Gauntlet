@@ -28,6 +28,12 @@ public abstract class PlateauObject extends WorldEntity {
 
 	public void setCreature(Creatures creature) {
 		this.creature = creature;
+		if(creature == null){
+			setPassable(true);	
+		}
+		else{
+			setPassable(false);
+		}
 	}
 
 	

@@ -46,9 +46,9 @@ public class Plateau implements IPlateau {
 		for (Creatures player : listHero ){
 			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
-		//for (Creatures mob: listMonster){
-			//listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
-		//}
+		for (Creatures mob: listMonster){
+			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+		}
 	}
 	
 	
@@ -86,30 +86,20 @@ public class Plateau implements IPlateau {
 		this.numberMap = numberMap;
 	}
 
-	public boolean isMoveValide(Integer posX, Integer posY) {
-		listTerrain[posX][posY].isPassable();
-		return listTerrain[posX][posY].isPassable();
-	}
 
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
-		boolean passable = true;
+		boolean passable = false;
 		if (action.equals("Action Up")){
-			if(listTerrain[posX][posY-1].getCreature() == null)
-				passable = listTerrain[posX][posY-1].isPassable();
+			passable = listTerrain[posX][posY-1].isPassable();
 		}else if(action.equals("Action Down")){
-			if(listTerrain[posX][posY-1].getCreature() == null)
-				passable = listTerrain[posX][posY+1].isPassable();
+			passable = listTerrain[posX][posY+1].isPassable();
 		}else if(action.equals("Action Right")){
-			if(listTerrain[posX][posY-1].getCreature() == null)
-				passable = listTerrain[posX+1][posY].isPassable();
+			passable = listTerrain[posX+1][posY].isPassable();
 		}else if(action.equals("Action Left")){
-			if(listTerrain[posX][posY-1].getCreature() == null)
-				passable = listTerrain[posX-1][posY].isPassable();
+			passable = listTerrain[posX-1][posY].isPassable();
 		}
 		return passable;
 	}
-
-	
 
 	
 	public void createHero(String[][] playerRegister){
@@ -132,21 +122,23 @@ public class Plateau implements IPlateau {
 	}
 	
 
-	public final void checkAttackMonster(){	
+	public void checkAttackMonster(){	
 		for(Creatures hero : listHero){
 			for (Integer j =  hero.getPosY()-10; j < hero.getPosY() + 10; j++){
 				for(Integer i = hero.getPosX()-10; i < hero.getPosY() + 10;i++){
-					Creatures mob = ((PlateauObject) listTerrain[i][j]).getCreature();
-					if(mob.getClass().equals(hero.getClass())){
-						if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
-							if(Math.abs(mob.getPosX() -  hero.getPosX()) > 30 || Math.abs(mob.getPosY()-hero.getPosY())> 30 ){
+					if(i > 0 && j > 0 && i < nombreColonne && j < nombreLigne &&  j !=  hero.getPosY() &&  i !=  hero.getPosX() ){
+						Creatures mob = ((PlateauObject) listTerrain[i][j]).getCreature();
+						if(!(mob == null)){
+							if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
+								if(Math.abs(mob.getPosX() -  hero.getPosX()) > 30 || Math.abs(mob.getPosY()-hero.getPosY())> 30 ){
 									mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
 									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
 									listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
 									listTerrain[i][j].setCreature(null);
-							}
-							else{
+								}
+								else{
 									mob.attack(hero);
+								}
 							}
 						}
 					}

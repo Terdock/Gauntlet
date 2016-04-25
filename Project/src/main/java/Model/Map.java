@@ -24,11 +24,13 @@ public class Map implements IMap {
 	}
 
 	public Creatures[] getListMonster() {
+		ArrayList<Monster> ArrayListMonster = new ArrayList<Monster>();
+		ArrayListMonster = createMonster();
+		Creatures[] listMonster = new Creatures[ArrayListMonster.size()];
+		for(Integer i = 0; i < ArrayListMonster.size();i++){
+			listMonster[i] = ArrayListMonster.get(i); 
+		}
 		return listMonster;
-	}
-
-	public void setListMonster(Creatures[] listMonster) {
-		this.listMonster = listMonster;
 	}
 
 	
@@ -54,12 +56,13 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
-					else if (checkInWall(posX, posY, h)){
-						
-					}
 					else if( posX == h*20 || posY == h*20 ){
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
+					else if (checkInWall(posX, posY, h)){
+						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
+					}
+					
 					else if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne) || posY.equals(nombreLigne)){
 						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
 					}
