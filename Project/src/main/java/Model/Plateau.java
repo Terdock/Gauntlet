@@ -35,18 +35,19 @@ public class Plateau implements IPlateau {
 		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
+			createHero(playerRegister);
+			listMonster = map.getListMonster();
+			
+			for (Creatures mob: listMonster){
+				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+			}
 		}
 		else{
 			this.listTerrain = listTerrain2;
 		}
-		createHero(playerRegister);
-		listMonster = map.getListMonster();
 		for (Creatures player : listHero ){
-			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
-		}
-		for (Creatures mob: listMonster){
-			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
-		}
+				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
+			}
 	}
 	
 	

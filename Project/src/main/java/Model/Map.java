@@ -52,7 +52,10 @@ public class Map implements IMap {
 			for (Integer posY = 0; posY < nombreLigne; posY++){
 				for (Integer posX = 0; posX < nombreColonne; posX++){
 					listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
-					if (checkInDoor( posX, posY, h)){
+					if (checkInWall(posX, posY, h)){
+						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
+					}
+					/*if (checkInDoor( posX, posY, h)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
@@ -63,9 +66,10 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
 					
-					else if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne) || posY.equals(nombreLigne)){
+					if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne-1) || posY.equals(nombreLigne-1)){
 						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
 					}
+					*/
 				}	
 			}	
 		}
@@ -74,29 +78,8 @@ public class Map implements IMap {
 	}
 	
 	
-	public ArrayList<PlateauObject> create_Door(){
-		return listDoor ;
-	}
 
 
-	public PlateauObject create_Hole0(){
-		return new Hole(0, 0,true);
-	}
-	
-	public PlateauObject create_Hole1() {
-		return new Hole(0, 0,true);
-	}
-	public PlateauObject create_Hole2() {
-		return new Hole(0, 0,true);
-	}
-	public PlateauObject create_Hole3() {
-		return new Hole(0, 0,true);
-	}
-	public PlateauObject create_Hole4() {
-		return new Hole(0, 0,true);
-	}
-
-	
 	private boolean checkInDoor(Integer x, Integer y, Integer h){
 		boolean res = false;
 		if ((x == h*20 + 10 && y == h*20 )  ||(x == h*20 +30 && y == h*20)||(x == h*20 +50 && y == h*20)||
