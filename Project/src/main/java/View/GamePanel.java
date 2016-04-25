@@ -3,7 +3,6 @@ package View;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import Controller.AbstractController;
 import Model.Creatures;
@@ -54,8 +53,7 @@ public class GamePanel extends Panel {
 				showCreatures(creature, g);
 			}
 		}
-		actionMonster();
-		actionHeros();
+		actionCreatures();
 		repaint();
 		/*try {
 			Thread.sleep(200);
@@ -133,11 +131,8 @@ public class GamePanel extends Panel {
 		listener = new Keyboard(playerNumber, this);
 	}
 	
-	private void actionMonster(){
+	private void actionCreatures(){
 		controller.doActionMonsters();
-	}
-	
-	private void actionHeros(){
 		for(Integer i = 0; i < playerNumber; i++){
 			String action = listener.state(i);
 			if (!action.equals("Action Stop") && !action.equals("Action Attack")){

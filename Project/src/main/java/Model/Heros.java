@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 public abstract class Heros extends Creatures{
 	private String playerName;
 	private Integer step = 30;
@@ -17,6 +15,15 @@ public abstract class Heros extends Creatures{
 	}
 
 	
+	public void doAction(String action, Plateau plateau, PlateauObject[][] listTerrain){
+		if (plateau.isMoveValide(getPosX(), getPosY(), action)){
+			Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
+			move(action);
+			Integer nextPosX = getPosX();Integer nextPosY = getPosY();
+			((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
+			((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
+		}
+	}
 	
 
 	public abstract void Distanc_Attack();
