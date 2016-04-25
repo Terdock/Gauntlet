@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
@@ -132,10 +130,11 @@ public class Plateau implements IPlateau {
 							if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
 								if(Math.abs(mob.getPosX() -  hero.getPosX()) > 30 || Math.abs(mob.getPosY()-hero.getPosY())> 30 ){
 									mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
-									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
+									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
+									Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
 									listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
 									listTerrain[i][j].setCreature(null);
-								}
+								}  
 								else{
 									mob.attack(hero);
 								}

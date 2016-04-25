@@ -57,11 +57,11 @@ public class GamePanel extends Panel {
 		actionMonster();
 		actionHeros();
 		repaint();
-		try {
+		/*try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	private Image edgeImage(Integer numberColumn, Integer numberLine){

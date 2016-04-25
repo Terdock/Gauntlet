@@ -56,7 +56,7 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
-					else if( posX == h*20 || posY == h*20 ){
+					else if( posX == h*10 || posY == h*10 ){
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
 					else if (checkInWall(posX, posY, h)){
@@ -111,7 +111,7 @@ public class Map implements IMap {
 	
 	private boolean checkInWall(Integer x, Integer y, Integer h){
 		boolean res = false;
-		if ((x == h*20 + 20 && y == h*20 )  ||(x == h*20 +40 && y == h*20)||(x == h*20 + 60 && y == h*20)||
+		if ((x == h*20 + 20 || y == h*20 )  ||(x == h*20 +40 && y == h*20)||(x == h*20 + 60 && y == h*20)||
 				(x == h*20 +80 && y == h*20)||(x == h*20 -20 && y == h*20 )||(x == h*20 -40 && y == h*20)||
 				(x == h*20 -60 && y == h*20)||(x == h*20 -80 && y == h*20)||(y == h*20 + 20 && x == h*20 )||
 				(y == h*20 +40 && x == h*20)||(y == h*20 +60 && x == h*20)||(y == h*20 +80 && x == h*20)||
@@ -160,10 +160,7 @@ public class Map implements IMap {
 		return list;
 	}
 
-	
 
-
-	
 	private ArrayList<Monster> createGroupeMonster(Integer posX,Integer posY,Integer n,Integer a,Integer b,Integer c,Integer d){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n+a; i <= n+b ; i++){
