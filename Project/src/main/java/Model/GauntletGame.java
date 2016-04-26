@@ -15,7 +15,7 @@ public class GauntletGame extends AbstractModel {
 	private Creatures[] listHeros;
 	
 	public GauntletGame() {
-		this.numberMap = 1;
+		this.numberMap = 0;
 	}
 	
 	
@@ -25,6 +25,7 @@ public class GauntletGame extends AbstractModel {
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHero();
 		notifyObserver(listTerrain);
+		notifyObserver(listHeros);
 		}
     
 	public Creatures[] getListHeros() {

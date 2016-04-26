@@ -27,13 +27,18 @@ public abstract class AbstractModel implements Observable {
 	public void notifyObserver(
 			WorldEntity[][] listTerrain){
 		
-		for (Observer obs : listObserver)
-		obs.update(listTerrain);
+		for (Observer obs:listObserver)
+			obs.update(listTerrain);
 		 
 	}
 	public void notifyObserver(Integer numberMap) {
 		for(Observer obs: listObserver)
 			obs.update(numberMap);
+	}
+	
+	public void notifyObserver(WorldEntity[] listHeros) {
+		for(Observer obs: listObserver)
+			obs.update(listHeros);
 	}
 		
 }

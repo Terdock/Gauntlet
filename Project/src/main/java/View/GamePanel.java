@@ -9,10 +9,13 @@ import Model.Creatures;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.WorldEntity;
+import observer.Observer;
 
 
-public class GamePanel extends Panel {
+
+public class GamePanel extends Panel implements Observer {
 	private WorldEntity[][] listTerrain;
+	private WorldEntity[] listHeros;
 	private AbstractController controller;
 	private Keyboard listener;
 	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
@@ -28,7 +31,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 5;
+		divided = 1;
 	}
 	
 	
@@ -137,15 +140,29 @@ public class GamePanel extends Panel {
 	}
 
 	public void setNumberMap(int numberMap) {
-		this.numberMap = numberMap;
+		
 	}
-	
 	public void setTerrain(WorldEntity[][] entities){
 		this.listTerrain = entities;
 	}
+	public void setTerrain(WorldEntity[] entities){
+		this.listHeros = entities;
+	}
 	
 	
-	
+
+
+	public void update(Integer numberMap) {
+		this.numberMap = numberMap;
+	}
+
+	public void update(WorldEntity[][] listTerrain) {
+		this.listTerrain = listTerrain;
+	}
+
+	public void update(WorldEntity[] listHeros) {
+		this.listHeros = listHeros;
+	}
 	
 	
 		/**

@@ -13,7 +13,7 @@ import Controller.AbstractController;
 import Model.WorldEntity;
 import observer.Observer;
 
-public class Window extends JFrame implements Observer {
+public class Window extends JFrame{
 	
 	private CardLayout card;
 	private Panel[] panel = new Panel[8];
@@ -34,6 +34,10 @@ public class Window extends JFrame implements Observer {
         initialisation();
         this.getContentPane().add(panel[0]);
         setVisible(true);
+	}
+
+	public Panel[] getPanel() {
+		return panel;
 	}
 
 	private void initialisation(){
@@ -123,4 +127,8 @@ public class Window extends JFrame implements Observer {
 		((GamePanel)panel[7]).setTerrain(listTerrain);
 	}
 
+	public void update(WorldEntity[] listHeros) {
+		((GamePanel)panel[7]).setTerrain(listHeros);
+	}
+	
 }
