@@ -37,32 +37,9 @@ public class GamePanel extends Panel implements Observer {
 	
          
 	public void paintComponent(Graphics g){
-		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
-			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
-				WorldEntity ground = listTerrain[numberColumn][numberLine];
-				Creatures creature = ((PlateauObject) ground).getCreature();
-				for (Integer i = 0; i<4; i++){
-					if(creature.name().equals(typeHeros[i])){
-						
-					}
-				}
-				
-				Image imageGround;
-				
-				if(ground.getClass().getName().equals("Model.Wall")){
-					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
-				}else if (ground.getClass().getName().equals("Model.Door")){
-					imageGround = imageClasse.getImageDoor();
-				}else{
-					imageGround = imageClasse.getImagesGround()[numberMap];	
-				}
-				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-				showCreatures(creature, g);
-			}
+		for(Integer step = -15; step < 15; step++){
+			//if (step)
 		}
-//		for(Integer step = -15; step < 15; step++){
-//			if (step)
-//		}
 //		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 //			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 //				WorldEntity ground = listTerrain[numberColumn][numberLine];

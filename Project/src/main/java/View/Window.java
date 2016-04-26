@@ -22,6 +22,7 @@ public class Window extends JFrame{
 	private String[][] heros = new String[5][2];
 	private Image[] backgroundImages = new Image[3];
     private Integer playerNumber;
+    private String modeDeJeu;
     private AbstractController controller;
 	
 	public Window(AbstractController controller){
@@ -78,6 +79,7 @@ public class Window extends JFrame{
             		card.show(panel[0], info);
             	}else if (info.equals("Mode Quête")){
             		playerNumber = 1;
+            		modeDeJeu = info;
             		controller.setGameMode(info);
             		controller.setGamePlayerNumber(playerNumber);
             		
@@ -87,6 +89,7 @@ public class Window extends JFrame{
             		card.show(panel[0], "1");
             		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             	}else if (info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            		modeDeJeu = info;
             		controller.setGameMode(info);
             		
             		card.show(panel[0], "Player");
@@ -110,6 +113,7 @@ public class Window extends JFrame{
             		}
             		((ScorePanel)panel[6]).addName(heros, playerNumber);
             		((GamePanel)panel[7]).addKeyboard(playerNumber);
+            		((GamePanel)panel[7]).setMode(modeDeJeu);
             		controller.initComposant(heros);
             		card.show(panel[0], "GamePanel");
             	}
