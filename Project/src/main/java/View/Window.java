@@ -118,17 +118,5 @@ public class Window extends JFrame{
 	}
 
 
-
-	public void update(Integer numberMap) {
-		((GamePanel)panel[7]).setNumberMap(numberMap);
-	}
-
-	public void update(WorldEntity[][] listTerrain) {
-		((GamePanel)panel[7]).setTerrain(listTerrain);
-	}
-
-	public void update(WorldEntity[] listHeros) {
-		((GamePanel)panel[7]).setTerrain(listHeros);
-	}
 	
 }
