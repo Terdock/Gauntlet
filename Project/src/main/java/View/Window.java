@@ -113,7 +113,7 @@ public class Window extends JFrame{
             		}
             		((ScorePanel)panel[6]).addName(heros, playerNumber);
             		((GamePanel)panel[7]).addKeyboard(playerNumber);
-            		((GamePanel)panel[7]).setMode(modeDeJeu);
+            		((GamePanel)panel[7]).setModeDeJeu(modeDeJeu);
             		controller.initComposant(heros);
             		card.show(panel[0], "GamePanel");
             	}

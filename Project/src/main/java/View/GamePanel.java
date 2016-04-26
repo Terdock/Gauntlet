@@ -18,9 +18,9 @@ public class GamePanel extends Panel implements Observer {
 	private WorldEntity[] listHeros;
 	private AbstractController controller;
 	private Keyboard listener;
-	private boolean upLeftCondition, upDownCondition, downLeftCondition, leftRightCondition, downRightCondition, upRightCondition, allConditionEdge;
 	private LoadImage imageClasse;
 	private Integer numberMap, divided, playerNumber;
+	private String modeDeJeu;
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
 	
@@ -37,25 +37,27 @@ public class GamePanel extends Panel implements Observer {
 	
          
 	public void paintComponent(Graphics g){
-		for(Integer step = -15; step < 15; step++){
-			//if (step)
-		}
-//		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
-//			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
-//				WorldEntity ground = listTerrain[numberColumn][numberLine];
-//				Image imageGround;
-//				Creatures creature = ((PlateauObject) ground).getCreature();
-//				if(ground.getClass().getName().equals("Model.Wall")){
-//					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
-//				}else if (ground.getClass().getName().equals("Model.Door")){
-//					imageGround = imageClasse.getImageDoor();
-//				}else{
-//					imageGround = imageClasse.getImagesGround()[numberMap];	
-//				}
-//				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-//				showCreatures(creature, g);
-//			}
+//		if (modeDeJeu.equals("Mode Quête")){
+//			
+//		}else if (!modeDeJeu.equals("Mode Quête")){
+//		
 //		}
+		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
+				WorldEntity ground = listTerrain[numberColumn][numberLine];
+				Image imageGround;
+				Creatures creature = ((PlateauObject) ground).getCreature();
+				if(ground.getClass().getName().equals("Model.Wall")){
+					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
+				}else if (ground.getClass().getName().equals("Model.Door")){
+					imageGround = imageClasse.getImageDoor();
+				}else{
+					imageGround = imageClasse.getImagesGround()[numberMap];	
+				}
+				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				showCreatures(creature, g);
+			}
+		}
 		actionCreatures();
 		repaint();
 		try {
@@ -65,7 +67,15 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 
-	
+	private void showModeHistory(){
+		for(Integer stepX = -15; stepX < 15; stepX++){
+			for(Integer stepY = -15; stepY < 15; stepY++){
+				if (listHeros[0].getPosX()-stepX>0){
+					
+				}
+			}
+		}
+	}
 
 	private void showCreatures(Creatures creature, Graphics g){
 		if (!(creature == null)){
@@ -116,12 +126,10 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 
-	public void setNumberMap(int numberMap) {
-		
+	public void setModeDeJeu(String modeDeJeu) {
+		this.modeDeJeu = modeDeJeu;
 	}
 	
-
-
 	public void update(Integer numberMap) {
 		this.numberMap = numberMap;
 	}
