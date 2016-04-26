@@ -24,7 +24,7 @@ public class GamePanel extends Panel {
 	public GamePanel(Panel panel, AbstractController controller){
 		super(panel);
 		this.controller = controller;
-		this.setBounds(0, 0, 700, 600);
+		this.setBounds(0, 0, 720, 600);
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
@@ -34,11 +34,18 @@ public class GamePanel extends Panel {
 	
          
 	public void paintComponent(Graphics g){
-			for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
-				for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
+		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
-				Image imageGround;
 				Creatures creature = ((PlateauObject) ground).getCreature();
+				for (Integer i = 0; i<4; i++){
+					if(creature.name().equals(typeHeros[i])){
+						
+					}
+				}
+				
+				Image imageGround;
+				
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -50,6 +57,25 @@ public class GamePanel extends Panel {
 				showCreatures(creature, g);
 			}
 		}
+//		for(Integer step = -15; step < 15; step++){
+//			if (step)
+//		}
+//		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+//			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
+//				WorldEntity ground = listTerrain[numberColumn][numberLine];
+//				Image imageGround;
+//				Creatures creature = ((PlateauObject) ground).getCreature();
+//				if(ground.getClass().getName().equals("Model.Wall")){
+//					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
+//				}else if (ground.getClass().getName().equals("Model.Door")){
+//					imageGround = imageClasse.getImageDoor();
+//				}else{
+//					imageGround = imageClasse.getImagesGround()[numberMap];	
+//				}
+//				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+//				showCreatures(creature, g);
+//			}
+//		}
 		actionCreatures();
 		repaint();
 		try {
