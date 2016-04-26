@@ -2,7 +2,7 @@ package Model;
 
 public abstract class Creatures extends WorldEntity {
 	protected boolean life = true;
-	private Integer hp = 10000000;
+	private Integer hp;
 	private Integer level;
 	private Integer direction = 0;
     private Integer moveContinue = 0;
@@ -18,8 +18,10 @@ public abstract class Creatures extends WorldEntity {
 	private boolean Visible;
 
 
-	public Creatures(Integer posX,Integer posY) {
+	public Creatures(Integer posX,Integer posY, Integer hp) {
 		super(posX,posY);
+		this.hp = hp;
+		
 	}
 	
 	

@@ -28,7 +28,6 @@ public class Plateau implements IPlateau {
 		this.listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
 		this.map = new Map(nombreLigne, nombreColonne,numberMap);
 		Initialisation(nombreLigne,nombreColonne,mode, playerResiter);
-		
 	}	
 	
 
@@ -165,6 +164,7 @@ public class Plateau implements IPlateau {
 		return listTerrain;
 	}
 
+	
 	public Creatures[] getListHero() {
 		return listHero;
 	}

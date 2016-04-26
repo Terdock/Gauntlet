@@ -9,9 +9,10 @@ public abstract class Heros extends Creatures{
 	private Integer speed = 0;
 	private Integer power = 0;
 	private Integer dexterity = 0;
+	private Integer hp = 100;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY);
+		super(posX,posY,100);
 	}
 
 	

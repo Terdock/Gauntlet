@@ -19,7 +19,7 @@ public class Monster extends Creatures {
  
 
 	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
-        super(posX,posY);
+        super(posX,posY,10*(numberMap+1));
         iSeeHero = false;
         this.wObject = wObject;
         setLevel(numberMap+1);
