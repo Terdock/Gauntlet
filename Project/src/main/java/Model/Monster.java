@@ -103,7 +103,7 @@ public class Monster extends Creatures {
 			}else{
             	move = "Action Up";
             }
-		}else if(Math.abs(getPosX() -  xPosPlayer) > Math.abs(getPosY() - yPosPlayer)){
+		}else{
             if(getPosX() - xPosPlayer < 0){
             	move = "Action Right";
             }else{

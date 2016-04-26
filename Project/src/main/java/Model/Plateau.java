@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
@@ -121,30 +123,40 @@ public class Plateau implements IPlateau {
 	}
 	
 
-	public void checkAttackMonster(){	
+	public void checkAttackMonster(){
 		for(Creatures hero : listHero){
-			for (Integer j =  hero.getPosY()-10; j < hero.getPosY() + 10; j++){
-				for(Integer i = hero.getPosX()-10; i < hero.getPosY() + 10;i++){
-					if(i > 0 && j > 0 && i < nombreColonne && j < nombreLigne &&  j !=  hero.getPosY() &&  i !=  hero.getPosX() ){
-						Creatures mob = ((PlateauObject) listTerrain[i][j]).getCreature();
-						if(!(mob == null)){
-							if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
-								if(Math.abs(mob.getPosX() -  hero.getPosX()) > 1 || Math.abs(mob.getPosY()-hero.getPosY())> 1 ){
-									mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
-									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
-									Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
-									listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
-									listTerrain[i][j].setCreature(null);
-								}  
-								else{
-									mob.attack(hero);
-								}
-							}
-						}
+			for (Integer j =  1; j < 10; j++){
+				for(Integer i = 1; i < 10;i++){
+					Integer a,b,c,d,e,f,h;
+					a=hero.getPosX()-i; b=hero.getPosY()-j;c=hero.getPosX()+i;d=hero.getPosY()+j;
+					if(a > 0 && b > 0 && a < nombreColonne &&  b< nombreLigne )
+						isAttack(((PlateauObject) listTerrain[a][b]).getCreature(),hero,a,b);
+					if(c > 0 && b > 0 && c < nombreColonne &&  b< nombreLigne )
+						isAttack(((PlateauObject) listTerrain[c][b]).getCreature(),hero,c,b);
+					if(a > 0 && d > 0 && a < nombreColonne &&  d< nombreLigne )
+						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),hero,a,d);
+					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne )
+						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),hero,c,d);
+					
+				}
+			}
+		}	
+	}
+	public void isAttack(Creatures mob, Creatures hero, Integer i, Integer j){	
+			if(!(mob == null)){
+				if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
+					if(Math.abs(mob.getPosX() -  hero.getPosX()) > 1 || Math.abs(mob.getPosY()-hero.getPosY())> 1 ){
+						mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
+						Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
+						Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
+						listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
+						listTerrain[i][j].setCreature(null);
+					}  
+					else{
+						mob.attack(hero);
 					}
 				}
 			}
-		}
 	}
 
 

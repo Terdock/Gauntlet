@@ -25,7 +25,9 @@ public class Controller extends AbstractController{
 	}
 	
 	public void doActionHeros(String action, Integer player){
-		game.doActionHeros(action, player);
+		if(game.getListHeros()[player].isLife()){
+			game.doActionHeros(action, player);
+		}
 	}
 	
 	public void doActionMonsters(){

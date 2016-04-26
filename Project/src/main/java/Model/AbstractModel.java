@@ -15,6 +15,7 @@ public abstract class AbstractModel implements Observable {
 	public abstract void setPlayerNumber(Integer playerNumber);
 	public abstract void doActionHeros(String action, Integer player);
 	public abstract void checkAttackMonster();
+	public abstract Creatures[] getListHeros();
 	
 	public void addObserver(Observer obs){
 		 this.listObserver.add(obs);

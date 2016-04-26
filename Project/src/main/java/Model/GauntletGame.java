@@ -27,6 +27,16 @@ public class GauntletGame extends AbstractModel {
 		notifyObserver(listTerrain);
 		}
     
+	public Creatures[] getListHeros() {
+		return listHeros;
+	}
+
+
+	public void setListHeros(Creatures[] listHeros) {
+		this.listHeros = listHeros;
+	}
+
+
 	public final void checkAttackMonster(){	
 		plateau.checkAttackMonster();
 	};
