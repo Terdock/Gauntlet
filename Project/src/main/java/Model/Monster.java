@@ -72,6 +72,14 @@ public class Monster extends Creatures {
 		return dommage;
 	}
 
+	public void setLife(boolean life) {
+		//à arranger
+		this.life = life;
+		if(!(wObject == null)){
+			wObject.setPosX(getPosX());
+			wObject.setPosY(getPosY());
+		}
+	}
 
 
 

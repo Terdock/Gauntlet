@@ -1,7 +1,7 @@
 package Model;
 
 public abstract class Creatures extends WorldEntity {
-	private boolean life = true;
+	protected boolean life = true;
 	private Integer hp = 100000;
 	private Integer level;
 	private Integer direction = 0;

@@ -39,7 +39,7 @@ public class GamePanel extends Panel {
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround = edgeImage(numberColumn, numberLine);
 				Creatures creature = null;
-				if (allConditionEdge){
+				//if (allConditionEdge){
 					if(ground.getClass().getName().equals("Model.Wall")){
 						imageGround = imageClasse.getImagesWall()[numberMap][7];
 					}else if(ground.getClass().getName().equals("Model.Sol")){
@@ -48,7 +48,7 @@ public class GamePanel extends Panel {
 					}else if (ground.getClass().getName().equals("Model.Door")){
 						imageGround = imageClasse.getImageDoor();
 					}
-				}
+				//}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, g);
 			}

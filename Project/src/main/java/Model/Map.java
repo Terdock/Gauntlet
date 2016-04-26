@@ -9,8 +9,6 @@ public class Map implements IMap {
 	private Integer nombreColonne;
 	private Integer NumberOfDoor;
 	private Integer numberMap;
-	private ArrayList<PlateauObject> listDoor;
-	private ArrayList<PlateauObject> listWallMap = new ArrayList<PlateauObject>();
 	private PlateauObject holeMap;
 	private Creatures[] listMonster;
 	
@@ -48,17 +46,19 @@ public class Map implements IMap {
 	@Override
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
 			for (Integer posY = 0; posY < nombreLigne; posY++){
 				for (Integer posX = 0; posX < nombreColonne; posX++){
 					listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
-					if (checkInWall(posX, posY, h)){
+					
+					if(isWall(posX,posY)){
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
-					/*if (checkInDoor( posX, posY, h)){
+					if(isDoor(posX, posY)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
+					}
+					/*
 					else if( posX == h*10 || posY == h*10 ){
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 					}
@@ -70,9 +70,7 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
 					}
 					*/
-				}	
 			}	
-		}
 		NumberOfDoor = i;
 		return listTerrain;
 	}
@@ -80,66 +78,47 @@ public class Map implements IMap {
 	
 
 
-	private boolean checkInDoor(Integer x, Integer y, Integer h){
-		boolean res = false;
-		if ((x == h*20 + 10 && y == h*20 )  ||(x == h*20 +30 && y == h*20)||(x == h*20 +50 && y == h*20)||
-				(x == h*20 +70 && y == h*20)||(x == h*20 -10 && y == h*20 )||(x == h*20 -30 && y == h*20)||
-				(x == h*20 -50 && y == h*20)||(x == h*20 -70 && y == h*20)||(y == h*20 + 10 && x == h*20 )||
-				(y == h*20 +30 && x == h*20)||(y == h*20 +50 && x == h*20)||(y == h*20 +70 && x == h*20)||
-				(y == h*20 -10 && x == h*20 )||(y == h*20 -30 && x == h*20)||(y == h*20 -50 && x == h*20)||
-				(y == h*20 -70 && x == h*20))
-					res = true;
-		return res;
+	private boolean isDoor(Integer posX, Integer posY){
+		return posX > 0 && posY > 0 && posY < nombreLigne-1 && posX < nombreColonne-1  && 
+				((posX % 20 == 0 && posY==10) || (posX % 20 == 0 && posY==30)||
+				(posX % 20 == 0 && posY==50) || (posX % 20 == 0 && posY==70) ||
+				(posX % 20 == 0 && posY==90)) || ((posY % 20 == 0 && posX==10) || 
+					(posY % 20 == 0 && posX==30)||(posY % 20 == 0 && posX==50) || 
+					(posY % 20 == 0 && posX==70) || (posY % 20 == 0 && posX==90));
 	}
 	
-	private boolean checkInWall(Integer x, Integer y, Integer h){
-		boolean res = false;
-		if ((x == h*20 + 20 || y == h*20 )  ||(x == h*20 +40 && y == h*20)||(x == h*20 + 60 && y == h*20)||
-				(x == h*20 +80 && y == h*20)||(x == h*20 -20 && y == h*20 )||(x == h*20 -40 && y == h*20)||
-				(x == h*20 -60 && y == h*20)||(x == h*20 -80 && y == h*20)||(y == h*20 + 20 && x == h*20 )||
-				(y == h*20 +40 && x == h*20)||(y == h*20 +60 && x == h*20)||(y == h*20 +80 && x == h*20)||
-				(y == h*20 -20 && x == h*20 )||(y == h*20 -40 && x == h*20)||(y == h*20 -60 && x == h*20)||
-				(y == h*20 -80 && x == h*20) || (x == y))
-					res = true;
-		return res;
+	private boolean isWall(Integer posX, Integer posY){
+		return posX % 20 == 0 || posY % 20 == 0 ;
 	}
 	
-	private boolean checkInMonster(Integer x, Integer y, Integer h){
-		boolean res = false;
-		if(
-		(x == h*20 + 10 && y == h*20 + 10 )  ||(x == h*20 + 30 && y == h*20 + 30)||
-		(x == h*20 +50 && y == h*20 + 50)||(x == h*20 +70 && y == h*20 +70)||
-		(x == h*20 -10 && y == h*20 - 10 )||(x == h*20 -30 && y == h*20 - 30)||
-		(x == h*20 -50 && y == h*20 - 50)||(x == h*20 - 70 && y == h*20 - 70)||
-		(y == h*20 - 10 && x == h*20 + 10)||(y == h*20 - 30 && x == h*20 + 30)||
-		(y == h*20 -50 && x == h*20 + 50)||(y == h*20 -70 && x == h*20 + 70)||
-		(y == h*20 +10 && x == h*20-10 )||(y == h*20 + 30 && x == h*20 - 30)||
-		(y == h*20 + 50 && x == h*20 - 50)||(y == h*20 +70 && x == h*20-70))
-			res = true;
+	private boolean checkInMonster(Integer posX, Integer posY){
+		boolean res = 	((posX % 10 == 0 && posY==10) || (posX % 20 == 0 && posY==30)||
+				(posX % 20 == 0 && posY==50) || (posX % 20 == 0 && posY==70) ||
+				(posX % 20 == 0 && posY==90)) || ((posY % 20 == 0 && posX==10) || 
+					(posY % 20 == 0 && posX==30)||(posY % 20 == 0 && posX==50) || 
+					(posY % 20 == 0 && posX==70) || (posY % 20 == 0 && posX==90));
 		return res;
 	}
 	
 	public ArrayList<Monster> createMonster() {
 		ArrayList<Monster> list = new ArrayList<Monster>(); 
 		Integer i = 0;
-		for(Integer h = 0; h < 5; h++){
-			for(Integer y = 0; y < nombreColonne; y++){
-				for(Integer x = 0; x < nombreLigne; x++){
+			for(Integer y = 5; y < nombreColonne-5; y++){
+				for(Integer x = 5; x < nombreLigne-5; x++){
 					if(x == 10 && y == 10){
 						
 					}
-					else if(x == 4*20 +  70 && y == 4*20 +  70 ){
+					else if(x == 90 && y == 90 ){
 						
 						
 					}
-					else if (checkInMonster( x, y, h))
+					else if ((x % 10 == 0 && y % 10 == 0) && !(x %20 == 0 || y % 20 == 0) ) 
 					{
 						list.addAll(createGroupeMonster(x,y,1,0,0,0,0));
 					}
 		
 				}
 			}
-		}
 		return list;
 	}
 
@@ -148,7 +127,11 @@ public class Map implements IMap {
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n+a; i <= n+b ; i++){
 			for ( Integer j = -n+c; j<= n+d;j++) {
-				list.add(new Monster(posX+i,posY+j, null, numberMap));
+				if(posX %10 ==0 && posY % 10 == 0){
+					list.add(new KeyHolder(posX+i,posY+j, new KeyDoor(posX+i, posY+j), numberMap));
+				}else{	
+					list.add(new Monster(posX+i,posY+j, null, numberMap));
+				}
 			}
 		}	
 		return list;
