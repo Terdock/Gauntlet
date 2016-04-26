@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import Controller.*;
 import Model.*;
 import View.Window;
+import observer.Observer;
 
 public class Main {
 	
@@ -11,7 +12,7 @@ public class Main {
 		AbstractModel game = new GauntletGame();
 		AbstractController control = new Controller(game);
 		Window window = new Window(control);
-		game.addObserver(window);
+		game.addObserver((Observer)window.getPanel()[7]);
 		
 	}
 }
