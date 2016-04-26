@@ -38,7 +38,7 @@ public class GamePanel extends Panel implements Observer {
          
 	public void paintComponent(Graphics g){
 //		if (modeDeJeu.equals("Mode Quête")){
-//			
+//			showModeHistory(g);
 //		}else if (!modeDeJeu.equals("Mode Quête")){
 //		
 //		}
@@ -67,11 +67,22 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 
-	private void showModeHistory(){
+	private void showModeHistory(Graphics g){
 		for(Integer stepX = -15; stepX < 15; stepX++){
 			for(Integer stepY = -15; stepY < 15; stepY++){
-				if (listHeros[0].getPosX()-stepX>0){
-					
+				if (listHeros[0].getPosX()-stepX>=0 && listHeros[0].getPosY() - stepY>=0){
+					WorldEntity ground = listTerrain[listHeros[0].getPosX()-stepX][listHeros[0].getPosY() - stepY];
+					Image imageGround;
+					Creatures creature = ((PlateauObject) ground).getCreature();
+					if(ground.getClass().getName().equals("Model.Wall")){
+						imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
+					}else if (ground.getClass().getName().equals("Model.Door")){
+						imageGround = imageClasse.getImageDoor();
+					}else{
+						imageGround = imageClasse.getImagesGround()[numberMap];	
+					}
+					g.drawImage(imageGround, (listHeros[0].getPosX()-stepX)*30/divided, (listHeros[0].getPosY() - stepY)*30/divided, size/divided, size/divided, null);
+					showCreatures(creature, g);
 				}
 			}
 		}
