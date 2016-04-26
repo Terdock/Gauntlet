@@ -105,9 +105,9 @@ public class Map implements IMap {
 
 	private void gestionImage(Integer posX,Integer posY, PlateauObject[][] listTerrain){
 		listTerrain[posX][posY].setForm(7);
-		if( posX.equals(0) && posY.equals(0) )
+		if( posX.equals(0) && posY % 20 == 0 )
 			listTerrain[posX][posY].setForm(2) ;
-		else if( posX.equals(nombreColonne-1) && posY.equals(0)) 
+		else if( posX.equals(nombreColonne-1) && posY % 20 ==0) 
 			listTerrain[posX][posY].setForm(3);
 		else if( posX.equals(0) && posY.equals(nombreLigne-1))
 			listTerrain[posX][posY].setForm(5);
