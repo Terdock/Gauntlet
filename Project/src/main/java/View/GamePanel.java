@@ -28,7 +28,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 1;
+		divided = 5;
 	}
 	
 	
@@ -52,11 +52,11 @@ public class GamePanel extends Panel {
 		}
 		actionCreatures();
 		repaint();
-		/*try {
-			Thread.sleep(200);
+		try {
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 	

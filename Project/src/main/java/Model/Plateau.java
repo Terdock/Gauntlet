@@ -129,7 +129,7 @@ public class Plateau implements IPlateau {
 						Creatures mob = ((PlateauObject) listTerrain[i][j]).getCreature();
 						if(!(mob == null)){
 							if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
-								if(Math.abs(mob.getPosX() -  hero.getPosX()) > 30 || Math.abs(mob.getPosY()-hero.getPosY())> 30 ){
+								if(Math.abs(mob.getPosX() -  hero.getPosX()) > 1 || Math.abs(mob.getPosY()-hero.getPosY())> 1 ){
 									mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
 									Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
 									Integer nextPosY = listTerrain[i][j].getCreature().getPosY();

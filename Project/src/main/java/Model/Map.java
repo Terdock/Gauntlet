@@ -54,7 +54,10 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 						gestionImage(posX,posY,listTerrain);
 					}
-					if(isDoor(posX, posY)){
+					if((posX % 20 == 0 && posY == 10)  && !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1){
+						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
+					}
+					else if(isDoor(posX, posY)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
