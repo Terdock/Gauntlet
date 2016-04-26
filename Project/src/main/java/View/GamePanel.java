@@ -167,27 +167,6 @@ for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 	public void update(WorldEntity[] listHeros) {
 		this.listHeros = listHeros;
 	}
-	
-	
-		/**
-			
-		for (WorldEntity player : listHero )
-		{	if(player.getVisible()){
-				Image img = afficheImage.images(player.nameImage());
-				g.drawImage(img, player.getPosX(), player.getPosY(), player.getWidth(), player.getHeight(), null);
-			}
-		}
-		for (WorldEntity obj : listObject )
-		{
-			if(obj.getVisible()){
-				Image img = afficheImage.images(obj.nameImage());
-				g.drawImage(img,obj.getPosX(), obj.getPosY(), obj.getWidth(), obj.getHeight(), null);
-			}
-		}
-		**/
-	
-	
-	
 
 
 }

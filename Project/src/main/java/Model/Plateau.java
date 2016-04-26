@@ -125,8 +125,8 @@ public class Plateau implements IPlateau {
 
 	public void checkAttackMonster(){
 		for(Creatures hero : listHero){
-			for (Integer j =  1; j < 10; j++){
-				for(Integer i = 1; i < 10;i++){
+			for (Integer j =  0; j < 10; j++){
+				for(Integer i = 0; i < 10;i++){
 					Integer a,b,c,d,e,f,h;
 					a=hero.getPosX()-i; b=hero.getPosY()-j;c=hero.getPosX()+i;d=hero.getPosY()+j;
 					if(a > 0 && b > 0 && a < nombreColonne &&  b< nombreLigne )
@@ -143,7 +143,7 @@ public class Plateau implements IPlateau {
 		}	
 	}
 	public void isAttack(Creatures mob, Creatures hero, Integer i, Integer j){	
-			if(!(mob == null)){
+			if(!(mob == null) && !(mob.equals(hero))){
 				if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
 					if(Math.abs(mob.getPosX() -  hero.getPosX()) > 1 || Math.abs(mob.getPosY()-hero.getPosY())> 1 ){
 						mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));

@@ -99,7 +99,7 @@ public class Map implements IMap {
 					}
 					else if (isMonster(x,y) ) 
 					{
-						list.addAll(createGroupeMonster(x,y,(numberMap+1)*2,0,0,0,0));
+						list.addAll(createGroupeMonster(x,y,(numberMap)*2,0,0,0,0));
 					}
 		
 				}
