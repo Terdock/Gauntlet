@@ -116,13 +116,6 @@ public class GamePanel extends Panel implements Observer {
 	public void setNumberMap(int numberMap) {
 		
 	}
-	public void setTerrain(WorldEntity[][] entities){
-		this.listTerrain = entities;
-	}
-	public void setTerrain(WorldEntity[] entities){
-		this.listHeros = entities;
-	}
-	
 	
 
 
