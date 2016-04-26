@@ -52,24 +52,14 @@ public class Map implements IMap {
 					
 					if(isWall(posX,posY)){
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
+						gestionImage(posX,posY,listTerrain);
 					}
 					if(isDoor(posX, posY)){
 						listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
-					}
-					/*
-					else if( posX == h*10 || posY == h*10 ){
-						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
-					}
-					else if (checkInWall(posX, posY, h)){
-						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
-					}
-					
-					if (posX.equals(0) || posY.equals(0) || posX.equals(nombreColonne-1) || posY.equals(nombreLigne-1)){
-						listTerrain[posX][posY] = new Wall(posX, posY, false, numberMap);
-					}
-					*/
+				}
+			
 			}	
 		NumberOfDoor = i;
 		return listTerrain;
@@ -79,25 +69,16 @@ public class Map implements IMap {
 
 
 	private boolean isDoor(Integer posX, Integer posY){
-		return posX > 0 && posY > 0 && posY < nombreLigne-1 && posX < nombreColonne-1  && 
-				((posX % 20 == 0 && posY==10) || (posX % 20 == 0 && posY==30)||
-				(posX % 20 == 0 && posY==50) || (posX % 20 == 0 && posY==70) ||
-				(posX % 20 == 0 && posY==90)) || ((posY % 20 == 0 && posX==10) || 
-					(posY % 20 == 0 && posX==30)||(posY % 20 == 0 && posX==50) || 
-					(posY % 20 == 0 && posX==70) || (posY % 20 == 0 && posX==90));
+		return ((posX % 10 == 0 && posY % 20 == 0) || (posX %20 == 0 && posY % 10 == 0)) 
+				&& !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1;
 	}
 	
 	private boolean isWall(Integer posX, Integer posY){
 		return posX % 20 == 0 || posY % 20 == 0 ;
 	}
 	
-	private boolean checkInMonster(Integer posX, Integer posY){
-		boolean res = 	((posX % 10 == 0 && posY==10) || (posX % 20 == 0 && posY==30)||
-				(posX % 20 == 0 && posY==50) || (posX % 20 == 0 && posY==70) ||
-				(posX % 20 == 0 && posY==90)) || ((posY % 20 == 0 && posX==10) || 
-					(posY % 20 == 0 && posX==30)||(posY % 20 == 0 && posX==50) || 
-					(posY % 20 == 0 && posX==70) || (posY % 20 == 0 && posX==90));
-		return res;
+	private boolean isMonster(Integer posX, Integer posY){
+		return (posX % 10 == 0 && posY % 10 == 0) && !(posX %20 == 0 || posY % 20 == 0);
 	}
 	
 	public ArrayList<Monster> createMonster() {
@@ -112,9 +93,9 @@ public class Map implements IMap {
 						
 						
 					}
-					else if ((x % 10 == 0 && y % 10 == 0) && !(x %20 == 0 || y % 20 == 0) ) 
+					else if (isMonster(x,y) ) 
 					{
-						list.addAll(createGroupeMonster(x,y,1,0,0,0,0));
+						list.addAll(createGroupeMonster(x,y,(numberMap+1)*2,0,0,0,0));
 					}
 		
 				}
@@ -122,7 +103,26 @@ public class Map implements IMap {
 		return list;
 	}
 
-
+	private void gestionImage(Integer posX,Integer posY, PlateauObject[][] listTerrain){
+		listTerrain[posX][posY].setForm(7);
+		if( posX.equals(0) && posY.equals(0) )
+			listTerrain[posX][posY].setForm(2) ;
+		else if( posX.equals(nombreColonne-1) && posY.equals(0)) 
+			listTerrain[posX][posY].setForm(3);
+		else if( posX.equals(0) && posY.equals(nombreLigne-1))
+			listTerrain[posX][posY].setForm(5);
+		else if(posX.equals(nombreColonne-1) && posY.equals(nombreLigne-1))
+			listTerrain[posX][posY].setForm(4);
+		else if(posX % 20 == 0 && posY % 20 == 0)
+			listTerrain[posX][posY].setForm(6);
+		else if(posX % 20 == 0)
+			listTerrain[posX][posY].setForm(1);
+		else if(posY % 20 == 0)
+			listTerrain[posX][posY].setForm(0);
+	
+	}
+	
+	
 	private ArrayList<Monster> createGroupeMonster(Integer posX,Integer posY,Integer n,Integer a,Integer b,Integer c,Integer d){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n+a; i <= n+b ; i++){

@@ -28,7 +28,7 @@ public class GamePanel extends Panel {
 		this.setSize(new Dimension(700,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
-		divided = 5;
+		divided = 1;
 	}
 	
 	
@@ -37,18 +37,15 @@ public class GamePanel extends Panel {
 			for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 				for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
-				Image imageGround = edgeImage(numberColumn, numberLine);
-				Creatures creature = null;
-				//if (allConditionEdge){
-					if(ground.getClass().getName().equals("Model.Wall")){
-						imageGround = imageClasse.getImagesWall()[numberMap][7];
-					}else if(ground.getClass().getName().equals("Model.Sol")){
-						imageGround = imageClasse.getImagesGround()[numberMap];
-						creature = ((PlateauObject) ground).getCreature();
-					}else if (ground.getClass().getName().equals("Model.Door")){
-						imageGround = imageClasse.getImageDoor();
-					}
-				//}
+				Image imageGround;
+				Creatures creature = ((PlateauObject) ground).getCreature();
+				if(ground.getClass().getName().equals("Model.Wall")){
+					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
+				}else if (ground.getClass().getName().equals("Model.Door")){
+					imageGround = imageClasse.getImageDoor();
+				}else{
+					imageGround = imageClasse.getImagesGround()[numberMap];	
+				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, g);
 			}
@@ -62,38 +59,8 @@ public class GamePanel extends Panel {
 		}*/
 	}
 
-	private Image edgeImage(Integer numberColumn, Integer numberLine){
-		Image imageGround = null;
-		checkEdgeCondition(numberColumn, numberLine);
-		if(upLeftCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][2];
-		}else if(upDownCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][0];
-		}else if (downLeftCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][5];
-		}else if(leftRightCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][1];
-		}else if(downRightCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][4];
-		}else if(upRightCondition){
-			imageGround = imageClasse.getImagesWall()[numberMap][3];
-		}
-		return imageGround;
-	}
 	
-	private void checkEdgeCondition(Integer numberColumn, Integer numberLine){
-		upLeftCondition = numberColumn.equals(0) && numberLine.equals(0);
-		upRightCondition = numberColumn.equals(listTerrain.length-1) && numberLine.equals(0);
-		downLeftCondition = numberColumn.equals(0) && numberLine.equals(listTerrain.length-1);
-		downRightCondition = numberColumn.equals(listTerrain.length-1) && numberLine.equals(listTerrain.length-1);
-		upDownCondition = (!numberColumn.equals(0) && !numberColumn.equals(listTerrain.length-1) 
-				&& (numberLine.equals(0) || numberLine.equals(listTerrain.length-1)));
-		leftRightCondition = (!numberLine.equals(0) && !numberLine.equals(listTerrain.length-1) 
-				&& (numberColumn.equals(0) || numberColumn.equals(listTerrain.length-1)));
-		allConditionEdge = !upLeftCondition && !upDownCondition && !downLeftCondition && !leftRightCondition && 
-				!downRightCondition && !upRightCondition;
-	}
-	
+
 	private void showCreatures(Creatures creature, Graphics g){
 		if (!(creature == null)){
 			if (creature.isLife()){
