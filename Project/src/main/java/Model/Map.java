@@ -58,7 +58,8 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
 					}
 					else if(isDoor(posX, posY)){
-						listTerrain[posX][posY] = new Door(posX,posY,false,i);
+						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
+						//listTerrain[posX][posY] = new Door(posX,posY,false,i);
 						i++;
 					}	
 				}
