@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -37,7 +38,8 @@ public class GamePanel extends Panel implements Observer {
 	
          
 	public void paintComponent(Graphics g){
-		
+		super.paintComponent(g);
+		setBackground(Color.BLACK);
 		if (modeDeJeu.equals("Mode Quête")){
 			Integer offsetMaxX = (listTerrain[0].length*size - 700);
 			Integer offsetMaxY = (listTerrain.length*size - 600);
