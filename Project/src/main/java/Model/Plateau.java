@@ -166,7 +166,7 @@ public class Plateau implements IPlateau {
 									   listTerrain[heros.getPosX()-1][heros.getPosY()].getCreature()};
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
-				if (!(creaturesAround[direction] == null) && creaturesAround[direction].equals("Monsters")){
+				if (!(creaturesAround[direction] == null) && ((Monster)creaturesAround[direction]).nameType().equals("Monster")){
 					heros.attack(creaturesAround[direction]);
 				}
 			}

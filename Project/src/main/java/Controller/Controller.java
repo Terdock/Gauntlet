@@ -24,9 +24,9 @@ public class Controller extends AbstractController{
 		game.createPlateau(playerRegister);
 	}
 	
-	public void doActionHeros(String action, Integer player){
+	public void doActionHeros(String action, Integer state, Integer player){
 		if(game.getListHeros()[player].isLife()){
-			game.doActionHeros(action, player);
+			game.doActionHeros(action, state, player);
 		}
 	}
 	

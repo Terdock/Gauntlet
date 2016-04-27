@@ -41,7 +41,8 @@ public class GauntletGame extends AbstractModel {
 	};
 	
 
-    public void doActionHeros(String action, Integer player) {
+    public void doActionHeros(String action, Integer state, Integer player) {
+    	listHeros[player].setDirection(state);
     	listHeros[player].doAction(action, plateau, listTerrain);
 	}
     

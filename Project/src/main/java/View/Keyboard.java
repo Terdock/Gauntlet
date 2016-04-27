@@ -9,7 +9,7 @@ public class Keyboard implements KeyListener{
 	private Boolean[][] keys;
 	private String[] values = {"Action Up", "Action Right", "Action Down", "Action Left", "Action Attack", "Action Stop"};
 	private Integer playerNumber;
-	String stateValue;
+	Integer stateValue;
 	private Panel panel;
 
 	public Keyboard(Integer playerNumber, Panel panel) {
@@ -86,14 +86,18 @@ public class Keyboard implements KeyListener{
 		}
 	}
 	
-	public String state(Integer player){
-		stateValue = values[5];
+	public Integer state(Integer player){
+		stateValue = 5;
 		for(Integer i = 0; i<=4; i++){
 			if(keys[player][i]){
-				stateValue = values[i];
+				stateValue = i;
 			}
 		}
 		return stateValue;
+	}
+	
+	public String stateToString(Integer state){
+		return values[state];
 	}
 }
 

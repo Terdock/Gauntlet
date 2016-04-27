@@ -133,9 +133,10 @@ public class GamePanel extends Panel implements Observer {
 	private void actionCreatures(){
 		controller.doActionMonsters();
 		for(Integer player = 0; player < playerNumber; player++){
-			String action = listener.state(player);
+			Integer state = listener.state(player);
+			String action = listener.stateToString(state);
 			if (!action.equals("Action Stop") && !action.equals("Action Attack")){
-				controller.doActionHeros(action, player);
+				controller.doActionHeros(action, state, player);
 			}else if(action.equals("Action Attack")){
 				controller.attackHeros(player);
 			}

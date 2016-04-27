@@ -7,7 +7,7 @@ import Model.Creatures;
 public class Monster extends Creatures {
     private Integer posMove;
     private boolean iSeeHero;
-    private static Integer degat = 10;
+    private static Integer degat = 0;
 	private Integer typeMonster = 1;
     private WorldObject wObject; 
 	private boolean verify;
@@ -18,7 +18,7 @@ public class Monster extends Creatures {
  
 
 	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
-        super(posX,posY,10*(numberMap+1), 5);
+        super(posX, posY, 10*(numberMap+1), 0);
         iSeeHero = false;
         this.wObject = wObject;
         setLevel(numberMap+1);
@@ -126,7 +126,6 @@ public class Monster extends Creatures {
 
 
 	
-	@Override
 	public void attack(Creatures creature) {
 		creature.receiveAttack(degat*getLevel(), creature.getDefense());
 	}
