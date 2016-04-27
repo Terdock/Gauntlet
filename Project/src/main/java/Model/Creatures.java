@@ -99,7 +99,7 @@ public abstract class Creatures extends WorldEntity {
 		return hp;
 	}
 
-	public void setHp(Integer dommage) {
+	private void setHp(Integer dommage) {
 		this.hp = hp - dommage;
 		if(hp <= 0){
 			hp = 0;

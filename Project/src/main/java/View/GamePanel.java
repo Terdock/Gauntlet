@@ -85,7 +85,11 @@ public class GamePanel extends Panel implements Observer {
 				}else if (ground.getClass().getName().equals("Model.Door")){
 					imageGround = imageClasse.getImageDoor();
 				}else{
-					imageGround = imageClasse.getImagesGround()[numberMap];	
+					imageGround = imageClasse.getImagesGround()[numberMap];
+					if(((PlateauObject)ground).isDead()){
+						Image imageDead = imageClasse.getImageDeathMonsters();
+						g.drawImage(imageDead,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+					}
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, g);

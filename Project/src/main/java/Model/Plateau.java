@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
@@ -162,14 +160,19 @@ public class Plateau implements IPlateau {
 	
 	public void attacHeros(Integer player){
 		Heros heros = listHeros[player];
-		Creatures[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1].getCreature(), 
-									   listTerrain[heros.getPosX()+1][heros.getPosY()].getCreature(),
-									   listTerrain[heros.getPosX()][heros.getPosY()+1].getCreature(),
-									   listTerrain[heros.getPosX()-1][heros.getPosY()].getCreature()};
+		PlateauObject[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1], 
+									   listTerrain[heros.getPosX()+1][heros.getPosY()],
+									   listTerrain[heros.getPosX()][heros.getPosY()+1],
+									   listTerrain[heros.getPosX()-1][heros.getPosY()]};
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
-				if (!(creaturesAround[direction] == null) && ((Monster)creaturesAround[direction]).nameType().equals("Monster")){
-					heros.attack(creaturesAround[direction]);
+				if (!(creaturesAround[direction].getCreature() == null) && 
+						((Monster)creaturesAround[direction].getCreature()).nameType().equals("Monster")){
+					heros.attack(creaturesAround[direction].getCreature());
+					if (!creaturesAround[direction].getCreature().isLife()){
+						creaturesAround[direction].setDead(true);
+						creaturesAround[direction].setCreature(null);
+					}
 				}
 			}
 		}
