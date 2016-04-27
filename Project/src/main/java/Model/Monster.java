@@ -130,10 +130,6 @@ public class Monster extends Creatures {
 		creature.receiveAttack(degat*getLevel(), creature.getDefense());
 	}
 
-
-	public void setHp(Integer dommage) {
-		
-	}
  
 }
 

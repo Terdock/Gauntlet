@@ -138,8 +138,7 @@ public class Plateau implements IPlateau {
 			}
 		}	
 	}
-	
-	public void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
+	public final void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
 			if(!(mob == null) && !(mob.equals(hero) && mob.isLife())){
 				if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
 					if((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
