@@ -1,8 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-import observer.Observable;
-
 public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
@@ -12,7 +9,7 @@ public class GauntletGame extends AbstractModel {
 	private WorldEntity[][] listTerrain = new WorldEntity[nombreColonne][nombreLigne];
 	private String gameMode;
 	private Integer playerNumber; 
-	private Creatures[] listHeros;
+	private Heros[] listHeros;
 	
 	public GauntletGame() {
 		this.numberMap = 0;
@@ -23,17 +20,18 @@ public class GauntletGame extends AbstractModel {
 		notifyObserver(numberMap);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister,playerNumber);
 		this.listTerrain = plateau.getListTerrain();
-		this.listHeros = plateau.getListHero();
+		this.listHeros = plateau.getListHeros();
 		notifyObserver(listTerrain);
 		notifyObserver(listHeros);
 		}
+	
     
 	public Creatures[] getListHeros() {
 		return listHeros;
 	}
 
 
-	public void setListHeros(Creatures[] listHeros) {
+	public void setListHeros(Heros[] listHeros) {
 		this.listHeros = listHeros;
 	}
 
@@ -41,18 +39,16 @@ public class GauntletGame extends AbstractModel {
 	public final void checkAttackMonster(){	
 		plateau.checkAttackMonster();
 	};
+	
 
     public void doActionHeros(String action, Integer player) {
-		if(plateau.isMoveValide(listHeros[player].getPosX(),listHeros[player].getPosY(), action)){
-			Integer previousPosX = listHeros[player].getPosX();Integer previousPosY = listHeros[player].getPosY();
-			listHeros[player].move(action);
-			Integer nextPosX = listHeros[player].getPosX();Integer nextPosY = listHeros[player].getPosY();
-			((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
-			((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
-			
-		}
+    	listHeros[player].doAction(action, plateau, listTerrain);
 	}
-
+    
+    
+    public void attackHeros(Integer player){
+    	plateau.attacHeros(player);
+    }
 	
 	public void setGameMode(String gameMode) {
 		this.gameMode = gameMode;
@@ -63,6 +59,7 @@ public class GauntletGame extends AbstractModel {
 		return numberMap;
 	}
 
+	
 	public void setNumberMap(Integer numberMap) {
 		this.numberMap = numberMap;
 	}

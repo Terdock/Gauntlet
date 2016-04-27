@@ -8,7 +8,6 @@ public class Monster extends Creatures {
     private Integer posMove;
     private boolean iSeeHero;
     private static Integer degat = 10;
-
 	private Integer typeMonster = 1;
     private WorldObject wObject; 
 	private boolean verify;
@@ -19,7 +18,7 @@ public class Monster extends Creatures {
  
 
 	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
-        super(posX,posY,10*(numberMap+1));
+        super(posX,posY,10*(numberMap+1), 5);
         iSeeHero = false;
         this.wObject = wObject;
         setLevel(numberMap+1);
@@ -129,12 +128,11 @@ public class Monster extends Creatures {
 	
 	@Override
 	public void attack(Creatures creature) {
-		((Heros)creature).receiveAttack(degat*getLevel());
+		creature.receiveAttack(degat*getLevel(), creature.getDefense());
 	}
 
-	@Override
+
 	public void setHp(Integer dommage) {
-		// TODO Auto-generated method stub
 		
 	}
  

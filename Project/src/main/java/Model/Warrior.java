@@ -19,11 +19,4 @@ public class Warrior extends Heros{
 		return "Warrior";
 	}
 
-
-	@Override
-	public void attack(Creatures creature) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

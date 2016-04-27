@@ -11,7 +11,7 @@ public class Plateau implements IPlateau {
 	private IMap map;
 	private PlateauObject[][] listTerrain;
 	private PlateauObject[][] listTerrain2;
-	private Creatures[] listHero;
+	private Heros[] listHeros;
 	private Creatures[] listMonster;
 	private Integer playerNumber;
 	
@@ -46,7 +46,7 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 		}
-		for (Creatures player : listHero ){
+		for (Creatures player : listHeros ){
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 			}
 	}
@@ -103,27 +103,26 @@ public class Plateau implements IPlateau {
 
 	
 	public void createHero(String[][] playerRegister){
-		this.listHero = new Creatures[playerNumber];
+		this.listHeros = new Heros[playerNumber];
 		for (Integer i = 0; i < playerNumber; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
-				listHero[i] = new Wizzard(3,4);
-				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+				listHeros[i] = new Wizzard(3,4);
+				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				listHero[i] = new Warrior(3,3);
-				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+				listHeros[i] = new Warrior(3,3);
+				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if( playerRegister[i][1] == "Nain"){
-				listHero[i] = new Dwarf(4,3);
-				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+				listHeros[i] = new Dwarf(4,3);
+				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Elfe"){
-				listHero[i] = new Elf(4,4);
-				((Heros) listHero[i]).setPlayerName(playerRegister[i][0]);
+				listHeros[i] = new Elf(4,4);
+				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}
 		}
 	}
 	
-
 	public void checkAttackMonster(){
-		for(Creatures hero : listHero){
+		for(Heros hero : listHeros){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
 					Integer a,b,c,d,e,f,h;
@@ -141,7 +140,8 @@ public class Plateau implements IPlateau {
 			}
 		}	
 	}
-	public void isAttack(Creatures mob, Creatures hero, Integer i, Integer j){	
+	
+	public void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
 			if(!(mob == null) && !(mob.equals(hero))){
 				if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
 					if(Math.abs(mob.getPosX() -  hero.getPosX()) > 1 || Math.abs(mob.getPosY()-hero.getPosY())> 1 ){
@@ -157,6 +157,21 @@ public class Plateau implements IPlateau {
 				}
 			}
 	}
+	
+	public void attacHeros(Integer player){
+		Heros heros = listHeros[player];
+		Creatures[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1].getCreature(), 
+									   listTerrain[heros.getPosX()+1][heros.getPosY()].getCreature(),
+									   listTerrain[heros.getPosX()][heros.getPosY()+1].getCreature(),
+									   listTerrain[heros.getPosX()-1][heros.getPosY()].getCreature()};
+		for(Integer direction = 0; direction < 4; direction++){
+			if (heros.getDirection().equals(direction)){
+				if (!(creaturesAround[direction] == null) && creaturesAround[direction].equals("Monsters")){
+					heros.attack(creaturesAround[direction]);
+				}
+			}
+		}
+	}
 
 
 	@Override
@@ -165,8 +180,8 @@ public class Plateau implements IPlateau {
 	}
 
 	
-	public Creatures[] getListHero() {
-		return listHero;
+	public Heros[] getListHeros() {
+		return listHeros;
 	}
 
 	@Override

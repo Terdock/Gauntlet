@@ -12,7 +12,9 @@ public interface IPlateau {
 
 	public WorldEntity[][] getListTerrain();
 	
-	public abstract Creatures[] getListHero();
+	public abstract Heros[] getListHeros();
+	
+	public void attacHeros(Integer player);
 	
 	public abstract void checkAttackMonster();
 

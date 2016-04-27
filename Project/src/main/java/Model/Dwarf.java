@@ -19,9 +19,5 @@ public class Dwarf extends Heros {
 		return "Dwarf";
 	}
 
-	public void attack(Creatures creature) {
-		
-	}
-
 	
 }

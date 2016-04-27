@@ -16,8 +16,8 @@ public class Controller extends AbstractController{
 		game.setPlayerNumber(playerNumber);
 	}
 
-	public void attackMonster(){
-		
+	public void attackHeros(Integer player){
+		game.attackHeros(player);
 	}
 
 	public void initComposant(String[][] playerRegister) {

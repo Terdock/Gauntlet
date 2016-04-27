@@ -41,23 +41,41 @@ public class GamePanel extends Panel implements Observer {
 		super.paintComponent(g);
 		setBackground(Color.BLACK);
 		if (modeDeJeu.equals("Mode Quête")){
-			Integer offsetMaxX = (listTerrain[0].length*size - 700);
-			Integer offsetMaxY = (listTerrain.length*size - 600);
-			Integer offsetMinX = 0;
-			Integer offsetMinY = 0;
-			
-			Integer camX = listHeros[0].getPosX()*size - 700 / 2;
-			Integer camY = listHeros[0].getPosY()*size - 600 / 2;
+			showModeStory(g);
+		}
 
-			if(camX > offsetMaxX) camX = offsetMaxX;
-			else if(camX < offsetMinX) camX = offsetMinX;
-			if(camX > offsetMaxY) camY = offsetMaxY;
-			else if(camX < offsetMinY) camY = offsetMinY;
-			
-			g.translate(-camX, -camY);
-			}
+		loadLand(g);
+		actionCreatures();
+		repaint();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 
-for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+	private void showModeStory(Graphics g){
+		Integer offsetMaxX = (listTerrain[0].length*size - 720);
+		Integer offsetMaxY = (listTerrain.length*size - 600);
+		Integer offsetMinX = 0;
+		Integer offsetMinY = 0;
+		
+		Integer camX = listHeros[0].getPosX()*size - 720 / 2;
+		Integer camY = listHeros[0].getPosY()*size - 600 / 2;
+
+		if(camX > offsetMaxX) camX = offsetMaxX;
+		else if(camX < offsetMinX) camX = offsetMinX;
+		if(camX > offsetMaxY) camY = offsetMaxY;
+		else if(camX < offsetMinY) camY = offsetMinY;
+		
+		g.translate(-camX, -camY);
+	}
+	
+	private void loadLand(Graphics g){
+		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround;
@@ -71,34 +89,6 @@ for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, g);
-			}
-		}
-		actionCreatures();
-		repaint();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void showModeHistory(Graphics g){
-		for(Integer stepX = -15; stepX < 15; stepX++){
-			for(Integer stepY = -15; stepY < 15; stepY++){
-				if (listHeros[0].getPosX()-stepX>=0 && listHeros[0].getPosY() - stepY>=0){
-					WorldEntity ground = listTerrain[listHeros[0].getPosX()-stepX][listHeros[0].getPosY() - stepY];
-					Image imageGround;
-					Creatures creature = ((PlateauObject) ground).getCreature();
-					if(ground.getClass().getName().equals("Model.Wall")){
-						imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
-					}else if (ground.getClass().getName().equals("Model.Door")){
-						imageGround = imageClasse.getImageDoor();
-					}else{
-						imageGround = imageClasse.getImagesGround()[numberMap];	
-					}
-					g.drawImage(imageGround, (listHeros[0].getPosX()-stepX)*30/divided, (listHeros[0].getPosY() - stepY)*30/divided, size/divided, size/divided, null);
-					showCreatures(creature, g);
-				}
 			}
 		}
 	}
@@ -142,12 +132,12 @@ for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 	
 	private void actionCreatures(){
 		controller.doActionMonsters();
-		for(Integer i = 0; i < playerNumber; i++){
-			String action = listener.state(i);
+		for(Integer player = 0; player < playerNumber; player++){
+			String action = listener.state(player);
 			if (!action.equals("Action Stop") && !action.equals("Action Attack")){
-				controller.doActionHeros(action, i);
+				controller.doActionHeros(action, player);
 			}else if(action.equals("Action Attack")){
-				controller.attackMonster();
+				controller.attackHeros(player);
 			}
 		}
 	}
