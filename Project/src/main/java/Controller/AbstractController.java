@@ -12,9 +12,9 @@ public abstract class AbstractController {
 	public abstract void setGameMode(String modeDeJeu);
 	public abstract void setGamePlayerNumber(Integer playerNumber);
 	public abstract void initComposant(String[][] playerRegister);
-	public abstract void doActionHeros(String action, Integer player);
+	public abstract void doActionHeros(String action, Integer state, Integer player);
 	public abstract void doActionMonsters();
-	public abstract void attackMonster();
+	public abstract void attackHeros(Integer player);
 
 
 }

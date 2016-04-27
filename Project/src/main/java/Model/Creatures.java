@@ -3,8 +3,9 @@ package Model;
 public abstract class Creatures extends WorldEntity {
 	protected boolean life = true;
 	private Integer hp;
+	private Integer defense;
 	private Integer level;
-	private Integer direction = 0;
+	private Integer direction = 2;
     private Integer moveContinue = 0;
     private Integer step =1;
     public boolean isVisible() {
@@ -18,9 +19,10 @@ public abstract class Creatures extends WorldEntity {
 	private boolean Visible;
 
 
-	public Creatures(Integer posX,Integer posY, Integer hp) {
+	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense) {
 		super(posX,posY);
 		this.hp = hp;
+		this.defense = defense;
 		
 	}
 	
@@ -51,13 +53,10 @@ public abstract class Creatures extends WorldEntity {
 				moveContinue++;
 			}
 		}
-			
 		else{
 			setDirection(action);
 		}
 	}
-	
-		
 
     
 	   public Integer getMoveContinue() {
@@ -82,6 +81,11 @@ public abstract class Creatures extends WorldEntity {
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();
 	public abstract void attack(Creatures creature);
+	
+	public void receiveAttack(Integer attack, Integer defense) {
+		if(attack-defense>0)
+			setHp(attack-defense);
+	}
 
 	public boolean isLife() {
 		return life;
@@ -118,5 +122,8 @@ public abstract class Creatures extends WorldEntity {
 		this.step = step;
 	}
 
+	public Integer getDefense() {
+		return defense;
+	}
 }
 

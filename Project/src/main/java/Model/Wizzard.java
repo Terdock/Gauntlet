@@ -22,13 +22,4 @@ public class Wizzard extends Heros {
 	}
 
 
-
-
-	@Override
-	public void attack(Creatures creature) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

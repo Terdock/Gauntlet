@@ -18,11 +18,4 @@ public class Elf extends Heros {
 	public String name() {
 		return "Elf";
 	}
-
-	@Override
-	public void attack(Creatures creature) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

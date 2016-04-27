@@ -13,7 +13,8 @@ public abstract class AbstractModel implements Observable {
 	public abstract void createPlateau(String[][] playerRegister);
 	public abstract void setGameMode(String gameMode);
 	public abstract void setPlayerNumber(Integer playerNumber);
-	public abstract void doActionHeros(String action, Integer player);
+	public abstract void doActionHeros(String action, Integer state, Integer player);
+	public abstract void attackHeros(Integer player);
 	public abstract void checkAttackMonster();
 	public abstract Creatures[] getListHeros();
 	

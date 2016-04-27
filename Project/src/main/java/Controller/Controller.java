@@ -16,17 +16,17 @@ public class Controller extends AbstractController{
 		game.setPlayerNumber(playerNumber);
 	}
 
-	public void attackMonster(){
-		
+	public void attackHeros(Integer player){
+		game.attackHeros(player);
 	}
 
 	public void initComposant(String[][] playerRegister) {
 		game.createPlateau(playerRegister);
 	}
 	
-	public void doActionHeros(String action, Integer player){
+	public void doActionHeros(String action, Integer state, Integer player){
 		if(game.getListHeros()[player].isLife()){
-			game.doActionHeros(action, player);
+			game.doActionHeros(action, state, player);
 		}
 	}
 	
