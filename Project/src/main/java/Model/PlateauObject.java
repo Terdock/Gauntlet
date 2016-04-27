@@ -4,10 +4,11 @@ public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	private Creatures creature;
-	private boolean dead = false;
+	private boolean dead;
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable) {
 		super(posX, posY);
+		this.dead = false;
 		this.passable = passable;
 	}
 
