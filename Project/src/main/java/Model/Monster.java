@@ -71,6 +71,7 @@ public class Monster extends Creatures {
 		return dommage;
 	}
 
+
 	public void setLife(boolean life) {
 		//à arranger
 		this.life = life;
@@ -79,7 +80,6 @@ public class Monster extends Creatures {
 			wObject.setPosY(getPosY());
 		}
 	}
-
 
 
 	public void setDommage(int dommage) {

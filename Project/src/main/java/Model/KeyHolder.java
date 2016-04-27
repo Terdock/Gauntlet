@@ -9,6 +9,5 @@ public class KeyHolder extends Monster {
 		super(x,y,wObject, numberMap);
 		this.Height = 32;
 		this.Width = 32;
-		setHp(10*2*(numberMap+1));
 	}
 }
