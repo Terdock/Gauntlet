@@ -8,14 +8,6 @@ public abstract class Creatures extends WorldEntity {
 	private Integer direction = 2;
     private Integer moveContinue = 0;
     private Integer step =1;
-    public boolean isVisible() {
-		return Visible;
-	}
-
-	public void setVisible(boolean visible) {
-		Visible = visible;
-	}
-
 	private boolean Visible;
 
 
@@ -25,6 +17,15 @@ public abstract class Creatures extends WorldEntity {
 		this.defense = defense;
 		
 	}
+	
+	public boolean isVisible() {
+		return Visible;
+	}
+
+	public void setVisible(boolean visible) {
+		Visible = visible;
+	}
+
 	
 	
 	

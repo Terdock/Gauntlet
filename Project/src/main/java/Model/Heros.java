@@ -7,7 +7,7 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
-	private boolean pasDeGeant = true;
+	private boolean pasDeGeant = true; 
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5);
@@ -15,14 +15,14 @@ public abstract class Heros extends Creatures{
 
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
-		if ((plateau.isMoveValide(getPosX(), getPosY(), action)|| pasDeGeant) && 
-		( getPosX() > 0 && getPosY() > 0 && getPosX() <  listTerrain[0].length - 1 && getPosY()< listTerrain.length - 1))
-		{
-			Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
-			move(action);
-			Integer nextPosX = getPosX();Integer nextPosY = getPosY();
-			((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
-			((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
+		if ((plateau.isMoveValide(getPosX(), getPosY(), action)|| pasDeGeant) ){
+			if( getPosX() > 0 && getPosY() > 0 && getPosX()   <  listTerrain[0].length - 1 && getPosY() < listTerrain.length - 1){
+				Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
+				move(action);
+				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
+				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
+				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
+			}
 		}
 	}
 	

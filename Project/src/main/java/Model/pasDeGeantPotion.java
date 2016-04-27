@@ -2,9 +2,9 @@ package Model;
 
 import Model.Potion;
 
-public class OverWallPotion extends Potion {
+public class pasDeGeantPotion extends Potion {
 	
-	public OverWallPotion(Integer PosX, Integer PosY) {
+	public pasDeGeantPotion(Integer PosX, Integer PosY) {
 		super(PosX, PosY);
 	}
 
