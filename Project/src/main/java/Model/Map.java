@@ -11,6 +11,7 @@ public class Map implements IMap {
 	private Integer numberMap;
 	private PlateauObject holeMap;
 	private Creatures[] listMonster;
+	private ArrayList<Monster> list_Monster = new ArrayList<Monster>();
 	
 	
 
@@ -23,7 +24,7 @@ public class Map implements IMap {
 
 	public Creatures[] getListMonster() {
 		ArrayList<Monster> ArrayListMonster = new ArrayList<Monster>();
-		ArrayListMonster = createMonster();
+		ArrayListMonster = list_Monster;
 		Creatures[] listMonster = new Creatures[ArrayListMonster.size()];
 		for(Integer i = 0; i < ArrayListMonster.size();i++){
 			listMonster[i] = ArrayListMonster.get(i); 
@@ -54,16 +55,21 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 						gestionImage(posX,posY,listTerrain);
 					}
-					if((posX % 20 == 0 && posY == 10)  && !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1){
+					if(((posX % 20 == 0 && posY == 10)  && !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1)||(posX == 10 && posY == 20)){
 						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
+						if(posX == 10 && posY == 20){
+							listTerrain[posX][posY] = new Door(posX,posY,false,null);
+						}
 					}
 					else if(isDoor(posX, posY)){
-						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
-						//listTerrain[posX][posY] = new Door(posX,posY,false,i);
+						listTerrain[posX][posY] = new Door(posX,posY,false,i);
+						createGroupeMonster(posX-5,posY-5,listTerrain,(numberMap+1)*2,i);
 						i++;
+						if(map(numberMap,posX,posY)){
+							listTerrain[posX][posY] = new Door(posX,posY,false,null);
+						}
 					}	
 				}
-			
 			}	
 		NumberOfDoor = i;
 		return listTerrain;
@@ -85,27 +91,6 @@ public class Map implements IMap {
 		return (posX % 10 == 0 && posY % 10 == 0) && !(posX %20 == 0 || posY % 20 == 0);
 	}
 	
-	public ArrayList<Monster> createMonster() {
-		ArrayList<Monster> list = new ArrayList<Monster>(); 
-		Integer i = 0;
-			for(Integer y = 5; y < nombreColonne-5; y++){
-				for(Integer x = 5; x < nombreLigne-5; x++){
-					if(x == 10 && y == 10){
-						
-					}
-					else if(x == 90 && y == 90 ){
-						
-						
-					}
-					else if (isMonster(x,y) ) 
-					{
-						list.addAll(createGroupeMonster(x,y,(numberMap)*2,0,0,0,0));
-					}
-		
-				}
-			}
-		return list;
-	}
 
 	private void gestionImage(Integer posX,Integer posY, PlateauObject[][] listTerrain){
 		listTerrain[posX][posY].setForm(7);
@@ -126,19 +111,34 @@ public class Map implements IMap {
 	
 	}
 	
+	public boolean map(Integer numberMap,Integer posX,Integer posY){
+		boolean res = false;
+		if(numberMap == 0){
+			res = posY == 20 && !(posX == 90 && posY == 20) && !(posX == 10 && posY == 40) && !(posX == 90 && posY == 60) && !(posX == 10 && posY == 80) ;
+		}else if(numberMap == 1){
+
+		}else if(numberMap == 2){
+			
+		}else if(numberMap == 3){
+			
+		}else if(numberMap == 4){
+			
+		}
+		return res;
+	}
 	
-	private ArrayList<Monster> createGroupeMonster(Integer posX,Integer posY,Integer n,Integer a,Integer b,Integer c,Integer d){
+	
+	private void createGroupeMonster(Integer posX,Integer posY,PlateauObject[][] listTerrain, Integer n, Integer numberOfDoor){
 		ArrayList<Monster> list = new ArrayList<Monster>();
-		for( Integer i = -n+a; i <= n+b ; i++){
-			for ( Integer j = -n+c; j<= n+d;j++) {
+		for( Integer i = -n; i <= n ; i++){
+			for ( Integer j = -n; j<= n;j++) {
 				if(posX %10 ==0 && posY % 10 == 0){
-					list.add(new KeyHolder(posX+i,posY+j, new KeyDoor(posX+i, posY+j), numberMap));
+					list_Monster .add(new KeyHolder(posX+i,posY+j, new KeyDoor(posX+i, posY+j,numberOfDoor), numberMap,numberOfDoor));
 				}else{	
-					list.add(new Monster(posX+i,posY+j, null, numberMap));
+					list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
 				}
 			}
 		}	
-		return list;
 	}
 
 
