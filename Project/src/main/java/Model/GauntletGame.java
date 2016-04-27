@@ -10,7 +10,7 @@ public class GauntletGame extends AbstractModel {
 	private String gameMode;
 	private Integer playerNumber; 
 	private Heros[] listHeros;
-	
+
 	public GauntletGame() {
 		this.numberMap = 0;
 	}

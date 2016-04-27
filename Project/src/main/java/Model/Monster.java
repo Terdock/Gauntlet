@@ -7,7 +7,7 @@ import Model.Creatures;
 public class Monster extends Creatures {
     private Integer posMove;
     private boolean iSeeHero;
-    private static Integer degat = 0;
+    private static Integer degat = 1;
 	private Integer typeMonster = 1;
     private WorldObject wObject; 
 	private boolean verify;
@@ -18,7 +18,7 @@ public class Monster extends Creatures {
  
 
 	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
-        super(posX, posY, 10*(numberMap+1), 0);
+        super(posX, posY, 10*(numberMap+1), numberMap);
         iSeeHero = false;
         this.wObject = wObject;
         setLevel(numberMap+1);

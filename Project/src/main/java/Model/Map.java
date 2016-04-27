@@ -58,15 +58,24 @@ public class Map implements IMap {
 					if(((posX % 20 == 0 && posY == 10)  && !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1)||(posX == 10 && posY == 20)){
 						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
 						if(posX == 10 && posY == 20){
-							listTerrain[posX][posY] = new Door(posX,posY,false,null);
+							listTerrain[posX][posY] = new Wall(posX,posY,false,0);
+							gestionImage(posX,posY,listTerrain);
 						}
 					}
 					else if(isDoor(posX, posY)){
-						listTerrain[posX][posY] = new Door(posX,posY,false,i);
-						createGroupeMonster(posX-5,posY-5,listTerrain,(numberMap+1)*2,i);
-						i++;
-						if(map(numberMap,posX,posY)){
-							listTerrain[posX][posY] = new Door(posX,posY,false,null);
+						if( posX % 20 == 0){
+							createGroupeMonster(posX-10,posY,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
+							listTerrain[posX][posY] = new Door(posX,posY,false,i);i++;
+						}else{
+							if(map(numberMap,posX,posY)){
+								listTerrain[posX][posY] = new Door(posX,posY,false,i);
+								createGroupeMonster(posX,posY-10,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
+								i++;
+							}else{
+								listTerrain[posX][posY] = new Wall(posX,posY,false,0);
+								createGroupeMonster(posX,posY-10,listTerrain,(numberMap+1)*2,null,null);
+								gestionImage(posX,posY,listTerrain);
+							}
 						}
 					}	
 				}
@@ -114,7 +123,7 @@ public class Map implements IMap {
 	public boolean map(Integer numberMap,Integer posX,Integer posY){
 		boolean res = false;
 		if(numberMap == 0){
-			res = posY == 20 && !(posX == 90 && posY == 20) && !(posX == 10 && posY == 40) && !(posX == 90 && posY == 60) && !(posX == 10 && posY == 80) ;
+			res = posX % 20 == 0 || (posX == 90 && posY == 20) || (posX == 10 && posY == 40) || (posX == 90 && posY == 60) || (posX == 10 && posY == 80) ;
 		}else if(numberMap == 1){
 
 		}else if(numberMap == 2){
@@ -128,12 +137,12 @@ public class Map implements IMap {
 	}
 	
 	
-	private void createGroupeMonster(Integer posX,Integer posY,PlateauObject[][] listTerrain, Integer n, Integer numberOfDoor){
+	private void createGroupeMonster(Integer posX,Integer posY,PlateauObject[][] listTerrain, Integer n, WorldObject wObject,Integer numberOfDoor){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
 				if(posX %10 ==0 && posY % 10 == 0){
-					list_Monster .add(new KeyHolder(posX+i,posY+j, new KeyDoor(posX+i, posY+j,numberOfDoor), numberMap,numberOfDoor));
+					list_Monster .add(new KeyHolder(posX+i,posY+j, wObject, numberMap,numberOfDoor));
 				}else{	
 					list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
 				}
