@@ -98,7 +98,11 @@ public abstract class Creatures extends WorldEntity {
 	public Integer getHp() {
 		return hp;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/master
 	private void setHp(Integer dommage) {
 		this.hp = hp - dommage;
 		if(hp <= 0){
