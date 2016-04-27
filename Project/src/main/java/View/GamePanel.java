@@ -103,6 +103,12 @@ public class GamePanel extends Panel implements Observer {
 				isHeros(creature, g);
 				isMonster(creature, g);
 			}
+			else if( creature.getDeadMode() < 10 ){
+				isHeros(creature, g);
+				isMonster(creature, g);
+				creature.setDeadMode(creature.getDeadMode()+1);
+				
+			}
 		}
 	}
 	
@@ -118,16 +124,29 @@ public class GamePanel extends Panel implements Observer {
 	
 	private void isMonster(Creatures creature, Graphics g){
 		Image imageMonster = null;
-		if(creature.name().equals("Monster")){
-			imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
-			if (numberMap.equals(4)){
-				imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
-				g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
-			}else{
-				g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
+		if(creature.isLife()){
+			if(creature.name().equals("Monster")){
+				imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
+				if (numberMap.equals(4)){
+					imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
+				}else{
+					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
+				}
 			}
+		}else{ // met l'image de la mort :) 
+			/*if(creature.name().equals("Monster")){
+				imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
+				if (numberMap.equals(4)){
+					imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
+				}else{
+					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
+				}*/
+			}
+			
 		}
-	}
+	
 	
 	public void addKeyboard(Integer playerNumber){
 		this.playerNumber = playerNumber;
