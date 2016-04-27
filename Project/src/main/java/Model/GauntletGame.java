@@ -12,7 +12,7 @@ public class GauntletGame extends AbstractModel {
 	private Heros[] listHeros;
 
 	public GauntletGame() {
-		this.numberMap = 2;
+		this.numberMap = 0;
 	}
 	
 	
