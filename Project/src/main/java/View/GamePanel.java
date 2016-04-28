@@ -146,7 +146,8 @@ public class GamePanel extends Panel implements Observer {
 	
 	private void showObject(WorldObject object, Graphics g){
 		if (!(object == null)){
-			if ()
+			if (false){
+			}
 		}
 	}
 	
