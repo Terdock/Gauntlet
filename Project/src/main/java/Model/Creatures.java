@@ -9,8 +9,11 @@ public abstract class Creatures extends WorldEntity {
     private Integer moveContinue = 0;
     private Integer step =1;
 	private boolean Visible;
+<<<<<<< HEAD
     private WorldObject Objet; 
  
+=======
+>>>>>>> refs/remotes/origin/master
 
 
 
@@ -92,7 +95,10 @@ public abstract class Creatures extends WorldEntity {
 		if(attack-defense>0)
 			setHp(attack-defense);
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/master
 
 	public boolean isLife() {
 		return life;

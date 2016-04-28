@@ -46,7 +46,7 @@ public abstract class Heros extends Creatures{
 	}
 	
 	public String nameType(){
-		return "Hero";
+		return "Heros";
 	}
 	
 	

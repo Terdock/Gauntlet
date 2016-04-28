@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import Controller.AbstractController;
 import Model.Creatures;
+import Model.Heros;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.WorldEntity;
@@ -43,7 +44,6 @@ public class GamePanel extends Panel implements Observer {
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
 		}
-
 		loadLand(g);
 		actionCreatures();
 		repaint();
@@ -80,6 +80,7 @@ public class GamePanel extends Panel implements Observer {
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround;
 				Creatures creature = ((PlateauObject) ground).getCreature();
+				Creatures deadCreature = ((PlateauObject) ground).getDead();
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -88,21 +89,27 @@ public class GamePanel extends Panel implements Observer {
 					imageGround = imageClasse.getImagesGround()[numberMap];
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-				if(((PlateauObject)ground).isDead()){
-					Image imageDead = imageClasse.getImageDeathMonsters();
-					g.drawImage(imageDead,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-				}
-				showCreatures(creature, g);
+				showCreatures(creature, deadCreature, g);
 			}
 		}
 	}
 
+<<<<<<< HEAD
 	private void showCreatures(Creatures creature, Graphics g){
 		if (!(creature == null)){
 			if (creature.isLife()){
 				isHeros(creature, g);
 				isMonster(creature, g);
 			}
+=======
+	private void showCreatures(Creatures creature, Creatures deadCreature, Graphics g){
+		if(!(deadCreature == null)){
+			deadHeros(deadCreature, g);
+			deadMonster(deadCreature, g);
+		}if (!(creature == null)){
+			isHeros(creature, g);
+			isMonster(creature, g);
+>>>>>>> refs/remotes/origin/master
 		}
 	}
 	
@@ -128,18 +135,22 @@ public class GamePanel extends Panel implements Observer {
 					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
 				}
 			}
-		}else{ // met l'image de la mort :) 
-			/*if(creature.name().equals("Monster")){
-				imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
-				if (numberMap.equals(4)){
-					imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
-					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
-				}else{
-					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
-				}*/
-			}
-			
+		}		
+	}
+	
+	private void deadHeros(Creatures heros, Graphics g){
+		if (heros.nameType().equals("Heros")){
+			Image imageDead = imageClasse.getImageDeathHeros();
+			g.drawImage(imageDead, heros.getPosX()*30/divided, heros.getPosY()*30/divided, size/divided, size/divided, null);
 		}
+	}
+	
+	private void deadMonster(Creatures monster, Graphics g){
+		if (monster.nameType().equals("Monster")){
+			Image imageDead = imageClasse.getImageDeathMonsters();
+			g.drawImage(imageDead, monster.getPosX()*30/divided, monster.getPosY()*30/divided, size/divided, size/divided, null);
+		}
+	}
 	
 	
 	public void addKeyboard(Integer playerNumber){

@@ -170,9 +170,13 @@ public class Plateau implements IPlateau {
 						((Monster)creaturesAround[direction].getCreature()).nameType().equals("Monster")){
 					heros.attack(creaturesAround[direction].getCreature());
 					if (!creaturesAround[direction].getCreature().isLife()){
+<<<<<<< HEAD
 						System.out.println(creaturesAround[direction].getCreature().isLife());
 						creaturesAround[direction].setDead(true);
 						creaturesAround[direction].setObjet(( creaturesAround[direction].getCreature()).getObjet());
+=======
+						creaturesAround[direction].setDead(creaturesAround[direction].getCreature());
+>>>>>>> refs/remotes/origin/master
 						creaturesAround[direction].setCreature(null);
 					}
 				}
