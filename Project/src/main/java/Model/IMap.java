@@ -2,13 +2,15 @@ package Model;
 
 public interface IMap {
 
-	Integer getNumberOfDoor();
+	public Integer getNumberOfDoor();
 
-	void setNumberOfDoor(Integer numberOfDoor);
+	public void setNumberOfDoor(Integer numberOfDoor);
 
-	PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne, PlateauObject[][] listTerrain);
+	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne, PlateauObject[][] listTerrain);
 
-	Creatures[] getListMonster();
+	public Creatures[] getListMonster();
+
+	public void openDoor(Integer posX, Integer posY);
 
 
 }

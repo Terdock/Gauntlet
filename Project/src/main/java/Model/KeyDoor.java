@@ -3,10 +3,10 @@ package Model;
 import Model.WorldObject;
 
 public class KeyDoor extends WorldObject {
-	Map map;
+	IMap map;
 	Integer numberOfDoor;
 
-	public KeyDoor(Map map,Integer posX, Integer posY, Integer numberOfDoor) {
+	public KeyDoor(IMap map,Integer posX, Integer posY, Integer numberOfDoor) {
 		super(posX, posY);
 		this.map = map;
 		numberOfDoor = numberOfDoor;
