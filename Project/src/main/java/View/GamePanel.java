@@ -89,7 +89,7 @@ public class GamePanel extends Panel implements Observer {
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, deadCreature, g);
-				showObject(object, g);
+				showObject(ground, object, g);
 			}
 		}
 	}
@@ -144,9 +144,11 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 	
-	private void showObject(WorldObject object, Graphics g){
+	private void showObject(WorldEntity ground, WorldObject object, Graphics g){
 		if (!(object == null)){
-			if (false){
+			if (object.name().equals("KeyDoor")){
+				Image imageKey = imageClasse.getImageKey();
+				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 			}
 		}
 	}
