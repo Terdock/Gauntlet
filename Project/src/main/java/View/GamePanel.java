@@ -94,14 +94,7 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 
-<<<<<<< HEAD
-	private void showCreatures(Creatures creature, Graphics g){
-		if (!(creature == null)){
-			if (creature.isLife()){
-				isHeros(creature, g);
-				isMonster(creature, g);
-			}
-=======
+
 	private void showCreatures(Creatures creature, Creatures deadCreature, Graphics g){
 		if(!(deadCreature == null)){
 			deadHeros(deadCreature, g);
@@ -109,7 +102,6 @@ public class GamePanel extends Panel implements Observer {
 		}if (!(creature == null)){
 			isHeros(creature, g);
 			isMonster(creature, g);
->>>>>>> refs/remotes/origin/master
 		}
 	}
 	
