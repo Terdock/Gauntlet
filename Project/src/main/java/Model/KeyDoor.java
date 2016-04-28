@@ -14,7 +14,7 @@ public class KeyDoor extends WorldObject {
 	}
 
 	public String name(){
-		return null;
+		return "KeyDoor";
 	}
 
 	@Override
