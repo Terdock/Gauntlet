@@ -6,7 +6,7 @@ public class GauntletGame extends AbstractModel {
 	private static Integer nombreLigne = 101;
 	private static Integer nombreColonne = 101;
 	IPlateau plateau;
-	private PlateauObject[][] listTerrain = new PlateauObject[nombreColonne][nombreLigne];
+	private WorldEntity[][] listTerrain = new WorldEntity[nombreColonne][nombreLigne];
 	private String gameMode;
 	private Integer playerNumber; 
 	private Heros[] listHeros;
@@ -72,8 +72,6 @@ public class GauntletGame extends AbstractModel {
 		this.playerNumber = playerNumber;
 		
 	}
-
-
 
 
 }

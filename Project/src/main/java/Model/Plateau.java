@@ -180,7 +180,7 @@ public class Plateau implements IPlateau {
 
 
 	@Override
-	public PlateauObject[][] getListTerrain() {
+	public WorldEntity[][] getListTerrain() {
 		return listTerrain;
 	}
 

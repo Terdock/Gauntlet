@@ -10,7 +10,7 @@ public interface IPlateau {
 
 	public boolean isMoveValide(Integer posX, Integer posY, String action);
 
-	public PlateauObject[][] getListTerrain();
+	public WorldEntity[][] getListTerrain();
 	
 	public abstract Heros[] getListHeros();
 	

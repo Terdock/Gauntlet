@@ -16,7 +16,7 @@ import observer.Observer;
 
 
 public class GamePanel extends Panel implements Observer {
-	private PlateauObject[][] listTerrain;
+	private WorldEntity[][] listTerrain;
 	private WorldEntity[] listHeros;
 	private AbstractController controller;
 	private Keyboard listener;
@@ -171,7 +171,7 @@ public class GamePanel extends Panel implements Observer {
 		this.numberMap = numberMap;
 	}
 
-	public void update(PlateauObject[][] listTerrain) {
+	public void update(WorldEntity[][] listTerrain) {
 		this.listTerrain = listTerrain;
 	}
 
