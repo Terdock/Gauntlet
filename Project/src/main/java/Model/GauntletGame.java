@@ -6,7 +6,7 @@ public class GauntletGame extends AbstractModel {
 	private static Integer nombreLigne = 101;
 	private static Integer nombreColonne = 101;
 	IPlateau plateau;
-	private WorldEntity[][] listTerrain = new WorldEntity[nombreColonne][nombreLigne];
+	private PlateauObject[][] listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 	private String gameMode;
 	private Integer playerNumber; 
 	private Heros[] listHeros;
@@ -18,7 +18,9 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(String[][] playerRegister){
 		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,gameMode,playerRegister,playerNumber);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
+		this.plateau.Initialisation(nombreLigne,nombreColonne,gameMode, playerRegister);
+
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
 		notifyObserver(listTerrain);
@@ -70,6 +72,8 @@ public class GauntletGame extends AbstractModel {
 		this.playerNumber = playerNumber;
 		
 	}
+
+
 
 
 }

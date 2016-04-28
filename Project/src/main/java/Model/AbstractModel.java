@@ -25,8 +25,7 @@ public abstract class AbstractModel implements Observable {
 	public void removeObserver(){
 		listObserver = new ArrayList<Observer>();
 	}
-	public void notifyObserver(
-			WorldEntity[][] listTerrain){
+	public void notifyObserver(PlateauObject[][] listTerrain){
 		
 		for (Observer obs:listObserver)
 			obs.update(listTerrain);

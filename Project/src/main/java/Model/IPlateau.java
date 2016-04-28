@@ -10,7 +10,7 @@ public interface IPlateau {
 
 	public boolean isMoveValide(Integer posX, Integer posY, String action);
 
-	public WorldEntity[][] getListTerrain();
+	public PlateauObject[][] getListTerrain();
 	
 	public abstract Heros[] getListHeros();
 	
@@ -18,5 +18,8 @@ public interface IPlateau {
 	
 	public abstract void checkAttackMonster();
 
+	public void Initialisation(Integer nombreLigne, Integer nombreColonne, String gameMode, String[][] playerRegister);
+
+	public void remplace(PlateauObject sol);
 
 }

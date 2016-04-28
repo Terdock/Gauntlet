@@ -3,12 +3,14 @@ package Model;
 import Model.WorldObject;
 
 public class KeyDoor extends WorldObject {
-	
+	Map map;
 	Integer numberOfDoor;
 
-	public KeyDoor(Integer posX, Integer posY, Integer numberOfDoor) {
+	public KeyDoor(Map map,Integer posX, Integer posY, Integer numberOfDoor) {
 		super(posX, posY);
+		this.map = map;
 		numberOfDoor = numberOfDoor;
+		
 	}
 
 	public String name(){
@@ -17,8 +19,7 @@ public class KeyDoor extends WorldObject {
 
 	@Override
 	public void useObject() {
-		// TODO Auto-generated method stub
-		
+		map.openDoor(getPosX(),getPosY());
 	}
 
 
