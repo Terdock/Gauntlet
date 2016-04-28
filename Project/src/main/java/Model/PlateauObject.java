@@ -4,9 +4,8 @@ public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	private Creatures creature;
-	
-
-	private boolean dead;
+	private WorldObject objet;
+	private Creatures dead;
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable) {
 		super(posX, posY);
@@ -38,31 +37,22 @@ public abstract class PlateauObject extends WorldEntity {
 			setPassable(false);
 		}
 	}
-
-	public boolean isDead() {
+	
+	public Creatures getDead() {
 		return dead;
 	}
 
-	public void setDead(boolean dead) {
+	public void setDead(Creatures dead) {
 		this.dead = dead;
 	}
-	
-private WorldObject Objet;
-	
-	
+
 	public WorldObject getObjet() {
-		return Objet;
+		return objet;
 	}
 
-	public void setwObject(WorldObject Objet) {
-		this.Objet = Objet;
+	public void setObjet(WorldObject objet) {
+		this.objet = objet;
 	}
-
-	
-	
-	
-
-	
 
 	
 }

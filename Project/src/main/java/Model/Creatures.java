@@ -9,7 +9,6 @@ public abstract class Creatures extends WorldEntity {
     private Integer moveContinue = 0;
     private Integer step =1;
 	private boolean Visible;
-	private Integer deadMode = 0;
 
 
 
@@ -88,15 +87,6 @@ public abstract class Creatures extends WorldEntity {
 	public void receiveAttack(Integer attack, Integer defense) {
 		if(attack-defense>0)
 			setHp(attack-defense);
-	}
-	
-
-	public Integer getDeadMode() {
-		return deadMode;
-	}
-
-	public void setDeadMode(Integer deadMode) {
-		this.deadMode = deadMode;
 	}
 
 	public boolean isLife() {
