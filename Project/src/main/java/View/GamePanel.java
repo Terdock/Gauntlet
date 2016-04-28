@@ -7,13 +7,11 @@ import java.awt.Image;
 
 import Controller.AbstractController;
 import Model.Creatures;
-import Model.Heros;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.WorldEntity;
+import Model.WorldObject;
 import observer.Observer;
-
-
 
 public class GamePanel extends Panel implements Observer {
 	private WorldEntity[][] listTerrain;
@@ -81,6 +79,7 @@ public class GamePanel extends Panel implements Observer {
 				Image imageGround;
 				Creatures creature = ((PlateauObject) ground).getCreature();
 				Creatures deadCreature = ((PlateauObject) ground).getDead();
+				WorldObject object = ((PlateauObject) ground).getObject();
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -90,6 +89,7 @@ public class GamePanel extends Panel implements Observer {
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, deadCreature, g);
+				showObject(object, g);
 			}
 		}
 	}
@@ -141,6 +141,12 @@ public class GamePanel extends Panel implements Observer {
 		if (monster.nameType().equals("Monster")){
 			Image imageDead = imageClasse.getImageDeathMonsters();
 			g.drawImage(imageDead, monster.getPosX()*30/divided, monster.getPosY()*30/divided, size/divided, size/divided, null);
+		}
+	}
+	
+	private void showObject(WorldObject object, Graphics g){
+		if (!(object == null)){
+			if ()
 		}
 	}
 	
