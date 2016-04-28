@@ -29,7 +29,7 @@ public class GamePanel extends Panel implements Observer {
 		super(panel);
 		this.controller = controller;
 		this.setBounds(0, 0, 720, 600);
-		this.setSize(new Dimension(700,600));
+		this.setSize(new Dimension(720,600));
 		imageClasse = new LoadImage();
 		imageClasse.chargerImage();
 		divided = 1;
@@ -86,12 +86,12 @@ public class GamePanel extends Panel implements Observer {
 					imageGround = imageClasse.getImageDoor();
 				}else{
 					imageGround = imageClasse.getImagesGround()[numberMap];
-					if(((PlateauObject)ground).isDead()){
-						Image imageDead = imageClasse.getImageDeathMonsters();
-						g.drawImage(imageDead,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
-					}
 				}
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				if(((PlateauObject)ground).isDead()){
+					Image imageDead = imageClasse.getImageDeathMonsters();
+					g.drawImage(imageDead,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+				}
 				showCreatures(creature, g);
 			}
 		}

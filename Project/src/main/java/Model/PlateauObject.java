@@ -8,7 +8,6 @@ public abstract class PlateauObject extends WorldEntity {
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable) {
 		super(posX, posY);
-		this.dead = false;
 		this.passable = passable;
 	}
 
