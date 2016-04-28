@@ -9,7 +9,6 @@ public class Monster extends Creatures {
     private boolean iSeeHero;
     private static Integer degat = 1;
 	private Integer typeMonster = 1;
-    private WorldObject wObject; 
 	private boolean verify;
 	private int dommage;
      
@@ -17,10 +16,9 @@ public class Monster extends Creatures {
 
  
 
-	public Monster(Integer posX,Integer posY,WorldObject wObject,Integer numberMap){
-        super(posX, posY, 10*(numberMap+1), numberMap);
+	public Monster(Integer posX,Integer posY,WorldObject Objet,Integer numberMap){
+        super(posX, posY, 10*(numberMap+1), numberMap,Objet);
         iSeeHero = false;
-        this.wObject = wObject;
         setLevel(numberMap+1);
     }
     
@@ -52,18 +50,6 @@ public class Monster extends Creatures {
 		return "Monster";
 	}
 
-    
-    public WorldObject getwObject() {
-		return wObject;
-	}
-
-
-
-
-	public void setwObject(WorldObject wObject) {
-		this.wObject = wObject;
-	}
-
 
 
 
@@ -73,12 +59,7 @@ public class Monster extends Creatures {
 
 
 	public void setLife(boolean life) {
-		//à arranger
 		this.life = life;
-		if(!(wObject == null)){
-			wObject.setPosX(getPosX());
-			wObject.setPosY(getPosY());
-		}
 	}
 
 

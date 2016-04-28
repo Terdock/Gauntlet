@@ -103,12 +103,6 @@ public class GamePanel extends Panel implements Observer {
 				isHeros(creature, g);
 				isMonster(creature, g);
 			}
-			else if( creature.getDeadMode() < 10 ){
-				isHeros(creature, g);
-				isMonster(creature, g);
-				creature.setDeadMode(creature.getDeadMode()+1);
-				
-			}
 		}
 	}
 	

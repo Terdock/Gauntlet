@@ -10,7 +10,7 @@ public abstract class Heros extends Creatures{
 	private boolean pasDeGeant = false; 
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,100, 5);
+		super(posX,posY,100, 5,null);
 		}
 
 	
@@ -21,6 +21,10 @@ public abstract class Heros extends Creatures{
 				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
 				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
 				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
+				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet() != null ){
+					setObjet(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet());
+					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
+				}
 		}
 	}
 	

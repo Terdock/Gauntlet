@@ -9,14 +9,17 @@ public abstract class Creatures extends WorldEntity {
     private Integer moveContinue = 0;
     private Integer step =1;
 	private boolean Visible;
-	private Integer deadMode = 0;
+    private WorldObject Objet; 
+ 
 
 
 
-	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense) {
+
+	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense, WorldObject objet) {
 		super(posX,posY);
 		this.hp = hp;
 		this.defense = defense;
+		this.Objet = objet;
 		
 	}
 	
@@ -91,14 +94,6 @@ public abstract class Creatures extends WorldEntity {
 	}
 	
 
-	public Integer getDeadMode() {
-		return deadMode;
-	}
-
-	public void setDeadMode(Integer deadMode) {
-		this.deadMode = deadMode;
-	}
-
 	public boolean isLife() {
 		return life;
 	}
@@ -134,8 +129,19 @@ public abstract class Creatures extends WorldEntity {
 		this.step = step;
 	}
 
+	public void setObjet(WorldObject objet) {
+		Objet = objet;
+	}
+
 	public Integer getDefense() {
 		return defense;
 	}
+	
+	   
+    public WorldObject getObjet() {
+		return Objet;
+	}
+	
+	
 }
 

@@ -172,6 +172,7 @@ public class Plateau implements IPlateau {
 					if (!creaturesAround[direction].getCreature().isLife()){
 						System.out.println(creaturesAround[direction].getCreature().isLife());
 						creaturesAround[direction].setDead(true);
+						creaturesAround[direction].setObjet(( creaturesAround[direction].getCreature()).getObjet());
 						creaturesAround[direction].setCreature(null);
 					}
 				}

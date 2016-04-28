@@ -4,6 +4,7 @@ public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	private Creatures creature;
+	private WorldObject Objet;
 	
 
 	private boolean dead;
@@ -47,14 +48,13 @@ public abstract class PlateauObject extends WorldEntity {
 		this.dead = dead;
 	}
 	
-private WorldObject Objet;
 	
 	
 	public WorldObject getObjet() {
 		return Objet;
 	}
 
-	public void setwObject(WorldObject Objet) {
+	public void setObjet(WorldObject Objet) {
 		this.Objet = Objet;
 	}
 
