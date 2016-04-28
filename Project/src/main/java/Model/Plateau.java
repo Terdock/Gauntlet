@@ -17,20 +17,19 @@ public class Plateau implements IPlateau {
 		this.listTerrain = listTerrain;
 	}
 
-	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap,String mode,String[][] playerResiter, Integer playerNumber) {
+	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap, Integer playerNumber) {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 		this.playerNumber = playerNumber;
 		this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 		this.listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
-		this.map = new Map(nombreLigne, nombreColonne,numberMap);
-		Initialisation(nombreLigne,nombreColonne,mode, playerResiter);
-	}	
+		}	
 	
 
 
-	private void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
+	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
+		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
 		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
@@ -193,6 +192,12 @@ public class Plateau implements IPlateau {
 	@Override
 	public void setListTerrain(WorldEntity[][] listTerrain) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remplace(PlateauObject sol) {
+		listTerrain[sol.getPosX()][sol.getPosY()] = sol; 
 		
 	}
 }

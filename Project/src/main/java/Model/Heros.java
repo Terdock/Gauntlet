@@ -24,7 +24,6 @@ public abstract class Heros extends Creatures{
 				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet() != null ){
 					takeObjet(listTerrain,((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet());
 					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
-					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
 				}
 		}
 	}

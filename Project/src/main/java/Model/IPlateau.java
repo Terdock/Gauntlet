@@ -18,5 +18,8 @@ public interface IPlateau {
 	
 	public abstract void checkAttackMonster();
 
+	public void Initialisation(Integer nombreLigne, Integer nombreColonne, String gameMode, String[][] playerRegister);
+
+	public void remplace(PlateauObject sol);
 
 }
