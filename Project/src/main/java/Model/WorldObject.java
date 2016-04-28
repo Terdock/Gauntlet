@@ -16,6 +16,8 @@ public abstract class WorldObject extends WorldEntity {
 		super(posX, posY);
 		 setVisible(false);
 	}
+	
+	public abstract void useObject();
 
 
 	

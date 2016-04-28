@@ -15,4 +15,11 @@ public class PowerPotion extends Potion {
 	}
 
 
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

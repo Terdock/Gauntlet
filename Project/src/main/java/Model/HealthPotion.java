@@ -12,6 +12,12 @@ public class HealthPotion extends Potion {
 		return null;
 	}
 
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

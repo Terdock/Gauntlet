@@ -22,12 +22,19 @@ public abstract class Heros extends Creatures{
 				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
 				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
 				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet() != null ){
-					setObjet(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet());
+					takeObjet(listTerrain,((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet());
+					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
 					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
 				}
 		}
 	}
 	
+
+	private void takeObjet(WorldEntity[][] listTerrain, WorldObject objet) {
+		objet.useObject();
+		
+	}
+
 
 	public abstract void Distanc_Attack();
 	public abstract void Special_Attack();

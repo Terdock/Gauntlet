@@ -12,6 +12,13 @@ public class BarrierPotion extends Potion {
 	public String name() {
 		return null;
 	}
+
+
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

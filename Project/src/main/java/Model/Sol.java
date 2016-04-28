@@ -15,6 +15,8 @@ public class Sol extends PlateauObject {
 
 		return this.getClass().getName()+ Integer.toString(numberMap);
 	}
+	
+	
 
 	
 }

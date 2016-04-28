@@ -14,5 +14,12 @@ public class pasDeGeantPotion extends Potion {
 	}
 
 
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

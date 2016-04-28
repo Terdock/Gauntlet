@@ -15,5 +15,11 @@ public class KeyDoor extends WorldObject {
 		return null;
 	}
 
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

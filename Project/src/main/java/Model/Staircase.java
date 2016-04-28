@@ -17,4 +17,10 @@ public class Staircase extends WorldObject {
 	public void grimper(){
 		
 	}
+
+	@Override
+	public void useObject() {
+		// TODO Auto-generated method stub
+		
+	}
 }
