@@ -55,17 +55,33 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Wall(posX,posY,false, 0);
 						gestionImage(posX,posY,listTerrain);
 					}
+					
 					if(((posX % 20 == 0 && posY == 10)  && !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1)||(posX == 10 && posY == 20)){
 						listTerrain[posX][posY] = new Sol(posX, posY, true, numberMap);
 						if(posX == 10 && posY == 20){
+							createGroupeMonster(30,10,listTerrain,1,null,null);
+							createGroupeMonster(70,10,listTerrain,2,null,null);
 							listTerrain[posX][posY] = new Wall(posX,posY,false,0);
 							gestionImage(posX,posY,listTerrain);
 						}
 					}
 					else if(isDoor(posX, posY)){
-						if( posX % 20 == 0){
+						if( posX % 20 == 0 && posY == 30 ){
+							createGroupeMonster(posX+10,posY,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
+							listTerrain[posX][posY] = new Door(posX,posY,false,i);i++;
+							
+						}else if( posX % 20 == 0 && posY == 50){
 							createGroupeMonster(posX-10,posY,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
 							listTerrain[posX][posY] = new Door(posX,posY,false,i);i++;
+								
+						}else if( posX % 20 == 0 && posY == 70 ){
+							createGroupeMonster(posX+10,posY,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
+							listTerrain[posX][posY] = new Door(posX,posY,false,i);i++;
+									
+						}else if( posX % 20 == 0 && posY == 90){
+							createGroupeMonster(posX-10,posY,listTerrain,(numberMap+1)*2,new KeyDoor(posX,posY,i),i);
+							listTerrain[posX][posY] = new Door(posX,posY,false,i);i++;
+	
 						}else{
 							if(map(numberMap,posX,posY)){
 								listTerrain[posX][posY] = new Door(posX,posY,false,i);
@@ -73,7 +89,6 @@ public class Map implements IMap {
 								i++;
 							}else{
 								listTerrain[posX][posY] = new Wall(posX,posY,false,0);
-								createGroupeMonster(posX,posY-10,listTerrain,(numberMap+1)*2,null,null);
 								gestionImage(posX,posY,listTerrain);
 							}
 						}
