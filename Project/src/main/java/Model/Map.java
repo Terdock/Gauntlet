@@ -118,10 +118,7 @@ public class Map implements IMap {
 	public void openDoor(Integer posX, Integer posY) {
 		plateau.remplace(new Sol(posX,posY,true,0));
 	}
-
-
 	
-
 	private void gestionImage(Integer posX,Integer posY, PlateauObject[][] listTerrain){
 		listTerrain[posX][posY].setForm(7);
 		if( posX.equals(0) && posY % 20 == 0 )
