@@ -9,11 +9,11 @@ public class Wizzard extends Heros {
 
 
 
-	public void Distanc_Attack() {
+	public void rangeAttack() {
 		
 	}
 	
-	public void Special_Attack() {
+	public void specialAttack() {
 		
 	}
 

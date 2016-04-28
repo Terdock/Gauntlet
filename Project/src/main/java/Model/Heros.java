@@ -7,7 +7,7 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
-	private boolean pasDeGeant = false; 
+	private boolean pasDeGeant = false;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5,null);
@@ -35,8 +35,8 @@ public abstract class Heros extends Creatures{
 	}
 
 
-	public abstract void Distanc_Attack();
-	public abstract void Special_Attack();
+	public abstract void rangeAttack();
+	public abstract void specialAttack();
 	
 
 	public void attack(Creatures creature){

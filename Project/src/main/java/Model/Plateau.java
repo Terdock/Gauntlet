@@ -158,10 +158,26 @@ public class Plateau implements IPlateau {
 	
 	public void attacHeros(Integer player){
 		Heros heros = listHeros[player];
+		Integer[][] posHerosDirection = {{heros.getPosX(), heros.getPosY()-1},{heros.getPosX()+1, heros.getPosY()},
+										 {heros.getPosX(), heros.getPosY()+1},{heros.getPosX()-1, heros.getPosY()}};
+		for(Integer direction = 0; direction < 4; direction++){
+			if (heros.getDirection().equals(direction)){
+				Weapon weapon = new Weapon(posHerosDirection[direction][0], posHerosDirection[direction][1], heros.name());
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		PlateauObject[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1], 
-									   listTerrain[heros.getPosX()+1][heros.getPosY()],
-									   listTerrain[heros.getPosX()][heros.getPosY()+1],
-									   listTerrain[heros.getPosX()-1][heros.getPosY()]};
+									   	   listTerrain[heros.getPosX()+1][heros.getPosY()],
+									       listTerrain[heros.getPosX()][heros.getPosY()+1],
+									       listTerrain[heros.getPosX()-1][heros.getPosY()]};
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
 				if (!(creaturesAround[direction].getCreature() == null) && 
@@ -172,6 +188,8 @@ public class Plateau implements IPlateau {
 						creaturesAround[direction].setDead(creaturesAround[direction].getCreature());
 						creaturesAround[direction].setCreature(null);
 					}
+				}else{
+					heros.rangeAttack();
 				}
 			}
 		}

@@ -92,8 +92,8 @@ public abstract class Creatures extends WorldEntity {
 			this.direction = direction;
 		}
 	
-	public abstract void Distanc_Attack();
-	public abstract void Special_Attack();
+	public abstract void rangeAttack();
+	public abstract void specialAttack();
 	public abstract void attack(Creatures creature);
 	
 	public void receiveAttack(Integer attack, Integer defense) {
