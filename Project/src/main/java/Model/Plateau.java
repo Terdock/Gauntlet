@@ -133,7 +133,6 @@ public class Plateau implements IPlateau {
 						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),hero,a,d);
 					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne )
 						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),hero,c,d);
-					
 				}
 			}
 		}	
@@ -141,6 +140,8 @@ public class Plateau implements IPlateau {
 	public final void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
 			if(!(mob == null) && !(mob.equals(hero) && mob.isLife())){
 				if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
+					System.out.println((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
+							||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1)));
 					if((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
 							||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1))){
 						mob.attack(hero);
