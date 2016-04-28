@@ -21,9 +21,9 @@ public abstract class Heros extends Creatures{
 				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
 				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
 				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
-				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet() != null ){
-					takeObjet(listTerrain,((PlateauObject) listTerrain[nextPosX][nextPosY]).getObjet());
-					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObjet(null);
+				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject() != null ){
+					takeObjet(listTerrain,((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject());
+					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObject(null);
 				}
 		}
 	}
