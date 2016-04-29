@@ -6,11 +6,6 @@ public class Dwarf extends Heros {
 		super(posX,posY);
 	}
 
-
-	public void rangeAttack() {
-		
-	}
-
 	public void specialAttack() {
 		
 	}

@@ -162,38 +162,30 @@ public class Plateau implements IPlateau {
 										 {heros.getPosX(), heros.getPosY()+1},{heros.getPosX()-1, heros.getPosY()}};
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
-				Weapon weapon = new Weapon(posHerosDirection[direction][0], posHerosDirection[direction][1], heros.name());
-				
+				heros.rangeAttack(listTerrain[posHerosDirection[direction][0]][posHerosDirection[direction][1]], direction);
 			}
 		}
+	}	
 		
-		
-		
-		
-		
-		
-		
-		
-		PlateauObject[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1], 
-									   	   listTerrain[heros.getPosX()+1][heros.getPosY()],
-									       listTerrain[heros.getPosX()][heros.getPosY()+1],
-									       listTerrain[heros.getPosX()-1][heros.getPosY()]};
-		for(Integer direction = 0; direction < 4; direction++){
-			if (heros.getDirection().equals(direction)){
-				if (!(creaturesAround[direction].getCreature() == null) && 
-						((Monster)creaturesAround[direction].getCreature()).nameType().equals("Monster")){
-					heros.attack(creaturesAround[direction].getCreature());
-					if (!creaturesAround[direction].getCreature().isLife()){
-						creaturesAround[direction].setObject(((Creatures) creaturesAround[direction].getCreature()).getObject());
-						creaturesAround[direction].setDead(creaturesAround[direction].getCreature());
-						creaturesAround[direction].setCreature(null);
-					}
-				}else{
-					heros.rangeAttack();
-				}
-			}
-		}
-	}
+//		PlateauObject[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1], 
+//									   	   listTerrain[heros.getPosX()+1][heros.getPosY()],
+//									       listTerrain[heros.getPosX()][heros.getPosY()+1],
+//									       listTerrain[heros.getPosX()-1][heros.getPosY()]};
+//		for(Integer direction = 0; direction < 4; direction++){
+//			if (heros.getDirection().equals(direction)){
+//				if (!(creaturesAround[direction].getCreature() == null) && 
+//						((Monster)creaturesAround[direction].getCreature()).nameType().equals("Monster")){
+//					heros.attack(creaturesAround[direction].getCreature());
+//					if (!creaturesAround[direction].getCreature().isLife()){
+//						creaturesAround[direction].setObject(((Creatures) creaturesAround[direction].getCreature()).getObject());
+//						creaturesAround[direction].setDead(creaturesAround[direction].getCreature());
+//						creaturesAround[direction].setCreature(null);
+//					}
+//				}else{
+//					//heros.rangeAttack();
+//				}
+//			}
+//		}
 
 
 	@Override

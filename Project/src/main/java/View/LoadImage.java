@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class LoadImage {
-	private Image[][] imagesWall = new Image[5][8], imagesWeapons = new Image[4][8];;
+	private Image[][] imagesWall = new Image[5][8], imagesWeapons = new Image[4][4];;
 	private Image[] imagesGround = new Image[5], imageBackground = new Image[3];
 	private Image[][][] imagesHeros = new Image[4][4][3], imagesMonsters = new Image[3][4][3];;
 	private ImageIcon[] imageIcons = new ImageIcon[6];
@@ -65,7 +65,7 @@ public class LoadImage {
 	
 	private void loadWeapons(){
 		for(int i = 0; i < 4; i++){
-			for(int j = 0; j < 8; j++){
+			for(int j = 0; j < 4; j++){
 				try {
 					imagesWeapons[i][j] = ImageIO.read(new File("images/Heros/weapon" + String.valueOf(i) + String.valueOf(j) +".png"));
 				} catch (IOException e) {

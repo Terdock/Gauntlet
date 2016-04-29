@@ -38,9 +38,9 @@ public class Monster extends Creatures {
     
   
 
-    public void rangeAttack(){
-    	
-    }
+	public void rangeAttack(PlateauObject position, Integer direction){
+		
+	}
  
     public void specialAttack(){
     	
