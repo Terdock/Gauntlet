@@ -13,6 +13,6 @@ public class Main {
 		AbstractController control = new Controller(game);
 		Window window = new Window(control);
 		game.addObserver((Observer)window.getPanel()[7]);
-		
+		game.addObserver((Observer)window.getPanel()[6]);
 	}
 }

@@ -40,5 +40,4 @@ public class Label extends JLabel{
 		this.setOpaque(false);
 		this.setFont(font);
 	}
-
 }

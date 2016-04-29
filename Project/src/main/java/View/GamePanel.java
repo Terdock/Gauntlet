@@ -44,7 +44,8 @@ public class GamePanel extends Panel implements Observer {
 			showModeStory(g);
 		}
 		loadLand(g);
-		actionCreatures();
+		actionMonsters();
+		actionHeros();
 		repaint();
 		try {
 			Thread.sleep(100);
@@ -177,8 +178,11 @@ public class GamePanel extends Panel implements Observer {
 		listener = new Keyboard(playerNumber, this);
 	}
 	
-	private void actionCreatures(){
+	private void actionMonsters(){
 		controller.doActionMonsters();
+	}
+	
+	private void actionHeros(){
 		for(Integer player = 0; player < playerNumber; player++){
 			Integer state = listener.state(player);
 			String action = listener.stateToString(state);

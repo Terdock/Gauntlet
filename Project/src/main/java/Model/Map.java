@@ -18,6 +18,7 @@ public class Map implements IMap {
 
 
 	public Map(IPlateau plateau,Integer nombrLigne,Integer nombreColonne,Integer numberMap){
+		this.plateau = plateau;
 		this.nombreLigne = nombrLigne;	
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;

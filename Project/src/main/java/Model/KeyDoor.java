@@ -9,17 +9,16 @@ public class KeyDoor extends WorldObject {
 	public KeyDoor(IPlateau plateau,Integer posX, Integer posY, Integer numberOfDoor) {
 		super(posX, posY);
 		this.plateau = plateau;
-		numberOfDoor = numberOfDoor;
+		this.numberOfDoor = numberOfDoor;
 		
 	}
 
-	public String name(){
-		return "KeyDoor";
-	}
-
-	@Override
 	public void useObject() {
 		plateau.openDoor(getPosX(),getPosY());
+	}
+	
+	public String name(){
+		return "KeyDoor";
 	}
 
 

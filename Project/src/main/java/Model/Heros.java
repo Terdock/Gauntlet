@@ -7,6 +7,7 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
+	private Integer score = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
 
@@ -17,22 +18,23 @@ public abstract class Heros extends Creatures{
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
 		if ((plateau.isMoveValide(getPosX(), getPosY(), action)|| pasDeGeant) ){
-				Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
-				move(action);
-				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
-				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
-				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
-				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject() != null ){
-					takeObjet(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject());
-					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObject(null);
-				}
+			Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
+			move(action);
+			Integer nextPosX = getPosX();Integer nextPosY = getPosY();
+			PlateauObject groundPrevious = ((PlateauObject) listTerrain[previousPosX][previousPosY]);
+			PlateauObject groundNext = ((PlateauObject) listTerrain[nextPosX][nextPosY]);
+			groundNext.setCreature(groundPrevious.getCreature());
+			groundPrevious.setCreature(null);
+			if(!(groundNext.getObject() == null)){
+				takeObjet(groundNext.getObject());
+				groundNext.setObject(null);
+			}
 		}
 	}
 	
 
 	private void takeObjet( WorldObject objet) {
 		objet.useObject();
-		
 	}
 	
 	
@@ -41,6 +43,7 @@ public abstract class Heros extends Creatures{
 
 	public void attack(Creatures creature){
 		creature.receiveAttack(force*power, creature.getDefense());
+		setScore(getScore() + force*power - creature.getDefense());
 	}
 	
 	public String getPlayerName() {
@@ -55,6 +58,7 @@ public abstract class Heros extends Creatures{
 		return "Heros";
 	}
 
+<<<<<<< HEAD
 
 	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction) {
 		weapon = new Weapon(name(), direction);
@@ -72,6 +76,17 @@ public abstract class Heros extends Creatures{
 			
 		
 	}
+=======
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+	
+	
+>>>>>>> branch 'master' of https://github.com/Terdock/Gauntlet
 	
 	
 
