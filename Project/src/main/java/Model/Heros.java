@@ -58,25 +58,27 @@ public abstract class Heros extends Creatures{
 		return "Heros";
 	}
 
-<<<<<<< HEAD
 
 	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction) {
 		weapon = new Weapon(name(), direction);
 		if(direction.equals(0)){
 			Integer i = 0;
-			while((listTerrain[posX][posY-i].getCreature() ==  null) || (listTerrain[posX][posY-i].name() == "Wall"){
+			while((listTerrain[posX][posY-i].getCreature() ==  null) || !(listTerrain[posX][posY-i].name() == "Wall"))
+			{
 				listTerrain[posX][posY-i].setWeapon(null);
 				i++;
 				listTerrain[posX][posY-i].setWeapon(weapon);
+			}	
+			if(!(listTerrain[posX][posY-i].getCreature() ==  null)){
+				weapon.attack(listTerrain[posX][posY-i].getCreature());
 			}
-			if( ){
-				
+			else if(listTerrain[posX][posY-i].name() == "Wall"){
+				listTerrain[posX][posY-i].setWeapon(null);
 			}
+
 		}
-			
-		
 	}
-=======
+
 	public Integer getScore() {
 		return score;
 	}
@@ -85,8 +87,7 @@ public abstract class Heros extends Creatures{
 		this.score = score;
 	}
 	
-	
->>>>>>> branch 'master' of https://github.com/Terdock/Gauntlet
+
 	
 	
 

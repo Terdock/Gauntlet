@@ -21,6 +21,11 @@ public class Weapon {
 	public String name(){
 		return type;
 	}
+
+	public void attack(Creatures creature) {
+		creature.receiveAttack(degat, creature.getDefense());
+		
+	}
 	
 	
 

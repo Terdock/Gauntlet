@@ -14,5 +14,11 @@ public class Wizzard extends Heros {
 		return "Wizzard";
 	}
 
+	@Override
+	public void rangeAttack(PlateauObject position, Integer direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
