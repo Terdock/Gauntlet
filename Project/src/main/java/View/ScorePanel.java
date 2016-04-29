@@ -26,7 +26,7 @@ public class ScorePanel extends Panel implements Observer {
 		for (int i = 0; i < playerNumber; i++){
 			labelsName[i] = text(heros[i][0] + " : " + heros[i][1], 
 					45, 60 + i*130, 200, 30, Color.LIGHT_GRAY);
-			labelsScore[i] = text("Score : " + playerScore(i), 
+			labelsScore[i] = text("Score : 0", 
 					60, 100 + i*130, 200, 30, Color.LIGHT_GRAY);
 			labelsScore[i].setFont(new Font("Monotype Corsiva",Font.BOLD,20));
 		}
@@ -36,10 +36,16 @@ public class ScorePanel extends Panel implements Observer {
 		Integer score = ((Heros)listHeros[player]).getScore();
 		return score;
 	}
+	
+	private void setLabelsScoreText(){
+		for (int i = 0; i < playerNumber; i++){
+			labelsScore[i].setText("Score : " + String.valueOf(playerScore(i)));
+		}
+	}
 
 	public void paintComponent(Graphics g){
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-		addName();
+		setLabelsScoreText();
 		repaint();
 	}
 	
