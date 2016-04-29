@@ -20,6 +20,6 @@ public interface IPlateau {
 
 	public void Initialisation(Integer nombreLigne, Integer nombreColonne, String gameMode, String[][] playerRegister);
 
-	public void remplace(PlateauObject sol);
+	public void openDoor(Integer posX, Integer posY);
 
 }

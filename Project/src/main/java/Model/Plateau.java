@@ -195,8 +195,8 @@ public class Plateau implements IPlateau {
 	}
 
 	@Override
-	public void remplace(PlateauObject sol) {
-		listTerrain[sol.getPosX()][sol.getPosY()] = sol; 
+	public void openDoor(Integer posX,Integer posY) {
+		listTerrain[posX][posY] = map.newSol(posX,posY);
 		
 	}
 }

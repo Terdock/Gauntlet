@@ -9,8 +9,8 @@ public interface IMap {
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne, PlateauObject[][] listTerrain);
 
 	public Creatures[] getListMonster();
-
-	public void openDoor(Integer posX, Integer posY);
+	
+	public PlateauObject newSol(Integer posX,Integer posY);
 
 
 }

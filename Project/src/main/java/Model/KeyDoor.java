@@ -3,12 +3,12 @@ package Model;
 import Model.WorldObject;
 
 public class KeyDoor extends WorldObject {
-	IMap map;
 	Integer numberOfDoor;
+	IPlateau plateau;
 
-	public KeyDoor(IMap map,Integer posX, Integer posY, Integer numberOfDoor) {
+	public KeyDoor(IPlateau plateau,Integer posX, Integer posY, Integer numberOfDoor) {
 		super(posX, posY);
-		this.map = map;
+		this.plateau = plateau;
 		numberOfDoor = numberOfDoor;
 		
 	}
@@ -19,7 +19,7 @@ public class KeyDoor extends WorldObject {
 
 	@Override
 	public void useObject() {
-		map.openDoor(getPosX(),getPosY());
+		plateau.openDoor(getPosX(),getPosY());
 	}
 
 
