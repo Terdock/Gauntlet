@@ -111,7 +111,7 @@ public class Window extends JFrame{
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
             			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
-            		((ScorePanel)panel[6]).addName(heros, playerNumber);
+            		((ScorePanel)panel[6]).setPlayerAndHeros(playerNumber, heros);
             		((GamePanel)panel[7]).addKeyboard(playerNumber);
             		((GamePanel)panel[7]).setModeDeJeu(modeDeJeu);
             		controller.initComposant(heros);
