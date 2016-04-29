@@ -35,10 +35,6 @@ public abstract class Heros extends Creatures{
 		
 	}
 	
-	public void rangeAttack(PlateauObject position, Integer direction) {
-		weapon = new Weapon(name(), direction);
-		position.setWeapon(weapon);
-	}
 	
 	public abstract void specialAttack();
 	
@@ -57,6 +53,24 @@ public abstract class Heros extends Creatures{
 	
 	public String nameType(){
 		return "Heros";
+	}
+
+
+	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction) {
+		weapon = new Weapon(name(), direction);
+		if(direction.equals(0)){
+			Integer i = 0;
+			while((listTerrain[posX][posY-i].getCreature() ==  null) || (listTerrain[posX][posY-i].name() == "Wall"){
+				listTerrain[posX][posY-i].setWeapon(null);
+				i++;
+				listTerrain[posX][posY-i].setWeapon(weapon);
+			}
+			if( ){
+				
+			}
+		}
+			
+		
 	}
 	
 	

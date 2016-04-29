@@ -21,6 +21,7 @@ public class Map implements IMap {
 		this.nombreLigne = nombrLigne;	
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
+		this.plateau = plateau;
 	}
 
 	public Creatures[] getListMonster() {
@@ -168,7 +169,7 @@ public class Map implements IMap {
 	}
 	
 	public PlateauObject newSol(Integer posX,Integer posY){
-		return new Sol(posX,posY,false,0);
+		return new Sol(posX,posY,true,numberMap);
 		
 	}
 
