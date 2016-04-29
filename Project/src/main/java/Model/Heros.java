@@ -7,7 +7,8 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
-	private boolean pasDeGeant = false; 
+	private boolean pasDeGeant = false;
+	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5,null);
@@ -33,10 +34,13 @@ public abstract class Heros extends Creatures{
 		objet.useObject();
 		
 	}
-
-
-	public abstract void Distanc_Attack();
-	public abstract void Special_Attack();
+	
+	public void rangeAttack(PlateauObject position, Integer direction) {
+		weapon = new Weapon(name(), direction);
+		position.setWeapon(weapon);
+	}
+	
+	public abstract void specialAttack();
 	
 
 	public void attack(Creatures creature){

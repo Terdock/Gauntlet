@@ -38,11 +38,11 @@ public class Monster extends Creatures {
     
   
 
-    public void Distanc_Attack(){
-    	
-    }
+	public void rangeAttack(PlateauObject position, Integer direction){
+		
+	}
  
-    public void Special_Attack(){
+    public void specialAttack(){
     	
     }
     

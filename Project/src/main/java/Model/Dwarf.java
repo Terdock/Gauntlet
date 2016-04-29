@@ -6,12 +6,7 @@ public class Dwarf extends Heros {
 		super(posX,posY);
 	}
 
-
-	public void Distanc_Attack() {
-		
-	}
-
-	public void Special_Attack() {
+	public void specialAttack() {
 		
 	}
 

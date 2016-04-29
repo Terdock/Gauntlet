@@ -6,6 +6,7 @@ public abstract class PlateauObject extends WorldEntity {
 	private Creatures creature;
 	private WorldObject object;
 	private Creatures dead;
+	private Weapon weapon;
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable) {
 		super(posX, posY);
@@ -53,6 +54,15 @@ public abstract class PlateauObject extends WorldEntity {
 	public void setObject(WorldObject object) {
 		this.object = object;
 	}
+
+	public Weapon getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+	
 	
 	
 

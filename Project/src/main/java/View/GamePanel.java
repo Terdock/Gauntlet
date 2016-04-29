@@ -9,6 +9,7 @@ import Controller.AbstractController;
 import Model.Creatures;
 import Model.Monster;
 import Model.PlateauObject;
+import Model.Weapon;
 import Model.WorldEntity;
 import Model.WorldObject;
 import observer.Observer;
@@ -80,6 +81,7 @@ public class GamePanel extends Panel implements Observer {
 				Creatures creature = ((PlateauObject) ground).getCreature();
 				Creatures deadCreature = ((PlateauObject) ground).getDead();
 				WorldObject object = ((PlateauObject) ground).getObject();
+				Weapon weapon = ((PlateauObject) ground).getWeapon();
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -90,6 +92,7 @@ public class GamePanel extends Panel implements Observer {
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, deadCreature, g);
 				showObject(ground, object, g);
+				showWeapon(ground, weapon, g);
 			}
 		}
 	}
@@ -149,6 +152,21 @@ public class GamePanel extends Panel implements Observer {
 			if (object.name().equals("KeyDoor")){
 				Image imageKey = imageClasse.getImageKey();
 				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+			}
+		}
+	}
+	
+	private void showWeapon(WorldEntity ground, Weapon weapon, Graphics g){
+		if (!(weapon == null)){
+			for (Integer i = 0; i < 4; i++){
+				if (weapon.name().equals(typeHeros[i])){
+					for (Integer direction = 0; direction < 4; i++){
+						if (weapon.getDirection().equals(direction)){
+							Image imageWeapon = imageClasse.getImagesWeapons()[i][direction];
+							g.drawImage(imageWeapon, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+						}
+					}
+				}
 			}
 		}
 	}
