@@ -10,7 +10,7 @@ import Model.WorldEntity;
 import observer.Observer;
 
 public class ScorePanel extends Panel implements Observer {
-	private Label[] labelsName = new Label[4], labelsScore = new Label[4];
+	private Label[] labelsName = new Label[4], labelsScore = new Label[4], labelsHp = new Label[4];
 	private WorldEntity[] listHeros;
 	private Integer playerNumber;
 	private String[][] heros;
@@ -26,10 +26,18 @@ public class ScorePanel extends Panel implements Observer {
 		for (int i = 0; i < playerNumber; i++){
 			labelsName[i] = text(heros[i][0] + " : " + heros[i][1], 
 					45, 60 + i*130, 200, 30, Color.LIGHT_GRAY);
-			labelsScore[i] = text("Score : 0", 
+			labelsHp[i] = text("Vie : 0", 
 					60, 100 + i*130, 200, 30, Color.LIGHT_GRAY);
+			labelsHp[i].setFont(new Font("Monotype Corsiva",Font.BOLD,20));
+			labelsScore[i] = text("Score : 0", 
+					60, 130 + i*130, 200, 30, Color.LIGHT_GRAY);
 			labelsScore[i].setFont(new Font("Monotype Corsiva",Font.BOLD,20));
 		}
+	}
+	
+	private Integer playerHp(Integer player){
+		Integer hp = ((Heros)listHeros[player]).getHp();
+		return hp;
 	}
 	
 	private Integer playerScore(Integer player){
@@ -39,6 +47,7 @@ public class ScorePanel extends Panel implements Observer {
 	
 	private void setLabelsScoreText(){
 		for (int i = 0; i < playerNumber; i++){
+			labelsHp[i].setText("Vie : " + String.valueOf(playerHp(i)));
 			labelsScore[i].setText("Score : " + String.valueOf(playerScore(i)));
 		}
 	}
