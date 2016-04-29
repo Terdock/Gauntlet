@@ -7,11 +7,13 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
+	private Integer score;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5,null);
+		this.score = 0;
 		}
 
 	
@@ -46,6 +48,7 @@ public abstract class Heros extends Creatures{
 
 	public void attack(Creatures creature){
 		creature.receiveAttack(force*power, creature.getDefense());
+		setScore(getScore() + force*power - creature.getDefense());
 	}
 	
 	public String getPlayerName() {
@@ -59,6 +62,16 @@ public abstract class Heros extends Creatures{
 	public String nameType(){
 		return "Heros";
 	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+	
+	
 	
 	
 
