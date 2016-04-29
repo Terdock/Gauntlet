@@ -7,29 +7,28 @@ public abstract class Heros extends Creatures{
 	private Integer power = 10;
 	private Integer dexterity = 0;
 	private Integer hp = 100;
-	private Integer score;
+	private Integer score = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5,null);
-		this.score = 0;
 		}
 
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
 		if ((plateau.isMoveValide(getPosX(), getPosY(), action)|| pasDeGeant) ){
-				Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
-				move(action);
-				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
-				PlateauObject groundPrevious = ((PlateauObject) listTerrain[previousPosX][previousPosY]);
-				PlateauObject groundNext = ((PlateauObject) listTerrain[nextPosX][nextPosY]);
-				groundNext.setCreature(groundPrevious.getCreature());
-				groundPrevious.setCreature(null);
-				if(!(groundNext.getObject() == null)){
-					takeObjet(groundNext.getObject());
-					groundNext.setObject(null);
-				}
+			Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
+			move(action);
+			Integer nextPosX = getPosX();Integer nextPosY = getPosY();
+			PlateauObject groundPrevious = ((PlateauObject) listTerrain[previousPosX][previousPosY]);
+			PlateauObject groundNext = ((PlateauObject) listTerrain[nextPosX][nextPosY]);
+			groundNext.setCreature(groundPrevious.getCreature());
+			groundPrevious.setCreature(null);
+			if(!(groundNext.getObject() == null)){
+				takeObjet(groundNext.getObject());
+				groundNext.setObject(null);
+			}
 		}
 	}
 	
