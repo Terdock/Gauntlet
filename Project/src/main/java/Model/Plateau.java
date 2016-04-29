@@ -122,15 +122,15 @@ public class Plateau implements IPlateau {
 		for(Heros hero : listHeros){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
-					Integer a,b,c,d,e,f,h;
-					a=hero.getPosX()-i; b=hero.getPosY()-j;c=hero.getPosX()+i;d=hero.getPosY()+j;
-					if(a > 0 && b > 0 && a < nombreColonne &&  b< nombreLigne )
+					Integer a,b,c,d;
+					a = hero.getPosX()-i; b = hero.getPosY()-j; c = hero.getPosX()+i; d = hero.getPosY()+j;
+					if(a > 0 && b > 0 && a < nombreColonne &&  b < nombreLigne)
 						isAttack(((PlateauObject) listTerrain[a][b]).getCreature(),hero,a,b);
-					if(c > 0 && b > 0 && c < nombreColonne &&  b< nombreLigne )
+					if(c > 0 && b > 0 && c < nombreColonne &&  b < nombreLigne)
 						isAttack(((PlateauObject) listTerrain[c][b]).getCreature(),hero,c,b);
-					if(a > 0 && d > 0 && a < nombreColonne &&  d< nombreLigne )
+					if(a > 0 && d > 0 && a < nombreColonne &&  d < nombreLigne)
 						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),hero,a,d);
-					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne )
+					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne)
 						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),hero,c,d);
 				}
 			}
@@ -139,19 +139,18 @@ public class Plateau implements IPlateau {
 	
 	public final void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
 		if(!(mob == null) && !(mob.equals(hero) && mob.isLife())){
-			if(isMoveValide(mob.getPosX(),mob.getPosY(), ((Monster) mob).doAction( hero.getPosX(),hero.getPosY()))){
-				System.out.println((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
-						||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1)));
-				if((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
-						||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1))){
-					mob.attack(hero);
-				}else {	
+			Integer posX = mob.getPosX(), posY = mob.getPosY();
+			String action = ((Monster) mob).doAction( hero.getPosX(),hero.getPosY());
+			if(isMoveValide(posX, posY, action)){
 					mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
 					Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
 					Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
 					listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
-					listTerrain[i][j].setCreature(null);
-				}  		
+					listTerrain[i][j].setCreature(null);	
+			}
+			if((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
+					||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1))){
+				mob.attack(hero);
 			}
 		}
 	}

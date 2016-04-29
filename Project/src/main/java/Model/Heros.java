@@ -20,11 +20,13 @@ public abstract class Heros extends Creatures{
 				Integer previousPosX = getPosX(); Integer previousPosY = getPosY();
 				move(action);
 				Integer nextPosX = getPosX();Integer nextPosY = getPosY();
-				((PlateauObject) listTerrain[nextPosX][nextPosY]).setCreature(((PlateauObject) listTerrain[previousPosX][previousPosY]).getCreature());
-				((PlateauObject) listTerrain[previousPosX][previousPosY]).setCreature(null);
-				if(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject() != null ){
-					takeObjet(((PlateauObject) listTerrain[nextPosX][nextPosY]).getObject());
-					((PlateauObject) listTerrain[nextPosX][nextPosY]).setObject(null);
+				PlateauObject groundPrevious = ((PlateauObject) listTerrain[previousPosX][previousPosY]);
+				PlateauObject groundNext = ((PlateauObject) listTerrain[nextPosX][nextPosY]);
+				groundNext.setCreature(groundPrevious.getCreature());
+				groundPrevious.setCreature(null);
+				if(!(groundNext.getObject() == null)){
+					takeObjet(groundNext.getObject());
+					groundNext.setObject(null);
 				}
 		}
 	}
@@ -32,7 +34,6 @@ public abstract class Heros extends Creatures{
 
 	private void takeObjet( WorldObject objet) {
 		objet.useObject();
-		
 	}
 	
 	public void rangeAttack(PlateauObject position, Integer direction) {

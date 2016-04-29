@@ -18,6 +18,7 @@ public class Map implements IMap {
 
 
 	public Map(IPlateau plateau,Integer nombrLigne,Integer nombreColonne,Integer numberMap){
+		this.plateau = plateau;
 		this.nombreLigne = nombrLigne;	
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
@@ -168,7 +169,7 @@ public class Map implements IMap {
 	}
 	
 	public PlateauObject newSol(Integer posX,Integer posY){
-		return new Sol(posX,posY,false,0);
+		return new Sol(posX,posY,true,numberMap);
 		
 	}
 
