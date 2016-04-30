@@ -60,7 +60,7 @@ public abstract class Heros extends Creatures{
 		System.out.println("weapon");
 		if(direction.equals(0)){
 			Integer i = 0;
-			while((listTerrain[posX][posY-i].getCreature() ==  null) && !(listTerrain[posX][posY-i].name().equals("Model.Wall"+numberMap))){
+			while((listTerrain[posX][posY-i].getCreature() ==  null) && (listTerrain[posX][posY-i].isPassable())){
 				listTerrain[posX][posY-i].setWeapon(null);
 				i++;
 				listTerrain[posX][posY-i].setWeapon(weapon);
@@ -69,35 +69,41 @@ public abstract class Heros extends Creatures{
 			if(!(listTerrain[posX][posY-i].getCreature() ==  null)){
 				attack(listTerrain[posX][posY-i].getCreature());
 				if( ! listTerrain[posX][posY-i].getCreature().isLife()){
+					if(! (listTerrain[posX][posY-i].getCreature().getObject() ==null)){
+						listTerrain[posX][posY-i].setObject((listTerrain[posX][posY-i].getCreature()).getObject());
+					}
 					listTerrain[posX][posY-i].setCreature(null);
 				}
 				listTerrain[posX][posY-i].setWeapon(null);
 			}
-			else if(listTerrain[posX][posY-i].name().equals("Model.Wall"+numberMap)){
+			else if(!listTerrain[posX][posY-i].isPassable()){
 				listTerrain[posX][posY-i].setWeapon(null);
 			}
 		}
 		if(direction.equals(1)){
 			Integer i = 0;
-			while((listTerrain[posX+i][posY].getCreature() ==  null) && !(listTerrain[posX+i][posY].name().equals("Model.Wall"+numberMap))){
+			while((listTerrain[posX+i][posY].getCreature() ==  null) && (listTerrain[posX+i][posY].isPassable())){
 				listTerrain[posX+i][posY].setWeapon(null);
 				i++;
 				listTerrain[posX+i][posY].setWeapon(weapon);
 			}	
 			if(listTerrain[posX+i][posY].getCreature() !=  null){
 				attack(listTerrain[posX+i][posY].getCreature());
-				if( ! listTerrain[posX+i][posY].getCreature().isLife()){
+				if( ! listTerrain[posX+i][posY].getCreature().isLife() ){
+					if(!(listTerrain[posX+i][posY].getCreature().getObject() == null)){
+						listTerrain[posX+i][posY].setObject((listTerrain[posX+i][posY].getCreature()).getObject());
+					}
 					listTerrain[posX+i][posY].setCreature(null);
 				}
 				listTerrain[posX+i][posY].setWeapon(null);
 			}
-			else if(listTerrain[posX+i][posY].name().equals("Model.Wall"+numberMap)){
+			else if(!listTerrain[posX+i][posY].isPassable()){
 				listTerrain[posX+i][posY].setWeapon(null);
 			}
 		}
 		if(direction.equals(2)){
 			Integer i = 0;
-			while((listTerrain[posX][posY+i].getCreature() ==  null) && !(listTerrain[posX][posY+i].name().equals("Model.Wall"+numberMap))){
+			while((listTerrain[posX][posY+i].getCreature() ==  null) && (listTerrain[posX][posY+i].isPassable())){
 				listTerrain[posX][posY+i].setWeapon(null);
 				i++;
 				listTerrain[posX][posY+i].setWeapon(weapon);
@@ -105,17 +111,20 @@ public abstract class Heros extends Creatures{
 			if((listTerrain[posX][posY+i].getCreature() !=  null)){
 				attack(listTerrain[posX][posY+i].getCreature());
 				if( ! listTerrain[posX][posY+i].getCreature().isLife()){
+					if(! (listTerrain[posX][posY+i].getCreature().getObject() ==null)){
+						listTerrain[posX][posY+i].setObject((listTerrain[posX][posY+i].getCreature()).getObject());
+					}
 					listTerrain[posX][posY+i].setCreature(null);
 				}
 				listTerrain[posX][posY+i].setWeapon(null);
 			}
-			else if(listTerrain[posX][posY+i].name().equals("Model.Wall"+numberMap)){
+			else if(!listTerrain[posX][posY+i].isPassable()){
 				listTerrain[posX][posY+i].setWeapon(null);
 			}
 		}
 		if(direction.equals(3)){
 			Integer i = 0;
-			while((listTerrain[posX-i][posY].getCreature() !=  null) && !(listTerrain[posX-i][posY].name().equals("Model.Wall"+numberMap))){
+			while((listTerrain[posX-i][posY].getCreature() ==  null) && (listTerrain[posX-i][posY].isPassable())){
 				listTerrain[posX-i][posY].setWeapon(null);
 				i++;
 				listTerrain[posX-i][posY].setWeapon(weapon);
@@ -123,11 +132,14 @@ public abstract class Heros extends Creatures{
 			if(!(listTerrain[posX-i][posY].getCreature() ==  null)){
 				attack(listTerrain[posX-i][posY].getCreature());
 				if( ! listTerrain[posX-i][posY].getCreature().isLife()){
+					if(! (listTerrain[posX-i][posY].getCreature().getObject() ==null)){
+						listTerrain[posX-i][posY].setObject((listTerrain[posX-i][posY].getCreature()).getObject());
+					}
 					listTerrain[posX-i][posY].setCreature(null);
 				}
-				listTerrain[posX][posY-i].setWeapon(null);
+				listTerrain[posX-i][posY].setWeapon(null);
 			}
-			else if(listTerrain[posX-i][posY].name().equals("Model.Wall"+numberMap)){
+			else if(!listTerrain[posX-i][posY].isPassable()){
 				listTerrain[posX-i][posY].setWeapon(null);
 			}
 		}
