@@ -39,6 +39,7 @@ public class GamePanel extends Panel implements Observer {
          
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		this.requestFocus(true);
 		setBackground(Color.BLACK);
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);

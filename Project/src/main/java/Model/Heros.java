@@ -77,7 +77,7 @@ public abstract class Heros extends Creatures{
 					}
 					ground.setWeapon(null);
 				}
-				else if(!ground.isPassable()){
+				if(!ground.isPassable()){
 					ground.setWeapon(null);
 				}
 			}

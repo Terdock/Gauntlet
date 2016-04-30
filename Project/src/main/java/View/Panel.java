@@ -64,6 +64,7 @@ public class Panel extends JPanel{
 	
 	protected Button button(String name, int x, int y, int width, int height, Color color){
 		Button button = new Button(name, x, y, width, height, color);
+		button.setFocusable(false);
 		this.add(button);
 		return button;
 	}
