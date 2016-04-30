@@ -13,4 +13,10 @@ public class Elf extends Heros {
 	public String name() {
 		return "Elf";
 	}
+
+	@Override
+	public void rangeAttack(PlateauObject position, Integer direction) {
+		// TODO Auto-generated method stub
+		
+	}
 }

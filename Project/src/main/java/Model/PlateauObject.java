@@ -61,7 +61,9 @@ public abstract class PlateauObject extends WorldEntity {
 
 	public void setWeapon(Weapon weapon) {
 		this.weapon = weapon;
+
 	}
+	
 	
 	
 	
