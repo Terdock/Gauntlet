@@ -119,57 +119,70 @@ public class Plateau implements IPlateau {
 	}
 	
 	public void checkAttackMonster(){
-		for(Heros hero : listHeros){
+		for(Heros heros : listHeros){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
 					Integer a,b,c,d;
-					a = hero.getPosX()-i; b = hero.getPosY()-j; c = hero.getPosX()+i; d = hero.getPosY()+j;
+					a = heros.getPosX()-i; b = heros.getPosY()-j; c = heros.getPosX()+i; d = heros.getPosY()+j;
 					if(a > 0 && b > 0 && a < nombreColonne &&  b < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[a][b]).getCreature(),hero,a,b);
+						isAttack(((PlateauObject) listTerrain[a][b]).getCreature(),heros,a,b);
 					if(c > 0 && b > 0 && c < nombreColonne &&  b < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[c][b]).getCreature(),hero,c,b);
+						isAttack(((PlateauObject) listTerrain[c][b]).getCreature(),heros,c,b);
 					if(a > 0 && d > 0 && a < nombreColonne &&  d < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),hero,a,d);
+						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),heros,a,d);
 					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),hero,c,d);
+						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),heros,c,d);
 				}
+			}
+			if ((!heros.isLife()) && listTerrain[heros.getPosX()][heros.getPosY()].getCreature().nameType().equals("Heros")){
+				listTerrain[heros.getPosX()][heros.getPosY()].setCreature(null);
 			}
 		}	
 	}
 	
-	public final void isAttack(Creatures mob, Heros hero, Integer i, Integer j){	
-		if(!(mob == null) && !(mob.equals(hero) && mob.isLife())){
+	public void isAttack(Creatures mob, Heros heros, Integer i, Integer j){	
+		if(!(mob == null) && !(mob.equals(heros) && mob.isLife())){
 			Integer posX = mob.getPosX(), posY = mob.getPosY();
-			System.out.println(mob);
-			String action = ((Monster) mob).doAction( hero.getPosX(),hero.getPosY());
+			String action = ((Monster) mob).doAction(heros.getPosX(),heros.getPosY());
 			if(isMoveValide(posX, posY, action)){
-					mob.move(((Monster) mob).doAction( hero.getPosX(),hero.getPosY()));
+					mob.move(((Monster) mob).doAction(heros.getPosX(),heros.getPosY()));
 					Integer nextPosX = listTerrain[i][j].getCreature().getPosX();
 					Integer nextPosY = listTerrain[i][j].getCreature().getPosY();
 					listTerrain[nextPosX][nextPosY].setCreature(listTerrain[i][j].getCreature());
 					listTerrain[i][j].setCreature(null);	
 			}
-			if((Math.abs(mob.getPosX()-hero.getPosX()) == 0) && (Math.abs(mob.getPosY()-hero.getPosY()) == 1)
-					||((Math.abs(mob.getPosY()-hero.getPosY()) == 0) && (Math.abs(mob.getPosX()-hero.getPosX()) == 1))){
-				mob.attack(hero);
+			if((Math.abs(mob.getPosX()-heros.getPosX()) == 0) && (Math.abs(mob.getPosY()-heros.getPosY()) == 1)
+					||((Math.abs(mob.getPosY()-heros.getPosY()) == 0) && (Math.abs(mob.getPosX()-heros.getPosX()) == 1))){
+				directionMonster(mob, heros);
+				mob.attack(heros);
 			}
 		}
 	}
 	
+	private void directionMonster(Creatures mob, Heros heros){
+		Integer differenceX = mob.getPosX()-heros.getPosX();
+		if(differenceX.equals(-1)){
+			mob.setDirection(1);
+		}else if (differenceX.equals(1)){
+			mob.setDirection(3);
+		}
+		Integer differenceY = mob.getPosY()-heros.getPosY();
+		if(differenceY.equals(-1)){
+			mob.setDirection(2);
+		}else if(differenceY.equals(1)){
+			mob.setDirection(0);
+		}
+	}
+	
 	public void attacHeros(Integer player){
-		
 		Heros heros = listHeros[player];
-		
 		Integer[][] posHerosDirection = {{heros.getPosX(), heros.getPosY()-1},{heros.getPosX()+1, heros.getPosY()},
 										 {heros.getPosX(), heros.getPosY()+1},{heros.getPosX()-1, heros.getPosY()}};
-		
-		
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
-				heros.rangeAttack(listTerrain, posHerosDirection[direction][0],posHerosDirection[direction][1], direction,numberMap);
+				heros.rangeAttack(listTerrain, posHerosDirection[direction][0],posHerosDirection[direction][1], direction, numberMap);
 			}
 		}
-		
 	
 /*		PlateauObject[] creaturesAround = {listTerrain[heros.getPosX()][heros.getPosY()-1], 
 									   	   listTerrain[heros.getPosX()+1][heros.getPosY()],

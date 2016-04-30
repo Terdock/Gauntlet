@@ -2,14 +2,10 @@ package View;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
-import Model.WorldEntity;
 
 public class Panel extends JPanel{
 	protected Panel panel;
@@ -84,9 +80,4 @@ public class Panel extends JPanel{
 	public CardLayout getCard() {
 		return card;
 	}
-	
-//pattern observer : permet de changer la list des entities à adequat lorsqu'on fait la mise à jour d'une des listes
-	
-	
-
 }

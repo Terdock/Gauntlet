@@ -7,13 +7,12 @@ public abstract class Heros extends Creatures{
 	private Integer direction = 0;
 	private Integer power = 10;
 	private Integer dexterity = 0;
-	private Integer hp = 100;
 	private Integer score = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,100, 5,null);
+		super(posX,posY,100,5,null);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
@@ -55,8 +54,19 @@ public abstract class Heros extends Creatures{
 		return "Heros";
 	}
 	
-	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction,Integer numberMap) {
-		weapon = new Weapon(name(), direction);
+	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction, Integer numberMap) {
+//		weapon = new Weapon(name(), direction, this);
+//		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
+//			if(direction.equals(directionAttack)){
+//				PlateauObject ground = dependingDirection(listTerrain, directionAttack, posX, posY);
+//				ground.setWeapon(weapon);
+//			}
+//		}
+		
+		
+		
+		
+		weapon = new Weapon(name(), direction, this);
 		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
 			if(direction.equals(directionAttack)){
 				Integer nextPos = 0;

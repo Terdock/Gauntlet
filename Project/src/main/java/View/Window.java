@@ -4,19 +4,16 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import Controller.AbstractController;
-import Model.WorldEntity;
-import observer.Observer;
 
 public class Window extends JFrame{
 	
 	private CardLayout card;
-	private Panel[] panel = new Panel[8];
+	private Panel[] panel = new Panel[9];
 	private LoadImage loadImage = new LoadImage();
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private String[][] heros = new String[5][2];
@@ -68,7 +65,10 @@ public class Window extends JFrame{
       	//Contruction du panneau de jeu et de score
 		panel[5] = new Panel(panel[0], "GamePanel");
 		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
-		panel[7] = new GamePanel(panel[5], controller);
+		panel[7] = new GamePanel(card, panel[0], panel[5], controller);
+		
+		//Construction du panneau pour recommencer
+		panel[8] = new AgainPanel(panel[0], backgroundImages[1], "Play Again");
       	
 	}
 	

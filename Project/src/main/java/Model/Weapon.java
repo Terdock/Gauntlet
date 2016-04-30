@@ -3,20 +3,22 @@ package Model;
 public class Weapon {
 	private String type;
 	private Integer direction;
-	private Integer posX;
-	private Integer posY;
 	private Integer degat; 
+	private Creatures creature;
 	
-	public Weapon( String type, Integer direction){
+	public Weapon(String type, Integer direction, Creatures creature){
 		this.type = type;
 		this.direction = direction;
-		
+		this.creature = creature;
 	}
 	
 	public Integer getDirection() {
 		return direction;
 	}
 
+	public Creatures getCreature() {
+		return creature;
+	}
 
 	public String name(){
 		return type;

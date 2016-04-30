@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +8,7 @@ import java.awt.Image;
 
 import Controller.AbstractController;
 import Model.Creatures;
+import Model.Heros;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.Weapon;
@@ -18,6 +20,8 @@ public class GamePanel extends Panel implements Observer {
 	private WorldEntity[][] listTerrain;
 	private WorldEntity[] listHeros;
 	private AbstractController controller;
+	private CardLayout card;
+	private Panel panel;
 	private Keyboard listener;
 	private LoadImage imageClasse;
 	private Integer numberMap, divided, playerNumber;
@@ -25,8 +29,10 @@ public class GamePanel extends Panel implements Observer {
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
 	
-	public GamePanel(Panel panel, AbstractController controller){
+	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
+		this.panel = panelContainer;
+		this.card = card;
 		this.controller = controller;
 		this.setBounds(0, 0, 720, 600);
 		this.setSize(new Dimension(720,600));
@@ -47,6 +53,7 @@ public class GamePanel extends Panel implements Observer {
 		loadLand(g);
 		actionMonsters();
 		actionHeros();
+		showPlayAgain();
 		repaint();
 		try {
 			Thread.sleep(100);
@@ -95,6 +102,7 @@ public class GamePanel extends Panel implements Observer {
 				showCreatures(creature, deadCreature, g);
 				showObject(ground, object, g);
 				showWeapon(ground, weapon, g);
+				//moveWeapon((PlateauObject)ground, weapon);
 			}
 		}
 	}
@@ -183,6 +191,45 @@ public class GamePanel extends Panel implements Observer {
 		controller.doActionMonsters();
 	}
 	
+	private void moveWeapon(PlateauObject ground, Weapon weapon){
+		if(!(ground.getWeapon() == null)){
+			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+			System.out.println("what ?");
+			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+				ground.setWeapon(null);
+				nextGround.setWeapon(weapon);
+			}
+			if(!(ground.getCreature() ==  null)){
+				weapon.getCreature().attack(ground.getCreature());
+				if(!ground.getCreature().isLife()){
+					if(!(ground.getCreature().getObject() == null)){
+						ground.setObject(ground.getCreature().getObject());
+						ground.getCreature().setObject(null);
+					}
+					ground.setCreature(null);
+				}
+				ground.setWeapon(null);
+			}
+			if(!ground.isPassable()){
+				ground.setWeapon(null);
+			}
+		}
+	}
+	
+	private PlateauObject dependingDirection(Integer directionAttack, Integer posX, Integer posY){
+		WorldEntity ground = null;
+		if (directionAttack.equals(0)){
+			ground = listTerrain[posX][posY - 1];
+		}else if (directionAttack.equals(1)){
+			ground = listTerrain[posX + 1][posY];
+		}else if (directionAttack.equals(2)){
+			ground = listTerrain[posX][posY + 1];
+		}else if (directionAttack.equals(3)){
+			ground = listTerrain[posX - 1][posY];
+		}
+		return (PlateauObject)ground; 
+	}
+	
 	private void actionHeros(){
 		for(Integer player = 0; player < playerNumber; player++){
 			Integer state = listener.state(player);
@@ -191,6 +238,24 @@ public class GamePanel extends Panel implements Observer {
 				controller.doActionHeros(action, state, player);
 			}else if(action.equals("Action Attack")){
 				controller.attackHeros(player);
+			}
+		}
+	}
+	
+	private void showPlayAgain(){
+		boolean[] isLife = new boolean[playerNumber];
+		Integer i = 0;
+		for(WorldEntity heros : listHeros){
+			isLife[i] = ((Heros)heros).isLife();
+			i++;
+		}
+		if(playerNumber.equals(1)){
+			if(!isLife[0]){
+				card.show(panel, "Play Again");
+			}
+		}else{
+			if(!isLife[0] && !isLife[1]){
+				card.show(panel, "Play Again");
 			}
 		}
 	}
