@@ -57,111 +57,45 @@ public abstract class Heros extends Creatures{
 	
 	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction,Integer numberMap) {
 		weapon = new Weapon(name(), direction);
-		System.out.println("weapon");
-		if(direction.equals(0)){
-			Integer i = 0;
-			while((listTerrain[posX][posY-i].getCreature() ==  null) && (listTerrain[posX][posY-i].isPassable())){
-				listTerrain[posX][posY-i].setWeapon(null);
-				i++;
-				listTerrain[posX][posY-i].setWeapon(weapon);
-				System.out.println(listTerrain[posX][posY-i]);
-			}	
-			if(!(listTerrain[posX][posY-i].getCreature() ==  null)){
-				attack(listTerrain[posX][posY-i].getCreature());
-				if( ! listTerrain[posX][posY-i].getCreature().isLife()){
-					if(! (listTerrain[posX][posY-i].getCreature().getObject() ==null)){
-						listTerrain[posX][posY-i].setObject((listTerrain[posX][posY-i].getCreature()).getObject());
-					}
-					listTerrain[posX][posY-i].setCreature(null);
+		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
+			if(direction.equals(directionAttack)){
+				Integer nextPos = 0;
+				PlateauObject ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
+				while((ground.getCreature() ==  null) && (ground.isPassable())){
+					ground.setWeapon(null);
+					nextPos++;
+					ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
+					ground.setWeapon(weapon);
 				}
-				listTerrain[posX][posY-i].setWeapon(null);
-			}
-			else if(!listTerrain[posX][posY-i].isPassable()){
-				listTerrain[posX][posY-i].setWeapon(null);
+				if(!(ground.getCreature() ==  null)){
+					attack(ground.getCreature());
+					if(!ground.getCreature().isLife()){
+						if(!(ground.getCreature().getObject() == null)){
+							ground.setObject((ground.getCreature()).getObject());
+						}
+						ground.setCreature(null);
+					}
+					ground.setWeapon(null);
+				}
+				else if(!ground.isPassable()){
+					ground.setWeapon(null);
+				}
 			}
 		}
-		if(direction.equals(1)){
-			Integer i = 0;
-			while((listTerrain[posX+i][posY].getCreature() ==  null) && (listTerrain[posX+i][posY].isPassable())){
-				listTerrain[posX+i][posY].setWeapon(null);
-				i++;
-				listTerrain[posX+i][posY].setWeapon(weapon);
-			}	
-			if(listTerrain[posX+i][posY].getCreature() !=  null){
-				attack(listTerrain[posX+i][posY].getCreature());
-				if( ! listTerrain[posX+i][posY].getCreature().isLife() ){
-					if(!(listTerrain[posX+i][posY].getCreature().getObject() == null)){
-						listTerrain[posX+i][posY].setObject((listTerrain[posX+i][posY].getCreature()).getObject());
-					}
-					listTerrain[posX+i][posY].setCreature(null);
-				}
-				listTerrain[posX+i][posY].setWeapon(null);
-			}
-			else if(!listTerrain[posX+i][posY].isPassable()){
-				listTerrain[posX+i][posY].setWeapon(null);
-			}
+	}
+	
+	private PlateauObject dependingDirection(PlateauObject[][] listTerrain, Integer directionAttack, Integer nextPos, Integer posX, Integer posY){
+		PlateauObject ground = null;
+		if (directionAttack.equals(0)){
+			ground = listTerrain[posX][posY - nextPos];
+		}else if (directionAttack.equals(1)){
+			ground = listTerrain[posX + nextPos][posY];
+		}else if (directionAttack.equals(2)){
+			ground = listTerrain[posX][posY + nextPos];
+		}else if (directionAttack.equals(3)){
+			ground = listTerrain[posX - nextPos][posY];
 		}
-		if(direction.equals(2)){
-			Integer i = 0;
-			while((listTerrain[posX][posY+i].getCreature() ==  null) && (listTerrain[posX][posY+i].isPassable())){
-				listTerrain[posX][posY+i].setWeapon(null);
-				i++;
-				listTerrain[posX][posY+i].setWeapon(weapon);
-			}	
-			if((listTerrain[posX][posY+i].getCreature() !=  null)){
-				attack(listTerrain[posX][posY+i].getCreature());
-				if( ! listTerrain[posX][posY+i].getCreature().isLife()){
-					if(! (listTerrain[posX][posY+i].getCreature().getObject() ==null)){
-						listTerrain[posX][posY+i].setObject((listTerrain[posX][posY+i].getCreature()).getObject());
-					}
-					listTerrain[posX][posY+i].setCreature(null);
-				}
-				listTerrain[posX][posY+i].setWeapon(null);
-			}
-			else if(!listTerrain[posX][posY+i].isPassable()){
-				listTerrain[posX][posY+i].setWeapon(null);
-			}
-		}
-		if(direction.equals(3)){
-			Integer i = 0;
-			while((listTerrain[posX-i][posY].getCreature() ==  null) && (listTerrain[posX-i][posY].isPassable())){
-				listTerrain[posX-i][posY].setWeapon(null);
-				i++;
-				listTerrain[posX-i][posY].setWeapon(weapon);
-			}	
-			if(!(listTerrain[posX-i][posY].getCreature() ==  null)){
-				attack(listTerrain[posX-i][posY].getCreature());
-				if( ! listTerrain[posX-i][posY].getCreature().isLife()){
-					if(! (listTerrain[posX-i][posY].getCreature().getObject() ==null)){
-						listTerrain[posX-i][posY].setObject((listTerrain[posX-i][posY].getCreature()).getObject());
-					}
-					listTerrain[posX-i][posY].setCreature(null);
-				}
-				listTerrain[posX-i][posY].setWeapon(null);
-			}
-			else if(!listTerrain[posX-i][posY].isPassable()){
-				listTerrain[posX-i][posY].setWeapon(null);
-			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		return ground; 
 	}
 	
 	public Integer getScore() {
