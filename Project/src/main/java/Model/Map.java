@@ -160,7 +160,7 @@ public class Map implements IMap {
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
-				if(posX %10 ==0 && posY % 10 == 0){
+				if(i == 0 && j == 0){
 					list_Monster .add(new KeyHolder(posX+i,posY+j, wObject, numberMap,numberOfDoor));
 				}else{	
 					list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));

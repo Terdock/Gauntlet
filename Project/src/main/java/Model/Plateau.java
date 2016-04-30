@@ -165,7 +165,7 @@ public class Plateau implements IPlateau {
 		
 		for(Integer direction = 0; direction < 4; direction++){
 			if (heros.getDirection().equals(direction)){
-				heros.rangeAttack(listTerrain, posHerosDirection[direction][0],posHerosDirection[direction][1], direction);
+				heros.rangeAttack(listTerrain, posHerosDirection[direction][0],posHerosDirection[direction][1], direction,numberMap);
 			}
 		}
 		

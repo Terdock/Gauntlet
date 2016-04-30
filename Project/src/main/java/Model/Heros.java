@@ -1,6 +1,7 @@
 package Model;
 
 public abstract class Heros extends Creatures{
+	
 	private String playerName;
 	private Integer force = 15;
 	private Integer direction = 0;
@@ -13,8 +14,7 @@ public abstract class Heros extends Creatures{
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,100, 5,null);
-		}
-
+	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
 		if ((plateau.isMoveValide(getPosX(), getPosY(), action)|| pasDeGeant) ){
@@ -32,14 +32,11 @@ public abstract class Heros extends Creatures{
 		}
 	}
 	
-
 	private void takeObjet( WorldObject objet) {
 		objet.useObject();
 	}
 	
-	
 	public abstract void specialAttack();
-	
 
 	public void attack(Creatures creature){
 		creature.receiveAttack(force*power, creature.getDefense());
@@ -49,7 +46,7 @@ public abstract class Heros extends Creatures{
 	public String getPlayerName() {
 		return playerName;
 	}
-
+	
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
@@ -57,38 +54,110 @@ public abstract class Heros extends Creatures{
 	public String nameType(){
 		return "Heros";
 	}
-
-
-	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction) {
+	
+	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction,Integer numberMap) {
 		weapon = new Weapon(name(), direction);
+		System.out.println("weapon");
 		if(direction.equals(0)){
 			Integer i = 0;
-			while((listTerrain[posX][posY-i].getCreature() ==  null) || !(listTerrain[posX][posY-i].name() == "Wall"))
-			{
+			while((listTerrain[posX][posY-i].getCreature() ==  null) && !(listTerrain[posX][posY-i].name().equals("Model.Wall"+numberMap))){
 				listTerrain[posX][posY-i].setWeapon(null);
 				i++;
 				listTerrain[posX][posY-i].setWeapon(weapon);
+				System.out.println(listTerrain[posX][posY-i]);
 			}	
 			if(!(listTerrain[posX][posY-i].getCreature() ==  null)){
-				weapon.attack(listTerrain[posX][posY-i].getCreature());
-			}
-			else if(listTerrain[posX][posY-i].name() == "Wall"){
+				attack(listTerrain[posX][posY-i].getCreature());
+				if( ! listTerrain[posX][posY-i].getCreature().isLife()){
+					listTerrain[posX][posY-i].setCreature(null);
+				}
 				listTerrain[posX][posY-i].setWeapon(null);
 			}
-
+			else if(listTerrain[posX][posY-i].name().equals("Model.Wall"+numberMap)){
+				listTerrain[posX][posY-i].setWeapon(null);
+			}
 		}
+		if(direction.equals(1)){
+			Integer i = 0;
+			while((listTerrain[posX+i][posY].getCreature() ==  null) && !(listTerrain[posX+i][posY].name().equals("Model.Wall"+numberMap))){
+				listTerrain[posX+i][posY].setWeapon(null);
+				i++;
+				listTerrain[posX+i][posY].setWeapon(weapon);
+			}	
+			if(listTerrain[posX+i][posY].getCreature() !=  null){
+				attack(listTerrain[posX+i][posY].getCreature());
+				if( ! listTerrain[posX+i][posY].getCreature().isLife()){
+					listTerrain[posX+i][posY].setCreature(null);
+				}
+				listTerrain[posX+i][posY].setWeapon(null);
+			}
+			else if(listTerrain[posX+i][posY].name().equals("Model.Wall"+numberMap)){
+				listTerrain[posX+i][posY].setWeapon(null);
+			}
+		}
+		if(direction.equals(2)){
+			Integer i = 0;
+			while((listTerrain[posX][posY+i].getCreature() ==  null) && !(listTerrain[posX][posY+i].name().equals("Model.Wall"+numberMap))){
+				listTerrain[posX][posY+i].setWeapon(null);
+				i++;
+				listTerrain[posX][posY+i].setWeapon(weapon);
+			}	
+			if((listTerrain[posX][posY+i].getCreature() !=  null)){
+				attack(listTerrain[posX][posY+i].getCreature());
+				if( ! listTerrain[posX][posY+i].getCreature().isLife()){
+					listTerrain[posX][posY+i].setCreature(null);
+				}
+				listTerrain[posX][posY+i].setWeapon(null);
+			}
+			else if(listTerrain[posX][posY+i].name().equals("Model.Wall"+numberMap)){
+				listTerrain[posX][posY+i].setWeapon(null);
+			}
+		}
+		if(direction.equals(3)){
+			Integer i = 0;
+			while((listTerrain[posX-i][posY].getCreature() !=  null) && !(listTerrain[posX-i][posY].name().equals("Model.Wall"+numberMap))){
+				listTerrain[posX-i][posY].setWeapon(null);
+				i++;
+				listTerrain[posX-i][posY].setWeapon(weapon);
+			}	
+			if(!(listTerrain[posX-i][posY].getCreature() ==  null)){
+				attack(listTerrain[posX-i][posY].getCreature());
+				if( ! listTerrain[posX-i][posY].getCreature().isLife()){
+					listTerrain[posX-i][posY].setCreature(null);
+				}
+				listTerrain[posX][posY-i].setWeapon(null);
+			}
+			else if(listTerrain[posX-i][posY].name().equals("Model.Wall"+numberMap)){
+				listTerrain[posX-i][posY].setWeapon(null);
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
-
+	
 	public Integer getScore() {
 		return score;
 	}
-
+	
 	public void setScore(Integer score) {
 		this.score = score;
 	}
 	
-
-	
-	
-
 }
