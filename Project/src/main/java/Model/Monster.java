@@ -7,7 +7,7 @@ import Model.Creatures;
 public class Monster extends Creatures {
     private Integer posMove;
     private boolean iSeeHero;
-    private static Integer degat = 1;
+    private static Integer degat = 6;
 	private Integer typeMonster = 1;
 	private boolean verify;
 	private int dommage;
