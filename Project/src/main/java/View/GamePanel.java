@@ -201,10 +201,12 @@ public class GamePanel extends Panel implements Observer {
 		if(!(groundWeapon == null)){
 			PlateauObject ground = (PlateauObject)groundWeapon;
 			Weapon weapon = ((PlateauObject)groundWeapon).getWeapon();
-			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
-			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
-				ground.setWeapon(null);
-				nextGround.setWeapon(weapon);
+			if(!(weapon == null)){
+				PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+					ground.setWeapon(null);
+					nextGround.setWeapon(weapon);
+				}
 			}
 			if(!(ground.getCreature() ==  null)){
 				weapon.getCreature().attack(ground.getCreature());

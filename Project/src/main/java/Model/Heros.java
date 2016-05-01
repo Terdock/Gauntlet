@@ -57,8 +57,7 @@ public abstract class Heros extends Creatures{
 		weapon = new Weapon(name(), direction, this);
 		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
 			if(direction.equals(directionAttack)){
-				PlateauObject ground = dependingDirection(listTerrain, directionAttack, 1, posX, posY);
-				ground.setWeapon(weapon);
+				listTerrain[posX][posY].setWeapon(weapon);
 			}
 		}
 		
@@ -90,20 +89,6 @@ public abstract class Heros extends Creatures{
 				}
 */			//}
 //		}
-	}
-	
-	private PlateauObject dependingDirection(PlateauObject[][] listTerrain, Integer directionAttack, Integer nextPos, Integer posX, Integer posY){
-		PlateauObject ground = null;
-		if (directionAttack.equals(0)){
-			ground = listTerrain[posX][posY - nextPos];
-		}else if (directionAttack.equals(1)){
-			ground = listTerrain[posX + nextPos][posY];
-		}else if (directionAttack.equals(2)){
-			ground = listTerrain[posX][posY + nextPos];
-		}else if (directionAttack.equals(3)){
-			ground = listTerrain[posX - nextPos][posY];
-		}
-		return ground; 
 	}
 	
 	public void setHp(Integer newHp, Potion potion){
