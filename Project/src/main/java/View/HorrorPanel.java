@@ -7,7 +7,7 @@ import java.awt.Image;
 public class HorrorPanel extends Panel{
 	private Image image;
 	private CardLayout card;
-	private int i = 0;
+	private static int i = 0;
 
 	public HorrorPanel(CardLayout card, Panel panel, Image image, String type){
 		super(panel, type);
@@ -25,6 +25,7 @@ public class HorrorPanel extends Panel{
 				e.printStackTrace();
 			}
 			card.show(panel, "Play Again");
+			i=0;
 		}
 		i++;
 		repaint();

@@ -39,6 +39,9 @@ public class AgainPanel extends Panel implements Observer{
 	}
 	
 	private void showScore(){
+		if(!(labels[2]== null)){
+			resetScoreText();
+		}
 		for(Integer i = 0; i < playerNumber; i++){
 			Integer score = ((Heros)listHeros[i]).getScore();
 			labels[i+2] = text(heros[i][1] + " : " + heros[i][0] + " : " + String.valueOf(score), 380, 230 + i*50, 300, 35, Color.ORANGE);
@@ -48,6 +51,12 @@ public class AgainPanel extends Panel implements Observer{
 	public void setPlayerAndHeros(Integer playerNumber, String[][] heros){
 		this.playerNumber = playerNumber;
 		this.heros = heros;
+	}
+	
+	private void resetScoreText(){
+		for (int i = 0; i < playerNumber; i++){
+			labels[i+2].setText(" ");
+		}
 	}
 
 	public Button[] getButtons() {
