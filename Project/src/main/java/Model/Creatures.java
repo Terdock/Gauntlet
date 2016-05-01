@@ -2,12 +2,12 @@ package Model;
 
 public abstract class Creatures extends WorldEntity {
 	protected boolean life = true;
-	private Integer hp;
+	protected Integer hp;
 	private Integer defense;
 	private Integer level;
 	private Integer direction = 2;
     private Integer moveContinue = 0;
-    private Integer step =1;
+    private Integer step = 1;
 	private boolean Visible;
     private WorldObject object; 
  

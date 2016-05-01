@@ -9,16 +9,16 @@ public class PowerPotion extends Potion {
 		super(PosX, PosY);
 	}
 
-
 	public String name() {
-		return null;
+		return "Power Potion";
 	}
 
-
-	@Override
 	public void useObject() {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	public void useObject(Heros heros){
+		heros.setPower(heros.getPower() + 5);
 	}
 
 

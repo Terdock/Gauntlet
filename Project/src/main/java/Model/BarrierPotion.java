@@ -10,13 +10,12 @@ public class BarrierPotion extends Potion {
 
 	
 	public String name() {
-		return null;
+		return "Barrier Potion";
 	}
 
 
-	@Override
 	public void useObject() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

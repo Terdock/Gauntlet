@@ -6,7 +6,6 @@ public abstract class Heros extends Creatures{
 	private Integer force = 15;
 	private Integer direction = 0;
 	private Integer power = 10;
-	private Integer dexterity = 0;
 	private Integer score = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
@@ -108,6 +107,22 @@ public abstract class Heros extends Creatures{
 		return ground; 
 	}
 	
+	public void setHp(Integer newHp, Potion potion){
+		this.hp = newHp;
+	}
+	
+	public Integer getPower() {
+		return power;
+	}
+
+	public void setPower(Integer power) {
+		this.power = power;
+	}
+
+	public void setPasDeGeant(boolean pasDeGeant) {
+		this.pasDeGeant = pasDeGeant;
+	}
+
 	public Integer getScore() {
 		return score;
 	}

@@ -10,12 +10,14 @@ public class SpeedPotion extends Potion {
 	}
 
 	public String name() {
-		return null;
+		return "Speed Potion";
 	}
 
-	@Override
 	public void useObject() {
-		// TODO Auto-generated method stub
+		
+	}
+	
+	public void useObject(Heros heros){
 		
 	}
 
