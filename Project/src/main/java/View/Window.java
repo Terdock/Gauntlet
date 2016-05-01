@@ -68,7 +68,9 @@ public class Window extends JFrame{
 		panel[7] = new GamePanel(card, panel[0], panel[5], controller);
 		
 		//Construction du panneau pour recommencer
-		panel[8] = new AgainPanel(panel[0], backgroundImages[1], "Play Again");
+		panel[8] = new AgainPanel(panel[0], backgroundImages[1], imageIcons, "Play Again");
+		actionButton(((AgainPanel) panel[8]).getButtons()[0], "Rejouer");
+		actionButton(((AgainPanel) panel[8]).getButtons()[1], "Quitter");
       	
 	}
 	
@@ -115,8 +117,13 @@ public class Window extends JFrame{
             		((ScorePanel)panel[6]).addName();
             		((GamePanel)panel[7]).addKeyboard(playerNumber);
             		((GamePanel)panel[7]).setModeDeJeu(modeDeJeu);
+            		((AgainPanel)panel[8]).setPlayerAndHeros(playerNumber, heros);
             		controller.initComposant(heros);
             		card.show(panel[0], "GamePanel");
+            	}else if(info.equals("Rejouer")){
+            		card.show(panel[0], "ModeDeJeu");
+            	}else if(info.equals("Quitter")){
+            		System.exit(0);
             	}
             }
        });

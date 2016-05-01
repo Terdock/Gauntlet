@@ -11,7 +11,7 @@ public abstract class Heros extends Creatures{
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,100,5,null);
+		super(posX,posY,10,5,null);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){

@@ -14,5 +14,6 @@ public class Main {
 		Window window = new Window(control);
 		game.addObserver((Observer)window.getPanel()[7]);
 		game.addObserver((Observer)window.getPanel()[6]);
+		game.addObserver((Observer)window.getPanel()[8]);
 	}
 }

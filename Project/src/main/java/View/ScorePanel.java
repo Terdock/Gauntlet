@@ -24,7 +24,7 @@ public class ScorePanel extends Panel implements Observer {
 	
 	public void addName(){
 		for (int i = 0; i < playerNumber; i++){
-			labelsName[i] = text(heros[i][0] + " : " + heros[i][1], 
+			labelsName[i] = text(heros[i][1] + " : " + heros[i][0], 
 					45, 60 + i*130, 200, 30, Color.LIGHT_GRAY);
 			labelsHp[i] = text("Vie : 0", 
 					60, 100 + i*130, 200, 30, Color.LIGHT_GRAY);
