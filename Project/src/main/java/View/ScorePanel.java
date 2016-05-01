@@ -23,6 +23,9 @@ public class ScorePanel extends Panel implements Observer {
 	}
 	
 	public void addName(){
+		if (!(labelsName[0] == null) && !(labelsHp[0] == null) && !(labelsScore[0] == null)){
+			resetScoreText();
+		}
 		for (int i = 0; i < playerNumber; i++){
 			labelsName[i] = text(heros[i][1] + " : " + heros[i][0], 
 					45, 60 + i*130, 200, 30, Color.LIGHT_GRAY);
@@ -49,6 +52,14 @@ public class ScorePanel extends Panel implements Observer {
 		for (int i = 0; i < playerNumber; i++){
 			labelsHp[i].setText("Vie : " + String.valueOf(playerHp(i)));
 			labelsScore[i].setText("Score : " + String.valueOf(playerScore(i)));
+		}
+	}
+	
+	private void resetScoreText(){
+		for (int i = 0; i < playerNumber; i++){
+			labelsName[i].setText(" ");
+			labelsHp[i].setText(" ");
+			labelsScore[i].setText(" ");
 		}
 	}
 
