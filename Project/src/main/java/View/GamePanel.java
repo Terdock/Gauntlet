@@ -53,7 +53,7 @@ public class GamePanel extends Panel implements Observer {
 		}
 		loadLand(g);
 		if(!(groundWeapon == null)){
-			moveWeapon((PlateauObject)groundWeapon, ((PlateauObject)groundWeapon).getWeapon());
+			moveWeapon();
 		}
 		actionMonsters();
 		actionHeros();
@@ -197,8 +197,10 @@ public class GamePanel extends Panel implements Observer {
 		controller.doActionMonsters();
 	}
 	
-	private void moveWeapon(PlateauObject ground, Weapon weapon){
-		if(!(ground.getWeapon() == null)){
+	private void moveWeapon(){
+		if(!(groundWeapon == null)){
+			PlateauObject ground = (PlateauObject)groundWeapon;
+			Weapon weapon = ((PlateauObject)groundWeapon).getWeapon();
 			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
 			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
 				ground.setWeapon(null);
