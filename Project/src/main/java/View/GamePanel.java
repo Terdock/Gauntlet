@@ -28,6 +28,7 @@ public class GamePanel extends Panel implements Observer {
 	private String modeDeJeu;
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
+	private WorldEntity groundWeapon;
 	
 	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
@@ -51,6 +52,9 @@ public class GamePanel extends Panel implements Observer {
 			showModeStory(g);
 		}
 		loadLand(g);
+		if(!(groundWeapon == null)){
+			moveWeapon((PlateauObject)groundWeapon, ((PlateauObject)groundWeapon).getWeapon());
+		}
 		actionMonsters();
 		actionHeros();
 		showPlayAgain();
@@ -102,7 +106,9 @@ public class GamePanel extends Panel implements Observer {
 				showCreatures(creature, deadCreature, g);
 				showObject(ground, object, g);
 				showWeapon(ground, weapon, g);
-				//moveWeapon((PlateauObject)ground, weapon);
+				if (!(weapon == null)){
+					groundWeapon = ground;
+				}
 			}
 		}
 	}
@@ -170,7 +176,7 @@ public class GamePanel extends Panel implements Observer {
 		if (!(weapon == null)){
 			for (Integer i = 0; i < 4; i++){
 				if (weapon.name().equals(typeHeros[i])){
-					for (Integer direction = 0; direction < 4; i++){
+					for (Integer direction = 0; direction < 4; direction++){
 						if (weapon.getDirection().equals(direction)){
 							Image imageWeapon = imageClasse.getImagesWeapons()[i][direction];
 							g.drawImage(imageWeapon, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
@@ -194,7 +200,6 @@ public class GamePanel extends Panel implements Observer {
 	private void moveWeapon(PlateauObject ground, Weapon weapon){
 		if(!(ground.getWeapon() == null)){
 			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
-			System.out.println("what ?");
 			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
 				ground.setWeapon(null);
 				nextGround.setWeapon(weapon);
@@ -251,11 +256,11 @@ public class GamePanel extends Panel implements Observer {
 		}
 		if(playerNumber.equals(1)){
 			if(!isLife[0]){
-				card.show(panel, "Horror");
+				card.show(panel, "Play Again");
 			}
 		}else{
 			if(!isLife[0] && !isLife[1]){
-				card.show(panel, "Horror");
+				card.show(panel, "Play Again");
 			}
 		}
 	}

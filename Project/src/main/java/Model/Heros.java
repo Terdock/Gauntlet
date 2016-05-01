@@ -54,22 +54,21 @@ public abstract class Heros extends Creatures{
 	}
 	
 	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction, Integer numberMap) {
-//		weapon = new Weapon(name(), direction, this);
-//		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
-//			if(direction.equals(directionAttack)){
-//				PlateauObject ground = dependingDirection(listTerrain, directionAttack, posX, posY);
-//				ground.setWeapon(weapon);
-//			}
-//		}
-		
-		
-		
-		
 		weapon = new Weapon(name(), direction, this);
 		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
 			if(direction.equals(directionAttack)){
-				Integer nextPos = 0;
-				PlateauObject ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
+				PlateauObject ground = dependingDirection(listTerrain, directionAttack, 1, posX, posY);
+				ground.setWeapon(weapon);
+			}
+		}
+		
+		
+		
+//		weapon = new Weapon(name(), direction, this);
+//		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
+//			if(direction.equals(directionAttack)){
+//				Integer nextPos = 0;
+/**				PlateauObject ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
 				while((ground.getCreature() ==  null) && (ground.isPassable())){
 					ground.setWeapon(null);
 					nextPos++;
@@ -89,8 +88,8 @@ public abstract class Heros extends Creatures{
 				if(!ground.isPassable()){
 					ground.setWeapon(null);
 				}
-			}
-		}
+*/			//}
+//		}
 	}
 	
 	private PlateauObject dependingDirection(PlateauObject[][] listTerrain, Integer directionAttack, Integer nextPos, Integer posX, Integer posY){
