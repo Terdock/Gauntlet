@@ -13,11 +13,11 @@ import Controller.AbstractController;
 public class Window extends JFrame{
 	
 	private CardLayout card;
-	private Panel[] panel = new Panel[9];
+	private Panel[] panel = new Panel[10];
 	private LoadImage loadImage = new LoadImage();
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private String[][] heros = new String[5][2];
-	private Image[] backgroundImages = new Image[3];
+	private Image[] backgroundImages = new Image[4];
     private Integer playerNumber;
     private String modeDeJeu;
     private AbstractController controller;
@@ -41,7 +41,7 @@ public class Window extends JFrame{
 	private void initialisation(){
 		//Chargement d'images
 		imageIcons = loadImage.loadIconImage();
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 4; i++){
 			backgroundImages[i] = loadImage.loadBackground()[i];
 		}
 		
@@ -66,6 +66,9 @@ public class Window extends JFrame{
 		panel[5] = new Panel(panel[0], "GamePanel");
 		panel[6] = new ScorePanel(panel[5], backgroundImages[2]);
 		panel[7] = new GamePanel(card, panel[0], panel[5], controller);
+		
+		//Construction du panneau d'horreur
+		panel[9] = new HorrorPanel(card, panel[0], backgroundImages[3], "Horror");
 		
 		//Construction du panneau pour recommencer
 		panel[8] = new AgainPanel(panel[0], backgroundImages[1], imageIcons, "Play Again");

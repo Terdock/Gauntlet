@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 public class LoadImage {
 	private Image[][] imagesWall = new Image[5][8], imagesWeapons = new Image[4][4];;
-	private Image[] imagesGround = new Image[5], imageBackground = new Image[3];
+	private Image[] imagesGround = new Image[5], imageBackground = new Image[4];
 	private Image[][][] imagesHeros = new Image[4][4][3], imagesMonsters = new Image[3][4][3];;
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private Image imageDeathHeros, imageDeathMonsters, imageDoor, imageKey;
@@ -125,6 +125,7 @@ public class LoadImage {
 			imageBackground[0] = ImageIO.read(new File("Images/welcome.jpg"));   
 			imageBackground[1] = ImageIO.read(new File("Images/home.jpg"));
 			imageBackground[2] = ImageIO.read(new File("Images/imageScore.jpg"));
+			imageBackground[3] = ImageIO.read(new File("Images/horror.jpg"));
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}

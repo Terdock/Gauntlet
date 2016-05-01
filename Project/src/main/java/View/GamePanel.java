@@ -251,11 +251,11 @@ public class GamePanel extends Panel implements Observer {
 		}
 		if(playerNumber.equals(1)){
 			if(!isLife[0]){
-				card.show(panel, "Play Again");
+				card.show(panel, "Horror");
 			}
 		}else{
 			if(!isLife[0] && !isLife[1]){
-				card.show(panel, "Play Again");
+				card.show(panel, "Horror");
 			}
 		}
 	}
