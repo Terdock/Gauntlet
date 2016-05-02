@@ -11,7 +11,7 @@ public abstract class Heros extends Creatures{
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,10,5,null);
+		super(posX,posY,1000,5,null);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
@@ -60,35 +60,6 @@ public abstract class Heros extends Creatures{
 				listTerrain[posX][posY].setWeapon(weapon);
 			}
 		}
-		
-		
-		
-//		weapon = new Weapon(name(), direction, this);
-//		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
-//			if(direction.equals(directionAttack)){
-//				Integer nextPos = 0;
-/**				PlateauObject ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
-				while((ground.getCreature() ==  null) && (ground.isPassable())){
-					ground.setWeapon(null);
-					nextPos++;
-					ground = dependingDirection(listTerrain, directionAttack, nextPos, posX, posY);
-					ground.setWeapon(weapon);
-				}
-				if(!(ground.getCreature() ==  null)){
-					attack(ground.getCreature());
-					if(!ground.getCreature().isLife()){
-						if(!(ground.getCreature().getObject() == null)){
-							ground.setObject((ground.getCreature()).getObject());
-						}
-						ground.setCreature(null);
-					}
-					ground.setWeapon(null);
-				}
-				if(!ground.isPassable()){
-					ground.setWeapon(null);
-				}
-*/			//}
-//		}
 	}
 	
 	public void setHp(Integer newHp, Potion potion){

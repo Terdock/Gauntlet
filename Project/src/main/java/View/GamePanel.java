@@ -51,10 +51,10 @@ public class GamePanel extends Panel implements Observer {
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
 		}
-		loadLand(g);
 		if(!(groundWeapon == null)){
 			moveWeapon();
 		}
+		loadLand(g);
 		actionMonsters();
 		actionHeros();
 		showPlayAgain();
@@ -198,29 +198,28 @@ public class GamePanel extends Panel implements Observer {
 	}
 	
 	private void moveWeapon(){
-		if(!(groundWeapon == null)){
+		if(!(groundWeapon == null) && !(((PlateauObject)groundWeapon).getWeapon()==null)){
 			PlateauObject ground = (PlateauObject)groundWeapon;
 			Weapon weapon = ((PlateauObject)groundWeapon).getWeapon();
-			if(!(weapon == null)){
-				PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
-				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
-					ground.setWeapon(null);
-					nextGround.setWeapon(weapon);
-				}
-			}
-			if(!(ground.getCreature() ==  null)){
-				weapon.getCreature().attack(ground.getCreature());
-				if(!ground.getCreature().isLife()){
-					if(!(ground.getCreature().getObject() == null)){
-						ground.setObject(ground.getCreature().getObject());
+			Creatures creature = ground.getCreature();
+			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+			if(!(creature ==  null)){
+				weapon.getCreature().attack(creature);
+				if(!creature.isLife()){
+					if(!(creature.getObject() == null)){
+						ground.setObject(creature.getObject());
 						ground.getCreature().setObject(null);
 					}
 					ground.setCreature(null);
 				}
 				ground.setWeapon(null);
 			}
-			if(!ground.isPassable()){
+			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
 				ground.setWeapon(null);
+				nextGround.setWeapon(weapon);
+			}
+			if(!nextGround.isPassable()){
+				nextGround.setWeapon(null);
 			}
 		}
 	}

@@ -161,7 +161,7 @@ public class Map implements IMap {
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
 				if(i == 0 && j == 0){
-					list_Monster .add(new KeyHolder(posX+i,posY+j, wObject, numberMap,numberOfDoor));
+					list_Monster.add(new KeyHolder(posX+i,posY+j, wObject, numberMap,numberOfDoor));
 				}else{	
 					list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
 				}
