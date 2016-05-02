@@ -3,13 +3,15 @@ package Model;
 public abstract class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
+	private boolean weaponPassable;
 	private Creatures creature;
 	private WorldObject object;
 	private Creatures dead;
 	private Weapon weapon;
 
-	public PlateauObject(Integer posX, Integer posY, boolean passable) {
+	public PlateauObject(Integer posX, Integer posY, boolean passable, boolean weaponPassable) {
 		super(posX, posY);
+		this.weaponPassable = weaponPassable;
 		this.passable = passable;
 	}
 
@@ -31,6 +33,7 @@ public abstract class PlateauObject extends WorldEntity {
 
 	public void setCreature(Creatures creature) {
 		this.creature = creature;
+		
 		if(creature == null){
 			setPassable(true);	
 		}
@@ -62,6 +65,14 @@ public abstract class PlateauObject extends WorldEntity {
 	public void setWeapon(Weapon weapon) {
 		this.weapon = weapon;
 
+	}
+
+	public boolean isWeaponPassable() {
+		return weaponPassable;
+	}
+
+	public void setWeaponPassable(boolean weaponPassable) {
+		this.weaponPassable = weaponPassable;
 	}
 	
 	

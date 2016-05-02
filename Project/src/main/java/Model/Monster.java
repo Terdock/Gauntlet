@@ -32,13 +32,8 @@ public class Monster extends Creatures {
 	public static void setDegat(Integer degat) {
 		Monster.degat = degat;
 	}
- 
-    
-  
-
-	public void rangeAttack(PlateauObject position, Integer direction){
-		
-	}
+	
+	
  
     public void specialAttack(){
     	
@@ -107,6 +102,13 @@ public class Monster extends Creatures {
 	
 	public void attack(Creatures creature) {
 		creature.receiveAttack(degat*getLevel(), creature.getDefense());
+	}
+
+
+
+
+	public void attack(PlateauObject[][] listTerrain, Integer direction) {
+
 	}
 
  

@@ -28,7 +28,7 @@ public class GamePanel extends Panel implements Observer {
 	private String modeDeJeu;
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
-	private WorldEntity groundWeapon;
+	private WorldEntity[] groundWeapon = new WorldEntity[4];
 	
 	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
@@ -51,9 +51,7 @@ public class GamePanel extends Panel implements Observer {
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
 		}
-		if(!(groundWeapon == null)){
-			moveWeapon();
-		}
+		actionWeapon();
 		loadLand(g);
 		actionMonsters();
 		actionHeros();
@@ -87,6 +85,7 @@ public class GamePanel extends Panel implements Observer {
 	}
 	
 	private void loadLand(Graphics g){
+		Integer i = 0;
 		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
@@ -107,7 +106,8 @@ public class GamePanel extends Panel implements Observer {
 				showObject(ground, object, g);
 				showWeapon(ground, weapon, g);
 				if (!(weapon == null)){
-					groundWeapon = ground;
+					groundWeapon[i] = ground;
+					i++;
 				}
 			}
 		}
@@ -197,12 +197,18 @@ public class GamePanel extends Panel implements Observer {
 		controller.doActionMonsters();
 	}
 	
-	private void moveWeapon(){
-		if(!(groundWeapon == null) && !(((PlateauObject)groundWeapon).getWeapon()==null)){
-			PlateauObject ground = (PlateauObject)groundWeapon;
-			Weapon weapon = ((PlateauObject)groundWeapon).getWeapon();
+	private void actionWeapon(){
+		if(!(groundWeapon == null) && !(((PlateauObject)groundWeapon[0]).getWeapon()==null) && 
+				(((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Elf") || 
+				((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Wizzard"))){
+			PlateauObject ground = (PlateauObject)groundWeapon[0];
+			Weapon weapon = ((PlateauObject)groundWeapon[0]).getWeapon();
 			Creatures creature = ground.getCreature();
 			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+				ground.setWeapon(null);
+				nextGround.setWeapon(weapon);
+			}
 			if(!(creature ==  null)){
 				weapon.getCreature().attack(creature);
 				if(!creature.isLife()){
@@ -214,14 +220,14 @@ public class GamePanel extends Panel implements Observer {
 				}
 				ground.setWeapon(null);
 			}
-			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
-				ground.setWeapon(null);
-				nextGround.setWeapon(weapon);
-			}
-			if(!nextGround.isPassable()){
+			if(!nextGround.isWeaponPassable()){
 				nextGround.setWeapon(null);
 			}
-		}
+		}//else if(!(groundWeapon[] == null) && !(((PlateauObject)groundWeapon).getWeapon()==null) && 
+			//		  (((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Dwarf") || 
+				//	  ((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Warrior"))){
+			
+		//}
 	}
 	
 	private PlateauObject dependingDirection(Integer directionAttack, Integer posX, Integer posY){

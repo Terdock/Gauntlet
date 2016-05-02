@@ -5,10 +5,10 @@ public class Wall extends PlateauObject  {
 	 
 	
 	public Wall() {
-		super(0, 0, false);
+		super(0, 0, false, false);
 	}
-	public Wall(Integer posX, Integer posY, boolean passable,Integer numberMap) {
-		super(posX, posY, passable);
+	public Wall(Integer posX, Integer posY, boolean passable, boolean weaponPassable, Integer numberMap) {
+		super(posX, posY, passable, weaponPassable);
 		this.numberMap = numberMap;
 	}
 

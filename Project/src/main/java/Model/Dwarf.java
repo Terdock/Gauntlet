@@ -14,9 +14,8 @@ public class Dwarf extends Heros {
 		return "Dwarf";
 	}
 
-	@Override
-	public void rangeAttack(PlateauObject position, Integer direction) {
-		// TODO Auto-generated method stub
+
+	public void attack(PlateauObject[][] listTerrain, Integer direction) {
 		
 	}
 

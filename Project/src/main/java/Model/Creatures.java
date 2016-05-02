@@ -92,7 +92,7 @@ public abstract class Creatures extends WorldEntity {
 			this.direction = direction;
 		}
 	
-	public abstract void rangeAttack(PlateauObject position, Integer direction);
+	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
 	public abstract void specialAttack();
 	public abstract void attack(Creatures creature);
 	

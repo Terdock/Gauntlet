@@ -6,18 +6,19 @@ public class Wizzard extends Heros {
 		super(posX,posY);
 	}
 	
+	public void attack(PlateauObject[][] listTerrain, Integer direction) {
+		weapon = new Weapon(name(), direction, this);
+		Integer[][] posHerosDirection = {{this.getPosX(), this.getPosY()-1},{this.getPosX()+1, this.getPosY()},
+		 			 					 {this.getPosX(), this.getPosY()+1},{this.getPosX()-1, this.getPosY()}};
+		listTerrain[posHerosDirection[direction][0]][posHerosDirection[direction][1]].setWeapon(weapon);
+	}
+	
 	public void specialAttack() {
 		
 	}
 
 	public String name() {
 		return "Wizzard";
-	}
-
-	@Override
-	public void rangeAttack(PlateauObject position, Integer direction) {
-		// TODO Auto-generated method stub
-		
 	}
 
 

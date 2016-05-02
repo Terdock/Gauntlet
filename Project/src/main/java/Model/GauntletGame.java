@@ -50,7 +50,12 @@ public class GauntletGame extends AbstractModel {
     
     
     public void attackHeros(Integer player){
-    	plateau.attacHeros(player);
+    	Heros heros = listHeros[player];
+    	for(Integer direction = 0; direction < 4; direction++){
+			if (heros.getDirection().equals(direction)){
+				heros.attack((PlateauObject[][]) listTerrain, direction);
+			}
+		}
     }
 	
 	public void setGameMode(String gameMode) {

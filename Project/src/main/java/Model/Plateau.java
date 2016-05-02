@@ -173,20 +173,7 @@ public class Plateau implements IPlateau {
 			mob.setDirection(0);
 		}
 	}
-	
-	public void attacHeros(Integer player){
-		Heros heros = listHeros[player];
-		Integer[][] posHerosDirection = {{heros.getPosX(), heros.getPosY()-1},{heros.getPosX()+1, heros.getPosY()},
-										 {heros.getPosX(), heros.getPosY()+1},{heros.getPosX()-1, heros.getPosY()}};
-		for(Integer direction = 0; direction < 4; direction++){
-			if (heros.getDirection().equals(direction)){
-				heros.rangeAttack(listTerrain, posHerosDirection[direction][0],posHerosDirection[direction][1], direction, numberMap);
-			}
-		}
-	}
 
-
-	@Override
 	public WorldEntity[][] getListTerrain() {
 		return listTerrain;
 	}
@@ -196,13 +183,11 @@ public class Plateau implements IPlateau {
 		return listHeros;
 	}
 
-	@Override
 	public void setListTerrain(WorldEntity[][] listTerrain) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
 	public void openDoor(Integer posX,Integer posY) {
 		listTerrain[posX][posY] = map.newSol(posX,posY);
 		

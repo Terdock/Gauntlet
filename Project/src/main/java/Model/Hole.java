@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Hole extends PlateauObject {
 	
-	public Hole(Integer posX, Integer posY,boolean passable) {
-		super(posX, posY, passable);
+	public Hole(Integer posX, Integer posY,boolean passable, boolean weaponPassable) {
+		super(posX, posY, passable, weaponPassable);
 	}
 	
 	public String name(){

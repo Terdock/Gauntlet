@@ -34,6 +34,7 @@ public abstract class Heros extends Creatures{
 		objet.useObject();
 	}
 	
+	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
 	public abstract void specialAttack();
 
 	public void attack(Creatures creature){
@@ -51,15 +52,6 @@ public abstract class Heros extends Creatures{
 	
 	public String nameType(){
 		return "Heros";
-	}
-	
-	public void rangeAttack(PlateauObject[][] listTerrain, Integer posX, Integer posY, Integer direction, Integer numberMap) {
-		weapon = new Weapon(name(), direction, this);
-		for(Integer directionAttack = 0; directionAttack < 4; directionAttack++){
-			if(direction.equals(directionAttack)){
-				listTerrain[posX][posY].setWeapon(weapon);
-			}
-		}
 	}
 	
 	public void setHp(Integer newHp, Potion potion){

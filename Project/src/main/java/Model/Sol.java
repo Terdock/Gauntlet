@@ -4,8 +4,8 @@ public class Sol extends PlateauObject {
 
 	private Integer numberMap;
 
-	public Sol(Integer posX, Integer posY, boolean passable,Integer numberMap) {
-		super(posX, posY, passable);
+	public Sol(Integer posX, Integer posY, boolean passable, boolean weaponPassable, Integer numberMap) {
+		super(posX, posY, passable, weaponPassable);
 		this.numberMap = numberMap;
 		
 	}

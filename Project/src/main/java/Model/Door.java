@@ -5,8 +5,8 @@ public class Door extends PlateauObject {
 	private boolean open = false;
 	private Integer numberDoor;
 	
-	public Door(Integer posX, Integer posY,boolean passable,Integer numberDoor){
-		super(posX, posY, passable);
+	public Door(Integer posX, Integer posY,boolean passable, boolean weaponPassable,Integer numberDoor){
+		super(posX, posY, passable, weaponPassable);
 		this.numberDoor = numberDoor;
 	}
 
