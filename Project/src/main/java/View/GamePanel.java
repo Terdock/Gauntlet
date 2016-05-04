@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import Controller.AbstractController;
 import Model.Creatures;
@@ -28,7 +29,7 @@ public class GamePanel extends Panel implements Observer {
 	private String modeDeJeu;
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
-	private WorldEntity[] groundWeapon = new WorldEntity[4];
+	private ArrayList<WorldEntity> groundWeapons;
 	
 	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
@@ -51,8 +52,15 @@ public class GamePanel extends Panel implements Observer {
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
 		}
-		actionWeapon();
 		loadLand(g);
+		for(Integer i=0; i<40; i++){
+			showAndActionWeapon(g);
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		actionMonsters();
 		actionHeros();
 		showPlayAgain();
@@ -85,7 +93,7 @@ public class GamePanel extends Panel implements Observer {
 	}
 	
 	private void loadLand(Graphics g){
-		Integer i = 0;
+		groundWeapons = new ArrayList<WorldEntity>();
 		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
@@ -94,6 +102,9 @@ public class GamePanel extends Panel implements Observer {
 				Creatures deadCreature = ((PlateauObject) ground).getDead();
 				WorldObject object = ((PlateauObject) ground).getObject();
 				Weapon weapon = ((PlateauObject) ground).getWeapon();
+				if (!(weapon == null)){
+					groundWeapons.add(ground);
+				}
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -104,11 +115,6 @@ public class GamePanel extends Panel implements Observer {
 				g.drawImage(imageGround,ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 				showCreatures(creature, deadCreature, g);
 				showObject(ground, object, g);
-				showWeapon(ground, weapon, g);
-				if (!(weapon == null)){
-					groundWeapon[i] = ground;
-					i++;
-				}
 			}
 		}
 	}
@@ -197,38 +203,133 @@ public class GamePanel extends Panel implements Observer {
 		controller.doActionMonsters();
 	}
 	
-	private void actionWeapon(){
-		if(!(groundWeapon == null) && !(((PlateauObject)groundWeapon[0]).getWeapon()==null) && 
-				(((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Elf") || 
-				((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Wizzard"))){
-			PlateauObject ground = (PlateauObject)groundWeapon[0];
-			Weapon weapon = ((PlateauObject)groundWeapon[0]).getWeapon();
-			Creatures creature = ground.getCreature();
-			PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
-			if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
-				ground.setWeapon(null);
-				nextGround.setWeapon(weapon);
-			}
-			if(!(creature ==  null)){
-				weapon.getCreature().attack(creature);
-				if(!creature.isLife()){
-					if(!(creature.getObject() == null)){
-						ground.setObject(creature.getObject());
-						ground.getCreature().setObject(null);
-					}
-					ground.setCreature(null);
+	private void showAndActionWeapon(Graphics g){
+		if(!(groundWeapons.isEmpty())){
+			for(Integer i = 0; i < groundWeapons.size(); i++){
+				PlateauObject ground = (PlateauObject) groundWeapons.get(i);
+				Weapon weapon = ground.getWeapon();
+				showWeapon(ground, weapon, g);
+				Creatures creature = ground.getCreature();
+				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+					ground.setWeapon(null);
 				}
-				ground.setWeapon(null);
+				if(!(creature ==  null)){
+					weapon.getCreature().attack(creature);
+					if(!creature.isLife()){
+						if(!(creature.getObject() == null)){
+							ground.setObject(creature.getObject());
+							ground.getCreature().setObject(null);
+						}
+						ground.setCreature(null);
+					}
+					ground.setWeapon(null);
+				}
+				if(!(weapon == null)){
+					if(weapon.getCreature().name().equals("Elf") || 
+							weapon.getCreature().name().equals("Wizzard")){
+						PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+						if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+							nextGround.setWeapon(weapon);
+						}
+						if(!nextGround.isWeaponPassable()){
+							nextGround.setWeapon(null);
+						}
+					}
+				}
 			}
-			if(!nextGround.isWeaponPassable()){
-				nextGround.setWeapon(null);
-			}
-		}//else if(!(groundWeapon[] == null) && !(((PlateauObject)groundWeapon).getWeapon()==null) && 
+		}
+	}
+//			if (!(((PlateauObject)groundWeapon).getWeapon()==null)){
+//				if(((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Elf") || 
+//						((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Wizzard")){
+//					PlateauObject ground = (PlateauObject)groundWeapon;
+//					Weapon weapon = ((PlateauObject)groundWeapon).getWeapon();
+//					Creatures creature = ground.getCreature();
+//					PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+//					if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+//						ground.setWeapon(null);
+//						nextGround.setWeapon(weapon);
+//					}
+//					if(!(creature ==  null)){
+//						weapon.getCreature().attack(creature);
+//						if(!creature.isLife()){
+//							if(!(creature.getObject() == null)){
+//								ground.setObject(creature.getObject());
+//								ground.getCreature().setObject(null);
+//							}
+//							ground.setCreature(null);
+//						}
+//						ground.setWeapon(null);
+//					}
+//					if(!nextGround.isWeaponPassable()){
+//						nextGround.setWeapon(null);
+//					}
+//				}
+//			}
+//		}
+//		if(!(groundWeapons == null)){
+//			System.out.println(groundWeapons);
+//			System.out.println(groundWeapons[0]);
+//			if (!(((PlateauObject)groundWeapons[0]).getWeapon()==null)){
+//				if(((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Warrior") || 
+//						((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Dwarf")){
+//					for(Integer i = 0; i < 4; i++){
+//						PlateauObject ground = (PlateauObject)groundWeapons[i];
+//						Weapon weapon = ((PlateauObject)groundWeapons[i]).getWeapon();
+//						Creatures creature = ground.getCreature();
+//						if(!(creature ==  null)){
+//							weapon.getCreature().attack(creature);
+//							if(!creature.isLife()){
+//								if(!(creature.getObject() == null)){
+//									ground.setObject(creature.getObject());
+//									ground.getCreature().setObject(null);
+//								}
+//								ground.setCreature(null);
+//							}
+//							ground.setWeapon(null);
+//						}
+//					}
+//				}
+//			}
+//		}
+		
+		
+		
+		
+		
+//		if(!(groundWeapon == null) && !(((PlateauObject)groundWeapon[0]).getWeapon()==null)){
+//			if(((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Elf") || 
+//				((PlateauObject)groundWeapon[0]).getWeapon().getCreature().name().equals("Wizzard")){
+//				PlateauObject ground = (PlateauObject)groundWeapon[0];
+//				Weapon weapon = ((PlateauObject)groundWeapon[0]).getWeapon();
+//				Creatures creature = ground.getCreature();
+//				PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
+//				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+//					ground.setWeapon(null);
+//					nextGround.setWeapon(weapon);
+//				}
+//				if(!(creature ==  null)){
+//					weapon.getCreature().attack(creature);
+//					if(!creature.isLife()){
+//						if(!(creature.getObject() == null)){
+//							ground.setObject(creature.getObject());
+//							ground.getCreature().setObject(null);
+//						}
+//						ground.setCreature(null);
+//					}
+//					ground.setWeapon(null);
+//				}
+//				if(!nextGround.isWeaponPassable()){
+//					nextGround.setWeapon(null);
+//				}
+//			}
+//		}
+		//else if(!(groundWeapon[] == null) && !(((PlateauObject)groundWeapon).getWeapon()==null) && 
 			//		  (((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Dwarf") || 
 				//	  ((PlateauObject)groundWeapon).getWeapon().getCreature().name().equals("Warrior"))){
 			
 		//}
-	}
+//	}
 	
 	private PlateauObject dependingDirection(Integer directionAttack, Integer posX, Integer posY){
 		WorldEntity ground = null;
