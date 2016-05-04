@@ -96,6 +96,7 @@ public class GamePanel extends Panel implements Observer {
 		groundWeapons = new ArrayList<WorldEntity>();
 		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
 			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
+				System.out.println(listTerrain[numberLine].length);
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround;
 				Creatures creature = ((PlateauObject) ground).getCreature();
