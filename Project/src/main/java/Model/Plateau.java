@@ -24,8 +24,8 @@ public class Plateau implements IPlateau {
 		this.playerNumber = playerNumber;
 		this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 		this.listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
-		}	
-	
+	}	
+
 
 
 	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
@@ -33,7 +33,6 @@ public class Plateau implements IPlateau {
 		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
-			createHero(playerRegister);
 			listMonster = map.getListMonster();
 			
 			for (Creatures mob: listMonster){
@@ -43,9 +42,10 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 		}
+		createHero(playerRegister);
 		for (Creatures player : listHeros ){
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
-			}
+		}
 	}
 	
 	
