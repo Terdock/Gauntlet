@@ -53,14 +53,14 @@ public class GamePanel extends Panel implements Observer {
 			showModeStory(g);
 		}
 		loadLand(g);
-		for(Integer i=0; i<40; i++){
-			showAndActionWeapon(g);
-			try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+//		for(Integer i=0; i<2; i++){
+//			showAndActionWeapon(g);
+//			try {
+//				Thread.sleep(80);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		actionMonsters();
 		actionHeros();
 		showPlayAgain();
@@ -94,8 +94,8 @@ public class GamePanel extends Panel implements Observer {
 	
 	private void loadLand(Graphics g){
 		groundWeapons = new ArrayList<WorldEntity>();
-		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
-			for(Integer numberColumn = 0; numberColumn < listTerrain[numberLine].length; numberColumn++){
+		for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
+			for(Integer numberLine = 0; numberLine < listTerrain[numberColumn].length; numberLine++){
 				WorldEntity ground = listTerrain[numberColumn][numberLine];
 				Image imageGround;
 				Creatures creature = ((PlateauObject) ground).getCreature();
@@ -117,6 +117,11 @@ public class GamePanel extends Panel implements Observer {
 				showObject(ground, object, g);
 			}
 		}
+		
+//		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
+//			for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
+//			}
+//		}
 	}
 
 
