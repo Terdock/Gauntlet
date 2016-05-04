@@ -51,6 +51,7 @@ public class GamePanel extends Panel implements Observer {
 		setBackground(Color.BLACK);
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
+			actionMonsters();
 		}
 		loadLand(g);
 //		for(Integer i=0; i<2; i++){
@@ -61,7 +62,6 @@ public class GamePanel extends Panel implements Observer {
 //				e.printStackTrace();
 //			}
 //		}
-		actionMonsters();
 		actionHeros();
 		showPlayAgain();
 		repaint();
