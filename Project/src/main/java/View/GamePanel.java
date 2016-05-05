@@ -52,16 +52,11 @@ public class GamePanel extends Panel implements Observer {
 		if (modeDeJeu.equals("Mode Quête")){
 			showModeStory(g);
 			actionMonsters();
+		}else if (modeDeJeu.equals("Mode Survivor")){
+			actionMonsters();
 		}
 		loadLand(g);
-//		for(Integer i=0; i<2; i++){
-//			showAndActionWeapon(g);
-//			try {
-//				Thread.sleep(80);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		showAndActionWeapon(g);
 		actionHeros();
 		showPlayAgain();
 		repaint();
