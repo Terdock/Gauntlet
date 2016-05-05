@@ -45,7 +45,25 @@ public class Map implements IMap {
 	public void setNumberOfDoor(Integer numberOfDoor) {
 		NumberOfDoor = numberOfDoor;
 	}
-
+	
+	
+	public PlateauObject[][] createListTerrainArene(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
+		Integer i = 0;
+		for (Integer posY = 0; posY < nombreLigne; posY++){
+			for (Integer posX = 0; posX < nombreColonne; posX++){
+				listTerrain[posX][posY] = new Sol(posX, posY, true, true,  numberMap);
+				if(isWallArene(posX,posY,nombreColonne-1,nombreLigne-1)){
+					listTerrain[posX][posY] = new Wall(posX,posY,false, false, 0);
+					gestionImageArene(posX,posY,nombreColonne-1,nombreLigne-1,listTerrain);
+				}
+			}
+		}	
+		return listTerrain;
+	}
+	
+	private boolean isWallArene(Integer posX, Integer posY, Integer numbreColonne, Integer numbreLigne) {
+			return posX == 0 || posY == 0 || posX == numbreColonne || posY == numbreLigne;
+	}
 
 	@Override
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
@@ -136,7 +154,22 @@ public class Map implements IMap {
 			listTerrain[posX][posY].setForm(1);
 		else if(posY % 20 == 0)
 			listTerrain[posX][posY].setForm(0);
+	}
 	
+	private void gestionImageArene(Integer posX,Integer posY,Integer nombreColonne, Integer nombreLigne, PlateauObject[][] listTerrain){
+		listTerrain[posX][posY].setForm(7);
+		if( posX.equals(0) && posY.equals(0) )
+			listTerrain[posX][posY].setForm(2) ;
+		else if( posX.equals(nombreColonne) && posY.equals(0)) 
+			listTerrain[posX][posY].setForm(3);
+		else if( posX.equals(0) && posY.equals(nombreLigne))
+			listTerrain[posX][posY].setForm(5);
+		else if(posX.equals(nombreColonne) && posY.equals(nombreLigne))
+			listTerrain[posX][posY].setForm(4);
+		else if(posX.equals(0) || posX.equals(nombreColonne))
+			listTerrain[posX][posY].setForm(1);
+		else if(posY.equals(0) || posY.equals(nombreLigne))
+			listTerrain[posX][posY].setForm(0);
 	}
 	
 	public boolean map(Integer numberMap,Integer posX,Integer posY){

@@ -8,9 +8,10 @@ public interface IMap {
 
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne, PlateauObject[][] listTerrain);
 
+	public PlateauObject[][] createListTerrainArene(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain);
+	
 	public Creatures[] getListMonster();
 	
 	public PlateauObject newSol(Integer posX,Integer posY);
-
 
 }

@@ -3,8 +3,8 @@ package Model;
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private final static Integer nombreLigneArene = 23;
-	private final static Integer nombreColonneArene = 19;
+	private final static Integer nombreLigneArene = 20;
+	private final static Integer nombreColonneArene = 24;
 	private Integer numberMap;
 	private IMap map;
 	private PlateauObject[][] listTerrain;
@@ -30,7 +30,7 @@ public class Plateau implements IPlateau {
 
 	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
 		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
-		listTerrain2 = map.createListTerrain(nombreLigneArene,nombreColonneArene,listTerrain2);
+		listTerrain2 = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain2);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
@@ -103,16 +103,16 @@ public class Plateau implements IPlateau {
 		this.listHeros = new Heros[playerNumber];
 		for (Integer i = 0; i < playerNumber; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
-				listHeros[i] = new Wizzard(3,4);
+				listHeros[i] = new Wizzard(3+i*(nombreColonneArene-8),4+i*(nombreLigneArene-8));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				listHeros[i] = new Warrior(3,3);
+				listHeros[i] = new Warrior(3+i*(nombreColonneArene-7),3+i*(nombreLigneArene-7));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if( playerRegister[i][1] == "Nain"){
-				listHeros[i] = new Dwarf(4,3);
+				listHeros[i] = new Dwarf(4+i*(nombreColonneArene-8),3+i*(nombreLigneArene-7));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Elfe"){
-				listHeros[i] = new Elf(4,4);
+				listHeros[i] = new Elf(4+i*(nombreColonneArene-8),4+i*(nombreLigneArene-8));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}
 		}
