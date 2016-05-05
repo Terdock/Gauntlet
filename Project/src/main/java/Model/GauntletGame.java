@@ -3,10 +3,10 @@ package Model;
 public class GauntletGame extends AbstractModel {
 	
 	private Integer numberMap; 
-	private static Integer nombreLigne = 101;
-	private static Integer nombreColonne = 101;
-	private final static Integer nombreLigneArene = 20;
-	private final static Integer nombreColonneArene = 24;
+	private Integer nombreLigne = 101;
+	private Integer nombreColonne = 101;
+	private Integer nombreLigneSurvivor;
+	private Integer nombreColonneSurvivor;
 	IPlateau plateau;
 	private WorldEntity[][] listTerrain = new WorldEntity[nombreColonne][nombreLigne];
 	private String gameMode;
@@ -23,8 +23,10 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(String[][] playerRegister){
 		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
-		this.plateau.Initialisation(nombreLigne,nombreColonne,gameMode, playerRegister);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,numberMap,playerNumber);
+		this.plateau.Initialisation(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,gameMode, playerRegister);
+		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
+		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
 		this.exit = plateau.getMap().getExit();
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
@@ -34,13 +36,15 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(Creatures[] listHeros){
 		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
-		this.plateau.Initialisation(nombreLigne,nombreColonne,gameMode, listHeros);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,numberMap,playerNumber);
+		this.plateau.Initialisation(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,gameMode, listHeros);
+		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
+		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
 		notifyObserver(listTerrain);
 		notifyObserver(listHeros);
-		}
+	}
     
 	public Creatures[] getListHeros() {
 		return listHeros;
@@ -56,7 +60,7 @@ public class GauntletGame extends AbstractModel {
 		if(gameMode.equals("Mode Quête")){
 			plateau.checkAttackMonster(nombreColonne,nombreLigne);
 		}if(gameMode.equals("Mode Survivor")){
-			plateau.checkAttackMonster(nombreColonneArene,nombreLigneArene);
+			plateau.checkAttackMonster(nombreColonneSurvivor,nombreLigneSurvivor);
 		}
 	}
 	
@@ -84,8 +88,7 @@ public class GauntletGame extends AbstractModel {
     				this.numberMap+=1;
     				createPlateau(listHeros);
     			}
-    		}
-    		else{
+    		}else{
     			System.out.println("GameOver");
     		}
     	}
@@ -141,6 +144,18 @@ public class GauntletGame extends AbstractModel {
 	public void setPlayerNumber(Integer playerNumber) {
 		this.playerNumber = playerNumber;	
 	}
+
+	public void setNombreLigneSurvivor(Integer nombreLigneSurvivor) {
+		this.nombreLigneSurvivor = nombreLigneSurvivor;
+	}
+
+	public void setNombreColonneSurvivor(Integer nombreColonneSurvivor) {
+		this.nombreColonneSurvivor = nombreColonneSurvivor;
+	}
+	
+	
+	
+	
 
 
 }

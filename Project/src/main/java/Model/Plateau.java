@@ -3,42 +3,33 @@ package Model;
 public class Plateau implements IPlateau {
 	private Integer nombreLigne;
 	private Integer nombreColonne;
-	private final static Integer nombreLigneArene = 20;
-	private final static Integer nombreColonneArene = 24;
+	private Integer nombreLigneArene = 20;
+	private Integer nombreColonneArene = 24;
+	private Integer nombreLigneSurvivor;
+	private Integer nombreColonneSurvivor;
 	private Integer numberMap;
-	public IMap getMap() {
-		return map;
-	}
-
-	public void setMap(IMap map) {
-		this.map = map;
-	}
-
 	private IMap map;
-	private PlateauObject[][] listTerrain;
-	private PlateauObject[][] listTerrain2;
+	private PlateauObject[][] listTerrain, listTerrain2, listTerrain3;
 	private Heros[] listHeros;
 	private Creatures[] listMonster;
 	private Integer playerNumber;
-	
-	public void setListTerrain(PlateauObject[][] listTerrain) {
-		this.listTerrain = listTerrain;
-	}
 
-	public Plateau(Integer nombreLigne, Integer nombreColonne,Integer numberMap, Integer playerNumber) {
+	public Plateau(Integer nombreLigne, Integer nombreColonne, Integer nombreColonneSurvivor, Integer nombreLigneSurvivor, Integer numberMap, Integer playerNumber) {
 		this.nombreLigne = nombreLigne;
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 		this.playerNumber = playerNumber;
 		this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 		this.listTerrain2 = new PlateauObject[nombreColonneArene][nombreLigneArene];
+		this.listTerrain3 = new PlateauObject[nombreColonneSurvivor][nombreLigneSurvivor];
 	}	
 
 
 
-	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,String[][] playerRegister){
+	public void Initialisation(Integer nombreLigne, Integer nombreColonne,Integer nombreColonneSurvivor, Integer nombreLigneSurvivor, String mode, String[][] playerRegister){
 		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
 		listTerrain2 = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain2);
+		listTerrain3 = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain3);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
@@ -46,12 +37,11 @@ public class Plateau implements IPlateau {
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
-		}
-		else{
+		}else if(mode.equals("Mode Arène")){
 			this.listTerrain = listTerrain2;
-			if(mode.equals("Mode Survivor")){
-				battallons(1);
-			}
+		}else if(mode.equals("Mode Survivor")){
+			this.listTerrain = listTerrain3;
+			battallons(1);
 		}
 		createHero(playerRegister);
 		for (Creatures player : listHeros ){
@@ -60,21 +50,21 @@ public class Plateau implements IPlateau {
 	}
 	
 	
-	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,Creatures[] listHeros){
+	public void Initialisation(Integer nombreLigne, Integer nombreColonne,Integer nombreColonneSurvivor, Integer nombreLigneSurvivor, String mode, Creatures[] listHeros){
 		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
 		listTerrain2 = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain2);
+		listTerrain3 = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain3);
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
-		}
-		else{
+		}else if(mode.equals("Mode Arène")){
 			this.listTerrain = listTerrain2;
-			if(mode.equals("Mode Survivor")){
-				battallons(1);
-			}
+		}else if(mode.equals("Mode Survivor")){
+			this.listTerrain = listTerrain3;
+			battallons(1);
 		}
 		for (Creatures player : listHeros){
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
@@ -115,12 +105,12 @@ public class Plateau implements IPlateau {
 		this.nombreColonne = nombreColonne;
 	}
 	
-	public static Integer getNombrelignearene() {
+	public Integer getNombrelignearene() {
 		return nombreLigneArene;
 	}
 
 
-	public static Integer getNombrecolonnearene() {
+	public Integer getNombrecolonnearene() {
 		return nombreColonneArene;
 	}
 
@@ -234,12 +224,32 @@ public class Plateau implements IPlateau {
 
 	public void setListTerrain(WorldEntity[][] listTerrain) {
 		
-		
+	}
+	
+	public void setListTerrain(PlateauObject[][] listTerrain) {
+		this.listTerrain = listTerrain;
 	}
 
 	public void openDoor(Integer posX,Integer posY) {
-		listTerrain[posX][posY] = map.newSol(posX,posY);
-		
+		listTerrain[posX][posY] = map.newSol(posX,posY);	
 	}
+	
+	public IMap getMap() {
+		return map;
+	}
+
+	public void setMap(IMap map) {
+		this.map = map;
+	}
+
+	public void setNombreLigneSurvivor(Integer nombreLigneSurvivor) {
+		this.nombreLigneSurvivor = nombreLigneSurvivor;
+	}
+
+	public void setNombreColonneSurvivor(Integer nombreColonneSurvivor) {
+		this.nombreColonneSurvivor = nombreColonneSurvivor;
+	}
+	
+	
 
 }

@@ -8,6 +8,11 @@ public class Controller extends AbstractController{
 		super(game);
 	}
 	
+	public void setDimensions(Integer[] dimensions){
+		game.setNombreColonneSurvivor(dimensions[0]);
+		game.setNombreLigneSurvivor(dimensions[1]);
+	}
+	
 	public void setGameMode(String gameMode){
 		game.setGameMode(gameMode);
 	}
