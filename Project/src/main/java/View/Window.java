@@ -77,6 +77,8 @@ public class Window extends JFrame{
       	
 	}
 	
+	
+	//Ajout des différentes actions que doivent faire les boutons des panneaux.
 	private void actionButton(Button button, String info){
 		button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -89,9 +91,10 @@ public class Window extends JFrame{
             			playerNumber = 1;
             		}else if(info.equals("Mode Arène")){
             			playerNumber = 2;
+            		}else if(info.equals("1") || info.equals("2")){
+            			playerNumber = Integer.valueOf(info);
             		}
             		controller.setGamePlayerNumber(playerNumber);
-            		
             		
             		//Construction du Panel pour obtenir les informations du joueur
             		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber));
@@ -107,15 +110,6 @@ public class Window extends JFrame{
         				actionButton(((PlayerPanel)panel[3]).getButtons()[i-1], String.valueOf(i));
         			}
             	
-            	}else if (info.equals("1")||info.equals("2")){
-            		playerNumber = Integer.valueOf(info);
-            		controller.setGamePlayerNumber(playerNumber);
-            		
-            		//Construction du Panel pour obtenir les informations des joueurs en Mode Arène et Mode Survivor
-            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, info);
-            		card.show(panel[0], info);
-            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
-            		
             	}else if (info.equals("Information")){
             		for(Integer i = 0; i < playerNumber; i++){
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();

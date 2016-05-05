@@ -36,7 +36,7 @@ public class Keyboard implements KeyListener{
 	}
 
 	public void keyTyped(KeyEvent e) {
-		
+	
 	}
 	
 	private void changeValue(Boolean bool, KeyEvent e){
