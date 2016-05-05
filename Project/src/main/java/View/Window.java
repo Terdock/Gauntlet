@@ -121,9 +121,11 @@ public class Window extends JFrame{
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
             			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
-            		dimensions[1] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[0].getSelectedItem();
-            		dimensions[0] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[1].getSelectedItem();
-            		controller.setDimensions(dimensions);
+            		if (modeDeJeu.equals("Mode Survivor")){
+            			dimensions[1] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[0].getSelectedItem();
+                		dimensions[0] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[1].getSelectedItem();
+                		controller.setDimensions(dimensions);
+            		}
             		((ScorePanel)panel[6]).setPlayerAndHeros(playerNumber, heros);
             		((ScorePanel)panel[6]).addName();
             		((GamePanel)panel[7]).addKeyboard(playerNumber);

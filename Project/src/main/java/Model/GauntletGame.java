@@ -20,41 +20,30 @@ public class GauntletGame extends AbstractModel {
 		this.numberMap = 0;
 	}
 	
-	
 	public void createPlateau(String[][] playerRegister){
-		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,numberMap,playerNumber);
-		this.plateau.Initialisation(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,gameMode, playerRegister);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
+		this.plateau.Initialisation(gameMode, playerRegister);
 		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
 		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
 		this.exit = plateau.getMap().getExit();
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
+		notifyObserver(numberMap);
 		notifyObserver(listTerrain);
 		notifyObserver(listHeros);
 		}
 	
 	public void createPlateau(Creatures[] listHeros){
-		notifyObserver(numberMap);
-		this.plateau = new Plateau(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,numberMap,playerNumber);
-		this.plateau.Initialisation(nombreLigne,nombreColonne,nombreColonneSurvivor,nombreLigneSurvivor,gameMode, listHeros);
+		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
+		this.plateau.Initialisation(gameMode, listHeros);
 		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
 		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
+		notifyObserver(numberMap);
 		notifyObserver(listTerrain);
 		notifyObserver(listHeros);
 	}
-    
-	public Creatures[] getListHeros() {
-		return listHeros;
-	}
-
-
-	public void setListHeros(Heros[] listHeros) {
-		this.listHeros = listHeros;
-	}
-
 
 	public final void checkAttackMonster(){	
 		if(gameMode.equals("Mode Quête")){
@@ -153,7 +142,13 @@ public class GauntletGame extends AbstractModel {
 		this.nombreColonneSurvivor = nombreColonneSurvivor;
 	}
 	
-	
+	public Creatures[] getListHeros() {
+		return listHeros;
+	}
+
+	public void setListHeros(Heros[] listHeros) {
+		this.listHeros = listHeros;
+	}
 	
 	
 

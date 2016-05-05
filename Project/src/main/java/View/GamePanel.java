@@ -109,6 +109,7 @@ public class GamePanel extends Panel implements Observer {
 				if (!(weapon == null)){
 					groundWeapons.add(ground);
 				}
+				System.out.println(ground);
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -283,6 +284,9 @@ public class GamePanel extends Panel implements Observer {
 	}
 	
 	private void showPlayAgain(){
+		if (replay.equals(true)){
+			
+		}
 		boolean[] isLife = new boolean[playerNumber];
 		Integer i = 0;
 		for(WorldEntity heros : listHeros){

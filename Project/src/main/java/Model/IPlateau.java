@@ -14,9 +14,9 @@ public interface IPlateau {
 	
 	public abstract void checkAttackMonster(Integer nombreColonne,Integer nombreLgien);
 
-	public void Initialisation(Integer nombreLigne, Integer nombreColonne,Integer nombreColonneSurvivor, Integer nombreLigneSurvivor, String gameMode, String[][] playerRegister);
+	public void Initialisation(String gameMode, String[][] playerRegister);
 
-	public void Initialisation(Integer nombreLigne,Integer nombreColonne,Integer nombreColonneSurvivor, Integer nombreLigneSurvivor, String mode,Creatures[] listHeros);
+	public void Initialisation(String mode, Creatures[] listHeros);
 
 	public void openDoor(Integer posX, Integer posY);
 
