@@ -50,7 +50,7 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 			if(mode.equals("Mode Survivor")){
-				battallons(1);
+				battallons(0);
 			}
 		}
 		createHero(playerRegister);
