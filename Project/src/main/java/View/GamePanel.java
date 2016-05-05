@@ -59,12 +59,21 @@ public class GamePanel extends Panel implements Observer {
 		showAndActionWeapon(g);
 		actionHeros();
 		showPlayAgain();
+		controller.checkModeEnd();
 		repaint();
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+//		for(Integer i=0; i<2; i++){
+//			showAndActionWeapon(g);
+//			try {
+//				Thread.sleep(80);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 	
 	
@@ -390,6 +399,5 @@ public class GamePanel extends Panel implements Observer {
 	public void update(WorldEntity[] listHeros) {
 		this.listHeros = listHeros;
 	}
-
-
+	
 }

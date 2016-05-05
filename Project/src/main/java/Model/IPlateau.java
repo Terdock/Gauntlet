@@ -12,10 +12,16 @@ public interface IPlateau {
 	
 	public abstract Heros[] getListHeros();
 	
-	public abstract void checkAttackMonster();
+	public abstract void checkAttackMonster(Integer nombreColonne,Integer nombreLgien);
 
 	public void Initialisation(Integer nombreLigne, Integer nombreColonne, String gameMode, String[][] playerRegister);
 
+	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,Creatures[] listHeros);
+
 	public void openDoor(Integer posX, Integer posY);
+
+	public void battallons();
+
+	public Creatures[] getListMonster();
 
 }

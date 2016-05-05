@@ -9,17 +9,19 @@ public abstract class Creatures extends WorldEntity {
     private Integer moveContinue = 0;
     private Integer step = 1;
 	private boolean Visible;
-    private WorldObject object; 
+    private WorldObject object;
+	private boolean imAEnemy; 
  
 
 
 
 
-	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense, WorldObject object) {
+	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense, WorldObject object, boolean imAEnemy) {
 		super(posX,posY);
 		this.hp = hp;
 		this.defense = defense;
 		this.object = object;
+		this.imAEnemy = imAEnemy;
 		
 	}
 	
@@ -139,6 +141,10 @@ public abstract class Creatures extends WorldEntity {
 
 	public Integer getDefense() {
 		return defense;
+	}
+
+	public boolean getImAEnemy() {
+		return imAEnemy;
 	}
 	
 	

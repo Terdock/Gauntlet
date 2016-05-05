@@ -15,6 +15,7 @@ public abstract class AbstractController {
 	public abstract void doActionHeros(String action, Integer state, Integer player);
 	public abstract void doActionMonsters();
 	public abstract void attackHeros(Integer player);
+	public abstract void checkModeEnd();
 
 
 }

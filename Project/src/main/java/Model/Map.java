@@ -36,6 +36,7 @@ public class Map implements IMap {
 	}
 
 	
+	
 	@Override
 	public Integer getNumberOfDoor() {
 		return NumberOfDoor;
@@ -200,6 +201,19 @@ public class Map implements IMap {
 				}
 			}
 		}	
+	}
+	
+	private void createGroupeMonster(Integer posX,Integer posY,Integer n){
+		for( Integer i = -n; i <= n ; i++){
+			for ( Integer j = -n; j<= n;j++) {
+				list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
+			}
+		}
+	}
+		
+	
+	public void createBattallons(Integer numberMap,Integer nombreColonneArene, Integer nombreLigneArene){
+		createGroupeMonster(nombreColonneArene/2,nombreLigneArene/2,numberMap);
 	}
 	
 	public PlateauObject newSol(Integer posX,Integer posY){

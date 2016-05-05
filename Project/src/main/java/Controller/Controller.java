@@ -33,6 +33,9 @@ public class Controller extends AbstractController{
 	public void doActionMonsters(){
 		game.checkAttackMonster();
 	}
+	public void checkModeEnd(){
+		game.checkModeEnd();
+	}
 
 
 }
