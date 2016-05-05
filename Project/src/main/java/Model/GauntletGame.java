@@ -82,22 +82,23 @@ public class GauntletGame extends AbstractModel {
     			replay = true;
     		}
     	}
-    	if(gameMode.equals("Mode Arene")){
+    	if(gameMode.equals("Mode Arène")){
     		if(numberMap.equals(2)){
     			numberMap = 0;
     		}
-    		if(!listHeros[0].isLife()){
-    			System.out.println("Tu es nul "+listHeros[0].getPlayerName());
-    		}
-    		if(!listHeros[1].isLife()){
-    			System.out.println("Tu es le grand gagnant "+listHeros[1].getPlayerName());
+    		if(!listHeros[0].isLife() || !listHeros[1].isLife()){
+    			replay = true;
     		}
     	}
     	if(gameMode.equals("Mode Survivor")){
     		boolean dead = false;
-    		for(Heros Hero : listHeros){
-    			if(!Hero.isLife()){
-    				System.out.println("Tu es nul "+Hero.getPlayerName());
+    		if(playerNumber.equals(1)){
+    			if(!listHeros[0].isLife()){
+    				replay = true;
+    			}
+    		}else{
+    			if(!listHeros[0].isLife() && !listHeros[1].isLife()){
+    				replay = true;
     			}
     		}
 

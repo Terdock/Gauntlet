@@ -59,8 +59,8 @@ public class GamePanel extends Panel implements Observer {
 		loadLand(g);
 		showAndActionWeapon(g);
 		actionHeros();
-		showPlayAgain();
 		controller.checkModeEnd();
+		showPlayAgain();
 		repaint();
 		try {
 			Thread.sleep(100);
@@ -110,7 +110,6 @@ public class GamePanel extends Panel implements Observer {
 				if (!(weapon == null)){
 					groundWeapons.add(ground);
 				}
-				System.out.println(ground);
 				if(ground.getClass().getName().equals("Model.Wall")){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
@@ -287,21 +286,6 @@ public class GamePanel extends Panel implements Observer {
 	private void showPlayAgain(){
 		if (replay){
 			card.show(panel, "Play Again");
-		}
-		boolean[] isLife = new boolean[playerNumber];
-		Integer i = 0;
-		for(WorldEntity heros : listHeros){
-			isLife[i] = ((Heros)heros).isLife();
-			i++;
-		}
-		if(playerNumber.equals(1)){
-			if(!isLife[0]){
-				card.show(panel, "Play Again");
-			}
-		}else{
-			if(!isLife[0] && !isLife[1]){
-				card.show(panel, "Play Again");
-			}
 		}
 	}
 
