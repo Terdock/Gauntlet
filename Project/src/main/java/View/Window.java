@@ -19,6 +19,7 @@ public class Window extends JFrame{
 	private String[][] heros = new String[5][2];
 	private Image[] backgroundImages = new Image[4];
     private Integer playerNumber;
+    private Integer[] dimensions = new Integer[2];
     private String modeDeJeu;
     private AbstractController controller;
 	
@@ -91,8 +92,6 @@ public class Window extends JFrame{
             			playerNumber = 1;
             		}else if(info.equals("Mode Arène")){
             			playerNumber = 2;
-            		}else if(info.equals("1") || info.equals("2")){
-            			playerNumber = Integer.valueOf(info);
             		}
             		controller.setGamePlayerNumber(playerNumber);
             		
@@ -100,7 +99,14 @@ public class Window extends JFrame{
             		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber));
             		card.show(panel[0], String.valueOf(playerNumber));
             		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
+            	}else if (info.equals("1") || info.equals("2")){
+            		playerNumber = Integer.valueOf(info);
+            		controller.setGamePlayerNumber(playerNumber);
             		
+            		//Construction du Panel pour obtenir les informations du joueur
+            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, info, 0);
+            		card.show(panel[0], info);
+            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             	}else if (info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		controller.setGameMode(info);
@@ -115,6 +121,9 @@ public class Window extends JFrame{
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
             			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
+            		dimensions[1] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[0].getSelectedItem();
+            		dimensions[0] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[1].getSelectedItem();
+            		controller.setDimensions(dimensions);
             		((ScorePanel)panel[6]).setPlayerAndHeros(playerNumber, heros);
             		((ScorePanel)panel[6]).addName();
             		((GamePanel)panel[7]).addKeyboard(playerNumber);
