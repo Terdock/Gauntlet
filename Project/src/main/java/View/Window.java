@@ -82,27 +82,22 @@ public class Window extends JFrame{
             public void actionPerformed(ActionEvent e){
             	if(info.equals("ModeDeJeu")){
             		card.show(panel[0], info);
-            	}else if (info.equals("Mode Quête")){
-            		playerNumber = 1;
+            	}else if (info.equals("Mode Quête") || info.equals("Mode Arène")){
             		modeDeJeu = info;
             		controller.setGameMode(info);
+            		if(info.equals("Mode Quête")){
+            			playerNumber = 1;
+            		}else if(info.equals("Mode Arène")){
+            			playerNumber = 2;
+            		}
             		controller.setGamePlayerNumber(playerNumber);
             		
             		
-            		//Construction du Panel pour obtenir les informations du joueur en Mode Quête
-            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, "1");
-            		card.show(panel[0], "1");
+            		//Construction du Panel pour obtenir les informations du joueur
+            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber));
+            		card.show(panel[0], String.valueOf(playerNumber));
             		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
-            	}else if (info.equals("Mode Arène")){
-            		modeDeJeu = info;
-            		playerNumber = 2;
-            		controller.setGameMode(info);
-            		controller.setGamePlayerNumber(playerNumber);
             		
-            		//Construction du Panel pour obtenir les informations du joueur en Mode Arène
-            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, "2");
-            		card.show(panel[0], "2");
-            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             	}else if (info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		controller.setGameMode(info);
