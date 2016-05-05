@@ -23,9 +23,9 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(String[][] playerRegister){
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
-		this.plateau.Initialisation(gameMode, playerRegister);
 		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
 		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
+		this.plateau.Initialisation(gameMode, playerRegister);
 		this.exit = plateau.getMap().getExit();
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();

@@ -35,7 +35,7 @@ public class Plateau implements IPlateau {
 			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
 		}else if(mode.equals("Mode Survivor")){
 			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
-			battallons(1);
+			battallons(0);
 		}
 		createHero(playerRegister);
 		for (Creatures player : listHeros ){
