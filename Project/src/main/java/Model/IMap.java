@@ -14,4 +14,6 @@ public interface IMap {
 	
 	public PlateauObject newSol(Integer posX,Integer posY);
 
+	public void createBattallons(Integer numberMap,Integer nombreColonneArene, Integer nombreLigneArene);
+
 }

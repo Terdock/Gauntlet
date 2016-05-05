@@ -62,8 +62,13 @@ public class GamePanel extends Panel implements Observer {
 //				e.printStackTrace();
 //			}
 //		}
+		
+		if (modeDeJeu.equals("Mode Survivor")){
+			actionMonsters();
+		}
 		actionHeros();
 		showPlayAgain();
+		controller.checkModeEnd();
 		repaint();
 		try {
 			Thread.sleep(100);
@@ -395,6 +400,5 @@ public class GamePanel extends Panel implements Observer {
 	public void update(WorldEntity[] listHeros) {
 		this.listHeros = listHeros;
 	}
-
-
+	
 }

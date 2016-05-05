@@ -41,6 +41,9 @@ public class Plateau implements IPlateau {
 		}
 		else{
 			this.listTerrain = listTerrain2;
+			if(mode.equals("Mode Survivor")){
+				battallons();
+			}
 		}
 		createHero(playerRegister);
 		for (Creatures player : listHeros ){
@@ -49,7 +52,47 @@ public class Plateau implements IPlateau {
 	}
 	
 	
+	public void Initialisation(Integer nombreLigne,Integer nombreColonne, String mode,Creatures[] listHeros){
+		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
+		listTerrain2 = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain2);
+		if (mode.equals("Mode Quête")){
+			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
+			listMonster = map.getListMonster();
+			
+			for (Creatures mob: listMonster){
+				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+			}
+		}
+		else{
+			this.listTerrain = listTerrain2;
+			if(mode.equals("Mode Survivor")){
+				battallons();
+			}
+		}
+		for (Creatures player : listHeros){
+				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
+		}
+	}
+	
 
+	public Creatures[] getListMonster() {
+		return listMonster;
+	}
+
+	public void setListMonster(Creatures[] listMonster) {
+		this.listMonster = listMonster;
+	}
+
+	public void battallons(){
+		map.createBattallons(numberMap,nombreColonneArene, nombreLigneArene);
+		System.out.println(listMonster);
+		listMonster = map.getListMonster();
+		for (Creatures mob: listMonster){
+			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+		}
+		
+	}
+	
 	public Integer getNombreLigne() {
 		return nombreLigne;
 	}
@@ -118,7 +161,7 @@ public class Plateau implements IPlateau {
 		}
 	}
 	
-	public void checkAttackMonster(){
+	public void checkAttackMonster(Integer nombreColonne,Integer nombreLigne){
 		for(Heros heros : listHeros){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
@@ -141,7 +184,7 @@ public class Plateau implements IPlateau {
 	}
 	
 	public void isAttack(Creatures mob, Heros heros, Integer i, Integer j){	
-		if(!(mob == null) && !(mob.equals(heros) && mob.isLife())){
+		if(!(mob == null) && mob.getImAEnemy() && (mob.isLife())){
 			Integer posX = mob.getPosX(), posY = mob.getPosY();
 			String action = ((Monster) mob).doAction(heros.getPosX(),heros.getPosY());
 			if(isMoveValide(posX, posY, action)){

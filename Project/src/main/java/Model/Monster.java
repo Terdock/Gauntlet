@@ -15,7 +15,7 @@ public class Monster extends Creatures {
  
 
 	public Monster(Integer posX,Integer posY,WorldObject Objet,Integer numberMap){
-        super(posX, posY, 10*(numberMap+1), numberMap,Objet);
+        super(posX, posY, 10*(numberMap+1), numberMap,Objet,true);
         iSeeHero = false;
         setLevel(numberMap+1);
     }
