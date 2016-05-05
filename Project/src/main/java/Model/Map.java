@@ -224,7 +224,7 @@ public class Map implements IMap {
 		
 	
 	public void createBattallons(Integer numberOfBattallons,Integer nombreColonneArene, Integer nombreLigneArene){
-		createGroupeMonster(nombreColonneArene/2,nombreLigneArene/2,numberOfBattallons);
+		createGroupeMonster(((Integer)nombreColonneArene/2),((Integer)nombreLigneArene/2),numberOfBattallons);
 	}
 	
 	public PlateauObject newSol(Integer posX,Integer posY){

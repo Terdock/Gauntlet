@@ -107,7 +107,7 @@ public class GauntletGame extends AbstractModel {
     			
     		}
     		if(!dead){
-    			if(numberOfBattallons.equals(10)){
+    			if(numberOfBattallons.equals(5)){
     				numberOfBattallons =0;
     				numberMap += 1;
     				createPlateau(listHeros);
