@@ -93,7 +93,17 @@ public class Window extends JFrame{
             		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, "1");
             		card.show(panel[0], "1");
             		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
-            	}else if (info.equals("Mode Arène")||info.equals("Mode Survivor")){
+            	}else if (info.equals("Mode Arène")){
+            		modeDeJeu = info;
+            		playerNumber = 2;
+            		controller.setGameMode(info);
+            		controller.setGamePlayerNumber(playerNumber);
+            		
+            		//Construction du Panel pour obtenir les informations du joueur en Mode Arène
+            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, "2");
+            		card.show(panel[0], "2");
+            		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
+            	}else if (info.equals("Mode Survivor")){
             		modeDeJeu = info;
             		controller.setGameMode(info);
             		

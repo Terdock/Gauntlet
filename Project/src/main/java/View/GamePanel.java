@@ -225,6 +225,7 @@ public class GamePanel extends Panel implements Observer {
 					ground.setWeapon(null);
 				}
 				showWeapon(ground, weapon, g);
+				boolean creatureDead = false;
 				if(!(creature ==  null)){
 					weapon.getCreature().attack(creature);
 					if(!creature.isLife()){
@@ -235,12 +236,13 @@ public class GamePanel extends Panel implements Observer {
 						ground.setCreature(null);
 					}
 					ground.setWeapon(null);
+					creatureDead = true;
 				}
 				if(!(weapon == null)){
 					if(weapon.getCreature().name().equals("Elf") || 
 							weapon.getCreature().name().equals("Wizzard")){
 						PlateauObject nextGround = dependingDirection(weapon.getDirection(), ground.getPosX(), ground.getPosY());
-						if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
+						if (((ground.getCreature() ==  null) && ((ground.isPassable()))) && !(creatureDead)){
 							nextGround.setWeapon(weapon);
 						}
 						if(!nextGround.isWeaponPassable()){
