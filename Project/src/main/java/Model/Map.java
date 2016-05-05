@@ -70,6 +70,8 @@ public class Map implements IMap {
 	@Override
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		Integer i = 0;
+		exit = new Exit(90,90,true,false);
+		listTerrain[90][90] = exit;
 			for (Integer posY = 0; posY < nombreLigne; posY++){
 				for (Integer posX = 0; posX < nombreColonne; posX++){
 					listTerrain[posX][posY] = new Sol(posX, posY, true, true,  numberMap);
@@ -177,8 +179,6 @@ public class Map implements IMap {
 	public boolean map(PlateauObject[][] listTerrain,Integer numberMap,Integer posX,Integer posY){
 		boolean res = false;
 		if(numberMap == 0){
-			exit = new Exit(90,90,true,false);
-			listTerrain[90][90] = exit;
 			res = posX % 20 == 0 || (posX == 90 && posY == 20) || (posX == 10 && posY == 40) || (posX == 90 && posY == 60) || (posX == 10 && posY == 80) ;
 		}else if(numberMap == 1){
 
