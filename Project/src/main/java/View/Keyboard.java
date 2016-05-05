@@ -60,7 +60,7 @@ public class Keyboard implements KeyListener{
 				keys[1][4] = bool;
 			}
 			break;
-		case 13:
+		case 17:
 			if(playerNumber.equals(2)){
 				keys[0][4] = bool;
 			}
