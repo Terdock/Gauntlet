@@ -15,6 +15,7 @@ public class GauntletGame extends AbstractModel {
 	private boolean GameOver;
 	private Exit exit;
 	private Integer numberOfBattallons = 0;
+	private boolean replay;
 
 	public GauntletGame() {
 		this.numberMap = 0;
@@ -78,7 +79,7 @@ public class GauntletGame extends AbstractModel {
     				createPlateau(listHeros);
     			}
     		}else{
-    			System.out.println("GameOver");
+    			replay = true;
     		}
     	}
     	if(gameMode.equals("Mode Arene")){
@@ -116,6 +117,7 @@ public class GauntletGame extends AbstractModel {
     			plateau.battallons(numberOfBattallons);
     		}
     	}
+    	notifyObserver(replay);
     }
     
 	public void setGameMode(String gameMode) {

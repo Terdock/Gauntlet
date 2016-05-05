@@ -30,6 +30,7 @@ public class GamePanel extends Panel implements Observer {
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
 	private ArrayList<WorldEntity> groundWeapons;
+	private boolean replay;
 	
 	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
@@ -284,8 +285,8 @@ public class GamePanel extends Panel implements Observer {
 	}
 	
 	private void showPlayAgain(){
-		if (replay.equals(true)){
-			
+		if (replay){
+			card.show(panel, "Play Again");
 		}
 		boolean[] isLife = new boolean[playerNumber];
 		Integer i = 0;
@@ -318,6 +319,10 @@ public class GamePanel extends Panel implements Observer {
 
 	public void update(WorldEntity[] listHeros) {
 		this.listHeros = listHeros;
+	}
+	
+	public void update(boolean replay){
+		this.replay = replay;
 	}
 	
 }

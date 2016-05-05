@@ -43,5 +43,10 @@ public abstract class AbstractModel implements Observable {
 		for(Observer obs: listObserver)
 			obs.update(listHeros);
 	}
+	
+	public void notifyObserver(boolean replay) {
+		for(Observer obs: listObserver)
+			obs.update(replay);
+	}
 		
 }

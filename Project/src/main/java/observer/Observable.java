@@ -1,7 +1,5 @@
 package observer;
 
-import java.util.ArrayList;
-
 import Model.WorldEntity;
 
 public interface Observable {
@@ -10,5 +8,6 @@ public interface Observable {
 	 public void removeObserver();
 	 public void notifyObserver(WorldEntity[][] entities);
 	 public void notifyObserver(Integer numberMap);
+	 public void notifyObserver(boolean replay);
 
 }

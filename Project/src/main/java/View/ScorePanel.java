@@ -85,4 +85,8 @@ public class ScorePanel extends Panel implements Observer {
 	public void update(Integer numberMap) {
 		
 	}
+	
+	public void update(boolean replay){
+		
+	}
 }
