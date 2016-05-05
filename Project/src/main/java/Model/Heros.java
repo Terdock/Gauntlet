@@ -7,7 +7,7 @@ public abstract class Heros extends Creatures{
 	private Integer direction = 0;
 	private Integer power = 10;
 	private Integer score = 0;
-	private boolean pasDeGeant = false;
+	private boolean pasDeGeant = true;
 	protected Weapon weapon;
 
 	public Heros(Integer posX, Integer posY) {

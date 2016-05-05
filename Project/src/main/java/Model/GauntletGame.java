@@ -25,7 +25,7 @@ public class GauntletGame extends AbstractModel {
 		notifyObserver(numberMap);
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
 		this.plateau.Initialisation(nombreLigne,nombreColonne,gameMode, playerRegister);
-
+		this.exit = plateau.getMap().getExit();
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
 		notifyObserver(listTerrain);
@@ -53,11 +53,11 @@ public class GauntletGame extends AbstractModel {
 
 
 	public final void checkAttackMonster(){	
-		if(gameMode.equals("Mode Quete"))
+		if(gameMode.equals("Mode Quête")){
 			plateau.checkAttackMonster(nombreColonne,nombreLigne);
-		if(gameMode.equals("Mode Survivor"))
+		}if(gameMode.equals("Mode Survivor")){
 			plateau.checkAttackMonster(nombreColonneArene,nombreLigneArene);
-
+		}
 	}
 	
 
@@ -77,17 +77,16 @@ public class GauntletGame extends AbstractModel {
     }
 	
     public void checkModeEnd(){
-    	if(gameMode.equals("Mode Quete")){
-    		for (Creatures player : listHeros ){
-    			if(player.isLife()){
-    				if(exit.next(player.getPosX(),player.getPosY())){
-    					numberMap+=1;
-    					createPlateau(listHeros);	
-    				}
+    	if(gameMode.equals("Mode Quête")){
+    		Heros player = listHeros[0];
+    		if(player.isLife()){
+    			if(exit.next(player.getPosX(),player.getPosY())){
+    				numberMap+=1;
+    				createPlateau(listHeros);
     			}
-    			else{
-    				System.out.println("GameOver");
-    			}
+    		}
+    		else{
+    			System.out.println("GameOver");
     		}
     	}
     	if(gameMode.equals("Mode Arene")){
@@ -128,20 +127,16 @@ public class GauntletGame extends AbstractModel {
 		this.gameMode = gameMode;
 	}
 
-
 	public Integer getNumberMap() {
 		return numberMap;
 	}
 
-	
 	public void setNumberMap(Integer numberMap) {
 		this.numberMap = numberMap;
 	}
 
-
 	public void setPlayerNumber(Integer playerNumber) {
-		this.playerNumber = playerNumber;
-		
+		this.playerNumber = playerNumber;	
 	}
 
 

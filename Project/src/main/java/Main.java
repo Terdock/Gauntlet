@@ -6,9 +6,7 @@ import View.Window;
 import observer.Observer;
 
 public class Main {
-	
 	public static void main(String[] args) {
-		
 		AbstractModel game = new GauntletGame();
 		AbstractController control = new Controller(game);
 		Window window = new Window(control);

@@ -13,6 +13,7 @@ public class Map implements IMap {
 	private Creatures[] listMonster;
 	private ArrayList<Monster> list_Monster = new ArrayList<Monster>();
 	private IPlateau plateau;
+	private Exit exit;
 	
 	
 
@@ -105,7 +106,7 @@ public class Map implements IMap {
 							listTerrain[posX][posY] = new Door(posX,posY,false,false,i);i++;
 	
 						}else{
-							if(map(numberMap,posX,posY)){
+							if(map(listTerrain,numberMap,posX,posY)){
 								listTerrain[posX][posY] = new Door(posX,posY,false,false,i);
 								createGroupeMonster(posX,posY-10,listTerrain,(numberMap+1)*2,new KeyDoor(plateau,posX,posY,i),i);
 								i++;
@@ -173,9 +174,11 @@ public class Map implements IMap {
 			listTerrain[posX][posY].setForm(0);
 	}
 	
-	public boolean map(Integer numberMap,Integer posX,Integer posY){
+	public boolean map(PlateauObject[][] listTerrain,Integer numberMap,Integer posX,Integer posY){
 		boolean res = false;
 		if(numberMap == 0){
+			exit = new Exit(90,90,true,false);
+			listTerrain[90][90] = exit;
 			res = posX % 20 == 0 || (posX == 90 && posY == 20) || (posX == 10 && posY == 40) || (posX == 90 && posY == 60) || (posX == 10 && posY == 80) ;
 		}else if(numberMap == 1){
 
@@ -190,6 +193,14 @@ public class Map implements IMap {
 	}
 	
 	
+	public Exit getExit() {
+		return exit;
+	}
+
+	public void setExit(Exit exit) {
+		this.exit = exit;
+	}
+
 	private void createGroupeMonster(Integer posX,Integer posY,PlateauObject[][] listTerrain, Integer n, WorldObject wObject,Integer numberOfDoor){
 		ArrayList<Monster> list = new ArrayList<Monster>();
 		for( Integer i = -n; i <= n ; i++){

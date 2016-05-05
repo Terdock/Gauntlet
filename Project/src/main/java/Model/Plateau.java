@@ -6,6 +6,14 @@ public class Plateau implements IPlateau {
 	private final static Integer nombreLigneArene = 20;
 	private final static Integer nombreColonneArene = 24;
 	private Integer numberMap;
+	public IMap getMap() {
+		return map;
+	}
+
+	public void setMap(IMap map) {
+		this.map = map;
+	}
+
 	private IMap map;
 	private PlateauObject[][] listTerrain;
 	private PlateauObject[][] listTerrain2;

@@ -25,5 +25,7 @@ public interface IPlateau {
 	public Creatures[] getListMonster();
 
 	public void setNumberMap(Integer numberMap);
+	
+	public IMap getMap(); 
 
 }
