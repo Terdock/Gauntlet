@@ -216,12 +216,15 @@ public class GamePanel extends Panel implements Observer {
 		if(!(groundWeapons.isEmpty())){
 			for(Integer i = 0; i < groundWeapons.size(); i++){
 				PlateauObject ground = (PlateauObject) groundWeapons.get(i);
+				if (!(ground.isWeaponPassable())){
+					ground.setWeapon(null);
+				}
 				Weapon weapon = ground.getWeapon();
-				showWeapon(ground, weapon, g);
 				Creatures creature = ground.getCreature();
 				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
 					ground.setWeapon(null);
 				}
+				showWeapon(ground, weapon, g);
 				if(!(creature ==  null)){
 					weapon.getCreature().attack(creature);
 					if(!creature.isLife()){
