@@ -1,9 +1,9 @@
 package Model;
 
-public class Exit extends PlateauObject{
+public class Exit extends Sol{
 	
 	public Exit(Integer posX, Integer posY, boolean passable, boolean weaponPassable) {
-		super(posX, posY, passable, weaponPassable);
+		super(posX, posY, passable, weaponPassable, 0);
 	}
 
 	public String name(){
