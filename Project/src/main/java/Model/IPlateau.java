@@ -20,8 +20,10 @@ public interface IPlateau {
 
 	public void openDoor(Integer posX, Integer posY);
 
-	public void battallons();
+	public void battallons(Integer numberOfBattallons);
 
 	public Creatures[] getListMonster();
+
+	public void setNumberMap(Integer numberMap);
 
 }

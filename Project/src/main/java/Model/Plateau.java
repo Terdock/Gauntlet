@@ -42,7 +42,7 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 			if(mode.equals("Mode Survivor")){
-				battallons();
+				battallons(1);
 			}
 		}
 		createHero(playerRegister);
@@ -58,7 +58,6 @@ public class Plateau implements IPlateau {
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
-			
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
@@ -66,7 +65,7 @@ public class Plateau implements IPlateau {
 		else{
 			this.listTerrain = listTerrain2;
 			if(mode.equals("Mode Survivor")){
-				battallons();
+				battallons(1);
 			}
 		}
 		for (Creatures player : listHeros){
@@ -83,9 +82,8 @@ public class Plateau implements IPlateau {
 		this.listMonster = listMonster;
 	}
 
-	public void battallons(){
-		map.createBattallons(numberMap,nombreColonneArene, nombreLigneArene);
-		System.out.println(listMonster);
+	public void battallons(Integer numberOfBattallons){
+		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
 			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
@@ -235,4 +233,5 @@ public class Plateau implements IPlateau {
 		listTerrain[posX][posY] = map.newSol(posX,posY);
 		
 	}
+
 }

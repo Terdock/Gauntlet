@@ -13,7 +13,8 @@ public class GauntletGame extends AbstractModel {
 	private Integer playerNumber; 
 	private Heros[] listHeros;
 	private boolean GameOver;
-	private boolean Exit;
+	private Exit exit;
+	private Integer numberOfBattallons = 0;
 
 	public GauntletGame() {
 		this.numberMap = 0;
@@ -79,9 +80,9 @@ public class GauntletGame extends AbstractModel {
     	if(gameMode.equals("Mode Quete")){
     		for (Creatures player : listHeros ){
     			if(player.isLife()){
-    				if(Exit){
+    				if(exit.next(player.getPosX(),player.getPosY())){
     					numberMap+=1;
-    					 createPlateau(listHeros);	
+    					createPlateau(listHeros);	
     				}
     			}
     			else{
@@ -99,13 +100,11 @@ public class GauntletGame extends AbstractModel {
     	}
     	if(gameMode.equals("Mode Survivor")){
     		boolean dead = false;
-    		if(!listHeros[0].isLife()){
-    			System.out.println("Tu es nul "+listHeros[0].getPlayerName());
+    		for(Heros Hero : listHeros){
+    			if(!Hero.isLife()){
+    				System.out.println("Tu es nul "+Hero.getPlayerName());
+    			}
     		}
-    		if(!listHeros[1].isLife()){
-    			System.out.println("Tu es le grand gagnant "+listHeros[1].getPlayerName());
-    		}
-  
 
     		for(Creatures mob : plateau.getListMonster()){
     			if(mob.isLife()){
@@ -114,8 +113,13 @@ public class GauntletGame extends AbstractModel {
     			
     		}
     		if(!dead){
-    			numberMap+=1;
-    			plateau.battallons();
+    			if(numberOfBattallons.equals(10)){
+    				numberOfBattallons =1;
+    				
+    				plateau.setNumberMap(numberMap);
+    			}
+    			numberOfBattallons +=1;
+    			plateau.battallons(numberOfBattallons);
     		}
     	}
     }
