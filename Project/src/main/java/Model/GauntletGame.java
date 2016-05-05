@@ -81,7 +81,7 @@ public class GauntletGame extends AbstractModel {
     		Heros player = listHeros[0];
     		if(player.isLife()){
     			if(exit.next(player.getPosX(),player.getPosY())){
-    				numberMap+=1;
+    				this.numberMap+=1;
     				createPlateau(listHeros);
     			}
     		}
@@ -90,6 +90,9 @@ public class GauntletGame extends AbstractModel {
     		}
     	}
     	if(gameMode.equals("Mode Arene")){
+    		if(numberMap.equals(2)){
+    			numberMap = 0;
+    		}
     		if(!listHeros[0].isLife()){
     			System.out.println("Tu es nul "+listHeros[0].getPlayerName());
     		}
@@ -113,9 +116,9 @@ public class GauntletGame extends AbstractModel {
     		}
     		if(!dead){
     			if(numberOfBattallons.equals(10)){
-    				numberOfBattallons =1;
-    				
-    				plateau.setNumberMap(numberMap);
+    				numberOfBattallons =0;
+    				numberMap += 1;
+    				createPlateau(listHeros);
     			}
     			numberOfBattallons +=1;
     			plateau.battallons(numberOfBattallons);
