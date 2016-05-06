@@ -114,7 +114,7 @@ public class GamePanel extends Panel implements Observer {
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
 					imageGround = imageClasse.getImageDoor();
-				}else if (ground.getClass().getName().equals("Model.Exit")){
+				}else if (ground.name().equals("Exit")){
 					imageGround = imageClasse.getImageExit();
 				}else{
 					imageGround = imageClasse.getImagesGround()[numberMap];
