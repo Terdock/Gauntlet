@@ -1,8 +1,6 @@
 package Model;
 
-import Model.Potion;
-
-public class SpeedPotion extends Potion {
+public class SpeedPotion extends WorldObject {
 
 
 	public SpeedPotion() {

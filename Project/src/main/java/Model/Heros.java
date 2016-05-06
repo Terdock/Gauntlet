@@ -67,7 +67,7 @@ public abstract class Heros extends Creatures{
 		return "Heros";
 	}
 	
-	public void setHp(Integer newHp, Potion potion){
+	public void setHp(Integer newHp, HealthPotion potion){
 		this.hp = newHp;
 	}
 	

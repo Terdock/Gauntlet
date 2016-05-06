@@ -1,8 +1,6 @@
 package Model;
 
-import Model.Potion;
-
-public class InvisibilityPotion extends Potion {
+public class InvisibilityPotion extends WorldObject {
 
 	public InvisibilityPotion() {
 		super(0, 0);

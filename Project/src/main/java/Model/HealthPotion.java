@@ -1,6 +1,6 @@
 package Model;
 
-public class HealthPotion extends Potion {
+public class HealthPotion extends WorldObject {
 
 	public HealthPotion() {
 		super(3, 3);

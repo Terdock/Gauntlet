@@ -1,8 +1,6 @@
 package Model;
 
-import Model.Potion;
-
-public class GiantStepPotion extends Potion {
+public class GiantStepPotion extends WorldObject{
 	
 	public GiantStepPotion() {
 		super(0,0);
