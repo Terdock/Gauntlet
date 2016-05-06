@@ -13,10 +13,6 @@ public class Elf extends Heros {
 		listTerrain[posHerosDirection[direction][0]][posHerosDirection[direction][1]].setWeapon(weapon);
 	}
 
-	public void specialAttack() {
-		
-	}
-
 	public String name() {
 		return "Elf";
 	}

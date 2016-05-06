@@ -6,15 +6,6 @@ public class Dwarf extends Heros {
 		super(posX,posY);
 	}
 
-	public void specialAttack() {
-		
-	}
-
-	public String name() {
-		return "Dwarf";
-	}
-
-
 	public void attack(PlateauObject[][] listTerrain, Integer direction) {
 		Integer[][] posHerosDirection = {{this.getPosX(), this.getPosY()-1, 0},{this.getPosX()+1, this.getPosY(), 1},
 				 						 {this.getPosX(), this.getPosY()+1, 2},{this.getPosX()-1, this.getPosY(), 3}};
@@ -24,5 +15,8 @@ public class Dwarf extends Heros {
 		}
 	}
 
+	public String name() {
+		return "Dwarf";
+	}
 	
 }

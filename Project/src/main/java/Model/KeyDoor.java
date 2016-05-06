@@ -9,9 +9,9 @@ public class KeyDoor extends WorldObject {
 	public KeyDoor(IPlateau plateau,Integer posX, Integer posY, Integer numberOfDoor) {
 		super(posX, posY);
 		this.plateau = plateau;
-		this.numberOfDoor = numberOfDoor;
-		
+		this.numberOfDoor = numberOfDoor;	
 	}
+	
 	public String name(){
 		return "KeyDoor";
 	}

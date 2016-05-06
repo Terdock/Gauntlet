@@ -12,10 +12,6 @@ public class Wizzard extends Heros {
 		 			 					 {this.getPosX(), this.getPosY()+1},{this.getPosX()-1, this.getPosY()}};
 		listTerrain[posHerosDirection[direction][0]][posHerosDirection[direction][1]].setWeapon(weapon);
 	}
-	
-	public void specialAttack() {
-		
-	}
 
 	public String name() {
 		return "Wizzard";

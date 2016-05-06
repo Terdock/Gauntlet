@@ -9,11 +9,9 @@ public abstract class WorldEntity {
 	public WorldEntity(Integer posX, Integer posY) {
 		this.posX = posX;
 		this.posY = posY;
-		setForm(7);
 	}
 	
 	public abstract String name();
-
 	public abstract String nameType();
 
 	public Integer getPosX() {

@@ -11,7 +11,7 @@ public class Door extends PlateauObject {
 	}
 
 	public String name(){
-		return this.getClass().getName();
+		return "Door";
 	}
 
 	public boolean isOpen(){

@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class PlateauObject extends WorldEntity {
+public class PlateauObject extends WorldEntity {
 	
 	private boolean passable;
 	private boolean weaponPassable;
@@ -8,23 +8,29 @@ public abstract class PlateauObject extends WorldEntity {
 	private WorldObject object;
 	private Creatures dead;
 	private Weapon weapon;
+	private String type;
+	private Integer numberMap;
 
 	public PlateauObject(Integer posX, Integer posY, boolean passable, boolean weaponPassable) {
 		super(posX, posY);
 		this.weaponPassable = weaponPassable;
 		this.passable = passable;
 	}
-
-	public boolean isPassable() {
-		return passable;
-	}
-
-	public void setPassable(boolean passable) {
+	
+	public PlateauObject(Integer posX, Integer posY, boolean passable, boolean weaponPassable, String type, Integer numberMap){
+		super(posX, posY);
+		this.weaponPassable = weaponPassable;
 		this.passable = passable;
+		this.type = type;
+		this.numberMap = numberMap;
 	}
 	
 	public String nameType(){
 		return "Terrain";
+	}
+	
+	public String name(){
+		return type + Integer.toString(numberMap);
 	}
 
 	public Creatures getCreature() {
@@ -46,10 +52,6 @@ public abstract class PlateauObject extends WorldEntity {
 		return dead;
 	}
 
-	public void setDead(Creatures dead) {
-		this.dead = dead;
-	}
-
 	public WorldObject getObject() {
 		return object;
 	}
@@ -66,17 +68,18 @@ public abstract class PlateauObject extends WorldEntity {
 		this.weapon = weapon;
 
 	}
+	
+	public boolean isPassable() {
+		return passable;
+	}
+
+	public void setPassable(boolean passable) {
+		this.passable = passable;
+	}
 
 	public boolean isWeaponPassable() {
 		return weaponPassable;
 	}
-
-	public void setWeaponPassable(boolean weaponPassable) {
-		this.weaponPassable = weaponPassable;
-	}
-	
-	
-	
 	
 
 	

@@ -14,10 +14,6 @@ public class Warrior extends Heros{
 			listTerrain[elem[0]][elem[1]].setWeapon(weapon);
 		}
 	}
-	
-	public void specialAttack() {
-		
-	}
 
 	public String name() {
 		return "Warrior";

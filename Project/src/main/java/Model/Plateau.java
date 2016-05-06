@@ -17,6 +17,7 @@ public class Plateau implements IPlateau {
 		this.numberMap = numberMap;
 	}	
 	
+	//Chargement des emplacement des objets sur le plateau en fonction du mode de jeu
 	public void Initialisation(String mode, Creatures[] listHeros){
 		this.map = new Map(this, numberLine, numberColumn, numberMap);
 		if (mode.equals("Mode Quête")){
@@ -38,6 +39,8 @@ public class Plateau implements IPlateau {
 		}
 	}
 
+	
+	//
 	public void battallons(Integer numberOfBattallons){
 		map.createBattallons(numberOfBattallons,numberColumnMode, numberLineMode);
 		listMonster = map.getListMonster();
@@ -58,6 +61,8 @@ public class Plateau implements IPlateau {
 		
 	}
 
+	
+	//Vérification : Est-ce que la créature peut se mettre sur la position suivante ?
 	public boolean isMoveValide(Integer posX, Integer posY, String action) {
 		boolean passable = false;
 		if (action.equals("Action Up")){
@@ -73,28 +78,30 @@ public class Plateau implements IPlateau {
 	}
 
 	
-	
+	//Construction de l'intelligence artificielle
 	public void checkAttackMonster(Integer nombreColonne,Integer nombreLigne){
 		for(Heros heros : (Heros[])listHeros){
 			if(heros.isLife()){
-			for (Integer j =  0; j < 10; j++){
-				for(Integer i = 0; i < 10;i++){
-					Integer a,b,c,d;
-					a = heros.getPosX()-i; b = heros.getPosY()-j; c = heros.getPosX()+i; d = heros.getPosY()+j;
-					if(a > 0 && b > 0 && a < nombreColonne &&  b < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[a][b]).getCreature(),heros,a,b);
-					if(c > 0 && b > 0 && c < nombreColonne &&  b < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[c][b]).getCreature(),heros,c,b);
-					if(a > 0 && d > 0 && a < nombreColonne &&  d < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[a][d]).getCreature(),heros,a,d);
-					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne)
-						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),heros,c,d);
+			for (Integer distanceX =  0; distanceX < 10; distanceX++){
+				for(Integer distanceY = 0; distanceY < 10; distanceY++){
+					Integer up,left,down,right;
+					up = heros.getPosX()-distanceX; left = heros.getPosY()-distanceY; 
+					down = heros.getPosX()+distanceX; right = heros.getPosY()+distanceY;
+					if(up > 0 && left > 0 && up < nombreColonne &&  left < nombreLigne)
+						actionMonster(((PlateauObject) listTerrain[up][left]).getCreature(),heros,up,left);
+					if(down > 0 && left > 0 && down < nombreColonne &&  left < nombreLigne)
+						actionMonster(((PlateauObject) listTerrain[down][left]).getCreature(),heros,down,left);
+					if(up > 0 && right > 0 && up < nombreColonne &&  right < nombreLigne)
+						actionMonster(((PlateauObject) listTerrain[up][right]).getCreature(),heros,up,right);
+					if(down > 0 && right > 0 && down < nombreColonne &&  right < nombreLigne)
+						actionMonster(((PlateauObject) listTerrain[down][right]).getCreature(),heros,down,right);
 				}
 			}}
 		}	
 	}
 	
-	public void isAttack(Creatures mob, Heros heros, Integer i, Integer j){	
+	//Mouvement ou attaque des monsters en fonction du héros le plus proche
+	public void actionMonster(Creatures mob, Heros heros, Integer i, Integer j){	
 		if(((Heros) heros).isVisibility() && !(mob == null) && mob.getImAEnemy() && (mob.isLife())){
 			Integer posX = mob.getPosX(), posY = mob.getPosY();
 			String action = ((Monster) mob).doAction(heros.getPosX(),heros.getPosY());
@@ -113,6 +120,7 @@ public class Plateau implements IPlateau {
 		}
 	}
 	
+	//Modification de la direction des monsters par rapport au héros le plus proche
 	private void directionMonster(Creatures mob, Heros heros){
 		Integer differenceX = mob.getPosX()-heros.getPosX();
 		if(differenceX.equals(-1)){
@@ -132,14 +140,6 @@ public class Plateau implements IPlateau {
 		return listTerrain;
 	}
 
-	public void setListTerrain(WorldEntity[][] listTerrain) {
-		
-	}
-	
-	public void setListTerrain(PlateauObject[][] listTerrain) {
-		this.listTerrain = listTerrain;
-	}
-
 	public void openDoor(Integer posX,Integer posY) {
 		listTerrain[posX][posY] = map.newSol(posX,posY);	
 	}
@@ -147,25 +147,9 @@ public class Plateau implements IPlateau {
 	public IMap getMap() {
 		return map;
 	}
-
-	public void setMap(IMap map) {
-		this.map = map;
-	}
-
-	public Integer getNumberMap() {
-		return numberMap;
-	}
-
-	public void setNumberMap(Integer numberMap) {
-		this.numberMap = numberMap;
-	}
 	
 	public Creatures[] getListMonster() {
 		return listMonster;
-	}
-
-	public void setListMonster(Creatures[] listMonster) {
-		this.listMonster = listMonster;
 	}
 
 	public void setNumberLineMode(Integer numberLineMode) {
@@ -179,9 +163,5 @@ public class Plateau implements IPlateau {
 	public void setListHeros(Creatures[] listHeros) {
 		this.listHeros = listHeros;
 	}
-	
-	
-	
-	
 
 }

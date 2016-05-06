@@ -1,11 +1,9 @@
 package Model;
 
-import Model.Potion;
-
 public class HealthPotion extends Potion {
 
 	public HealthPotion() {
-		super(0, 0);
+		super(3, 3);
 	}
 
 	public String name() {

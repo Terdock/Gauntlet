@@ -12,7 +12,7 @@ public abstract class Heros extends Creatures{
 	private boolean visibility = true;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,10,5,null,false);
+		super(posX,posY,1000,5,null,false);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
@@ -49,7 +49,6 @@ public abstract class Heros extends Creatures{
 	}
 	
 	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
-	public abstract void specialAttack();
 
 	public void attack(Creatures creature){
 		creature.receiveAttack(power, creature.getDefense());

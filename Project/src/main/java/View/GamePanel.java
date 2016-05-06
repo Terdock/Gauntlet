@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Controller.AbstractController;
 import Model.Creatures;
+import Model.Heros;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.Weapon;
@@ -92,16 +93,16 @@ public class GamePanel extends Panel implements Observer {
 		groundWeapons = new ArrayList<WorldEntity>();
 		for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
 			for(Integer numberLine = 0; numberLine < listTerrain[numberColumn].length; numberLine++){
-				WorldEntity ground = listTerrain[numberColumn][numberLine];
+				PlateauObject ground = (PlateauObject)listTerrain[numberColumn][numberLine];
 				Image imageGround;
-				Creatures creature = ((PlateauObject) ground).getCreature();
-				Creatures deadCreature = ((PlateauObject) ground).getDead();
-				WorldObject object = ((PlateauObject) ground).getObject();
-				Weapon weapon = ((PlateauObject) ground).getWeapon();
+				Creatures creature = ground.getCreature();
+				Creatures deadCreature = ground.getDead();
+				WorldObject object = ground.getObject();
+				Weapon weapon = ground.getWeapon();
 				if (!(weapon == null)){
 					groundWeapons.add(ground);
 				}
-				if(ground.getClass().getName().equals("Model.Wall")){
+				if(ground.name().equals("Wall"+String.valueOf(numberMap))){
 					imageGround = imageClasse.getImagesWall()[numberMap][ground.getForm()];
 				}else if (ground.getClass().getName().equals("Model.Door")){
 					imageGround = imageClasse.getImageDoor();
@@ -238,6 +239,7 @@ public class GamePanel extends Panel implements Observer {
 					weapon.getCreature().attack(creature);
 					if(!creature.isLife()){
 						if(!(creature.getObject() == null)){
+							System.out.println(creature.getObject());
 							ground.setObject(creature.getObject());
 							ground.getCreature().setObject(null);
 						}
@@ -246,8 +248,9 @@ public class GamePanel extends Panel implements Observer {
 					ground.setWeapon(null);
 					creatureDead = true;
 				}
-				if(!(object == null) && numberMap.equals(3)){
+				if(!(object == null) && numberMap >= 3){
 					ground.setObject(null);
+					((Heros)weapon.getCreature()).setScore(((Heros)weapon.getCreature()).getScore()-100);
 				}
 				if(!(weapon == null)){
 					if(weapon.getCreature().name().equals("Elf") || 

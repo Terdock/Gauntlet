@@ -1,14 +1,6 @@
 package Model;
 
 public abstract class Creatures extends WorldEntity {
-	public void setDefense(Integer defense) {
-		this.defense = defense;
-	}
-
-	public void setImAEnemy(boolean imAEnemy) {
-		this.imAEnemy = imAEnemy;
-	}
-
 	protected boolean life = true;
 	protected Integer hp;
 	private Integer defense;
@@ -65,7 +57,6 @@ public abstract class Creatures extends WorldEntity {
 	}
 	
 	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
-	public abstract void specialAttack();
 	public abstract void attack(Creatures creature);
 	
 	public Integer getMoveContinue() {
@@ -91,6 +82,7 @@ public abstract class Creatures extends WorldEntity {
 	public void setLife(boolean life) {
 		this.life = life;
 	}
+	
 	public Integer getHp() {
 		return hp;
 	}
@@ -106,6 +98,7 @@ public abstract class Creatures extends WorldEntity {
 	public void setHp(boolean guerrir,Integer hp) {
 		this.hp = hp;
 	}
+	
 	public Integer getLevel() {
 		return level;
 	}
@@ -144,6 +137,10 @@ public abstract class Creatures extends WorldEntity {
 
 	public boolean getImAEnemy() {
 		return imAEnemy;
+	}
+	
+	public void setDefense(Integer defense) {
+		this.defense = defense;
 	}
 	
 	
