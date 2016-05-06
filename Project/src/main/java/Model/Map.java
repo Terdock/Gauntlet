@@ -70,8 +70,6 @@ public class Map implements IMap {
 	@Override
 	public PlateauObject[][] createListTerrain(Integer nombreLigne, Integer nombreColonne,PlateauObject[][] listTerrain){
 		Integer i = 0;
-		exit = new Exit(90,90,true,false);
-		listTerrain[90][90] = exit;
 			for (Integer posY = 0; posY < nombreLigne; posY++){
 				for (Integer posX = 0; posX < nombreColonne; posX++){
 					listTerrain[posX][posY] = new Sol(posX, posY, true, true,  numberMap);
@@ -120,6 +118,8 @@ public class Map implements IMap {
 					}	
 				}
 			}	
+			exit = new Exit(90,90,true,false);
+			listTerrain[90][90] = exit;
 		NumberOfDoor = i;
 		return listTerrain;
 	}

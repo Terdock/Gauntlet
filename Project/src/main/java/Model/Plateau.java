@@ -43,28 +43,27 @@ public class Plateau implements IPlateau {
 		}
 		
 		for (Creatures player : listHeros ){
-			System.out.println(player.getPosX()+" "+player.getPosY());
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
 	}
 	
 	
 	public void Initialisation(String mode, Creatures[] listHeros){
-		this.map = new Map(this,nombreLigne, nombreColonne,numberMap);
+		this.map = new Map(this, nombreLigne, nombreColonne, numberMap);
 		if (mode.equals("Mode Quête")){
+			this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
 		}else if(mode.equals("Mode Arène")){
+			this.listTerrain = new PlateauObject[nombreColonneArene][nombreLigneArene];
 			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
 		}else if(mode.equals("Mode Survivor")){
+			this.listTerrain = new PlateauObject[nombreColonneSurvivor][nombreLigneSurvivor];
 			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
-			battallons(1);
-		}
-		for (Creatures player : listHeros){
-				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
+			battallons(0);
 		}
 	}
 
@@ -72,7 +71,6 @@ public class Plateau implements IPlateau {
 		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
-			System.out.println(	mob.getPosX()+" "+mob.getPosX());
 			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 		}
 		
