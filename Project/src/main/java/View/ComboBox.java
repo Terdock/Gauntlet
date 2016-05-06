@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 
 public class ComboBox extends JComboBox{
 	private Font font = new Font("Tempus Sans ITC",Font.BOLD,16);
-	private Integer[] listDimension = {10, 12, 14, 16, 18, 20, 22, 24};
+	private Integer[] listDimension = {16, 18, 20, 22, 24};
 	
 	public ComboBox(Integer i){
 		this.setBounds(250, 230 + (i-1)*100, 200, 30);
@@ -29,7 +29,7 @@ public class ComboBox extends JComboBox{
 	
 	public ComboBox(Integer i, Integer[] bounds){
 		this.setBounds(bounds[0], bounds[1], 60, 30);
-		for(Integer a = 0; a<8; a++){
+		for(Integer a = 0; a<5; a++){
 			this.addItem(listDimension[a]);
 		}
 		this.setOpaque(false);
