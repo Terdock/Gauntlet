@@ -1,6 +1,14 @@
 package Model;
 
 public abstract class Creatures extends WorldEntity {
+	public void setDefense(Integer defense) {
+		this.defense = defense;
+	}
+
+	public void setImAEnemy(boolean imAEnemy) {
+		this.imAEnemy = imAEnemy;
+	}
+
 	protected boolean life = true;
 	protected Integer hp;
 	private Integer defense;
@@ -94,7 +102,10 @@ public abstract class Creatures extends WorldEntity {
 			setLife(false);
 		}
 	}
-
+	
+	public void setHp(boolean guerrir,Integer hp) {
+		this.hp = hp;
+	}
 	public Integer getLevel() {
 		return level;
 	}

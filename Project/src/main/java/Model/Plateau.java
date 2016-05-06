@@ -75,8 +75,11 @@ public class Plateau implements IPlateau {
 		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
-			if (listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null){
+			if (listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null && listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.Sol") ){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+			}
+			else{
+				mob.setLife(false);
 			}
 		}
 		
@@ -118,6 +121,7 @@ public class Plateau implements IPlateau {
 	
 	public void checkAttackMonster(Integer nombreColonne,Integer nombreLigne){
 		for(Heros heros : listHeros){
+			if(heros.isLife()){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
 					Integer a,b,c,d;
@@ -131,10 +135,7 @@ public class Plateau implements IPlateau {
 					if(c > 0 && d > 0 && c < nombreColonne &&  d < nombreLigne)
 						isAttack(((PlateauObject) listTerrain[c][d]).getCreature(),heros,c,d);
 				}
-			}
-			if ((!heros.isLife()) && listTerrain[heros.getPosX()][heros.getPosY()].getCreature().nameType().equals("Heros")){
-				listTerrain[heros.getPosX()][heros.getPosY()].setCreature(null);
-			}
+			}}
 		}	
 	}
 	

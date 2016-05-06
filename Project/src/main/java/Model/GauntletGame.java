@@ -76,7 +76,13 @@ public class GauntletGame extends AbstractModel {
     		if(player.isLife()){
     			if(exit.next(player.getPosX(),player.getPosY())){
     				this.numberMap+=1;
-    				listHeros[0].setPosX(3);listHeros[0].setPosY(3);
+    				
+    				for(Creatures heros : listHeros){
+    					heros.setHp(true,1000+numberMap*1000);
+        				heros.setPosX(3);heros.setPosY(3);
+    					heros.setDefense(heros.getDefense()+5);
+    					((Heros) heros).setPower(((Heros) heros).getPower()+10);
+    				}
     				createPlateau(listHeros);
     			}
     		}else{
@@ -113,6 +119,11 @@ public class GauntletGame extends AbstractModel {
     			if(numberOfBattallons.equals(5)){
     				numberOfBattallons =0;
     				numberMap += 1;
+    				for(Creatures heros : listHeros){
+    					heros.setLife(true);
+    					heros.setDefense(heros.getDefense()+5);
+    					((Heros) heros).setPower(((Heros) heros).getPower()+10);
+    				}
     				createPlateau(listHeros);
     			}
     			numberOfBattallons +=1;

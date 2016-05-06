@@ -143,11 +143,14 @@ public class GamePanel extends Panel implements Observer {
 		Image imageMonster = null;
 		if(creature.isLife()){
 			if(creature.name().equals("Monster")){
-				imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
 				if (numberMap.equals(4)){
-					imageMonster = imageClasse.getImagesMonsters()[numberMap-4][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+					imageMonster = imageClasse.getImagesMonsters()[numberMap-3][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
 					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
+				}else if (numberMap.equals(3)){
+						imageMonster = imageClasse.getImagesMonsters()[numberMap-3][((Monster) creature).getDirection()][((Monster) creature).getMoveContinue()];
+						g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, (size+10)/divided, (size+10)/divided, null);
 				}else{
+					imageMonster = imageClasse.getImagesMonsters()[numberMap][((Creatures) creature).getDirection()][((Creatures) creature).getMoveContinue()];
 					g.drawImage(imageMonster, creature.getPosX()*30/divided, creature.getPosY()*30/divided, size/divided, size/divided, null);
 				}
 			}
