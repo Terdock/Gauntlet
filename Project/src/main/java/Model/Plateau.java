@@ -50,6 +50,7 @@ public class Plateau implements IPlateau {
 	
 	public void Initialisation(String mode, Creatures[] listHeros){
 		this.map = new Map(this, nombreLigne, nombreColonne, numberMap);
+		this.listHeros = (Heros[]) listHeros;
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);

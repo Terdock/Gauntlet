@@ -36,9 +36,9 @@ public class GauntletGame extends AbstractModel {
 	
 	public void createPlateau(Creatures[] listHeros){
 		this.plateau = new Plateau(nombreLigne,nombreColonne,numberMap,playerNumber);
-		this.plateau.Initialisation(gameMode, listHeros);
 		this.plateau.setNombreColonneSurvivor(nombreColonneSurvivor);
 		this.plateau.setNombreLigneSurvivor(nombreLigneSurvivor);
+		this.plateau.Initialisation(gameMode, listHeros);
 		this.listTerrain = plateau.getListTerrain();
 		this.listHeros = plateau.getListHeros();
 		notifyObserver(numberMap);
@@ -76,6 +76,7 @@ public class GauntletGame extends AbstractModel {
     		if(player.isLife()){
     			if(exit.next(player.getPosX(),player.getPosY())){
     				this.numberMap+=1;
+    				listHeros[0].setPosX(3);listHeros[0].setPosY(3);
     				createPlateau(listHeros);
     			}
     		}else{
