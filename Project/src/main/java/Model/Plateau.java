@@ -75,8 +75,15 @@ public class Plateau implements IPlateau {
 		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
-			if (listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null && listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.Sol") ){
-				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+			if (mob.getPosX() > 0 && mob.getPosY() > 0 && mob.getPosX()< nombreColonneArene-1 && mob.getPosY() < nombreLigneArene-1){
+				if(listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.Sol") 
+						&& listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null ){
+					listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
+				}
+				else{
+					mob.setLife(false);
+					
+				}
 			}
 			else{
 				mob.setLife(false);

@@ -13,7 +13,7 @@ public abstract class Heros extends Creatures{
 	private boolean visibility = true;
 
 	public Heros(Integer posX, Integer posY) {
-		super(posX,posY,1000,5,null,false);
+		super(3,3,1000,5,null,false);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
