@@ -27,18 +27,21 @@ public class Plateau implements IPlateau {
 		if (mode.equals("Mode Quête")){
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
-			
+			createHero(playerRegister,nombreLigne,nombreColonne);
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
 		}else if(mode.equals("Mode Arène")){
 			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
+			createHero(playerRegister,nombreLigneArene,nombreColonneArene);
 		}else if(mode.equals("Mode Survivor")){
 			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
+			createHero(playerRegister,nombreLigneSurvivor,nombreColonneSurvivor);
 			battallons(0);
 		}
-		createHero(playerRegister);
+		
 		for (Creatures player : listHeros ){
+			System.out.println(player.getPosX()+" "+player.getPosY());
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
 	}
@@ -67,6 +70,7 @@ public class Plateau implements IPlateau {
 		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
+			System.out.println(	mob.getPosX()+" "+mob.getPosX());
 			listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 		}
 		
@@ -87,20 +91,20 @@ public class Plateau implements IPlateau {
 	}
 
 	
-	public void createHero(String[][] playerRegister){
+	public void createHero(String[][] playerRegister,Integer nombreLigne,Integer nombreColonne){
 		this.listHeros = new Heros[playerNumber];
 		for (Integer i = 0; i < playerNumber; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
-				listHeros[i] = new Wizzard(3+i*(nombreColonneArene-8),4+i*(nombreLigneArene-8));
+				listHeros[i] = new Wizzard(3+i*(nombreColonne-8),4+i*(nombreLigne-8));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Guerrier"){
-				listHeros[i] = new Warrior(3+i*(nombreColonneArene-7),3+i*(nombreLigneArene-7));
+				listHeros[i] = new Warrior(3+i*(nombreColonne-7),3+i*(nombreLigne-7));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if( playerRegister[i][1] == "Nain"){
-				listHeros[i] = new Dwarf(4+i*(nombreColonneArene-8),3+i*(nombreLigneArene-7));
+				listHeros[i] = new Dwarf(4+i*(nombreColonne-8),3+i*(nombreLigne-7));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}else if(playerRegister[i][1] == "Elfe"){
-				listHeros[i] = new Elf(4+i*(nombreColonneArene-8),4+i*(nombreLigneArene-8));
+				listHeros[i] = new Elf(4+i*(nombreColonne-8),4+i*(nombreLigne-8));
 				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
 			}
 		}
