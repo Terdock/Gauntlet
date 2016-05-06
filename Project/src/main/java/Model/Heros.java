@@ -3,9 +3,8 @@ package Model;
 public abstract class Heros extends Creatures{
 	
 	private String playerName;
-	private Integer force = 15;
 	private Integer direction = 0;
-	private Integer power = 10;
+	private Integer power = 150;
 	private Integer score = 0;
 	private Integer pas = 0;
 	private boolean pasDeGeant = false;
@@ -13,7 +12,7 @@ public abstract class Heros extends Creatures{
 	private boolean visibility = true;
 
 	public Heros(Integer posX, Integer posY) {
-		super(3,3,1000,5,null,false);
+		super(posX,posY,10,5,null,false);
 	}
 	
 	public void doAction(String action, IPlateau plateau, WorldEntity[][] listTerrain){
@@ -53,8 +52,8 @@ public abstract class Heros extends Creatures{
 	public abstract void specialAttack();
 
 	public void attack(Creatures creature){
-		creature.receiveAttack(force*power, creature.getDefense());
-		setScore(getScore() + force*power - creature.getDefense());
+		creature.receiveAttack(power, creature.getDefense());
+		setScore(getScore() + power - creature.getDefense());
 	}
 	
 	public String getPlayerName() {

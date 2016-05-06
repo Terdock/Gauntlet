@@ -1,88 +1,54 @@
 package Model;
 
 public class Plateau implements IPlateau {
-	private Integer nombreLigne;
-	private Integer nombreColonne;
-	private Integer nombreLigneArene = 20;
-	private Integer nombreColonneArene = 24;
-	private Integer nombreLigneSurvivor;
-	private Integer nombreColonneSurvivor;
+	private Integer numberLine;
+	private Integer numberColumn;
+	private Integer numberLineMode;
+	private Integer numberColumnMode;
 	private Integer numberMap;
 	private IMap map;
 	private PlateauObject[][] listTerrain;
-	private Heros[] listHeros;
+	private Creatures[] listHeros;
 	private Creatures[] listMonster;
-	private Integer playerNumber;
 
-	public Plateau(Integer nombreLigne, Integer nombreColonne, Integer numberMap, Integer playerNumber) {
-		this.nombreLigne = nombreLigne;
-		this.nombreColonne = nombreColonne;
+	public Plateau(Integer numberLine, Integer numberColumn, Integer numberMap) {
+		this.numberLine = numberLine;
+		this.numberColumn = numberColumn;
 		this.numberMap = numberMap;
-		this.playerNumber = playerNumber;
 	}	
-
-	public void Initialisation(String mode, String[][] playerRegister){
-		this.map = new Map(this, nombreLigne, nombreColonne, numberMap);
-		if (mode.equals("Mode Quête")){
-			this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
-			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
-			listMonster = map.getListMonster();
-			createHero(playerRegister,nombreLigne,nombreColonne);
-			for (Creatures mob: listMonster){
-				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
-			}
-		}else if(mode.equals("Mode Arène")){
-			this.listTerrain = new PlateauObject[nombreColonneArene][nombreLigneArene];
-			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
-			createHero(playerRegister,nombreLigneArene,nombreColonneArene);
-		}else if(mode.equals("Mode Survivor")){
-			this.listTerrain = new PlateauObject[nombreColonneSurvivor][nombreLigneSurvivor];
-			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
-			createHero(playerRegister,nombreLigneSurvivor,nombreColonneSurvivor);
-			battallons(0);
-		}
-		
-		for (Creatures player : listHeros ){              
-				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
-		}
-	}
-	
 	
 	public void Initialisation(String mode, Creatures[] listHeros){
-		this.map = new Map(this, nombreLigne, nombreColonne, numberMap);
-		this.listHeros = (Heros[]) listHeros;
+		this.map = new Map(this, numberLine, numberColumn, numberMap);
 		if (mode.equals("Mode Quête")){
-			this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
-			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
+			this.listTerrain = new PlateauObject[numberColumn][numberLine];
+			this.listTerrain = map.createListTerrain(numberLine,numberColumn,listTerrain);
 			listMonster = map.getListMonster();
 			for (Creatures mob: listMonster){
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
-		}else if(mode.equals("Mode Arène")){
-			this.listTerrain = new PlateauObject[nombreColonneArene][nombreLigneArene];
-			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
-		}else if(mode.equals("Mode Survivor")){
-			this.listTerrain = new PlateauObject[nombreColonneSurvivor][nombreLigneSurvivor];
-			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
-			battallons(0);
+		}else if(mode.equals("Mode Arène") || (mode.equals("Mode Survivor"))){
+			this.listTerrain = new PlateauObject[numberColumnMode][numberLineMode];
+			this.listTerrain = map.createListTerrainArene(numberLineMode,numberColumnMode,listTerrain);
+			if(mode.equals("Mode Survivor")){
+				battallons(0);
+			}
 		}
-		for (Creatures player : listHeros ){
+		for (Creatures player : listHeros){
 			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
 	}
 
 	public void battallons(Integer numberOfBattallons){
-		map.createBattallons(numberOfBattallons,nombreColonneArene, nombreLigneArene);
+		map.createBattallons(numberOfBattallons,numberColumnMode, numberLineMode);
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
-			if (mob.getPosX() > 0 && mob.getPosY() > 0 && mob.getPosX()< nombreColonneArene-1 && mob.getPosY() < nombreLigneArene-1){
+			if (mob.getPosX() > 0 && mob.getPosY() > 0 && mob.getPosX()< numberColumnMode-1 && mob.getPosY() < numberLineMode-1){
 				if(listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.Sol") 
 						&& listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null ){
 					listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 				}
 				else{
-					mob.setLife(false);
-					
+					mob.setLife(false);	
 				}
 			}
 			else{
@@ -107,27 +73,9 @@ public class Plateau implements IPlateau {
 	}
 
 	
-	public void createHero(String[][] playerRegister,Integer nombreLigne,Integer nombreColonne){
-		this.listHeros = new Heros[playerNumber];
-		for (Integer i = 0; i < playerNumber; i++ ){
-			if(playerRegister[i][1] == "Sorcier"){
-				listHeros[i] = new Wizzard(3+i*(nombreColonne-8),4+i*(nombreLigne-8));
-				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
-			}else if(playerRegister[i][1] == "Guerrier"){
-				listHeros[i] = new Warrior(3+i*(nombreColonne-7),3+i*(nombreLigne-7));
-				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
-			}else if( playerRegister[i][1] == "Nain"){
-				listHeros[i] = new Dwarf(4+i*(nombreColonne-8),3+i*(nombreLigne-7));
-				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
-			}else if(playerRegister[i][1] == "Elfe"){
-				listHeros[i] = new Elf(4+i*(nombreColonne-8),4+i*(nombreLigne-8));
-				((Heros) listHeros[i]).setPlayerName(playerRegister[i][0]);
-			}
-		}
-	}
 	
 	public void checkAttackMonster(Integer nombreColonne,Integer nombreLigne){
-		for(Heros heros : listHeros){
+		for(Heros heros : (Heros[])listHeros){
 			if(heros.isLife()){
 			for (Integer j =  0; j < 10; j++){
 				for(Integer i = 0; i < 10;i++){
@@ -184,11 +132,6 @@ public class Plateau implements IPlateau {
 		return listTerrain;
 	}
 
-	
-	public Heros[] getListHeros() {
-		return listHeros;
-	}
-
 	public void setListTerrain(WorldEntity[][] listTerrain) {
 		
 	}
@@ -209,39 +152,6 @@ public class Plateau implements IPlateau {
 		this.map = map;
 	}
 
-	public void setNombreLigneSurvivor(Integer nombreLigneSurvivor) {
-		this.nombreLigneSurvivor = nombreLigneSurvivor;
-	}
-
-	public void setNombreColonneSurvivor(Integer nombreColonneSurvivor) {
-		this.nombreColonneSurvivor = nombreColonneSurvivor;
-	}
-	
-	public Integer getNombreLigne() {
-		return nombreLigne;
-	}
-
-	public void setNombreLigne(Integer nombreLigne) {
-		this.nombreLigne = nombreLigne;
-	}
-
-	public Integer getNombreColonne() {
-		return nombreColonne;
-	}
-
-	public void setNombreColonne(Integer nombreColonne) {
-		this.nombreColonne = nombreColonne;
-	}
-	
-	public Integer getNombrelignearene() {
-		return nombreLigneArene;
-	}
-
-
-	public Integer getNombrecolonnearene() {
-		return nombreColonneArene;
-	}
-
 	public Integer getNumberMap() {
 		return numberMap;
 	}
@@ -257,6 +167,20 @@ public class Plateau implements IPlateau {
 	public void setListMonster(Creatures[] listMonster) {
 		this.listMonster = listMonster;
 	}
+
+	public void setNumberLineMode(Integer numberLineMode) {
+		this.numberLineMode = numberLineMode;
+	}
+
+	public void setNumberColumnMode(Integer numberColumnMode) {
+		this.numberColumnMode = numberColumnMode;
+	}
+
+	public void setListHeros(Creatures[] listHeros) {
+		this.listHeros = listHeros;
+	}
+	
+	
 	
 	
 

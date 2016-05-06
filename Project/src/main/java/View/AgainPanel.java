@@ -44,7 +44,7 @@ public class AgainPanel extends Panel implements Observer{
 		}
 		for(Integer i = 0; i < playerNumber; i++){
 			Integer score = ((Heros)listHeros[i]).getScore();
-			labels[i+2] = text(heros[i][1] + " : " + heros[i][0] + " : " + String.valueOf(score), 380, 230 + i*50, 300, 35, Color.ORANGE);
+			labels[i+2] = text(heros[i][0] + " : " + String.valueOf(score), 420, 230 + i*50, 300, 35, Color.ORANGE);
 		}
 	}
 	

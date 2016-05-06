@@ -9,8 +9,8 @@ public class Controller extends AbstractController{
 	}
 	
 	public void setDimensions(Integer[] dimensions){
-		game.setNombreColonneSurvivor(dimensions[0]);
-		game.setNombreLigneSurvivor(dimensions[1]);
+		game.setNumberColumnMode(dimensions[0]);
+		game.setNumberLineMode(dimensions[1]);
 	}
 	
 	public void setGameMode(String gameMode){
@@ -26,7 +26,7 @@ public class Controller extends AbstractController{
 	}
 
 	public void initComposant(String[][] playerRegister) {
-		game.createPlateau(playerRegister);
+		game.createGame(playerRegister);
 	}
 	
 	public void doActionHeros(String action, Integer state, Integer player){

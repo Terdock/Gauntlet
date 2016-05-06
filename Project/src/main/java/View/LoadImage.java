@@ -151,7 +151,7 @@ public class LoadImage {
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
-		return imageBackground;
+		return imageBonus;
 	}
 
 	public Image[][] getImagesWall() {

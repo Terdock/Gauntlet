@@ -8,18 +8,23 @@ import observer.Observer;
 
 public abstract class AbstractModel implements Observable {
 	
-	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 	
-	public abstract void createPlateau(String[][] playerRegister);
+	//Carte visite de toutes les classes héritant de AbstractModel
 	public abstract void setGameMode(String gameMode);
 	public abstract void setPlayerNumber(Integer playerNumber);
+	public abstract void setNumberLineMode(Integer numberLineMode);
+	public abstract void setNumberColumnMode(Integer numberColumnMode);
+	public abstract void createGame(String[][] playerRegister);
 	public abstract void doActionHeros(String action, Integer state, Integer player);
 	public abstract void attackHeros(Integer player);
-	public abstract void setNombreLigneSurvivor(Integer nombreLigneSurvivor);
-	public abstract void setNombreColonneSurvivor(Integer nombreColonneSurvivor);
 	public abstract void checkAttackMonster();
 	public abstract Creatures[] getListHeros();
 	public abstract void checkModeEnd();
+	
+	
+	
+	//(Pour ce qui suit) Implémentation des observers pour les prévenir des changements dans Model
+	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 	
 	public void addObserver(Observer obs){
 		 this.listObserver.add(obs);

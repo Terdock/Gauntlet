@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import Controller.AbstractController;
 import Model.Creatures;
-import Model.Heros;
 import Model.Monster;
 import Model.PlateauObject;
 import Model.Weapon;
@@ -30,7 +29,7 @@ public class GamePanel extends Panel implements Observer {
 	private String[] typeHeros = {"Warrior", "Dwarf", "Wizzard", "Elf"};
 	private Integer size = 30;
 	private ArrayList<WorldEntity> groundWeapons;
-	private boolean replay;
+	private boolean gameOver;
 	
 	public GamePanel(CardLayout card, Panel panelContainer, Panel panel, AbstractController controller){
 		super(panel);
@@ -60,7 +59,7 @@ public class GamePanel extends Panel implements Observer {
 		showAndActionWeapon(g);
 		actionHeros();
 		controller.checkModeEnd();
-		showPlayAgain();
+		showGameOver();
 		repaint();
 		try {
 			Thread.sleep(100);
@@ -193,9 +192,6 @@ public class GamePanel extends Panel implements Observer {
 				Image imageKey = imageClasse.getImageBonus()[3];
 				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 			}
-			
-			
-			
 		}
 	}
 	
@@ -213,7 +209,6 @@ public class GamePanel extends Panel implements Observer {
 			}
 		}
 	}
-	
 	
 	public void addKeyboard(Integer playerNumber){
 		this.playerNumber = playerNumber;
@@ -251,7 +246,7 @@ public class GamePanel extends Panel implements Observer {
 					ground.setWeapon(null);
 					creatureDead = true;
 				}
-				if(!(object == null)){
+				if(!(object == null) && numberMap.equals(3)){
 					ground.setObject(null);
 				}
 				if(!(weapon == null)){
@@ -296,9 +291,9 @@ public class GamePanel extends Panel implements Observer {
 		}
 	}
 	
-	private void showPlayAgain(){
-		if (replay){
-			card.show(panel, "Play Again");
+	private void showGameOver(){
+		if (gameOver){
+			card.show(panel, "Horror");
 		}
 	}
 
@@ -318,8 +313,8 @@ public class GamePanel extends Panel implements Observer {
 		this.listHeros = listHeros;
 	}
 	
-	public void update(boolean replay){
-		this.replay = replay;
+	public void update(boolean gameOver){
+		this.gameOver = gameOver;
 	}
 	
 }

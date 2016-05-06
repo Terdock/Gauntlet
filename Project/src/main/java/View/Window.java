@@ -90,13 +90,17 @@ public class Window extends JFrame{
             		controller.setGameMode(info);
             		if(info.equals("Mode Quête")){
             			playerNumber = 1;
+            			
+            			//Construction du Panel pour obtenir les informations du joueur
+                		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber));
             		}else if(info.equals("Mode Arène")){
             			playerNumber = 2;
+            			
+            			//Construction du Panel pour obtenir les informations du joueur
+                		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber),0);
             		}
             		controller.setGamePlayerNumber(playerNumber);
             		
-            		//Construction du Panel pour obtenir les informations du joueur
-            		panel[4] = new IdentityPanel(backgroundImages[1], panel[0], imageIcons, String.valueOf(playerNumber));
             		card.show(panel[0], String.valueOf(playerNumber));
             		actionButton(((IdentityPanel)panel[4]).getButton(),"Information");
             	}else if (info.equals("1") || info.equals("2")){
@@ -121,7 +125,7 @@ public class Window extends JFrame{
             			heros[i][0] = ((IdentityPanel)panel[4]).getPlayerName()[i].getText();
             			heros[i][1] = (String)((IdentityPanel)panel[4]).getTypeHeros()[i].getSelectedItem();
             		}
-            		if (modeDeJeu.equals("Mode Survivor")){
+            		if (modeDeJeu.equals("Mode Survivor") || modeDeJeu.equals("Mode Arène")){
             			dimensions[1] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[0].getSelectedItem();
                 		dimensions[0] = (Integer) ((IdentityPanel)panel[4]).getDimensions()[1].getSelectedItem();
                 		controller.setDimensions(dimensions);
