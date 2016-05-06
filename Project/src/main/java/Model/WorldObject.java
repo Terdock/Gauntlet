@@ -17,7 +17,8 @@ public abstract class WorldObject extends WorldEntity {
 		 setVisible(false);
 	}
 	
-	public abstract void useObject();
+	public abstract void useObject(Heros heros);
+
 
 
 	

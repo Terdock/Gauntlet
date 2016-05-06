@@ -15,7 +15,6 @@ public class Map implements IMap {
 	private IPlateau plateau;
 	private Exit exit;
 	
-	
 
 
 	public Map(IPlateau plateau,Integer nombrLigne,Integer nombreColonne,Integer numberMap){
@@ -118,6 +117,9 @@ public class Map implements IMap {
 					}	
 				}
 			}	
+			listTerrain[50][10].setObject(new InvisibilityPotion());
+			listTerrain[59][59].setObject(new GiantStepPotion());
+			listTerrain[79][79].setObject(new SpeedPotion());
 			exit = new Exit(90,90,true,false);
 			listTerrain[90][90] = exit;
 		NumberOfDoor = i;
@@ -177,19 +179,7 @@ public class Map implements IMap {
 	}
 	
 	public boolean map(PlateauObject[][] listTerrain,Integer numberMap,Integer posX,Integer posY){
-		boolean res = false;
-		if(numberMap == 0){
-			res = posX % 20 == 0 || (posX == 90 && posY == 20) || (posX == 10 && posY == 40) || (posX == 90 && posY == 60) || (posX == 10 && posY == 80) ;
-		}else if(numberMap == 1){
-
-		}else if(numberMap == 2){
-			
-		}else if(numberMap == 3){
-			
-		}else if(numberMap == 4){
-			
-		}
-		return res;
+		return posX % 20 == 0 || (posX == 90 && posY == 20) || (posX == 10 && posY == 40) || (posX == 90 && posY == 60) || (posX == 10 && posY == 80) ;
 	}
 	
 	
@@ -217,7 +207,12 @@ public class Map implements IMap {
 	private void createGroupeMonster(Integer posX,Integer posY,Integer n){
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
-				list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
+				if( (i.equals(1) && j.equals(1))){
+					list_Monster.add(new Monster(posX+i,posY+j, new HealthPotion(), numberMap));
+				}
+				else{
+					list_Monster.add(new Monster(posX+i,posY+j, null, numberMap));
+				}
 			}
 		}
 	}

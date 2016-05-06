@@ -9,6 +9,7 @@ public abstract class Heros extends Creatures{
 	private Integer score = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
+	private boolean visibility;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,1000,5,null,false);
@@ -31,7 +32,7 @@ public abstract class Heros extends Creatures{
 	}
 	
 	private void takeObjet( WorldObject objet) {
-		objet.useObject();
+		objet.useObject(this);
 	}
 	
 	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
@@ -77,5 +78,15 @@ public abstract class Heros extends Creatures{
 	public void setScore(Integer score) {
 		this.score = score;
 	}
+
+	public boolean isVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
+	}
+
+
 	
 }

@@ -12,13 +12,13 @@ public class KeyDoor extends WorldObject {
 		this.numberOfDoor = numberOfDoor;
 		
 	}
-
-	public void useObject() {
-		plateau.openDoor(getPosX(),getPosY());
-	}
-	
 	public String name(){
 		return "KeyDoor";
+	}
+
+	@Override
+	public void useObject(Heros heros) {
+		plateau.openDoor(getPosX(),getPosY());
 	}
 
 
