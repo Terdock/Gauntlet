@@ -7,9 +7,10 @@ public abstract class Heros extends Creatures{
 	private Integer direction = 0;
 	private Integer power = 10;
 	private Integer score = 0;
+	private Integer pas = 0;
 	private boolean pasDeGeant = false;
 	protected Weapon weapon;
-	private boolean visibility;
+	private boolean visibility = true;
 
 	public Heros(Integer posX, Integer posY) {
 		super(posX,posY,1000,5,null,false);
@@ -26,12 +27,25 @@ public abstract class Heros extends Creatures{
 			groundPrevious.setCreature(null);
 			if(!(groundNext.getObject() == null)){
 				takeObjet(groundNext.getObject());
+			}
 				groundNext.setObject(null);
+			if(!(getObject() == null)){
+				if(pas.equals(40) || getObject().name().equals("KeyDoor") || getObject().name().equals("Health Potion") ){
+					visibility = true;
+					pasDeGeant = false;
+					setStep(1);
+					setObject(null);
+					this.pas = 0;
+				}
+				else{
+					this.pas+=1;
+				}
 			}
 		}
 	}
 	
 	private void takeObjet( WorldObject objet) {
+		setObject(objet);
 		objet.useObject(this);
 	}
 	

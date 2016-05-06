@@ -82,7 +82,7 @@ public class Map implements IMap {
 						listTerrain[posX][posY] = new Sol(posX, posY, true, true, numberMap);
 						if(posX == 10 && posY == 20){
 							createGroupeMonster(30,10,listTerrain,1,null,null);
-							createGroupeMonster(70,10,listTerrain,2,null,null);
+							createGroupeMonster(70,10,listTerrain,8,null,null);
 							listTerrain[posX][posY] = new Wall(posX,posY,false,false,0);
 							gestionImage(posX,posY,listTerrain);
 						}

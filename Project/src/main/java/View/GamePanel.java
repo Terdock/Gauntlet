@@ -177,6 +177,25 @@ public class GamePanel extends Panel implements Observer {
 				Image imageKey = imageClasse.getImageKey();
 				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
 			}
+			if (object.name().equals("Giant Step Potion")){
+				Image imageKey = imageClasse.getImageBonus()[0];
+				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+			}
+			if (object.name().equals("Health Potion")){
+				Image imageKey = imageClasse.getImageBonus()[1];
+				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+			}
+			if (object.name().equals("Invisibility Potion")){
+				Image imageKey = imageClasse.getImageBonus()[2];
+				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+			}
+			if (object.name().equals("Speed Potion")){
+				Image imageKey = imageClasse.getImageBonus()[3];
+				g.drawImage(imageKey, ground.getPosX()*30/divided, ground.getPosY()*30/divided, size/divided, size/divided, null);
+			}
+			
+			
+			
 		}
 	}
 	

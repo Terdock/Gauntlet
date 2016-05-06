@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 public class LoadImage {
 	private Image[][] imagesWall = new Image[5][8], imagesWeapons = new Image[4][4];;
-	private Image[] imagesGround = new Image[5], imageBackground = new Image[4], imageBonus = new Image[6];
+	private Image[] imagesGround = new Image[5], imageBackground = new Image[4], imageBonus = new Image[4];
 	private Image[][][] imagesHeros = new Image[4][4][3], imagesMonsters = new Image[3][4][3];;
 	private ImageIcon[] imageIcons = new ImageIcon[6];
 	private Image imageDeathHeros, imageDeathMonsters, imageDoor, imageExit, imageKey;
@@ -144,12 +144,10 @@ public class LoadImage {
 	
 	public Image[] loadBonus(){
 		try {
-			imageBonus[0] = ImageIO.read(new File("Images/Potions/barrierPotion.png"));   
-			imageBonus[1] = ImageIO.read(new File("Images/Potions/stepPotion.png"));
-			imageBonus[2] = ImageIO.read(new File("Images/Potions/healthPotion.png"));
-			imageBonus[3] = ImageIO.read(new File("Images/Potions/invisibilityPotion.png"));
-			imageBonus[4] = ImageIO.read(new File("Images/Potions/powerPotion.png"));
-			imageBonus[5] = ImageIO.read(new File("Images/Potions/speedPotion.gif"));
+			imageBonus[0] = ImageIO.read(new File("Images/Potions/stepPotion.png"));
+			imageBonus[1] = ImageIO.read(new File("Images/Potions/healthPotion.png"));
+			imageBonus[2] = ImageIO.read(new File("Images/Potions/invisibilityPotion.png"));
+			imageBonus[3] = ImageIO.read(new File("Images/Potions/speedPotion.gif"));
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
@@ -202,39 +200,4 @@ public class LoadImage {
 	
 	
 	
-	
-	
-	
-	
-	/**
-	public BufferedImage[] createSplit(BufferedImage image,int rows, int cols){
-		int sizeImage = rows * cols;
-   		int sizeImageWidth = image.getWidth() / cols; // determines the sizeImage width and height
-    	int sizeImageHeight = image.getHeight() / rows;
-	    int count = 0;
-	    BufferedImage split[] = new BufferedImage[sizeImage]; //Image array to hold image sizeImage	
-      		for (int x = 0; x < rows; x++) {
-	       		for (int y = 0; y < cols; y++) {
-	             	//Initialize the image array with image sizeImage
-	                split[count] = new BufferedImage(sizeImageWidth, sizeImageHeight, image.getType());
-
-	                // draws the image sizeImage
-	                Graphics2D gr = split[count++].createGraphics();
-	                gr.drawImage(image, 0, 0, sizeImageWidth, sizeImageHeight, sizeImageWidth * y, sizeImageHeight * x, sizeImageWidth * y + sizeImageWidth, sizeImageHeight * x + sizeImageHeight, null);
-	                gr.dispose();
-	            
-	      }
-	     return split;
-	}
-
-		public Image images(String nameImage) {
-			Image img = Mur0;
-			if(nameImage.equals("Model.Sol0"))
-				img = Sol0;
-			else if (nameImage.equals("Model.Hole")){
-				img = trou;
-			}
-			return img;
-		}
-        **/
 }
