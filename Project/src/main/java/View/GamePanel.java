@@ -212,6 +212,7 @@ public class GamePanel extends Panel implements Observer {
 				if (!(ground.isWeaponPassable())){
 					ground.setWeapon(null);
 				}
+				WorldObject object = ground.getObject();
 				Weapon weapon = ground.getWeapon();
 				Creatures creature = ground.getCreature();
 				if ((ground.getCreature() ==  null) && ((ground.isPassable()))){
@@ -230,6 +231,9 @@ public class GamePanel extends Panel implements Observer {
 					}
 					ground.setWeapon(null);
 					creatureDead = true;
+				}
+				if(!(object == null)){
+					ground.setObject(null);
 				}
 				if(!(weapon == null)){
 					if(weapon.getCreature().name().equals("Elf") || 
