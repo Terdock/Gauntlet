@@ -7,6 +7,7 @@ public class Boss extends Monster {
 		super(x,y,wObject,numberMap);
 		this.Height = 60;
 		this.Width = 60;
+		setHp(true,1000*(numberMap+1));
 	}
 	
 	

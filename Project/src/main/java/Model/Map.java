@@ -120,6 +120,7 @@ public class Map implements IMap {
 			listTerrain[50][10].setObject(new InvisibilityPotion());
 			listTerrain[59][59].setObject(new GiantStepPotion());
 			listTerrain[79][79].setObject(new SpeedPotion());
+			list_Monster.add(new Boss(89,90,null,numberMap));
 			exit = new Exit(90,90,true,false);
 			listTerrain[90][90] = exit;
 		NumberOfDoor = i;
