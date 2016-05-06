@@ -66,6 +66,9 @@ public class Plateau implements IPlateau {
 			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
 			battallons(0);
 		}
+		for (Creatures player : listHeros ){
+			listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
+		}
 	}
 
 	public void battallons(Integer numberOfBattallons){
