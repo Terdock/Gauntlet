@@ -19,12 +19,12 @@ public class Plateau implements IPlateau {
 		this.nombreColonne = nombreColonne;
 		this.numberMap = numberMap;
 		this.playerNumber = playerNumber;
-		this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 	}	
 
 	public void Initialisation(String mode, String[][] playerRegister){
 		this.map = new Map(this, nombreLigne, nombreColonne, numberMap);
 		if (mode.equals("Mode Quête")){
+			this.listTerrain = new PlateauObject[nombreColonne][nombreLigne];
 			this.listTerrain = map.createListTerrain(nombreLigne,nombreColonne,listTerrain);
 			listMonster = map.getListMonster();
 			createHero(playerRegister,nombreLigne,nombreColonne);
@@ -32,9 +32,11 @@ public class Plateau implements IPlateau {
 				listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 			}
 		}else if(mode.equals("Mode Arène")){
+			this.listTerrain = new PlateauObject[nombreColonneArene][nombreLigneArene];
 			this.listTerrain = map.createListTerrainArene(nombreLigneArene,nombreColonneArene,listTerrain);
 			createHero(playerRegister,nombreLigneArene,nombreColonneArene);
 		}else if(mode.equals("Mode Survivor")){
+			this.listTerrain = new PlateauObject[nombreColonneSurvivor][nombreLigneSurvivor];
 			this.listTerrain = map.createListTerrainArene(nombreLigneSurvivor,nombreColonneSurvivor,listTerrain);
 			createHero(playerRegister,nombreLigneSurvivor,nombreColonneSurvivor);
 			battallons(0);
