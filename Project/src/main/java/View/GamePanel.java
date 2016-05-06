@@ -67,14 +67,6 @@ public class GamePanel extends Panel implements Observer {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-//		for(Integer i=0; i<2; i++){
-//			showAndActionWeapon(g);
-//			try {
-//				Thread.sleep(80);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
 	}
 	
 	
@@ -124,11 +116,6 @@ public class GamePanel extends Panel implements Observer {
 				showObject(ground, object, g);
 			}
 		}
-		
-//		for(Integer numberLine = 0; numberLine < listTerrain.length; numberLine++){
-//			for(Integer numberColumn = 0; numberColumn < listTerrain.length; numberColumn++){
-//			}
-//		}
 	}
 
 
