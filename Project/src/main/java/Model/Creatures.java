@@ -11,9 +11,6 @@ public abstract class Creatures extends WorldEntity {
 	private boolean Visible;
     private WorldObject object;
 	private boolean imAEnemy; 
- 
-
-
 
 
 	public Creatures(Integer posX,Integer posY, Integer hp, Integer defense, WorldObject object, boolean imAEnemy) {
@@ -22,27 +19,7 @@ public abstract class Creatures extends WorldEntity {
 		this.defense = defense;
 		this.object = object;
 		this.imAEnemy = imAEnemy;
-		
 	}
-	
-	public WorldObject getObject() {
-		return object;
-	}
-
-	public void setObject(WorldObject object) {
-		this.object = object;
-	}
-
-	public boolean isVisible() {
-		return Visible;
-	}
-
-	public void setVisible(boolean visible) {
-		Visible = visible;
-	}
-
-	
-	
 	
 	public  void move(String action){
 		if(action.equals("Action Up")){
@@ -73,34 +50,30 @@ public abstract class Creatures extends WorldEntity {
 			setDirection(action);
 		}
 	}
-
-    
-	   public Integer getMoveContinue() {
-			return moveContinue;
-		}
-
-
-		public void setMoveContinue(Integer moveContinue) {
-			this.moveContinue = moveContinue;
-		}
-
-
-		public Integer getDirection() {
-			return direction;
-		}
-
-
-		public void setDirection(Integer direction) {
-			this.direction = direction;
-		}
+	
+	public void receiveAttack(Integer attack, Integer defense) {
+		if(attack-defense>0)
+			setHp(attack-defense);
+	}
 	
 	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
 	public abstract void specialAttack();
 	public abstract void attack(Creatures creature);
 	
-	public void receiveAttack(Integer attack, Integer defense) {
-		if(attack-defense>0)
-			setHp(attack-defense);
+	public Integer getMoveContinue() {
+		return moveContinue;
+	}
+
+	public void setMoveContinue(Integer moveContinue) {
+		this.moveContinue = moveContinue;
+	}
+
+	public Integer getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Integer direction) {
+		this.direction = direction;
 	}
 
 	public boolean isLife() {
@@ -137,7 +110,22 @@ public abstract class Creatures extends WorldEntity {
 	public void setStep(Integer step) {
 		this.step = step;
 	}
+	
+	public WorldObject getObject() {
+		return object;
+	}
 
+	public void setObject(WorldObject object) {
+		this.object = object;
+	}
+
+	public boolean isVisible() {
+		return Visible;
+	}
+
+	public void setVisible(boolean visible) {
+		Visible = visible;
+	}
 
 	public Integer getDefense() {
 		return defense;

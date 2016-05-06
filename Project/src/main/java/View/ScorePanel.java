@@ -10,8 +10,9 @@ import Model.WorldEntity;
 import observer.Observer;
 
 public class ScorePanel extends Panel implements Observer {
-	private Label[] labelsName = new Label[4], labelsScore = new Label[4], labelsHp = new Label[4];
+	private Label[] labelsName = new Label[2], labelsScore = new Label[2], labelsHp = new Label[2];
 	private WorldEntity[] listHeros;
+	private Integer previousPlayerNumber = 0;
 	private Integer playerNumber;
 	private String[][] heros;
 	
@@ -36,6 +37,7 @@ public class ScorePanel extends Panel implements Observer {
 					60, 130 + i*130, 200, 30, Color.LIGHT_GRAY);
 			labelsScore[i].setFont(new Font("Monotype Corsiva",Font.BOLD,20));
 		}
+		previousPlayerNumber = playerNumber;
 	}
 	
 	private Integer playerHp(Integer player){
@@ -49,14 +51,14 @@ public class ScorePanel extends Panel implements Observer {
 	}
 	
 	private void setLabelsScoreText(){
-		for (int i = 0; i < playerNumber; i++){
+		for (int i = 0; i < playerNumber ; i++){
 			labelsHp[i].setText("Vie : " + String.valueOf(playerHp(i)));
 			labelsScore[i].setText("Score : " + String.valueOf(playerScore(i)));
 		}
 	}
 	
 	private void resetScoreText(){
-		for (int i = 0; i < playerNumber; i++){
+		for (int i = 0; i < previousPlayerNumber; i++){
 			labelsName[i].setText(" ");
 			labelsHp[i].setText(" ");
 			labelsScore[i].setText(" ");
