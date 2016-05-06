@@ -42,7 +42,7 @@ public class Plateau implements IPlateau {
 			battallons(0);
 		}
 		
-		for (Creatures player : listHeros ){
+		for (Creatures player : listHeros ){              
 				listTerrain[player.getPosX()][player.getPosY()].setCreature(player); 
 		}
 	}
