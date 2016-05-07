@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="View.Window" project="Project" file="/Project/src/main/java/View/Window.java" 
+    binary="false" label="window" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="64" y="0"/>    
+    <execution id="2">      
+      <position height="137" width="69" x="5" y="99"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="View.GamePanel" project="Project" 
+    file="/Project/src/main/java/View/GamePanel.java" binary="false" label="gamePanel" type="class" autoSize="false">    
+    <position height="161" width="186" x="73" y="0"/>    
+    <execution id="4">      
+      <position height="95" width="88" x="78" y="120"/>    
+    </execution>    
+    <execution id="7">      
+      <position height="21" width="7" x="166" y="173"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="paintComponent(java.awt.Graphics):void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>
+</sequence-diagram>

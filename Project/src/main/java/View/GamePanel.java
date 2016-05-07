@@ -68,9 +68,6 @@ public class GamePanel extends Panel implements Observer {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 
 	private void showModeStory(Graphics g){
 		Integer offsetMaxX = (listTerrain[0].length*size - 720);
@@ -239,7 +236,6 @@ public class GamePanel extends Panel implements Observer {
 					weapon.getCreature().attack(creature);
 					if(!creature.isLife()){
 						if(!(creature.getObject() == null)){
-							System.out.println(creature.getObject());
 							ground.setObject(creature.getObject());
 							ground.getCreature().setObject(null);
 						}

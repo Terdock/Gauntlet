@@ -3,28 +3,24 @@ package Model;
 import java.util.ArrayList;
 
 public class Map implements IMap {
-	
-
-	private Integer nombreLigne;
-	private Integer nombreColonne;
+	private Integer numberLine;
+	private Integer numberColumn;
 	private Integer numberMap;
-	private ArrayList<Monster> list_Monster = new ArrayList<Monster>();
+	private ArrayList<Monster> listMonster = new ArrayList<Monster>();
 	private IPlateau plateau;
 	private Exit exit;
-	
 
-
-	public Map(IPlateau plateau,Integer nombrLigne,Integer nombreColonne,Integer numberMap){
+	public Map(IPlateau plateau,Integer numberLine,Integer numberColumn,Integer numberMap){
 		this.plateau = plateau;
-		this.nombreLigne = nombrLigne;	
-		this.nombreColonne = nombreColonne;
+		this.numberLine = numberLine;	
+		this.numberColumn = numberColumn;
 		this.numberMap = numberMap;
 		this.plateau = plateau;
 	}
 
 	public Creatures[] getListMonster() {
 		ArrayList<Monster> ArrayListMonster = new ArrayList<Monster>();
-		ArrayListMonster = list_Monster;
+		ArrayListMonster = listMonster;
 		Creatures[] listMonster = new Creatures[ArrayListMonster.size()];
 		for(Integer i = 0; i < ArrayListMonster.size();i++){
 			listMonster[i] = ArrayListMonster.get(i); 
@@ -104,7 +100,7 @@ public class Map implements IMap {
 			listTerrain[50][10].setObject(new InvisibilityPotion());
 			listTerrain[59][59].setObject(new GiantStepPotion());
 			listTerrain[79][79].setObject(new SpeedPotion());
-			list_Monster.add(new Monster(89,90,null,numberMap, "Boss"));
+			listMonster.add(new Monster(89,90,null,numberMap, "Boss"));
 			exit = new Exit(90,90,true,false, numberMap);
 			listTerrain[90][90] = exit;
 		return listTerrain;
@@ -115,7 +111,7 @@ public class Map implements IMap {
 
 	private boolean isDoor(Integer posX, Integer posY){
 		return ((posX % 10 == 0 && posY % 20 == 0) || (posX %20 == 0 && posY % 10 == 0)) 
-				&& !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<nombreColonne-1&&posY<nombreLigne-1;
+				&& !(posX %20 == 0 && posY % 20 == 0) && posX > 0 && posY>0 &&posX<numberColumn-1&&posY<numberLine-1;
 	}
 	
 	private boolean isWall(Integer posX, Integer posY){
@@ -126,11 +122,11 @@ public class Map implements IMap {
 		listTerrain[posX][posY].setForm(7);
 		if( posX.equals(0) && posY % 20 == 0 )
 			listTerrain[posX][posY].setForm(2) ;
-		else if( posX.equals(nombreColonne-1) && posY % 20 ==0) 
+		else if( posX.equals(numberColumn-1) && posY % 20 ==0) 
 			listTerrain[posX][posY].setForm(3);
-		else if( posX.equals(0) && posY.equals(nombreLigne-1))
+		else if( posX.equals(0) && posY.equals(numberLine-1))
 			listTerrain[posX][posY].setForm(5);
-		else if(posX.equals(nombreColonne-1) && posY.equals(nombreLigne-1))
+		else if(posX.equals(numberColumn-1) && posY.equals(numberLine-1))
 			listTerrain[posX][posY].setForm(4);
 		else if(posX % 20 == 0 && posY % 20 == 0)
 			listTerrain[posX][posY].setForm(6);
@@ -173,11 +169,11 @@ public class Map implements IMap {
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
 				if(i == 0 && j == 0){
-					list_Monster.add(new Monster(posX+i,posY+j,wObject,numberMap, "Monster"));
+					listMonster.add(new Monster(posX+i,posY+j,wObject,numberMap, "Monster"));
 				}else if (i.equals(1) && j.equals(1)){
-					list_Monster.add(new Monster(posX+i,posY+j, new HealthPotion(),numberMap, "Monster"));
+					listMonster.add(new Monster(posX+i,posY+j, new HealthPotion(),numberMap, "Monster"));
 				}else{	
-					list_Monster.add(new Monster(posX+i,posY+j,null,numberMap, "Monster"));
+					listMonster.add(new Monster(posX+i,posY+j,null,numberMap, "Monster"));
 				}
 			}
 		}	
@@ -187,10 +183,10 @@ public class Map implements IMap {
 		for( Integer i = -n; i <= n ; i++){
 			for ( Integer j = -n; j<= n;j++) {
 				if( (i.equals(1) && j.equals(1))){
-					list_Monster.add(new Monster(posX+i,posY+j, new HealthPotion(),numberMap, "Monster"));
+					listMonster.add(new Monster(posX+i,posY+j, new HealthPotion(),numberMap, "Monster"));
 				}
 				else{
-					list_Monster.add(new Monster(posX+i,posY+j,null,numberMap, "Monster"));
+					listMonster.add(new Monster(posX+i,posY+j,null,numberMap, "Monster"));
 				}
 			}
 		}

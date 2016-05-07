@@ -21,6 +21,8 @@ public abstract class Creatures extends WorldEntity {
 		this.imAEnemy = imAEnemy;
 	}
 	
+	//Mouvement de toutes les créatures (Héros et Monstres) en fonction d'un paramètre
+	//(action de l'utilisateur, action de l'IA)
 	public  void move(String action){
 		if(action.equals("Action Up")){
 			setPosY(getPosY() - step);
@@ -37,6 +39,8 @@ public abstract class Creatures extends WorldEntity {
 		}
 	}
 	
+	
+	//Gestion de l'image pour simuler un déplacement des créatures
 	public void gestionImage(Integer action){
 		if(direction.equals(action)){
 			if(moveContinue.equals(2)){
@@ -51,6 +55,7 @@ public abstract class Creatures extends WorldEntity {
 		}
 	}
 	
+	//Les conséquences des attaques recus par les créatures
 	public void receiveAttack(Integer attack, Integer defense) {
 		if(attack-defense>0)
 			setHp(attack-defense);
@@ -58,6 +63,7 @@ public abstract class Creatures extends WorldEntity {
 	
 	public abstract void attack(PlateauObject[][] listTerrain, Integer direction);
 	public abstract void attack(Creatures creature);
+	
 	
 	public Integer getMoveContinue() {
 		return moveContinue;
