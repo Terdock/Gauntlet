@@ -31,7 +31,7 @@ public class GauntletGame extends AbstractModel {
 	}
 	
 	//Création du (ou des) héros
-	public void createHero(String[][] playerRegister,Integer nombreLigne,Integer nombreColonne){
+	private void createHero(String[][] playerRegister,Integer nombreLigne,Integer nombreColonne){
 		listHeros = new Heros[playerNumber];
 		for (Integer i = 0; i < playerNumber; i++ ){
 			if(playerRegister[i][1] == "Sorcier"){
@@ -51,7 +51,7 @@ public class GauntletGame extends AbstractModel {
 	}
 	
 	//Creation du plateau de jeu pour positionner chaque élément 
-	public void createPlateau(Creatures[] listHeros){
+	private void createPlateau(Creatures[] listHeros){
 		this.plateau = new Plateau(numberLine,numberColumn,numberMap);
 		this.plateau.setListHeros(listHeros);
 		this.plateau.setNumberColumnMode(numberColumnMode);

@@ -29,7 +29,7 @@ public class Plateau implements IPlateau {
 			}
 		}else if(mode.equals("Mode Arène") || (mode.equals("Mode Survivor"))){
 			this.listTerrain = new PlateauObject[numberColumnMode][numberLineMode];
-			this.listTerrain = map.createListTerrainArene(numberLineMode,numberColumnMode,listTerrain);
+			this.listTerrain = map.createListTerrain(numberLineMode,numberColumnMode,listTerrain);
 			if(mode.equals("Mode Survivor")){
 				battallons(0);
 			}

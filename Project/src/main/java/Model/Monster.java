@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Model.Creatures;
 
 public class Monster extends Creatures {
-    private static Integer degat = 6;
+    private Integer degat = 6;
 	private int dommage;
 	private String type;
 
@@ -18,12 +18,12 @@ public class Monster extends Creatures {
         }
     }
     
-    public static Integer getDegat() {
+    public Integer getDegat() {
 		return degat;
 	}
 
-	public static void setDegat(Integer degat) {
-		Monster.degat = degat;
+	public void setDegat(Integer degat) {
+		this.degat = degat;
 	}
     
     public String nameType(){
