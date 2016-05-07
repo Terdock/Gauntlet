@@ -75,8 +75,10 @@ public class GauntletGame extends AbstractModel {
 	
 	//Action de l'utilisateur pour changer la position du héros
     public void doActionHeros(String action, Integer state, Integer player) {
-    	listHeros[player].setDirection(state);
-    	listHeros[player].doAction(action, plateau, listTerrain);
+    	if(listHeros[player].isLife()){
+    		listHeros[player].setDirection(state);
+    		listHeros[player].doAction(action, plateau, listTerrain);
+    	}
 	}
     
     //Action de l'utilisateur pour attaquer
@@ -142,6 +144,7 @@ public class GauntletGame extends AbstractModel {
     				for(Creatures heros : listHeros){
     					heros.setLife(true);
     					heros.setDefense(heros.getDefense()+5);
+    					((Heros) heros).setHp(true,((Heros) heros).getHp()+1000);
     					((Heros) heros).setPower(((Heros) heros).getPower()+10);
     				}
     				createPlateau(listHeros);

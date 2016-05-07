@@ -46,7 +46,7 @@ public class Plateau implements IPlateau {
 		listMonster = map.getListMonster();
 		for (Creatures mob: listMonster){
 			if (mob.getPosX() > 0 && mob.getPosY() > 0 && mob.getPosX()< numberColumnMode-1 && mob.getPosY() < numberLineMode-1){
-				if(listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.Sol") 
+				if(listTerrain[mob.getPosX()][mob.getPosY()].getClass().getName().equals("Model.PlateauObject") 
 						&& listTerrain[mob.getPosX()][mob.getPosY()].getCreature() == null ){
 					listTerrain[mob.getPosX()][mob.getPosY()].setCreature(mob);
 				}
@@ -78,7 +78,7 @@ public class Plateau implements IPlateau {
 	}
 
 	
-	//Construction de l'intelligence artificielle
+	//Construction de l'intelligence artificielle du déplacement selon la position du joueur
 	public void checkAttackMonster(Integer nombreColonne,Integer nombreLigne){
 		for(Heros heros : (Heros[])listHeros){
 			if(heros.isLife()){
